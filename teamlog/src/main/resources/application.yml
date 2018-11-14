@@ -1,0 +1,74 @@
+server:
+  port: 18191
+
+#management:
+#  endpoints:
+#    web:
+#      cors:
+#        allowed-origins: *
+#        allowed-methods: *
+
+spring:
+  datasource:
+#    url: ENC(Nl0a9q4LVyLicN55PYL7BWZhZIgDIwROFNWbzv0sCwHQhW7L20wbhBJSCW7DLe3tz3hntawuMCa5DnfBQTDdH7JGCGUwiBOKp6gLqp6BJ5s6C8+i/R5bQ/qnhDrHLqHi93y8/CsLgsbIvQlo2QVkDoZrKiHYLqjoozZ9Jn7rKiG4tOquVossK7TxvtJfR8DfL1ott+C1a03SNh7SBMXZimdN0r9MVo/jJHkY0U/YoXmjvIp+8V/JCw==)
+#    username: ENC(j8Fec2fHQLNQH03QdveIYw==)
+#    password: ENC(D5pKAHf9wXZaTdkiJsBn0Q==)
+#    driver-class-name: ENC(HY+Jl//BAvqLZCCRLKaFswsA94L2vmH+FKzkEOfgJ9w=)
+#    driverClassName: ENC(HY+Jl//BAvqLZCCRLKaFswsA94L2vmH+FKzkEOfgJ9w=)
+    url: jdbc:mysql://101.132.110.185:3306/learn?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true
+    username: learn
+    password: learn-m
+    driver-class-name: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.jdbc.Driver
+
+  druid:
+    initial-size: 5
+    max-active: 10
+    min-idle: 5
+    max-wait: 60000
+    pool-prepared-statements: true
+    max-pool-prepared-statement-per-connection-size: 20
+    validation-query: SELECT 1 FROM DUAL
+    validation-query-timeout: 60000
+    test-on-borrow: false
+    test-on-return: false
+    test-while-idle: true
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 100000
+    #spring.datasource.druid.max-evictable-idle-time-millis=
+    filters: stat,wall,log4j
+    web-stat-filter:
+      enabled: true
+      url-pattern: /*
+#      exclusions: *.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*
+      session-stat-enable: true
+      session-stat-max-count: 1000
+      principal-session-name:
+      principal-cookie-name:
+      profile-enable: true
+    stat-view-servlet:
+      enabled: true
+      url-pattern: /druid/*
+      reset-enable: true
+      login-username: druid
+      login-password: druid
+      allow: 127.0.0.1
+      deny:
+    filter:
+      stat:
+        db-type: mysql
+        log-slow-sql: true
+        slow-sql-millis: 2000
+      wall:
+        enabled: true
+        db-type: mysql
+        config.delete-allow: false
+        config.drop-table-allow: false
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL55Dialect
+#    database-platform: org.hibernate.dialect.MySQL5Dialect

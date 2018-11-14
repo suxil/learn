@@ -1,0 +1,607 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.learn</groupId>
+	<artifactId>learn</artifactId>
+	<packaging>pom</packaging>
+	<version>0.1</version>
+	<name>learn</name>
+	<url>http://maven.apache.org</url>
+
+	<modules>
+		<module>core</module>
+
+		<!--<module>cas</module>-->
+
+		<module>oauth-service</module>
+		<module>api-service</module>
+
+		<module>flowable-service</module>
+
+		<module>learn-api</module>
+		<module>learn-service</module>
+
+		<module>teamlog</module>
+
+		<module>web</module>
+	</modules>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<compiler.plugin.version>3.2</compiler.plugin.version>
+		<lombok.version>1.18.0</lombok.version>
+		<lombok.plugin.version>1.16.22.0</lombok.plugin.version>
+
+		<logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
+		<logback-classic.version>1.2.3</logback-classic.version>
+
+		<docker-maven-plugin.version>1.1.1</docker-maven-plugin.version>
+		<baseImage>java:8</baseImage>
+		<!--<dockerHost>http://118.184.219.165:2375</dockerHost>-->
+		<dockerHost>http://192.168.80.130:2375</dockerHost>
+
+		<cas.version>5.3.3</cas.version>
+
+		<spring.boot.version>2.0.3.RELEASE</spring.boot.version>
+		<spring.oauth.version>2.3.3.RELEASE</spring.oauth.version>
+		<spring.jwt.version>1.0.7.RELEASE</spring.jwt.version>
+		<ulisesbocchio.version>2.1.0</ulisesbocchio.version>
+
+		<flowable.version>6.4.0</flowable.version>
+
+		<apache.hadoop.version>3.1.0</apache.hadoop.version>
+
+		<commons.lang3.version>3.6</commons.lang3.version>
+		<commons.text.version>1.1</commons.text.version>
+		<commons.collections4.version>4.1</commons.collections4.version>
+		<commons.io.version>2.5</commons.io.version>
+		<commons.fileupload.version>1.3.3</commons.fileupload.version>
+		<commons.httpclient.version>3.1</commons.httpclient.version>
+		<commons.net.version>3.6</commons.net.version>
+		<poi.version>3.17</poi.version>
+		<thumbnailator.version>0.4.8</thumbnailator.version>
+		<gson.version>2.8.2</gson.version>
+
+		<cglib.version>3.2.5</cglib.version>
+		<quartz.version>2.2.1</quartz.version>
+		<guava.version>23.0</guava.version>
+		<xstream.version>1.4.10</xstream.version>
+		<dom4j.version>2.1.1</dom4j.version>
+		<netty.version>4.1.22.Final</netty.version>
+		<zxing.version>3.3.0</zxing.version>
+
+		<jsoup.version>1.11.3</jsoup.version>
+
+		<junit.version>4.12</junit.version>
+
+		<druid.version>1.1.9</druid.version>
+
+
+
+		<!-- 其他插件 -->
+		<font-awesome.version>5.3.1</font-awesome.version>
+		<ionicons.version>2.0.1</ionicons.version>
+		<jquery.version>3.3.1</jquery.version>
+		<echarts.version>3.2.3</echarts.version>
+		<admin-lte.version>2.4.3</admin-lte.version>
+		<fastclick.version>1.0.6</fastclick.version>
+		<sparkline.version>2.1.2</sparkline.version>
+		<slimscroll.version>1.3.8</slimscroll.version>
+		<icheck.version>1.0.2</icheck.version>
+		<!-- bootstrap相关控件版本 -->
+		<bootstrap.version>4.1.3</bootstrap.version>
+		<bootstrap-3-typeahead.version>3.1.1</bootstrap-3-typeahead.version>
+		<bootstrap-application-wizard.version>3768da3142-1</bootstrap-application-wizard.version>
+		<bootstrap-daterangepicker.version>2.1.27</bootstrap-daterangepicker.version>
+		<bootstrap-datepicker.version>1.8.0</bootstrap-datepicker.version>
+		<bootstrap-datetimepicker.version>2.4.2</bootstrap-datetimepicker.version>
+		<bootstrap-filestyle.version>1.1.2</bootstrap-filestyle.version>
+		<bootstrap-growl.version>2.0.1</bootstrap-growl.version>
+		<bootstrap-multiselect.version>0.9.15</bootstrap-multiselect.version>
+		<bootstrap-slider.version>10.0.2</bootstrap-slider.version>
+		<bootstrap-tagsinput.version>0.8.0</bootstrap-tagsinput.version>
+		<bootstrap-timepicker.version>0.5.2</bootstrap-timepicker.version>
+		<bootstrap-tokenfield.version>0.12.1</bootstrap-tokenfield.version>
+		<bootstrap-tour.version>0.11.0</bootstrap-tour.version>
+		<bootstrap-treeview.version>1.2.0</bootstrap-treeview.version>
+		<bootstrap-accessibility-plugin.version>1.0.4</bootstrap-accessibility-plugin.version>
+		<bootstrap-chosen.version>1.0.0</bootstrap-chosen.version>
+		<bootstrap-notify.version>3.1.3</bootstrap-notify.version>
+		<bootstrap-select.version>1.12.4</bootstrap-select.version>
+		<bootstrap-sidebar.version>0.2.2</bootstrap-sidebar.version>
+		<bootstrap-social.version>5.0.0</bootstrap-social.version>
+		<bootstrap-table.version>1.9.1</bootstrap-table.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>2.0.4.RELEASE</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>com.spotify</groupId>
+					<artifactId>docker-maven-plugin</artifactId>
+					<version>${docker-maven-plugin.version}</version>
+					<configuration>
+						<imageName>${project.groupId}/${project.artifactId}:${project.version}</imageName>  <!--指定镜像名称 仓库/镜像名:标签-->
+						<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+						<baseImage>${baseImage}</baseImage>    <!--指定基础镜像，相当于dockerFile中的FROM<image> -->
+						<dockerHost>${dockerHost}</dockerHost>  <!-- 指定仓库地址 -->
+						<forceTags>true</forceTags>    <!--覆盖相同标签镜像-->
+						<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint> <!-- 容器启动执行的命令，相当于dockerFile的ENTRYPOINT -->
+						<!-- copy the service's jar file from target into the root directory of the image -->
+						<resources>
+							<resource>                        <!-- 指定资源文件 -->
+								<targetPath>/</targetPath>            <!-- 指定要复制的目录路径，这里是当前目录 -->
+								<directory>${project.build.directory}</directory> <!-- 指定要复制的根目录，这里是target目录 -->
+								<include>${project.build.finalName}.jar</include>  <!-- 指定需要拷贝的文件，这里指最后生成的jar包 -->
+							</resource>
+						</resources>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${compiler.plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok-maven-plugin</artifactId>
+				<version>${lombok.plugin.version}</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>delombok</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>net.logstash.logback</groupId>
+				<artifactId>logstash-logback-encoder</artifactId>
+				<version>${logstash-logback-encoder.version}</version>
+			</dependency>
+			<!-- Your project must also directly depend on either logback-classic or logback-access.  For example: -->
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback-classic.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apereo.cas</groupId>
+				<artifactId>cas-server-core</artifactId>
+				<version>${cas.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apereo.cas</groupId>
+				<artifactId>cas-server-core-web</artifactId>
+				<version>${cas.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apereo.cas</groupId>
+				<artifactId>cas-server-support-configuration-cloud-jdbc</artifactId>
+				<version>${cas.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Edgware.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring.boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security.oauth</groupId>
+				<artifactId>spring-security-oauth2</artifactId>
+				<version>${spring.oauth.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-jwt</artifactId>
+				<version>${spring.jwt.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.flowable</groupId>
+				<artifactId>flowable-spring-boot-starter-rest</artifactId>
+				<version>${flowable.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.flowable</groupId>
+				<artifactId>flowable-spring-boot-starter-actuator</artifactId>
+				<version>${flowable.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.flowable</groupId>
+				<artifactId>flowable-ldap</artifactId>
+				<version>${flowable.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.github.ulisesbocchio</groupId>
+				<artifactId>jasypt-spring-boot-starter</artifactId>
+				<version>${ulisesbocchio.version}</version>
+			</dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+			<dependency>
+				<groupId>org.apache.hadoop</groupId>
+				<artifactId>hadoop-common</artifactId>
+				<version>${apache.hadoop.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.hadoop</groupId>
+				<artifactId>hadoop-hdfs</artifactId>
+				<version>${apache.hadoop.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.hadoop</groupId>
+				<artifactId>hadoop-mapreduce-client-core</artifactId>
+				<version>${apache.hadoop.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.hadoop</groupId>
+				<artifactId>hadoop-client</artifactId>
+				<version>${apache.hadoop.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons.lang3.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-text</artifactId>
+				<version>${commons.text.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${commons.collections4.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons.io.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${commons.fileupload.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>${commons.httpclient.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>${commons.net.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>${gson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+				<version>${cglib.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz-jobs</artifactId>
+				<version>${quartz.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>${xstream.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>${dom4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.coobird</groupId>
+				<artifactId>thumbnailator</artifactId>
+				<version>${thumbnailator.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-all</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>javase</artifactId>
+				<version>${zxing.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>${jsoup.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+
+
+			<!-- 其他插件 -->
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>font-awesome</artifactId>
+				<version>${font-awesome.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>ionicons</artifactId>
+				<version>${ionicons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars.bower</groupId>
+				<artifactId>jquery</artifactId>
+				<version>${jquery.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>echarts</artifactId>
+				<version>${echarts.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>AdminLTE</artifactId>
+				<version>${admin-lte.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>fastclick</artifactId>
+				<version>${fastclick.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>jquery.sparkline</artifactId>
+				<version>${sparkline.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>jQuery-slimScroll</artifactId>
+				<version>${slimscroll.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars.bower</groupId>
+				<artifactId>jquery-icheck</artifactId>
+				<version>${icheck.version}</version>
+			</dependency>
+			<!-- bootstrap 相关控件 -->
+			<dependency>
+				<groupId>org.webjars.bower</groupId>
+				<artifactId>bootstrap</artifactId>
+				<version>${bootstrap.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>Bootstrap-3-Typeahead</artifactId>
+				<version>${bootstrap-3-typeahead.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-application-wizard</artifactId>
+				<version>${bootstrap-application-wizard.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-daterangepicker</artifactId>
+				<version>${bootstrap-daterangepicker.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-datepicker</artifactId>
+				<version>${bootstrap-datepicker.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-datetimepicker</artifactId>
+				<version>${bootstrap-datetimepicker.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-filestyle</artifactId>
+				<version>${bootstrap-filestyle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-growl</artifactId>
+				<version>${bootstrap-growl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-multiselect</artifactId>
+				<version>${bootstrap-multiselect.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-slider</artifactId>
+				<version>${bootstrap-slider.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-tagsinput</artifactId>
+				<version>${bootstrap-tagsinput.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-timepicker</artifactId>
+				<version>${bootstrap-timepicker.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-tokenfield</artifactId>
+				<version>${bootstrap-tokenfield.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-tour</artifactId>
+				<version>${bootstrap-tour.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-treeview</artifactId>
+				<version>${bootstrap-treeview.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-accessibility-plugin</artifactId>
+				<version>${bootstrap-accessibility-plugin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-chosen</artifactId>
+				<version>${bootstrap-chosen.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-notify</artifactId>
+				<version>${bootstrap-notify.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-select</artifactId>
+				<version>${bootstrap-select.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-sidebar</artifactId>
+				<version>${bootstrap-sidebar.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-social</artifactId>
+				<version>${bootstrap-social.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-table</artifactId>
+				<version>${bootstrap-table.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+</project>
