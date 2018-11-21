@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 //@EnableResourceServer
+//@EnableOAuth2Sso
 public class OauthApplication {
 
     public static void main(String[] args) {
