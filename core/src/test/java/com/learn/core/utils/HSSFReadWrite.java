@@ -197,7 +197,7 @@ public final class HSSFReadWrite {
 											break;
 
 										default:
-											value = "UNKNOWN value of type " + cell.getCellType();
+											value = "UNKNOWN value of type " + cell.getCellTypeEnum();
 									}
 									System.out.println("CELL col=" + cell.getColumnIndex() + " VALUE="
 											+ value);
