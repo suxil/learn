@@ -12,12 +12,13 @@
 	<modules>
 		<module>core</module>
 
-		<!--<module>cas</module>-->
+		<module>cas</module>
 
 		<module>oauth-service</module>
 		<module>api-service</module>
 
 		<module>flowable-service</module>
+		<module>batch-service</module>
 
 		<module>learn-api</module>
 		<module>learn-service</module>
@@ -45,7 +46,8 @@
 
 		<cas.version>5.3.3</cas.version>
 
-		<spring.boot.version>2.0.3.RELEASE</spring.boot.version>
+		<spring.cloud.version>Finchley.SR2</spring.cloud.version>
+		<spring.boot.version>2.0.6.RELEASE</spring.boot.version>
 		<spring.oauth.version>2.3.3.RELEASE</spring.oauth.version>
 		<spring.jwt.version>1.0.7.RELEASE</spring.jwt.version>
 		<ulisesbocchio.version>2.1.0</ulisesbocchio.version>
@@ -115,6 +117,14 @@
 		<bootstrap-social.version>5.0.0</bootstrap-social.version>
 		<bootstrap-table.version>1.9.1</bootstrap-table.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>nexus-aliyun</id>
+			<name>Nexus aliyun</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 
@@ -240,7 +250,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Edgware.RELEASE</version>
+				<version>${spring.cloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>

@@ -44,7 +44,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.webjars</groupId>
+			<groupId>org.webjars.bower</groupId>
 			<artifactId>bootstrap</artifactId>
 		</dependency>
 
