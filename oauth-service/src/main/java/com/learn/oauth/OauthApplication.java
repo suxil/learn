@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date: Created in 2018/5/25 0025 23:09
  */
 @SpringBootApplication
-//@EnableResourceServer
 public class OauthApplication {
 
     public static void main(String[] args) {
