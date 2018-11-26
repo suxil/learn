@@ -15,6 +15,8 @@
 		<module>cas</module>
 
 		<module>oauth-service</module>
+		<module>oauth-client1</module>
+
 		<module>api-service</module>
 
 		<module>flowable-service</module>
@@ -49,7 +51,8 @@
 
 		<spring.cloud.version>Finchley.SR2</spring.cloud.version>
 		<spring.boot.version>2.0.3.RELEASE</spring.boot.version>
-		<spring.oauth.version>2.3.3.RELEASE</spring.oauth.version>
+		<spring.oauth.version>2.3.4.RELEASE</spring.oauth.version>
+		<spring.oauth.auto.version>2.1.0.RELEASE</spring.oauth.auto.version>
 		<spring.jwt.version>1.0.7.RELEASE</spring.jwt.version>
 		<ulisesbocchio.version>2.1.0</ulisesbocchio.version>
 
@@ -317,6 +320,12 @@
 				<groupId>org.springframework.security.oauth</groupId>
 				<artifactId>spring-security-oauth2</artifactId>
 				<version>${spring.oauth.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security.oauth.boot</groupId>
+				<artifactId>spring-security-oauth2-autoconfigure</artifactId>
+				<version>${spring.oauth.auto.version}</version>
 			</dependency>
 
 			<dependency>

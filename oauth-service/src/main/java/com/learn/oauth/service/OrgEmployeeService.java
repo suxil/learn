@@ -5,7 +5,6 @@ import com.learn.oauth.repository.OrgEmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.ExampleMatcher.StringMatcher;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -24,7 +23,7 @@ public class OrgEmployeeService {
   public OrgEmployee findByName(String username) {
     OrgEmployee orgEmployee = new OrgEmployee();
     orgEmployee.setEmpName(username);
-    ExampleMatcher matcher = ExampleMatcher.matching().withStringMatcher(StringMatcher.DEFAULT);
+    ExampleMatcher matcher = ExampleMatcher.matching().withStringMatcher(ExampleMatcher.StringMatcher.DEFAULT);
     Example<OrgEmployee> example = Example.of(orgEmployee, matcher);
     Optional<OrgEmployee> optional = orgEmployeeRepository.findOne(example);
     return optional.get();
