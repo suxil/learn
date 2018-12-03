@@ -13,9 +13,11 @@
 		<module>core</module>
 
 		<module>cas</module>
+		<module>oauth</module>
 
-		<module>oauth-service</module>
-		<module>oauth-client1</module>
+		<!--<module>oauth-service</module>-->
+		<!--<module>oauth-client1</module>-->
+		<!--<module>oauth-client2</module>-->
 
 		<module>api-service</module>
 
