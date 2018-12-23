@@ -21,7 +21,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     // 定义授权和令牌端点以及令牌服务。
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-
     }
 
     // 定义令牌端点上的安全性约束。

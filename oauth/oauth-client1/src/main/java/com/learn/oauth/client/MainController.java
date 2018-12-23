@@ -1,14 +1,11 @@
 package com.learn.oauth.client;
 
+import com.learn.oauth.common.SpringOauthUtils;
+import com.learn.oauth.common.GlobalUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 class MainController {
@@ -19,16 +16,21 @@ class MainController {
     }
 
     @RequestMapping(value = "/protected")
-    public String protected1() {
-        return "protected";
+    public ModelAndView protected1() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("protected");
+
+        GlobalUser user = SpringOauthUtils.getUser();
+
+        return mav;
     }
 
     @RequestMapping(value = "/login")
-    public String login() {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        HttpSession session = request.getSession();
+    public ModelAndView login() {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("protected");
 
-        return "protected";
+        return mav;
     }
 
     @RequestMapping(value = "/logout")

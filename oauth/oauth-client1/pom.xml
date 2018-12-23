@@ -18,6 +18,12 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>com.learn.oauth.common</groupId>
+			<artifactId>oauth-common</artifactId>
+			<version>0.1</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
