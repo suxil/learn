@@ -48,7 +48,7 @@
 		<jaxb.api.version>2.3.1</jaxb.api.version>
 
 		<spring.cloud.version>Finchley.SR2</spring.cloud.version>
-		<spring.boot.version>2.0.3.RELEASE</spring.boot.version>
+		<spring.boot.version>2.0.7.RELEASE</spring.boot.version>
 		<spring.oauth.version>2.3.4.RELEASE</spring.oauth.version>
 		<spring.oauth.auto.version>2.1.0.RELEASE</spring.oauth.auto.version>
 		<spring.jwt.version>1.0.7.RELEASE</spring.jwt.version>
@@ -67,7 +67,7 @@
 		<commons.net.version>3.6</commons.net.version>
 		<poi.version>3.17</poi.version>
 		<thumbnailator.version>0.4.8</thumbnailator.version>
-		<gson.version>2.8.2</gson.version>
+		<gson.version>2.8.5</gson.version>
 
 		<cglib.version>3.2.5</cglib.version>
 		<quartz.version>2.2.1</quartz.version>
