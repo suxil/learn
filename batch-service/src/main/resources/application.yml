@@ -5,44 +5,53 @@ logging:
   level:
     com.learn: debug
 
-
 spring:
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
-#  datasource:
+  batch:
+    job:
+      enabled: false
+    initialize-schema: never
+    #initialize-schema: always
+  datasource:
 #    url: ENC(DV1vdRuxYMXe6gHyUKUywGJqPK4G7ZJO2IfkkyMxYpmtCB9R8YqVFF1jf2B2Ojg53e9zw5OWQx3yUvGqmMPAxVSE5J62G4S2I3iJFJmJy2s=)
 #    username: ENC(mnQlOtsnqeisLoizT19XLA==)
 #    password: ENC(x+uR8xks49msKGRPP5iN/HGetbeYJcDK)
 #    driver-class-name: ENC(4tonwaB7cMUwb88iXYDzLZpAkCRQuoncfDatnQMo0X0=)
-#    #driverClassName: ENC(4tonwaB7cMUwb88iXYDzLZpAkCRQuoncfDatnQMo0X0=)
-#
-#    # 下面为连接池的补充设置，应用到上面所有数据源中
-#    # 初始化大小，最小，最大
-#    initialSize: 5
-#    minIdle: 5
-#    maxActive: 20
-#    # 配置获取连接等待超时的时间
-#    maxWait: 60000
-#    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-#    timeBetweenEvictionRunsMillis: 60000
-#    # 配置一个连接在池中最小生存的时间，单位是毫秒
-#    minEvictableIdleTimeMillis: 300000
-#    validationQuery: SELECT 1 FROM DUAL
-#    testWhileIdle: true
-#    testOnBorrow: false
-#    testOnReturn: false
-#    # 打开PSCache，并且指定每个连接上PSCache的大小
-#    poolPreparedStatements: true
-#    maxPoolPreparedStatementPerConnectionSize: 20
-#    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
-#    filters: stat,wall,log4j
-#    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
-#    connectionProperties:
-#    # 合并多个DruidDataSource的监控数据
-#    useGlobalDataSourceStat: true
-#    druid:
-#      stat:
-#        mergeSql: true
-#        slowSqlMillis: 5000
+#    driverClassName: ENC(4tonwaB7cMUwb88iXYDzLZpAkCRQuoncfDatnQMo0X0=)
+    url: jdbc:mysql://101.132.110.185:3306/learn?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true
+    username: learn
+    password: learn-m
+    driver-class-name: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.jdbc.Driver
+
+    # 下面为连接池的补充设置，应用到上面所有数据源中
+    # 初始化大小，最小，最大
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties:
+    # 合并多个DruidDataSource的监控数据
+    useGlobalDataSourceStat: true
+    druid:
+      stat:
+        mergeSql: true
+        slowSqlMillis: 5000
