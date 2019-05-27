@@ -12,8 +12,8 @@
 	<modules>
 		<module>core</module>
 
-		<module>cas</module>
-		<module>oauth</module>
+		<!--<module>cas</module>-->
+		<!--<module>oauth</module>-->
 
 		<module>api-service</module>
 

@@ -23,7 +23,6 @@ import org.springframework.core.io.ClassPathResource;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableBatchProcessing
 public class BatchConfiguration {
 
     @Autowired

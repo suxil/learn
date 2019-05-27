@@ -1,5 +1,6 @@
 package com.learn.batch;
 
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,8 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @Date: Created in 2018/5/27 0027 21:20
  */
 @SpringBootApplication
-//@EnableAutoConfiguration
-//@ComponentScan
+@EnableBatchProcessing
 public class BatchApplication {
 
     public static void main(String[] args) {
