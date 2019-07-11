@@ -2,9 +2,9 @@
     <modelVersion>4.0.0</modelVersion>
   
     <groupId>com.learn.hdfs</groupId>
-    <artifactId>hdfs-service</artifactId>
+    <artifactId>hdfs-core</artifactId>
 	<packaging>jar</packaging>
-	<name>hdfs-service</name>
+	<name>hdfs-core</name>
 	<version>0.1</version>
 	<url>http://maven.apache.org</url>
 
@@ -15,16 +15,28 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
 	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-hdfs</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-client</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

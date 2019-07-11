@@ -11,6 +11,7 @@
 
 	<modules>
 		<module>core</module>
+		<module>hdfs-core</module>
 
 		<module>api-service</module>
 
@@ -53,7 +54,7 @@
 
 		<flowable.version>6.4.0</flowable.version>
 
-		<apache.hadoop.version>3.1.0</apache.hadoop.version>
+		<apache.hadoop.version>3.1.2</apache.hadoop.version>
 
 		<commons.lang3.version>3.6</commons.lang3.version>
 		<commons.text.version>1.1</commons.text.version>
@@ -390,6 +391,12 @@
 				<artifactId>hadoop-client</artifactId>
 				<version>${apache.hadoop.version}</version>
 			</dependency>
+
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-auth</artifactId>
+                <version>${apache.hadoop.version}</version>
+            </dependency>
 
 			<dependency>
 				<groupId>org.apache.commons</groupId>
