@@ -13,6 +13,8 @@
 		<module>core</module>
 		<module>hdfs-core</module>
 
+		<module>generate</module>
+
 		<module>api-service</module>
 
 		<module>flowable-service</module>
