@@ -1,7 +1,5 @@
 package com.learn.core.domain;
 
-import org.springframework.data.domain.Page;
-
 /**
  * 响应结果
  */
@@ -126,24 +124,6 @@ public class ResponseDomain {
         responseDomain.setSuccess(true);
         responseDomain.setData(data);
         return responseDomain;
-    }
-
-    /**
-     * 控制器返回模板
-     * @param action
-     * @return
-     */
-    public static ResponseDomain executor(ResponseCallback action) {
-        if (action != null) {
-            Object data = action.doCallback();
-            if (data != null) {
-                if (data instanceof Page) {
-                    return success(PageDomain.initPage((Page<Object>) data));
-                }
-                return success(data);
-            }
-        }
-        return fail("操作异常");
     }
 
 }

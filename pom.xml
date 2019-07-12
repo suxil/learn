@@ -20,10 +20,6 @@
 
 		<module>learn-api</module>
 		<module>learn-service</module>
-
-		<module>teamlog</module>
-
-		<module>web</module>
 	</modules>
 
 	<properties>
@@ -42,15 +38,16 @@
 		<!--<dockerHost>http://118.184.219.165:2375</dockerHost>-->
 		<dockerHost>http://192.168.80.130:2375</dockerHost>
 
-		<cas.version>5.3.3</cas.version>
 		<jaxb.api.version>2.3.1</jaxb.api.version>
 
 		<spring.cloud.version>Finchley.SR2</spring.cloud.version>
 		<spring.boot.version>2.0.7.RELEASE</spring.boot.version>
-		<spring.oauth.version>2.3.4.RELEASE</spring.oauth.version>
-		<spring.oauth.auto.version>2.1.0.RELEASE</spring.oauth.auto.version>
-		<spring.jwt.version>1.0.7.RELEASE</spring.jwt.version>
 		<ulisesbocchio.version>2.1.0</ulisesbocchio.version>
+
+		<mybatis.plus.version>3.1.2</mybatis.plus.version>
+		<p6spy.version>3.8.2</p6spy.version>
+
+		<swagger.version>2.9.2</swagger.version>
 
 		<flowable.version>6.4.0</flowable.version>
 
@@ -81,42 +78,6 @@
 
 		<druid.version>1.1.9</druid.version>
 		<fastjson.version>1.2.54</fastjson.version>
-
-
-
-		<!-- 其他插件 -->
-		<font-awesome.version>5.3.1</font-awesome.version>
-		<ionicons.version>2.0.1</ionicons.version>
-		<jquery.version>3.3.1</jquery.version>
-		<echarts.version>3.2.3</echarts.version>
-		<admin-lte.version>2.4.3</admin-lte.version>
-		<fastclick.version>1.0.6</fastclick.version>
-		<sparkline.version>2.1.2</sparkline.version>
-		<slimscroll.version>1.3.8</slimscroll.version>
-		<icheck.version>1.0.2</icheck.version>
-		<!-- bootstrap相关控件版本 -->
-		<bootstrap.version>4.1.3</bootstrap.version>
-		<bootstrap-3-typeahead.version>3.1.1</bootstrap-3-typeahead.version>
-		<bootstrap-application-wizard.version>3768da3142-1</bootstrap-application-wizard.version>
-		<bootstrap-daterangepicker.version>2.1.27</bootstrap-daterangepicker.version>
-		<bootstrap-datepicker.version>1.8.0</bootstrap-datepicker.version>
-		<bootstrap-datetimepicker.version>2.4.2</bootstrap-datetimepicker.version>
-		<bootstrap-filestyle.version>1.1.2</bootstrap-filestyle.version>
-		<bootstrap-growl.version>2.0.1</bootstrap-growl.version>
-		<bootstrap-multiselect.version>0.9.15</bootstrap-multiselect.version>
-		<bootstrap-slider.version>10.0.2</bootstrap-slider.version>
-		<bootstrap-tagsinput.version>0.8.0</bootstrap-tagsinput.version>
-		<bootstrap-timepicker.version>0.5.2</bootstrap-timepicker.version>
-		<bootstrap-tokenfield.version>0.12.1</bootstrap-tokenfield.version>
-		<bootstrap-tour.version>0.11.0</bootstrap-tour.version>
-		<bootstrap-treeview.version>1.2.0</bootstrap-treeview.version>
-		<bootstrap-accessibility-plugin.version>1.0.4</bootstrap-accessibility-plugin.version>
-		<bootstrap-chosen.version>1.0.0</bootstrap-chosen.version>
-		<bootstrap-notify.version>3.1.3</bootstrap-notify.version>
-		<bootstrap-select.version>1.12.4</bootstrap-select.version>
-		<bootstrap-sidebar.version>0.2.2</bootstrap-sidebar.version>
-		<bootstrap-social.version>5.0.0</bootstrap-social.version>
-		<bootstrap-table.version>1.9.1</bootstrap-table.version>
 	</properties>
 
 	<repositories>
@@ -274,24 +235,6 @@
 			</dependency>
 
 			<dependency>
-				<groupId>org.apereo.cas</groupId>
-				<artifactId>cas-server-core</artifactId>
-				<version>${cas.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apereo.cas</groupId>
-				<artifactId>cas-server-core-web</artifactId>
-				<version>${cas.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apereo.cas</groupId>
-				<artifactId>cas-server-support-configuration-cloud-jdbc</artifactId>
-				<version>${cas.version}</version>
-			</dependency>
-
-			<dependency>
 				<groupId>javax.xml.bind</groupId>
 				<artifactId>jaxb-api</artifactId>
 				<version>${jaxb.api.version}</version>
@@ -314,24 +257,6 @@
 			</dependency>
 
 			<dependency>
-				<groupId>org.springframework.security.oauth</groupId>
-				<artifactId>spring-security-oauth2</artifactId>
-				<version>${spring.oauth.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.springframework.security.oauth.boot</groupId>
-				<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-				<version>${spring.oauth.auto.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.springframework.security</groupId>
-				<artifactId>spring-security-jwt</artifactId>
-				<version>${spring.jwt.version}</version>
-			</dependency>
-
-			<dependency>
 				<groupId>org.flowable</groupId>
 				<artifactId>flowable-spring-boot-starter-rest</artifactId>
 				<version>${flowable.version}</version>
@@ -344,15 +269,46 @@
 			</dependency>
 
 			<dependency>
-				<groupId>org.flowable</groupId>
-				<artifactId>flowable-ldap</artifactId>
-				<version>${flowable.version}</version>
-			</dependency>
-
-			<dependency>
 				<groupId>com.github.ulisesbocchio</groupId>
 				<artifactId>jasypt-spring-boot-starter</artifactId>
 				<version>${ulisesbocchio.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus</artifactId>
+				<version>${mybatis.plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis.plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+				<version>${mybatis.plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-generator</artifactId>
+				<version>${mybatis.plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>p6spy</groupId>
+				<artifactId>p6spy</artifactId>
+				<version>${p6spy.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${swagger.version}</version>
 			</dependency>
 
             <dependency>
@@ -517,166 +473,6 @@
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
-			</dependency>
-
-
-
-			<!-- 其他插件 -->
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>font-awesome</artifactId>
-				<version>${font-awesome.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>ionicons</artifactId>
-				<version>${ionicons.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars.bower</groupId>
-				<artifactId>jquery</artifactId>
-				<version>${jquery.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>echarts</artifactId>
-				<version>${echarts.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>AdminLTE</artifactId>
-				<version>${admin-lte.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>fastclick</artifactId>
-				<version>${fastclick.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>jquery.sparkline</artifactId>
-				<version>${sparkline.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>jQuery-slimScroll</artifactId>
-				<version>${slimscroll.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars.bower</groupId>
-				<artifactId>jquery-icheck</artifactId>
-				<version>${icheck.version}</version>
-			</dependency>
-			<!-- bootstrap 相关控件 -->
-			<dependency>
-				<groupId>org.webjars.bower</groupId>
-				<artifactId>bootstrap</artifactId>
-				<version>${bootstrap.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>Bootstrap-3-Typeahead</artifactId>
-				<version>${bootstrap-3-typeahead.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-application-wizard</artifactId>
-				<version>${bootstrap-application-wizard.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-daterangepicker</artifactId>
-				<version>${bootstrap-daterangepicker.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-datepicker</artifactId>
-				<version>${bootstrap-datepicker.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-datetimepicker</artifactId>
-				<version>${bootstrap-datetimepicker.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-filestyle</artifactId>
-				<version>${bootstrap-filestyle.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-growl</artifactId>
-				<version>${bootstrap-growl.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-multiselect</artifactId>
-				<version>${bootstrap-multiselect.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-slider</artifactId>
-				<version>${bootstrap-slider.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-tagsinput</artifactId>
-				<version>${bootstrap-tagsinput.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-timepicker</artifactId>
-				<version>${bootstrap-timepicker.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-tokenfield</artifactId>
-				<version>${bootstrap-tokenfield.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-tour</artifactId>
-				<version>${bootstrap-tour.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-treeview</artifactId>
-				<version>${bootstrap-treeview.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-accessibility-plugin</artifactId>
-				<version>${bootstrap-accessibility-plugin.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-chosen</artifactId>
-				<version>${bootstrap-chosen.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-notify</artifactId>
-				<version>${bootstrap-notify.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-select</artifactId>
-				<version>${bootstrap-select.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-sidebar</artifactId>
-				<version>${bootstrap-sidebar.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-social</artifactId>
-				<version>${bootstrap-social.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.webjars</groupId>
-				<artifactId>bootstrap-table</artifactId>
-				<version>${bootstrap-table.version}</version>
 			</dependency>
 
 		</dependencies>

@@ -1,7 +1,5 @@
 package com.learn.core.utils;
 
-import com.learn.core.dto.SearchType;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,69 +30,5 @@ public class ParamUtils {
     public static final String OR = "or";  //或者
 
     public static final List<String> RULE = Arrays.asList(EQ, NOT, NE, NEQ, GT, LT, GTE, GE, LTE, LE, NULL, LIKE, L_LIKE, R_LIKE, IN, OR);
-
-    /**
-     * 通过参数名，返回是否查询条件
-     * @param param
-     * @return
-     */
-    public static SearchType getFieldName(String param) {
-        if (StringUtils.isNotEmpty(param)) {
-            SearchType type = new SearchType();
-            if (param.lastIndexOf(LINK_CHAR) < 0) {
-                type.setField(param);
-                type.setType(EQ);
-                type.setSearch(true);
-            } else {
-                for (String rule : RULE) {
-                    if (param.lastIndexOf(LINK_CHAR + rule) > 0) {
-                        String field = param.substring(0, param.length() - (rule.length() + LINK_CHAR.length()));
-                        type.setField(field);
-                        type.setType(rule);
-                        type.setSearch(true);
-                        switch (rule) {
-                            case EQ:
-                                break;
-                            case NOT:
-                            case NE:
-                            case NEQ:
-                                break;
-                            case GT:
-                                break;
-                            case LT:
-                                break;
-                            case GTE:
-                            case GE:
-                                break;
-                            case LTE:
-                            case LE:
-                                break;
-                            case NULL:
-                                break;
-                            case LIKE:
-                                type.setLeft("%");
-                                type.setRight("%");
-                                break;
-                            case L_LIKE:
-                                type.setLeft("%");
-                                break;
-                            case R_LIKE:
-                                type.setRight("%");
-                                break;
-                            case OR:
-                                break;
-                            case IN:
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    }
-                }
-            }
-            return type;
-        }
-        return null;
-    }
 
 }

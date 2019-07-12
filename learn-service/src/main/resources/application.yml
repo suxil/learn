@@ -3,19 +3,11 @@ server:
   ssl:
     enabled: false
 
-#logging:
-#  level:
-#    com.learn: debug
 logging:
   config: classpath:logback-logstash.xml
 
 spring:
   datasource:
-#    url: ENC(Nl0a9q4LVyLicN55PYL7BWZhZIgDIwROFNWbzv0sCwHQhW7L20wbhBJSCW7DLe3tz3hntawuMCa5DnfBQTDdH7JGCGUwiBOKp6gLqp6BJ5s6C8+i/R5bQ/qnhDrHLqHi93y8/CsLgsbIvQlo2QVkDoZrKiHYLqjoozZ9Jn7rKiG4tOquVossK7TxvtJfR8DfL1ott+C1a03SNh7SBMXZimdN0r9MVo/jJHkY0U/YoXmjvIp+8V/JCw==)
-#    username: ENC(j8Fec2fHQLNQH03QdveIYw==)
-#    password: ENC(D5pKAHf9wXZaTdkiJsBn0Q==)
-#    driver-class-name: ENC(HY+Jl//BAvqLZCCRLKaFswsA94L2vmH+FKzkEOfgJ9w=)
-#    driverClassName: ENC(HY+Jl//BAvqLZCCRLKaFswsA94L2vmH+FKzkEOfgJ9w=)
     url: jdbc:mysql://101.132.110.185:3306/learn?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true
     username: learn
     password: learn-m
@@ -112,21 +104,3 @@ spring:
     username: learn
     password: learn-r
     vhost: /
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate.dialect: org.hibernate.dialect.MySQL55Dialect
-#    database-platform: org.hibernate.dialect.MySQL5Dialect
-
-#jasypt:
-#  encryptor:
-#    password: api-web-app
-#    algorithm: PBEWithMD5AndDES
-#    keyObtentionIterations: 1000
-#    poolSize: 1
-#    providerName: SunJCE
-#    saltGeneratorClassname: org.jasypt.salt.RandomSaltGenerator
-#    stringOutputType: base64
