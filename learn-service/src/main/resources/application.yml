@@ -3,12 +3,21 @@ server:
   ssl:
     enabled: false
 
-logging:
-  config: classpath:logback-logstash.xml
+#logging:
+#  config: classpath:logback-logstash.xml
 
 spring:
+  messages:
+    basename: messages,i18n
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-service
+      name: ${spring.application.name}
+      profile: ${spring.profiles.active}
   datasource:
-    url: jdbc:mysql://101.132.110.185:3306/learn?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true
+    url: jdbc:p6spy:mysql://101.132.110.185:3306/learn?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true
     username: learn
     password: learn-m
 #    driver-class-name: com.mysql.jdbc.Driver

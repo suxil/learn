@@ -1,0 +1,9 @@
+server:
+  port: 18761
+  ssl:
+    enabled: false
+
+#logging:
+#  config: classpath:logback-logstash.xml
+
+

@@ -7,8 +7,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
 @Data
+@Component
 public class SpringContextHolder implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext = null;
