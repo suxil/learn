@@ -1,19 +1,15 @@
-package com.learn.core.domain;
+package com.learn.api.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.UUID;
 
 @Component
-@ConditionalOnMissingBean(value = MetaObjectHandler.class)
-@ConditionalOnClass(value = MetaObjectHandler.class)
 public class GlobalMetaObjectHandler implements MetaObjectHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalMetaObjectHandler.class);

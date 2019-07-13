@@ -1,7 +1,6 @@
 package com.learn.api;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
@@ -10,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Date: Created in 2018/5/27 0027 21:20
  */
 @SpringBootApplication
-@EnableAutoConfiguration
 public class ApiApplication {
 
     public static void main(String[] args) {

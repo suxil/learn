@@ -18,14 +18,14 @@ public class CodeGenerate {
     private static final String MAPPER_PATH = String.format("/%s/src/main/resources/mapper/", BAST_MODULE_NAME);
     private static final String AUTHOR = "luxq";
 
-    private static final String URL = "jdbc:mysql://101.132.110.185:3306/public?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true";
+    private static final String URL = "jdbc:mysql://101.132.110.185:3306/learn?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true";
     private static final String USERNAME = "learn";
     private static final String PASSWORD = "learn-m";
     private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
 
     private static final String MODAL_NAME = "example";
     private static final String PARENT = "com.learn.generate.code";
-    private static final String INCLUDE_TABLE_NAME = "user";
+    private static final String TABLE_PREFIX = "*";
 
     // 如果模板引擎是 freemarker
     private static final String TEMPLATE_PATH = "/templates/mapper.xml.ftl";
@@ -150,7 +150,7 @@ public class CodeGenerate {
         strategyConfig.setSuperControllerClass("com.learn.core.common.BaseController");
         // 写于父类中的公共字段
         strategyConfig.setSuperEntityColumns("id");
-        strategyConfig.setInclude(INCLUDE_TABLE_NAME);
+        strategyConfig.setTablePrefix(TABLE_PREFIX);
         strategyConfig.setControllerMappingHyphenStyle(true);
         strategyConfig.setTablePrefix(MODAL_NAME + "_");
 

@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by Administrator on 2016/12/23 0023.
  */
 @Data
-public abstract class BaseDomain implements Serializable {
+public class BaseDomain implements Serializable {
 
     @TableId(type = IdType.INPUT)
     @TableField(fill = FieldFill.INSERT)
