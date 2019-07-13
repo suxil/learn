@@ -1,4 +1,4 @@
-package com.learn.core.domain;
+package com.learn.core.common;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;

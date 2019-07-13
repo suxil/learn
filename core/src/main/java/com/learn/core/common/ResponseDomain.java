@@ -1,4 +1,4 @@
-package com.learn.core.domain;
+package com.learn.core.common;
 
 /**
  * 响应结果

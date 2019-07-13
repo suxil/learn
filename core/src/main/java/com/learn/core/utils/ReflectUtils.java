@@ -1,6 +1,6 @@
 package com.learn.core.utils;
 
-import com.learn.core.domain.BaseDomain;
+import com.learn.core.common.BaseDomain;
 
 import java.lang.reflect.*;
 import java.util.ArrayList;
