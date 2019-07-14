@@ -17,8 +17,7 @@
 
         <module>register-service</module>
         <module>config-service</module>
-
-		<module>api-service</module>
+        <module>gateway-service</module>
 
 		<module>flowable-service</module>
 		<module>batch-service</module>
@@ -42,6 +41,8 @@
 		<baseImage>java:8</baseImage>
 		<!--<dockerHost>http://118.184.219.165:2375</dockerHost>-->
 		<dockerHost>http://192.168.80.130:2375</dockerHost>
+
+        <openapi-generator-maven-plugin.version>4.0.2</openapi-generator-maven-plugin.version>
 
 		<spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
 		<spring.boot.version>2.1.6.RELEASE</spring.boot.version>
@@ -158,6 +159,14 @@
 				</plugin>
 
 				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<configuration>
+						<source>8</source>
+					</configuration>
+				</plugin>
+
+				<plugin>
 					<groupId>com.spotify</groupId>
 					<artifactId>docker-maven-plugin</artifactId>
 					<version>${docker-maven-plugin.version}</version>
@@ -178,6 +187,29 @@
 						</resources>
 					</configuration>
 				</plugin>
+
+                <plugin>
+                    <groupId>org.openapitools</groupId>
+                    <artifactId>openapi-generator-maven-plugin</artifactId>
+                    <version>${openapi-generator-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <inputSpec>${project.basedir}/src/main/resources/swagger/api.yml</inputSpec>
+                                <generatorName>java</generatorName>
+                                <skipValidateSpec>true</skipValidateSpec>
+                                <configOptions>
+                                    <sourceFolder>src/gen/java/main</sourceFolder>
+                                    <delegatePattern>true</delegatePattern>
+                                    <title>${project.artifactId}-${project.modelVersion}</title>
+                                </configOptions>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
 
 			</plugins>
 		</pluginManagement>

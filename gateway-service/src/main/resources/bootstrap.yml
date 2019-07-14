@@ -1,12 +1,12 @@
 spring:
   profiles:
     active: dev
-  application:
-    name: learn-service
 
 ---
 spring:
   profiles: dev
+  application:
+    name: gateway-service
   cloud:
     config:
       discovery:

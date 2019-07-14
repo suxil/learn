@@ -1,4 +1,4 @@
-package com.learn.service;
+package com.learn.gateway;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -11,18 +11,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * @Author: luxq
- * @Description:
- * @Date: Created in 2018/5/27 0027 12:08
- */
 @SpringBootApplication
 @ComponentScan("com.learn")
 @EnableDiscoveryClient
 @EnableFeignClients("com.learn")
 @RibbonClients
 @EnableTransactionManagement
-public class LearnServiceApplication {
+public class GatewayServiceApplication {
 
     @Bean
     @LoadBalanced
@@ -31,7 +26,7 @@ public class LearnServiceApplication {
     }
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(LearnServiceApplication.class).run(args);
+        new SpringApplicationBuilder(GatewayServiceApplication.class).run(args);
     }
 
 }
