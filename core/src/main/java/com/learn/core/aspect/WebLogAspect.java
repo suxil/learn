@@ -50,15 +50,15 @@ public class WebLogAspect {
     @Before("webLog()")
     public void doBefore(JoinPoint joinPoint) {
         // 接收到请求，记录请求内容
-        LOGGER.info("WebLogAspect.doBefore()");
+        LOGGER.debug("WebLogAspect.doBefore()");
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         // 记录下请求内容
-        LOGGER.info("URL : " + request.getRequestURL().toString());
-        LOGGER.info("HTTP_METHOD : " + request.getMethod());
-        LOGGER.info("IP : " + request.getRemoteAddr());
-        LOGGER.info("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        LOGGER.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
+        LOGGER.debug("URL : " + request.getRequestURL().toString());
+        LOGGER.debug("HTTP_METHOD : " + request.getMethod());
+        LOGGER.debug("IP : " + request.getRemoteAddr());
+        LOGGER.debug("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        LOGGER.debug("ARGS : " + Arrays.toString(joinPoint.getArgs()));
         //获取所有参数方法一：
         Enumeration<String> enu = request.getParameterNames();
         while (enu.hasMoreElements()) {
@@ -69,9 +69,9 @@ public class WebLogAspect {
 
     @AfterReturning("webLog()")
     public void doAfterReturning(JoinPoint joinPoint) {
-        LOGGER.info("KIND : " + joinPoint.getKind());
+        LOGGER.debug("KIND : " + joinPoint.getKind());
         // 处理完请求，返回内容
-        LOGGER.info("WebLogAspect.doAfterReturning()");
+        LOGGER.debug("WebLogAspect.doAfterReturning()");
     }
 
 }
