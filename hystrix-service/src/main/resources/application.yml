@@ -1,5 +1,5 @@
 server:
-  port: 28080
+  port: 28761
   ssl:
     enabled: false
 
@@ -9,29 +9,11 @@ server:
 spring:
   messages:
     basename: messages,i18n
-  cloud:
-    gateway:
-      routes:
-      - id: learn-service
-        uri: lb://learn-service
-        predicates:
-        - Path=/learn/**
-        filters:
-        - StripPrefix=1
-        - name: Retry
-          args:
-            retries: 3
-            statuses: BAD_GATEWAY
-        #- PrefixPath=/learn
-        #- SaveSession
-      loadbalancer:
-        use404: true
-
   datasource:
     url: jdbc:p6spy:mysql://101.132.110.185:3306/learn?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true
     username: learn
     password: learn-m
-    #    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
 
   druid:
@@ -89,4 +71,3 @@ spring:
     username: learn
     password: learn-r
     vhost: /
-

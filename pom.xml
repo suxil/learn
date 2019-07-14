@@ -18,6 +18,8 @@
         <module>register-service</module>
         <module>config-service</module>
         <module>gateway-service</module>
+        <module>hystrix-service</module>
+        <module>turbine-service</module>
 
 		<module>flowable-service</module>
 		<module>batch-service</module>
