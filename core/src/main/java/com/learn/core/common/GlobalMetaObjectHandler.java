@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Component
@@ -18,17 +18,19 @@ public class GlobalMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         LOGGER.debug("insert fill.");
         String id = UUID.randomUUID().toString().replace("-", "");
-        this.setInsertFieldValByName("id", id, metaObject);
-        this.setInsertFieldValByName("createBy", "admin", metaObject);
-        this.setInsertFieldValByName("createDate", new Date(), metaObject);
-        this.setInsertFieldValByName("isDeleted", 0, metaObject);
+        this.setFieldValByName("id", id, metaObject);
+        this.setFieldValByName("createBy", "admin", metaObject);
+        this.setFieldValByName("createDate", LocalDateTime.now(), metaObject);
+        this.setFieldValByName("isDeleted", 0, metaObject);
+        this.setFieldValByName("updateBy", "admin", metaObject);
+        this.setFieldValByName("updateDate", LocalDateTime.now(), metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         LOGGER.debug("update fill.");
-        this.setUpdateFieldValByName("updateBy", "admin", metaObject);
-        this.setUpdateFieldValByName("updateDate", new Date(), metaObject);
+        this.setFieldValByName("updateBy", "admin", metaObject);
+        this.setFieldValByName("updateDate", LocalDateTime.now(), metaObject);
     }
 
 }

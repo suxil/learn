@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class CodeGenerate {
 
@@ -23,9 +24,10 @@ public class CodeGenerate {
     private static final String PASSWORD = "learn-m";
     private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
 
-    private static final String MODAL_NAME = "example";
+    private static final String[] EXCLUDE_SUPER_ENTITY_FIELD = {"id", "create_by", "create_date", "update_by", "update_date", "version", "is_deleted"};
     private static final String PARENT = "com.learn.generate.code";
-    private static final String TABLE_PREFIX = "*";
+    private static final String MODAL_NAME = "generate";
+    private static final String[] TABLE_PREFIX = {"tem_[a-zA-Z0-9_]*", "cdm_[a-zA-Z0-9_]*"};
 
     // 如果模板引擎是 freemarker
     private static final String TEMPLATE_PATH = "/templates/mapper.xml.ftl";
@@ -67,6 +69,7 @@ public class CodeGenerate {
         globalConfig.setAuthor(AUTHOR);
         globalConfig.setOpen(false);
         globalConfig.setSwagger2(true); // 实体属性 Swagger2 注解
+        globalConfig.setBaseColumnList(true);
         return globalConfig;
     }
 
@@ -86,6 +89,7 @@ public class CodeGenerate {
         PackageConfig packageConfig = new PackageConfig();
         packageConfig.setModuleName(MODAL_NAME);
         packageConfig.setParent(PARENT);
+        packageConfig.setServiceImpl("service");
         return packageConfig;
     }
 
@@ -145,14 +149,14 @@ public class CodeGenerate {
         strategyConfig.setColumnNaming(NamingStrategy.underline_to_camel);
         strategyConfig.setSuperEntityClass("com.learn.core.common.BaseDomain");
         strategyConfig.setEntityLombokModel(true);
+        strategyConfig.setEntityBuilderModel(true);
         strategyConfig.setRestControllerStyle(true);
         // 公共父类
         strategyConfig.setSuperControllerClass("com.learn.core.common.BaseController");
         // 写于父类中的公共字段
-        strategyConfig.setSuperEntityColumns("id");
-        strategyConfig.setTablePrefix(TABLE_PREFIX);
+        strategyConfig.setSuperEntityColumns(EXCLUDE_SUPER_ENTITY_FIELD);
         strategyConfig.setControllerMappingHyphenStyle(true);
-        strategyConfig.setTablePrefix(MODAL_NAME + "_");
+        strategyConfig.setInclude(TABLE_PREFIX);
 
         return strategyConfig;
     }

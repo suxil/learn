@@ -1,5 +1,6 @@
 package com.learn.service;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
@@ -24,6 +25,7 @@ import org.springframework.web.client.RestTemplate;
 @RibbonClients
 @EnableTransactionManagement
 @EnableCircuitBreaker
+@MapperScan("com.learn.service.**.mapper")
 public class LearnServiceApplication {
 
     @Bean

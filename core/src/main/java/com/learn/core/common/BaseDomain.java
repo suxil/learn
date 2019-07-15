@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Created by Administrator on 2016/12/23 0023.
@@ -20,13 +20,13 @@ public class BaseDomain implements Serializable {
     private String createBy;
 
     @TableField(fill = FieldFill.INSERT)
-    private Date createDate;
+    private LocalDateTime createDate;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private String updateBy;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date updateDate;
+    private LocalDateTime updateDate;
 
     @TableLogic
     @TableField(fill = FieldFill.INSERT)
