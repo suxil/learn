@@ -3,8 +3,9 @@ package com.learn.service.mapper.cdm;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.api.domain.cdm.CdmTimeSegment;
-import org.junit.After;
+import com.learn.service.LearnServiceApplication;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +17,20 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = LearnServiceApplication.class)
+@Transactional
+@Rollback
 public class CdmTimeSegmentMapperTest {
     
     @Autowired
     private CdmTimeSegmentMapper cdmTimeSegmentMapper;
 
     @Test
-    @After
+    @Before
     public void selectTest() {
         System.out.println(("----- selectAll method test ------"));
         List<CdmTimeSegment> cdmTimeSegmentList = cdmTimeSegmentMapper.selectList(null);
-        Assert.assertEquals(14, cdmTimeSegmentList.size());
+        Assert.assertEquals(12, cdmTimeSegmentList.size());
         cdmTimeSegmentList.forEach(System.out::println);
     }
 
@@ -41,8 +44,6 @@ public class CdmTimeSegmentMapperTest {
     }
 
     @Test
-    @Transactional
-    @Rollback
     public void insertTest() {
         CdmTimeSegment cdmTimeSegment = new CdmTimeSegment();
         cdmTimeSegment.setDescription("test");
@@ -53,14 +54,12 @@ public class CdmTimeSegmentMapperTest {
 
         CdmTimeSegment nowCdmTimeSegment = cdmTimeSegmentMapper.selectById(id);
 
-        Assert.assertEquals(nowCdmTimeSegment.getDescription(), cdmTimeSegment.getDescription());
+        Assert.assertEquals(cdmTimeSegment.getDescription(), nowCdmTimeSegment.getDescription());
     }
 
     @Test
-    @Transactional
-    @Rollback
     public void lockTest() {
-        CdmTimeSegment cdmTimeSegment = cdmTimeSegmentMapper.selectById("123c1b28583f463cb6421ed4487717fb");
+        CdmTimeSegment cdmTimeSegment = cdmTimeSegmentMapper.selectById("9eca698d87be4dfe898a8c4887472122");
         cdmTimeSegment.setDescription("test");
 
         Long version = cdmTimeSegment.getVersion() + 1;
@@ -71,27 +70,23 @@ public class CdmTimeSegmentMapperTest {
     }
 
     @Test
-    @Transactional
-    @Rollback
     public void updateTest() {
         CdmTimeSegment cdmTimeSegment = new CdmTimeSegment();
-        cdmTimeSegment.setId("8d57a8f7efd942739dc44a01c7c0ba3b");
-        cdmTimeSegment.setDescription("test");
+        cdmTimeSegment.setId("9eca698d87be4dfe898a8c4887472122");
+        cdmTimeSegment.setDescription("test1");
 
         int num = cdmTimeSegmentMapper.updateById(cdmTimeSegment);
 
-        CdmTimeSegment nowCdmTimeSegment = cdmTimeSegmentMapper.selectById("8d57a8f7efd942739dc44a01c7c0ba3b");
+        CdmTimeSegment nowCdmTimeSegment = cdmTimeSegmentMapper.selectById("9eca698d87be4dfe898a8c4887472122");
 
         Assert.assertEquals(nowCdmTimeSegment.getDescription(), cdmTimeSegment.getDescription());
     }
 
     @Test
-    @Transactional
-    @Rollback
     public void deleteTest() {
-        int num = cdmTimeSegmentMapper.deleteById("1aac2c8e6a1345f6a206beac8819b53f");
+        int num = cdmTimeSegmentMapper.deleteById("a8a759517d774fe49e8dfdcc5b8aa27a");
 
-        CdmTimeSegment cdmTimeSegment = cdmTimeSegmentMapper.selectById("1aac2c8e6a1345f6a206beac8819b53f");
+        CdmTimeSegment cdmTimeSegment = cdmTimeSegmentMapper.selectById("a8a759517d774fe49e8dfdcc5b8aa27a");
 
         Assert.assertNull(cdmTimeSegment);
     }
