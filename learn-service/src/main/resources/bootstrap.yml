@@ -13,13 +13,13 @@ management:
 ---
 spring:
   profiles: dev
-  cloud:
-    config:
-      discovery:
-        enabled: true
-        service-id: config-service
-      name: ${spring.application.name}
-      profile: ${spring.profiles.active}
+#  cloud:
+#    config:
+#      discovery:
+#        enabled: true
+#        service-id: config-service
+#      name: ${spring.application.name}
+#      profile: ${spring.profiles.active}
 
 eureka:
   instance:
@@ -27,4 +27,4 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://admin:admin123@localhost:8761/eureka/
-    #enabled: false
+    enabled: false

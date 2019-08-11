@@ -27,7 +27,7 @@ public class CodeGenerate {
     private static final String[] EXCLUDE_SUPER_ENTITY_FIELD = {"id", "create_by", "create_date", "update_by", "update_date", "version", "is_deleted"};
     private static final String PARENT = "com.learn.generate.code";
     private static final String MODAL_NAME = "generate";
-    private static final String[] TABLE_PREFIX = {"tem_[a-zA-Z0-9_]*", "cdm_[a-zA-Z0-9_]*"};
+    private static final String[] TABLE_PREFIX = {"tem_[a-zA-Z0-9_]*", "cdm_[a-zA-Z0-9_]*", "zyj_[a-zA-Z0-9_]*"};
 
     // 如果模板引擎是 freemarker
     private static final String TEMPLATE_PATH = "/templates/mapper.xml.ftl";

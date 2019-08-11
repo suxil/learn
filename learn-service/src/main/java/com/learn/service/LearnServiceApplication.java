@@ -24,7 +24,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableFeignClients("com.learn")
 @RibbonClients
 @EnableTransactionManagement
-@EnableCircuitBreaker
+//@EnableCircuitBreaker
 @MapperScan("com.learn.service.**.mapper")
 public class LearnServiceApplication {
 
