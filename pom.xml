@@ -70,7 +70,7 @@
 
 		<cglib.version>3.2.5</cglib.version>
 		<guava.version>23.0</guava.version>
-		<xstream.version>1.4.10</xstream.version>
+		<xstream.version>1.4.11</xstream.version>
 		<dom4j.version>2.1.1</dom4j.version>
 		<netty.version>4.1.37.Final</netty.version>
         <zxing.version>3.3.0</zxing.version>
