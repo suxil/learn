@@ -73,7 +73,12 @@
 		<xstream.version>1.4.10</xstream.version>
 		<dom4j.version>2.1.1</dom4j.version>
 		<netty.version>4.1.37.Final</netty.version>
-		<zxing.version>3.3.0</zxing.version>
+        <zxing.version>3.3.0</zxing.version>
+
+        <!--<os.detected.classifier></os.detected.classifier>-->
+        <protobuf.version>3.8.0</protobuf.version>
+        <protoc.version>3.9.0</protoc.version>
+        <grpc.version>1.22.1</grpc.version>
 
 		<jsoup.version>1.11.3</jsoup.version>
 
@@ -219,6 +224,11 @@
 					<version>5.2.4</version>
 				</plugin>
 
+				<plugin>
+					<groupId>org.xolstice.maven.plugins</groupId>
+					<artifactId>protobuf-maven-plugin</artifactId>
+					<version>0.6.1</version>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
@@ -269,6 +279,14 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-bom</artifactId>
+                <version>${grpc.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
 			<dependency>
 				<groupId>net.logstash.logback</groupId>
@@ -439,6 +457,12 @@
 				<artifactId>netty-all</artifactId>
 				<version>${netty.version}</version>
 			</dependency>
+
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
+            </dependency>
 
 			<dependency>
 				<groupId>com.google.zxing</groupId>
