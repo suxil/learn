@@ -107,7 +107,7 @@
 			<artifactId>logback-classic</artifactId>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>io.grpc</groupId>
 			<artifactId>grpc-netty-shaded</artifactId>
             <scope>runtime</scope>
@@ -130,16 +130,9 @@
             <artifactId>protobuf-java</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>protoc-gen-grpc-java</artifactId>
-            <version>${grpc.version}</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java-util</artifactId>
-            <version>${protobuf.version}</version>
-        </dependency>
+        </dependency>-->
 
 		<!--<dependency>
 			<groupId>org.flywaydb</groupId>
@@ -190,7 +183,7 @@
                 </configuration>
             </plugin>
 
-			<plugin>
+			<!--<plugin>
 				<groupId>org.xolstice.maven.plugins</groupId>
 				<artifactId>protobuf-maven-plugin</artifactId>
 				<version>0.6.1</version>
@@ -211,7 +204,7 @@
 					<outputDirectory>${basedir}/src/main/java</outputDirectory>
 					<clearOutputDirectory>false</clearOutputDirectory>
 				</configuration>
-			</plugin>
+			</plugin>-->
         </plugins>
 	</build>
 

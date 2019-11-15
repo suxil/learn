@@ -1,0 +1,278 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.learn</groupId>
+	<artifactId>dependencies</artifactId>
+	<packaging>pom</packaging>
+	<version>0.1</version>
+	<name>dependencies</name>
+	<description>Base Dependencies</description>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<spring.cloud.version>Greenwich.RELEASE</spring.cloud.version>
+		<spring.boot.version>2.1.6.RELEASE</spring.boot.version>
+
+		<logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
+
+		<ulisesbocchio.version>2.1.0</ulisesbocchio.version>
+
+		<mybatis.plus.version>3.1.2</mybatis.plus.version>
+
+		<p6spy.version>3.8.2</p6spy.version>
+
+		<swagger.version>2.9.2</swagger.version>
+
+		<flowable.version>6.4.2</flowable.version>
+
+		<commons.collections4.version>4.1</commons.collections4.version>
+		<commons.io.version>2.5</commons.io.version>
+		<commons.httpclient.version>3.1</commons.httpclient.version>
+		<commons.net.version>3.6</commons.net.version>
+		<poi.version>3.17</poi.version>
+		<thumbnailator.version>0.4.8</thumbnailator.version>
+		<gson.version>2.8.5</gson.version>
+
+		<cglib.version>3.2.5</cglib.version>
+		<guava.version>23.0</guava.version>
+		<xstream.version>1.4.11</xstream.version>
+		<dom4j.version>2.1.1</dom4j.version>
+		<netty.version>4.1.43.Final</netty.version>
+        <zxing.version>3.3.0</zxing.version>
+
+        <protobuf.version>3.8.0</protobuf.version>
+        <protoc.version>3.9.0</protoc.version>
+        <grpc.version>1.25.0</grpc.version>
+
+		<jsoup.version>1.11.3</jsoup.version>
+
+		<junit.version>4.12</junit.version>
+
+		<druid.version>1.1.18</druid.version>
+		<fastjson.version>1.2.58</fastjson.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>nexus-aliyun</id>
+			<name>Nexus aliyun</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Snapshots</name>
+			<url>https://repo.spring.io/libs-snapshot-local</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/libs-milestone-local</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-releases</id>
+			<name>Spring Releases</name>
+			<url>https://repo.spring.io/libs-release-local</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring.cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring.boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-bom</artifactId>
+                <version>${grpc.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+			<dependency>
+				<groupId>net.logstash.logback</groupId>
+				<artifactId>logstash-logback-encoder</artifactId>
+				<version>${logstash-logback-encoder.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.flowable</groupId>
+				<artifactId>flowable-spring-boot-starter-rest</artifactId>
+				<version>${flowable.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.flowable</groupId>
+				<artifactId>flowable-spring-boot-starter-actuator</artifactId>
+				<version>${flowable.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.github.ulisesbocchio</groupId>
+				<artifactId>jasypt-spring-boot-starter</artifactId>
+				<version>${ulisesbocchio.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus</artifactId>
+				<version>${mybatis.plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis.plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+				<version>${mybatis.plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-generator</artifactId>
+				<version>${mybatis.plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>p6spy</groupId>
+				<artifactId>p6spy</artifactId>
+				<version>${p6spy.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${commons.collections4.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons.io.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version>${commons.httpclient.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>${commons.net.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+				<version>${cglib.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>${xstream.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>${dom4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-all</artifactId>
+				<version>${netty.version}</version>
+			</dependency>
+
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
+            </dependency>
+
+			<!-- 图片压缩工具 -->
+			<dependency>
+				<groupId>net.coobird</groupId>
+				<artifactId>thumbnailator</artifactId>
+				<version>${thumbnailator.version}</version>
+			</dependency>
+
+			<!-- 二编码工具 -->
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>javase</artifactId>
+				<version>${zxing.version}</version>
+			</dependency>
+
+			<!-- html解析工具 -->
+			<dependency>
+				<groupId>org.jsoup</groupId>
+				<artifactId>jsoup</artifactId>
+				<version>${jsoup.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+</project>
