@@ -102,11 +102,6 @@
 			<artifactId>logback-classic</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.flywaydb</groupId>
-			<artifactId>flyway-core</artifactId>
-		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -139,9 +134,9 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <configuration>
                     <driver>com.mysql.cj.jdbc.Driver</driver>
-                    <url>jdbc:mysql://101.132.110.185:3306/learn?verifyServerCertificate=false&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai&amp;autoReconnect=true</url>
-                    <user>learn</user>
-                    <password>learn-m</password>
+                    <url>jdbc:mysql://192.168.247.128:32306/learn?verifyServerCertificate=false&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai&amp;autoReconnect=true</url>
+                    <user>root</user>
+                    <password>123456</password>
                     <serverId>learn-service</serverId>
                     <baselineOnMigrate>true</baselineOnMigrate>
                     <table>schema_history</table>

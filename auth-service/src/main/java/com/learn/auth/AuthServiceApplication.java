@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @Author: luxq
@@ -26,6 +27,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableTransactionManagement
 //@EnableCircuitBreaker
 @MapperScan("com.learn.auth.**.mapper")
+@EnableSwagger2
 public class AuthServiceApplication {
 
     @Bean
