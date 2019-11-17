@@ -23,6 +23,9 @@
         <module>hystrix-service</module>
         <module>turbine-service</module>
 
+		<module>auth-api</module>
+		<module>auth-service</module>
+
 		<module>flowable-service</module>
 		<module>batch-service</module>
 
@@ -34,7 +37,6 @@
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<compiler.plugin.version>3.2</compiler.plugin.version>
 		<lombok.version>1.18.0</lombok.version>
 		<lombok.plugin.version>1.16.22.0</lombok.plugin.version>
 
@@ -179,12 +181,6 @@
                 </plugin>
 
 				<plugin>
-					<groupId>org.flywaydb</groupId>
-					<artifactId>flyway-maven-plugin</artifactId>
-					<version>5.2.4</version>
-				</plugin>
-
-				<plugin>
 					<groupId>org.xolstice.maven.plugins</groupId>
 					<artifactId>protobuf-maven-plugin</artifactId>
 					<version>0.6.1</version>
@@ -197,7 +193,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${compiler.plugin.version}</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>

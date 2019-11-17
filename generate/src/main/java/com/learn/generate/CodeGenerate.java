@@ -7,7 +7,11 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import org.apache.commons.io.FileUtils;
+import org.springframework.util.FileSystemUtils;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -15,19 +19,23 @@ import java.util.regex.Pattern;
 public class CodeGenerate {
 
     private static final String BAST_MODULE_NAME = "generate";
-    private static final String JAVA_PATH = String.format("/%s/src/main/java", BAST_MODULE_NAME);
+    private static final String JAVA_PATH = String.format("/%s/src/main/resources", BAST_MODULE_NAME);
     private static final String MAPPER_PATH = String.format("/%s/src/main/resources/mapper/", BAST_MODULE_NAME);
-    private static final String AUTHOR = "luxq";
+    private static final String AUTHOR = "generate";
 
     private static final String URL = "jdbc:mysql://101.132.110.185:3306/learn?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true";
     private static final String USERNAME = "learn";
     private static final String PASSWORD = "learn-m";
     private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
 
-    private static final String[] EXCLUDE_SUPER_ENTITY_FIELD = {"id", "create_by", "create_date", "update_by", "update_date", "version", "is_deleted"};
-    private static final String PARENT = "com.learn.generate.code";
-    private static final String MODAL_NAME = "generate";
-    private static final String[] TABLE_PREFIX = {"tem_[a-zA-Z0-9_]*", "cdm_[a-zA-Z0-9_]*", "zyj_[a-zA-Z0-9_]*"};
+    private static final String[] EXCLUDE_SUPER_ENTITY_FIELD = {"id", "office_code", "create_by", "create_date", "update_by", "update_date", "version", "is_deleted"};
+    private static final String PARENT = "com.learn.service";
+
+    // cdm, tem, zyj
+    private static final boolean CLEAN_DIR = false; // 是否删除之前生成的代码
+    private static final String MODAL_NAME = "zyj";
+    private static final String TABLE_PREFIX_STR = MODAL_NAME + "_";
+    private static final String[] TABLE_PREFIX = {String.format("%s[a-zA-Z0-9_]*", TABLE_PREFIX_STR)};
 
     // 如果模板引擎是 freemarker
     private static final String TEMPLATE_PATH = "/templates/mapper.xml.ftl";
@@ -35,6 +43,8 @@ public class CodeGenerate {
 
 
     public static void main(String[] args) {
+        cleanDir();
+
         // 代码生成器
         AutoGenerator autoGenerator = new AutoGenerator();
 
@@ -59,6 +69,20 @@ public class CodeGenerate {
         autoGenerator.setTemplateEngine(new FreemarkerTemplateEngine());
 
         autoGenerator.execute();
+    }
+
+    private static void cleanDir() {
+        if (!CLEAN_DIR) {
+            return;
+        }
+
+        String projectPath = System.getProperty("user.dir");
+        try {
+            FileUtils.deleteDirectory(new File(projectPath + JAVA_PATH + "/com"));
+            FileUtils.deleteDirectory(new File(projectPath + MAPPER_PATH));
+        } catch (IOException e) {
+            System.err.println("清除老目录异常");
+        }
     }
 
     private static GlobalConfig getGlobalConfig() {
@@ -87,9 +111,17 @@ public class CodeGenerate {
     private static PackageConfig getPackageConfig() {
         // 包配置
         PackageConfig packageConfig = new PackageConfig();
-        packageConfig.setModuleName(MODAL_NAME);
+
         packageConfig.setParent(PARENT);
-        packageConfig.setServiceImpl("service");
+
+        String modalPkg = "." + MODAL_NAME;
+        packageConfig.setEntity("domain" + modalPkg);
+        packageConfig.setService("service" + modalPkg);
+        packageConfig.setServiceImpl("service" + modalPkg + ".impl");
+        packageConfig.setMapper("mapper" + modalPkg);
+        packageConfig.setXml(modalPkg + "mapper.xml");
+        packageConfig.setController("web.api" + modalPkg);
+
         return packageConfig;
     }
 
@@ -114,16 +146,7 @@ public class CodeGenerate {
                 return projectPath + MAPPER_PATH + MODAL_NAME + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
-        /*
-        cfg.setFileCreate(new IFileCreate() {
-            @Override
-            public boolean isCreate(ConfigBuilder configBuilder, FileType fileType, String filePath) {
-                // 判断自定义文件夹是否需要创建
-                checkDir("调用默认方法创建的目录");
-                return false;
-            }
-        });
-        */
+
         injectionConfig.setFileOutConfigList(focList);
         return injectionConfig;
     }
@@ -136,7 +159,7 @@ public class CodeGenerate {
         //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
         // templateConfig.setEntity("templates/entity2.java");
         // templateConfig.setService();
-        // templateConfig.setController();
+//         templateConfig.setController("/resources/templates/controller.java");
 
         templateConfig.setXml(null);
         return templateConfig;
@@ -151,8 +174,10 @@ public class CodeGenerate {
         strategyConfig.setEntityLombokModel(true);
         strategyConfig.setEntityBuilderModel(true);
         strategyConfig.setRestControllerStyle(true);
+
         // 公共父类
         strategyConfig.setSuperControllerClass("com.learn.core.common.BaseController");
+
         // 写于父类中的公共字段
         strategyConfig.setSuperEntityColumns(EXCLUDE_SUPER_ENTITY_FIELD);
         strategyConfig.setControllerMappingHyphenStyle(true);

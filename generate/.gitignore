@@ -1,5 +1,6 @@
 code/
 
 resources/
+!resources/templates/
 
 example/

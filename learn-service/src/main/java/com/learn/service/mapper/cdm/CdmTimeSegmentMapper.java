@@ -1,15 +1,15 @@
 package com.learn.service.mapper.cdm;
 
+import com.learn.service.domain.cdm.CdmTimeSegment;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.learn.api.domain.cdm.CdmTimeSegment;
 
 /**
  * <p>
- *  Mapper 接口
+ * 时间片段 Mapper 接口
  * </p>
  *
- * @author luxq
- * @since 2019-07-15
+ * @author generate
+ * @since 2019-11-17
  */
 public interface CdmTimeSegmentMapper extends BaseMapper<CdmTimeSegment> {
 
