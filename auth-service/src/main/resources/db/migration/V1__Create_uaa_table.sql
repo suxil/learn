@@ -41,9 +41,9 @@ CREATE TABLE IF NOT EXISTS uaa_user_login_log (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -60,15 +60,15 @@ CREATE TABLE IF NOT EXISTS uaa_user (
     mobile               varchar(30) not null comment '手机号',
     email                varchar(30) not null comment '邮箱',
     is_admin             tinyint(1) not null comment '是否超级管理员 1：是 0：否',
-    last_login_date      timestamp comment '上次登录日期',
+    last_login_date      timestamp default current_timestamp comment '上次登录日期',
     login_count          int comment '登录次数',
     description          varchar(200) not null comment '描述',
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -86,9 +86,9 @@ CREATE TABLE IF NOT EXISTS uaa_role (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -104,9 +104,9 @@ CREATE TABLE IF NOT EXISTS uaa_user_role (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -125,9 +125,9 @@ CREATE TABLE IF NOT EXISTS uaa_permission (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -143,9 +143,9 @@ CREATE TABLE IF NOT EXISTS uaa_user_permission (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -161,9 +161,9 @@ CREATE TABLE IF NOT EXISTS uaa_role_permission (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -181,9 +181,9 @@ CREATE TABLE IF NOT EXISTS uaa_group (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -199,9 +199,9 @@ CREATE TABLE IF NOT EXISTS uaa_group_user (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -217,9 +217,9 @@ CREATE TABLE IF NOT EXISTS uaa_group_role (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -235,9 +235,9 @@ CREATE TABLE IF NOT EXISTS uaa_group_permission (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -257,9 +257,9 @@ CREATE TABLE IF NOT EXISTS uaa_office (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -280,9 +280,9 @@ CREATE TABLE IF NOT EXISTS uaa_menu (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -298,9 +298,9 @@ CREATE TABLE IF NOT EXISTS uaa_menu_role (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -321,9 +321,9 @@ CREATE TABLE IF NOT EXISTS uaa_page_element (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -339,9 +339,9 @@ CREATE TABLE IF NOT EXISTS uaa_page_element_role (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -361,9 +361,9 @@ CREATE TABLE IF NOT EXISTS uaa_operate (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)
@@ -379,9 +379,9 @@ CREATE TABLE IF NOT EXISTS uaa_operate_permission (
 
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
-    create_date          timestamp comment '创建日期',
+    create_date          timestamp default current_timestamp comment '创建日期',
     update_by            varchar(100) comment '更新人',
-    update_date          timestamp comment '更新日期',
+    update_date          timestamp default current_timestamp comment '更新日期',
     is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
     version              int comment '版本号',
     primary key (id)

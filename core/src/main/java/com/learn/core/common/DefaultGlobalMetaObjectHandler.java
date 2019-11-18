@@ -4,15 +4,13 @@ import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Component
-public class GlobalMetaObjectHandler implements MetaObjectHandler {
+public class DefaultGlobalMetaObjectHandler implements MetaObjectHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalMetaObjectHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultGlobalMetaObjectHandler.class);
 
     @Override
     public void insertFill(MetaObject metaObject) {

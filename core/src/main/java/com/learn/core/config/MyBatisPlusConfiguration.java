@@ -1,8 +1,10 @@
 package com.learn.core.config;
 
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
+import com.learn.core.common.DefaultGlobalMetaObjectHandler;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,12 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 public class MyBatisPlusConfiguration {
+
+    @Bean
+    @ConditionalOnMissingBean(value = MetaObjectHandler.class)
+    public MetaObjectHandler metaObjectHandler() {
+        return new DefaultGlobalMetaObjectHandler();
+    }
 
     /**
      * 分页插件

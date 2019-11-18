@@ -15,7 +15,7 @@ spring:
   messages:
     basename: messages,i18n
   datasource:
-    url: jdbc:p6spy:mysql://192.168.247.128:32306/learn?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true
+    url: jdbc:p6spy:mysql://192.168.247.128:32306/auth?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true
     username: root
     password: 123456
 #    driver-class-name: com.mysql.cj.jdbc.Driver
