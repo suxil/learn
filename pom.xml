@@ -12,6 +12,8 @@
 	<modules>
 		<module>dependencies</module>
 
+		<module>rsql-parser</module>
+
 		<module>core</module>
 		<module>hdfs-core</module>
 

@@ -1,15 +1,23 @@
 package com.learn.auth.web.api;
 
+import com.alibaba.druid.pool.WrapperAdapter;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.additional.query.impl.LambdaQueryChainWrapper;
+import com.learn.auth.domain.UaaUser;
+import com.learn.auth.mapper.UaaUserMapper;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
 import com.learn.core.common.BaseController;
+
+import java.util.function.Function;
 
 /**
  * <p>
@@ -24,12 +32,23 @@ import com.learn.core.common.BaseController;
 @RequestMapping("/api/v1/uaa-user")
 public class UaaUserController extends BaseController {
 
+    @Autowired
+    private UaaUserMapper uaaUserMapper;
+
     @GetMapping
     @ApiOperation(value = "用户信息 分页查询")
     @Validated
     public ResponseResult list() {
+        Page<UaaUser> page = new Page<>();
+        page.setPages(0);
+        page.setSize(10);
 
-        return ResponseResult.success();
+        QueryWrapper<UaaUser> uaaUserWrapper = new QueryWrapper<UaaUser>();
+
+        new LambdaQueryChainWrapper(uaaUserMapper).eq("", "");
+
+        IPage<UaaUser> pageResult = uaaUserMapper.selectPage(page, uaaUserWrapper);
+        return ResponseResult.success(pageResult);
     }
 
     @GetMapping("/{id}")
@@ -39,21 +58,21 @@ public class UaaUserController extends BaseController {
         return ResponseResult.success();
     }
 
-    @GetMapping
+    @PostMapping
     @ApiOperation(value = "用户信息 创建")
-    public ResponseResult create() {
+    public ResponseResult create(@RequestBody UaaUser uaaUser) {
 
         return ResponseResult.success();
     }
 
-    @GetMapping
+    @PutMapping
     @ApiOperation(value = "用户信息 更新")
-    public ResponseResult update() {
+    public ResponseResult update(@RequestBody UaaUser uaaUser) {
 
         return ResponseResult.success();
     }
 
-    @GetMapping("/{id}")
+    @DeleteMapping("/{id}")
     @ApiOperation(value = "用户信息 删除")
     public ResponseResult delete(@PathVariable String id) {
 
