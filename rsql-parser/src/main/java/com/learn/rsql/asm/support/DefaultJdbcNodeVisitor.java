@@ -1,5 +1,6 @@
 package com.learn.rsql.asm.support;
 
+import com.learn.rsql.RSQLOperator;
 import com.learn.rsql.asm.*;
 import com.learn.rsql.util.StringUtils;
 
@@ -49,29 +50,37 @@ public class DefaultJdbcNodeVisitor extends BaseNodeVisitor<String, Void> {
         }
 
         switch (node.getOperator().getSymbolStr()) {
-            case "==":
+            case RSQLOperator.EQ:
                 return fieldName + " = " + value;
-            case "!=":
+            case RSQLOperator.NEQ:
                 return fieldName + " != " + value;
-            case "=gt=":
-            case ">":
+            case RSQLOperator.GT:
+            case RSQLOperator.GT2:
                 return fieldName + " > " + value;
-            case "=ge=":
-            case ">=":
+            case RSQLOperator.GE:
+            case RSQLOperator.GE2:
                 return fieldName + " >= " + value;
-            case "=lt=":
-            case "<":
+            case RSQLOperator.LT:
+            case RSQLOperator.LT2:
                 return fieldName + " < " + value;
-            case "=le=":
-            case "<=":
+            case RSQLOperator.LE:
+            case RSQLOperator.LE2:
                 return fieldName + " <= " + value;
-            case "=nu=":
+            case RSQLOperator.NULL:
                 return fieldName + " is null ";
-            case "=nnu=":
+            case RSQLOperator.NOT_NULL:
                 return fieldName + " is not null ";
-            case "=in=":
+            case RSQLOperator.LIKE:
+                return fieldName + " like " + "'%" + StringUtils.join(node.getValue(), "") + "%'";
+            case RSQLOperator.NOT_LIKE:
+                return fieldName + " not like " + "'%" + StringUtils.join(node.getValue(), "") + "%'";
+            case RSQLOperator.L_LIKE:
+                return fieldName + " like " + "'%" + StringUtils.join(node.getValue(), "") + "'";
+            case RSQLOperator.R_LIKE:
+                return fieldName + " like " + "'" + StringUtils.join(node.getValue(), "") + "%'";
+            case RSQLOperator.IN:
                 return fieldName + " in " + value;
-            case "=out=":
+            case RSQLOperator.OUT:
                 return fieldName + " not in " + value;
         }
 

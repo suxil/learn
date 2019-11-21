@@ -2,6 +2,7 @@ package com.learn.rsql.asm.support;
 
 import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
 import com.baomidou.mybatisplus.core.conditions.interfaces.Join;
+import com.learn.rsql.RSQLOperator;
 import com.learn.rsql.asm.AndNode;
 import com.learn.rsql.asm.OrNode;
 import com.learn.rsql.asm.WhereNode;
@@ -50,38 +51,50 @@ public class DefaultMybatisPlusNodeVisitor extends BaseNodeVisitor<Void, Abstrac
         String value = StringUtils.join(node.getValue(), ",");
 
         switch (node.getOperator().getSymbolStr()) {
-            case "==":
+            case RSQLOperator.EQ:
                 wrapper.eq(fieldName, value);
                 break;
-            case "!=":
+            case RSQLOperator.NEQ:
                 wrapper.ne(fieldName, value);
                 break;
-            case "=gt=":
-            case ">":
+            case RSQLOperator.GT:
+            case RSQLOperator.GT2:
                 wrapper.gt(fieldName, value);
                 break;
-            case "=ge=":
-            case ">=":
+            case RSQLOperator.GE:
+            case RSQLOperator.GE2:
                 wrapper.ge(fieldName, value);
                 break;
-            case "=lt=":
-            case "<":
+            case RSQLOperator.LT:
+            case RSQLOperator.LT2:
                 wrapper.lt(fieldName, value);
                 break;
-            case "=le=":
-            case "<=":
+            case RSQLOperator.LE:
+            case RSQLOperator.LE2:
                 wrapper.le(fieldName, value);
                 break;
-            case "=nu=":
+            case RSQLOperator.NULL:
                 wrapper.isNull(fieldName);
                 break;
-            case "=nnu=":
+            case RSQLOperator.NOT_NULL:
                 wrapper.isNotNull(fieldName);
                 break;
-            case "=in=":
+            case RSQLOperator.LIKE:
+                wrapper.like(fieldName, value);
+                break;
+            case RSQLOperator.NOT_LIKE:
+                wrapper.notLike(fieldName, value);
+                break;
+            case RSQLOperator.L_LIKE:
+                wrapper.likeLeft(fieldName, value);
+                break;
+            case RSQLOperator.R_LIKE:
+                wrapper.likeRight(fieldName, value);
+                break;
+            case RSQLOperator.IN:
                 wrapper.in(fieldName, node.getValue());
                 break;
-            case "=out=":
+            case RSQLOperator.OUT:
                 wrapper.notIn(fieldName, node.getValue());
                 break;
         }

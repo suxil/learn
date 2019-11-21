@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.learn.rsql.asm.AndNode;
 import com.learn.rsql.asm.Node;
-import com.learn.rsql.asm.support.DefaultJdbcNodeVisitor;
 import com.learn.rsql.asm.NodeVisitor;
+import com.learn.rsql.asm.support.DefaultJdbcNodeVisitor;
 import com.learn.rsql.asm.support.DefaultMybatisPlusNodeVisitor;
 import org.junit.Test;
 

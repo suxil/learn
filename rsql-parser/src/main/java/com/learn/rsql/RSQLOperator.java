@@ -21,19 +21,42 @@ import java.util.Set;
  */
 public class RSQLOperator {
 
-    public static final WhereOperator EQUAL = new WhereOperator("==");
-    public static final WhereOperator NOT_EQUAL = new WhereOperator("!=");
-    public static final WhereOperator GREATER_THAN = new WhereOperator("=gt=", ">");
-    public static final WhereOperator GREATER_THAN_OR_EQUAL = new WhereOperator("=ge=", ">=");
-    public static final WhereOperator LESS_THAN = new WhereOperator("=lt=", "<");
-    public static final WhereOperator LESS_THAN_OR_EQUAL = new WhereOperator("=le=", "<=");
-    public static final WhereOperator IS_NULL = new WhereOperator("=nu=");
-    public static final WhereOperator IS_NOT_NULL = new WhereOperator("=nnu=");
-    public static final WhereOperator IN = new WhereOperator("=in=", true);
-    public static final WhereOperator NOT_IN = new WhereOperator("=out=", true);
+    public static final String EQ = "=="; // 相等
+    public static final String NEQ = "!="; // 不相等
+    public static final String GT = "=gt="; // 大于
+    public static final String GT2 = ">"; // 大于
+    public static final String GE = "=ge="; // 大于等于
+    public static final String GE2 = ">="; // 大于等于
+    public static final String LT = "=lt="; // 小于
+    public static final String LT2 = "<"; // 小于
+    public static final String LE = "=le="; // 小于等于
+    public static final String LE2 = "<="; // 小于等于
+    public static final String NULL = "=nu="; // 为null
+    public static final String NOT_NULL = "=nnu="; // 不为null
+    public static final String LIKE = "=li="; // 模糊查询
+    public static final String NOT_LIKE = "=nli="; // 非模糊查询
+    public static final String L_LIKE = "=lli="; // 左模糊查询
+    public static final String R_LIKE = "=rli="; // 右模糊查询
+    public static final String IN = "=in="; // in查询
+    public static final String OUT = "=out=";  //或者
+
+    public static final WhereOperator EQ_OP = new WhereOperator(EQ);
+    public static final WhereOperator NEQ_OP = new WhereOperator(NEQ);
+    public static final WhereOperator GT_OP = new WhereOperator(GT, GT2);
+    public static final WhereOperator GE_OP = new WhereOperator(GE, GE2);
+    public static final WhereOperator LT_OP = new WhereOperator(LT, LT2);
+    public static final WhereOperator LE_OP = new WhereOperator(LE, LE2);
+    public static final WhereOperator NULL_OP = new WhereOperator(NULL);
+    public static final WhereOperator NOT_NULL_OP = new WhereOperator(NOT_NULL);
+    public static final WhereOperator LIKE_OP = new WhereOperator(LIKE);
+    public static final WhereOperator NOT_LIKE_OP = new WhereOperator(NOT_LIKE);
+    public static final WhereOperator L_LIKE_OP = new WhereOperator(L_LIKE);
+    public static final WhereOperator R_LIKE_OP = new WhereOperator(R_LIKE);
+    public static final WhereOperator IN_OP = new WhereOperator(IN, true);
+    public static final WhereOperator OUT_OP = new WhereOperator(OUT, true);
 
     public static Set<WhereOperator> defaultOperator() {
-        List<WhereOperator> operatorList = Arrays.asList(EQUAL, NOT_EQUAL, GREATER_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN, LESS_THAN_OR_EQUAL, IS_NULL, IS_NOT_NULL, IN, NOT_IN);
+        List<WhereOperator> operatorList = Arrays.asList(EQ_OP, NEQ_OP, GT_OP, GE_OP, LT_OP, LE_OP, NULL_OP, NOT_NULL_OP, LIKE_OP, NOT_LIKE_OP, L_LIKE_OP, R_LIKE_OP, IN_OP, OUT_OP);
         return new HashSet<>(operatorList);
     }
 

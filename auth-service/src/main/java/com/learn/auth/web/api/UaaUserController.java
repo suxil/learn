@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.additional.query.impl.LambdaQueryChainWrapper;
 import com.learn.auth.domain.UaaUser;
 import com.learn.auth.mapper.UaaUserMapper;
+import com.learn.auth.service.IUaaUserService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,6 +36,8 @@ public class UaaUserController extends BaseController {
 
     @Autowired
     private UaaUserMapper uaaUserMapper;
+    @Autowired
+    private IUaaUserService uaaUserService;
 
     @GetMapping
     @ApiOperation(value = "用户信息 分页查询")
@@ -52,7 +55,7 @@ public class UaaUserController extends BaseController {
 
         UpdateWrapper<UaaUser> updateWrapper = new UpdateWrapper<>();
 
-
+//        uaaUserMapper.selectByMap()
 
         IPage<UaaUser> pageResult = uaaUserMapper.selectPage(page, uaaUserWrapper);
         return ResponseResult.success(pageResult);
@@ -61,29 +64,27 @@ public class UaaUserController extends BaseController {
     @GetMapping("/{id}")
     @ApiOperation(value = "用户信息 加载")
     public ResponseResult load(@PathVariable String id) {
-
-        return ResponseResult.success();
+        return ResponseResult.success(uaaUserService.getById(id));
     }
 
     @PostMapping
     @ApiOperation(value = "用户信息 创建")
     public ResponseResult create(@RequestBody UaaUser uaaUser) {
-
-        return ResponseResult.success();
+        uaaUserService.saveOrUpdate(uaaUser);
+        return ResponseResult.success(uaaUser);
     }
 
     @PutMapping
     @ApiOperation(value = "用户信息 更新")
     public ResponseResult update(@RequestBody UaaUser uaaUser) {
-
-        return ResponseResult.success();
+        uaaUserService.saveOrUpdate(uaaUser);
+        return ResponseResult.success(uaaUser);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "用户信息 删除")
     public ResponseResult delete(@PathVariable String id) {
-
-        return ResponseResult.success();
+        return ResponseResult.success(uaaUserService.removeById(id));
     }
 
 }
