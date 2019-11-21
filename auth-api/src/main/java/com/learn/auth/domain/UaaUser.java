@@ -1,7 +1,6 @@
 package com.learn.auth.domain;
 
 import com.learn.core.common.BaseDomain;
-import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -11,6 +10,7 @@ import lombok.experimental.Accessors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 /**
  * <p>

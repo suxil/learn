@@ -1,14 +1,16 @@
 package ${package.Controller};
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.learn.auth.domain.${table.entityName};
+import com.learn.auth.service.I${table.entityName}Service;
+import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-<#if restControllerStyle>
-import org.springframework.web.bind.annotation.RestController;
-<#else>
-import org.springframework.stereotype.Controller;
-</#if>
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
 </#if>
@@ -36,6 +38,45 @@ public class ${table.controllerName} extends ${superControllerClass} {
 <#else>
 public class ${table.controllerName} {
 </#if>
+
+    @Autowired
+    private I${table.entityName}Service ${table.entityName?uncap_first}Service;
+
+    @GetMapping
+    @ApiOperation(value = "${table.comment!} 分页查询")
+    @Validated
+    public ResponseResult list(${table.entityName} ${table.entityName?uncap_first}, Page<${table.entityName}> page) {
+        QueryWrapper<${table.entityName}> queryWrapper = new QueryWrapper<>();
+
+        IPage<${table.entityName}> pageResult = ${table.entityName?uncap_first}Service.page(page, queryWrapper);
+        return ResponseResult.success(pageResult);
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation(value = "${table.comment!} 详情")
+    public ResponseResult load(@PathVariable String id) {
+        return ResponseResult.success(${table.entityName?uncap_first}Service.getById(id));
+    }
+
+    @PostMapping
+    @ApiOperation(value = "${table.comment!} 创建")
+    public ResponseResult create(@RequestBody ${table.entityName} ${table.entityName?uncap_first}) {
+        ${table.entityName?uncap_first}Service.saveOrUpdate(${table.entityName?uncap_first});
+        return ResponseResult.success(${table.entityName?uncap_first});
+    }
+
+    @PutMapping
+    @ApiOperation(value = "${table.comment!} 更新")
+    public ResponseResult update(@RequestBody ${table.entityName} ${table.entityName?uncap_first}) {
+        ${table.entityName?uncap_first}Service.saveOrUpdate(${table.entityName?uncap_first});
+        return ResponseResult.success(${table.entityName?uncap_first});
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "${table.comment!} 删除")
+    public ResponseResult delete(@PathVariable String id) {
+        return ResponseResult.success(${table.entityName?uncap_first}Service.removeById(id));
+    }
 
 }
 </#if>

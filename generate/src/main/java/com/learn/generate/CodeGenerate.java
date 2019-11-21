@@ -8,13 +8,11 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.apache.commons.io.FileUtils;
-import org.springframework.util.FileSystemUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class CodeGenerate {
 
@@ -23,17 +21,18 @@ public class CodeGenerate {
     private static final String MAPPER_PATH = String.format("/%s/src/main/resources/mapper/", BAST_MODULE_NAME);
     private static final String AUTHOR = "generate";
 
-    private static final String URL = "jdbc:mysql://101.132.110.185:3306/learn?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true";
-    private static final String USERNAME = "learn";
-    private static final String PASSWORD = "learn-m";
+    private static final String URL = "jdbc:mysql://192.168.247.128:32306/auth?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "123456";
     private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
 
     private static final String[] EXCLUDE_SUPER_ENTITY_FIELD = {"id", "office_code", "create_by", "create_date", "update_by", "update_date", "version", "is_deleted"};
     private static final String PARENT = "com.learn.service";
 
     // cdm, tem, zyj
-    private static final boolean CLEAN_DIR = false; // 是否删除之前生成的代码
-    private static final String MODAL_NAME = "zyj";
+    private static final boolean CLEAN_DIR = true; // 是否删除之前生成的代码
+    private static final String MODAL_NAME = "uaa";
+    private static final boolean IS_SUB_MODAL = false;
     private static final String TABLE_PREFIX_STR = MODAL_NAME + "_";
     private static final String[] TABLE_PREFIX = {String.format("%s[a-zA-Z0-9_]*", TABLE_PREFIX_STR)};
 
@@ -114,7 +113,10 @@ public class CodeGenerate {
 
         packageConfig.setParent(PARENT);
 
-        String modalPkg = "." + MODAL_NAME;
+        String modalPkg = "";
+        if (IS_SUB_MODAL) {
+            modalPkg = "." + MODAL_NAME;
+        }
         packageConfig.setEntity("domain" + modalPkg);
         packageConfig.setService("service" + modalPkg);
         packageConfig.setServiceImpl("service" + modalPkg + ".impl");
@@ -136,6 +138,11 @@ public class CodeGenerate {
 
         String projectPath = System.getProperty("user.dir");
 
+        String modalPkg = "";
+        if (IS_SUB_MODAL) {
+            modalPkg = MODAL_NAME + "/";
+        }
+
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
         // 自定义配置会被优先输出
@@ -143,7 +150,7 @@ public class CodeGenerate {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-                return projectPath + MAPPER_PATH + MODAL_NAME + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+                return projectPath + MAPPER_PATH + modalPkg + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
 
@@ -176,7 +183,7 @@ public class CodeGenerate {
         strategyConfig.setRestControllerStyle(true);
 
         // 公共父类
-        strategyConfig.setSuperControllerClass("com.learn.core.common.BaseController");
+//        strategyConfig.setSuperControllerClass("com.learn.core.common.BaseController");
 
         // 写于父类中的公共字段
         strategyConfig.setSuperEntityColumns(EXCLUDE_SUPER_ENTITY_FIELD);

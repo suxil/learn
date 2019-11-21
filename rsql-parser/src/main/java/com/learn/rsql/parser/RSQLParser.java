@@ -5,7 +5,7 @@ import com.learn.rsql.asm.Node;
 import com.learn.rsql.asm.NodeFactory;
 import com.learn.rsql.asm.WhereOperator;
 import com.learn.rsql.asm.support.DefaultNodeFactory;
-import com.learn.rsql.exception.GlobalCommonException;
+import com.learn.rsql.exception.RSQLCommonException;
 import com.learn.rsql.util.Assert;
 
 import java.io.ByteArrayInputStream;
@@ -38,7 +38,7 @@ public class RSQLParser {
 
     public RSQLParser(Set<WhereOperator> whereOperatorSet) {
         if (whereOperatorSet == null || whereOperatorSet.isEmpty()) {
-            throw new GlobalCommonException("operator must not be null or empty");
+            throw new RSQLCommonException("operator must not be null or empty");
         }
 
         nodeFactory = new DefaultNodeFactory(whereOperatorSet);
@@ -57,7 +57,7 @@ public class RSQLParser {
         try {
             return parser.parse();
         } catch (Exception e) {
-            throw new GlobalCommonException("parse resolve error");
+            throw new RSQLCommonException("parse resolve error");
         }
     }
 

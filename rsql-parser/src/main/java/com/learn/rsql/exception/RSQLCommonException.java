@@ -12,21 +12,21 @@ package com.learn.rsql.exception;
  * @version V1.0
  * @Package com.learn.rsql.exception
  */
-public class GlobalCommonException extends RuntimeException {
+public class RSQLCommonException extends RuntimeException {
 
-    public GlobalCommonException() {
+    public RSQLCommonException() {
 
     }
 
-    public GlobalCommonException(String message) {
+    public RSQLCommonException(String message) {
         super(message);
     }
 
-    public GlobalCommonException(String message, Throwable cause) {
+    public RSQLCommonException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public GlobalCommonException(Throwable cause) {
+    public RSQLCommonException(Throwable cause) {
         super(cause);
     }
 

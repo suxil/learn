@@ -1,7 +1,7 @@
 package com.learn.rsql.asm.support;
 
 import com.learn.rsql.asm.*;
-import com.learn.rsql.exception.GlobalCommonException;
+import com.learn.rsql.exception.RSQLCommonException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,14 +38,14 @@ public class DefaultNodeFactory implements NodeFactory {
         switch (conditionSymbol) {
             case OR: return new OrNode(nodeList);
             case AND: return new AndNode(nodeList);
-            default: throw new GlobalCommonException();
+            default: throw new RSQLCommonException("condition symbol not found");
         }
     }
 
     public WhereNode createWhereNode(String fieldName, String operate, List<String> value) {
         WhereOperator whereOperator = whereOperatorMap.get(operate);
         if (whereOperator == null) {
-            throw new GlobalCommonException();
+            throw new RSQLCommonException("where operate must not be null");
         }
         return new WhereNode(whereOperator, fieldName, value);
     }

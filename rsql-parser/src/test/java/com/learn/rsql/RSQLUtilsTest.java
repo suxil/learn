@@ -1,5 +1,6 @@
 package com.learn.rsql;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.learn.rsql.asm.Node;
 import org.junit.Test;
 
@@ -21,11 +22,32 @@ public class RSQLUtilsTest {
     public void parseTest() {
         String search = "a=in=(1,2);((b=out=(1,2,3),c=='test*');((d==1;e==1;f==1);h==2;i==3));j==1";
 
-        System.out.println(search);
-
         Node node = RSQLUtils.parse(search);
 
+        System.out.println(search);
         System.out.println(node.toString());
+    }
+
+    @Test
+    public void parseJdbcTest() {
+        String search = "a=in=(1,2);((b=out=(1,2,3),c=='test*');((d==1;e==1;f==1);h==2;i==3));j==1";
+
+        String result = RSQLUtils.parseJdbc(search);
+
+        System.out.println(search);
+        System.out.println(result);
+    }
+
+    @Test
+    public void parseMybatisPlusTest() {
+        String search = "a=in=(1,2);((b=out=(1,2,3),c=='test*');((d==1;e==1;f==1);h==2;i==3));j==1";
+
+        QueryWrapper<Object> queryWrapper = new QueryWrapper<>();
+
+        RSQLUtils.parseMybatisPlus(search, queryWrapper);
+
+        System.out.println(search);
+        System.out.println(queryWrapper.getSqlSegment());
     }
 
 }
