@@ -1,11 +1,6 @@
 package com.learn.rsql.asm;
 
-import com.learn.rsql.exception.GlobalCommonException;
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * <p> Title: 标题 </p>
@@ -19,34 +14,10 @@ import java.util.Set;
  * @version V1.0
  * @Package com.learn.rsql
  */
-public class NodeFactory {
+public interface NodeFactory {
 
-    private final Map<String, WhereOperator> whereOperatorMap;
+    Node createConditionNode(ConditionSymbol conditionSymbol, List<Node> nodeList);
 
-    public NodeFactory(Set<WhereOperator> whereOperatorSet) {
-        this.whereOperatorMap = new HashMap<>(whereOperatorSet.size());
-
-        for (WhereOperator operator : whereOperatorSet) {
-            for (String s : operator.getSymbol()) {
-                whereOperatorMap.put(s, operator);
-            }
-        }
-    }
-
-    public Node createConditionNode(ConditionSymbol conditionSymbol, List<Node> nodeList) {
-        switch (conditionSymbol) {
-            case OR: return new OrNode(nodeList);
-            case AND: return new AndNode(nodeList);
-            default: throw new GlobalCommonException();
-        }
-    }
-
-    public WhereNode createWhereNode(String fieldName, String operate, List<String> value) {
-        WhereOperator whereOperator = whereOperatorMap.get(operate);
-        if (whereOperator == null) {
-            throw new GlobalCommonException();
-        }
-        return new WhereNode(whereOperator, fieldName, value);
-    }
+    WhereNode createWhereNode(String fieldName, String operate, List<String> value);
 
 }

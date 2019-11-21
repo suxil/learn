@@ -1,9 +1,12 @@
 package com.learn.rsql;
 
+import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.learn.rsql.asm.AndNode;
 import com.learn.rsql.asm.Node;
-import com.learn.rsql.visit.suport.DefaultJdbcRSQLNodeVisitor;
-import com.learn.rsql.visit.RSQLNodeVisitor;
+import com.learn.rsql.asm.support.DefaultJdbcNodeVisitor;
+import com.learn.rsql.asm.NodeVisitor;
+import com.learn.rsql.asm.support.DefaultMybatisPlusNodeVisitor;
 import org.junit.Test;
 
 /**
@@ -21,14 +24,14 @@ import org.junit.Test;
 public class RSQLNodeVisitorTest {
 
     @Test
-    public void visitTest() {
+    public void visitJdbcTest() {
         String search = "a=in=(1,2);((b=out=(1,2,3),c=='test*');((d==1;e==1;f==1);h==2;i==3));j==1";
 
         System.out.println(search);
 
         Node node = RSQLUtils.parse(search);
 
-        RSQLNodeVisitor<String, Void> visitor = new DefaultJdbcRSQLNodeVisitor();
+        NodeVisitor<String, Void> visitor = new DefaultJdbcNodeVisitor();
 
         if (node instanceof AndNode) {
             String result = visitor.visit((AndNode) node, null);
@@ -36,6 +39,26 @@ public class RSQLNodeVisitorTest {
             System.out.println(result);
         }
 
+    }
+
+    @Test
+    public void visitMybatisPlusTest() {
+        String search = "a=in=(1,2);((b=out=(1,2,3),c=='test*');((d==1;e==1;f==1);h==2;i==3));j==1";
+
+        System.out.println(search);
+
+        Node node = RSQLUtils.parse(search);
+
+        NodeVisitor<Void, AbstractWrapper> visitor = new DefaultMybatisPlusNodeVisitor();
+
+        if (node instanceof AndNode) {
+            QueryWrapper<Object> queryWrapper = new QueryWrapper<>();
+            visitor.visit((AndNode) node, queryWrapper);
+
+            String result = queryWrapper.getSqlSegment();
+
+            System.out.println(result);
+        }
 
     }
 

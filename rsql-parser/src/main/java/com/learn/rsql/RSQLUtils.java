@@ -3,7 +3,6 @@ package com.learn.rsql;
 
 import com.learn.rsql.asm.Node;
 import com.learn.rsql.parser.RSQLParser;
-import com.learn.rsql.visit.RSQLNodeVisitor;
 
 public class RSQLUtils {
 

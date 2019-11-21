@@ -4,6 +4,7 @@ import com.learn.rsql.RSQLOperator;
 import com.learn.rsql.asm.Node;
 import com.learn.rsql.asm.NodeFactory;
 import com.learn.rsql.asm.WhereOperator;
+import com.learn.rsql.asm.support.DefaultNodeFactory;
 import com.learn.rsql.exception.GlobalCommonException;
 import com.learn.rsql.util.Assert;
 
@@ -40,7 +41,11 @@ public class RSQLParser {
             throw new GlobalCommonException("operator must not be null or empty");
         }
 
-        nodeFactory = new NodeFactory(whereOperatorSet);
+        nodeFactory = new DefaultNodeFactory(whereOperatorSet);
+    }
+
+    public RSQLParser(NodeFactory nodeFactory) {
+        this.nodeFactory = nodeFactory;
     }
 
     public Node parse(String search) {

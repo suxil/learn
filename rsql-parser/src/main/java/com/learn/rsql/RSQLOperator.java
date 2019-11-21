@@ -27,11 +27,13 @@ public class RSQLOperator {
     public static final WhereOperator GREATER_THAN_OR_EQUAL = new WhereOperator("=ge=", ">=");
     public static final WhereOperator LESS_THAN = new WhereOperator("=lt=", "<");
     public static final WhereOperator LESS_THAN_OR_EQUAL = new WhereOperator("=le=", "<=");
+    public static final WhereOperator IS_NULL = new WhereOperator("=nu=");
+    public static final WhereOperator IS_NOT_NULL = new WhereOperator("=nnu=");
     public static final WhereOperator IN = new WhereOperator("=in=", true);
     public static final WhereOperator NOT_IN = new WhereOperator("=out=", true);
 
     public static Set<WhereOperator> defaultOperator() {
-        List<WhereOperator> operatorList = Arrays.asList(EQUAL, NOT_EQUAL, GREATER_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN, LESS_THAN_OR_EQUAL, IN, NOT_IN);
+        List<WhereOperator> operatorList = Arrays.asList(EQUAL, NOT_EQUAL, GREATER_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN, LESS_THAN_OR_EQUAL, IS_NULL, IS_NOT_NULL, IN, NOT_IN);
         return new HashSet<>(operatorList);
     }
 

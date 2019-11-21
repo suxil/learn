@@ -1,4 +1,4 @@
-package com.learn.rsql.visit;
+package com.learn.rsql.asm.support;
 
 import com.learn.rsql.asm.*;
 
@@ -17,7 +17,7 @@ import java.util.List;
  * @version V1.0
  * @Package com.learn.rsql.visit
  */
-public abstract class BaseRSQLNodeVisitor<R, P> implements RSQLNodeVisitor<R, P> {
+public abstract class BaseNodeVisitor<R, P> implements NodeVisitor<R, P> {
 
     protected List<R> handlerChildren(List<Node> nodeList, P param) {
         List<R> result = new ArrayList<>();
@@ -36,18 +36,6 @@ public abstract class BaseRSQLNodeVisitor<R, P> implements RSQLNodeVisitor<R, P>
         }
 
         return result;
-    }
-
-    public abstract R visitOrAndNode(List<Node> nodeList, ConditionSymbol conditionSymbol, P param);
-
-    @Override
-    public R visit(OrNode node, P param) {
-        return visitOrAndNode(node.getChildren(), node.getConditionSymbol(), param);
-    }
-
-    @Override
-    public R visit(AndNode node, P param) {
-        return visitOrAndNode(node.getChildren(), node.getConditionSymbol(), param);
     }
 
 }

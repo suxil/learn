@@ -3,6 +3,7 @@ package com.learn.auth.web.api;
 import com.alibaba.druid.pool.WrapperAdapter;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.additional.query.impl.LambdaQueryChainWrapper;
@@ -46,6 +47,12 @@ public class UaaUserController extends BaseController {
         QueryWrapper<UaaUser> uaaUserWrapper = new QueryWrapper<UaaUser>();
 
         new LambdaQueryChainWrapper(uaaUserMapper).eq("", "");
+
+        QueryWrapper<UaaUser> queryWrapper = new QueryWrapper<>();
+
+        UpdateWrapper<UaaUser> updateWrapper = new UpdateWrapper<>();
+
+
 
         IPage<UaaUser> pageResult = uaaUserMapper.selectPage(page, uaaUserWrapper);
         return ResponseResult.success(pageResult);

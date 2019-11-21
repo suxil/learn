@@ -1,8 +1,4 @@
-package com.learn.rsql.visit;
-
-import com.learn.rsql.asm.AndNode;
-import com.learn.rsql.asm.OrNode;
-import com.learn.rsql.asm.WhereNode;
+package com.learn.rsql.asm;
 
 /**
  * <p> Title: 标题 </p>
@@ -16,7 +12,7 @@ import com.learn.rsql.asm.WhereNode;
  * @version V1.0
  * @Package com.learn.rsql.visit
  */
-public interface RSQLNodeVisitor<R, P> {
+public interface NodeVisitor<R, P> {
 
     R visit(OrNode node, P param);
 
