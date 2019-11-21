@@ -4,6 +4,7 @@ import com.learn.rsql.asm.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * <p> Title: 标题 </p>
@@ -20,6 +21,10 @@ import java.util.List;
 public abstract class BaseNodeVisitor<R, P> implements NodeVisitor<R, P> {
 
     protected List<R> handlerChildren(List<Node> nodeList, P param) {
+        return handlerChildren(nodeList, param, null);
+    }
+
+    protected List<R> handlerChildren(List<Node> nodeList, P param, Consumer<P> consumer) {
         List<R> result = new ArrayList<>();
         if (nodeList == null || nodeList.size() == 0) {
             return result;
@@ -33,6 +38,7 @@ public abstract class BaseNodeVisitor<R, P> implements NodeVisitor<R, P> {
             } else if (itemNode instanceof WhereNode) {
                 result.add(visit((WhereNode) itemNode, param));
             }
+            if (consumer != null) consumer.accept(param);
         }
 
         return result;

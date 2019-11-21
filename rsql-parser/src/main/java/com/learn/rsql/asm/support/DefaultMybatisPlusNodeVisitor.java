@@ -1,10 +1,13 @@
 package com.learn.rsql.asm.support;
 
 import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
+import com.baomidou.mybatisplus.core.conditions.interfaces.Join;
 import com.learn.rsql.asm.AndNode;
 import com.learn.rsql.asm.OrNode;
 import com.learn.rsql.asm.WhereNode;
 import com.learn.rsql.util.StringUtils;
+
+import java.util.function.Consumer;
 
 /**
  * <p> Title: 标题 </p>
@@ -20,13 +23,14 @@ import com.learn.rsql.util.StringUtils;
  */
 public class DefaultMybatisPlusNodeVisitor extends BaseNodeVisitor<Void, AbstractWrapper> {
 
+    private static final Consumer<AbstractWrapper> OR_NODE_CONSUMER = (Join::or);
+
     @Override
     public Void visit(OrNode node, AbstractWrapper wrapper) {
         wrapper.or(childWrapper -> {
-            handlerChildren(node.getChildren(), (AbstractWrapper) childWrapper);
+            handlerChildren(node.getChildren(), (AbstractWrapper) childWrapper, OR_NODE_CONSUMER);
             return childWrapper;
         });
-//        handlerChildren(node.getChildren(), wrapper);
         return null;
     }
 
@@ -36,7 +40,6 @@ public class DefaultMybatisPlusNodeVisitor extends BaseNodeVisitor<Void, Abstrac
             handlerChildren(node.getChildren(), (AbstractWrapper) childWrapper);
             return childWrapper;
         });
-//        handlerChildren(node.getChildren(), wrapper);
         return null;
     }
 
