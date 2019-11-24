@@ -30,7 +30,7 @@ public class CodeGenerate {
 
     public static final String DATASOURCE_PATH = "classpath:datasource.properties";
 
-    private static final String[] EXCLUDE_SUPER_ENTITY_FIELD = {"id", "office_code", "create_by", "create_date", "update_by", "update_date", "version", "is_deleted"};
+    private static final String[] EXCLUDE_SUPER_ENTITY_FIELD = {"id", "tenant_id", "office_code", "create_by", "create_date", "update_by", "update_date", "version", "is_deleted"};
     private static final String PARENT = "com.learn.auth";
 
     // cdm, tem, zyj

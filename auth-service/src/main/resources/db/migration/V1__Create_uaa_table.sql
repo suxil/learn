@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_login_log (
     user_agent           varchar(100) not null comment '浏览器',
     cookies              varchar(200) not null comment '登录cookie',
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -64,6 +65,7 @@ CREATE TABLE IF NOT EXISTS uaa_user (
     login_count          int comment '登录次数',
     description          varchar(200) not null comment '描述',
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -84,6 +86,7 @@ CREATE TABLE IF NOT EXISTS uaa_role (
     role_name            varchar(60) not null comment '角色名称',
     description          varchar(200) not null comment '描述',
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -102,6 +105,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_role (
     user_id              varchar(32) not null,
     role_id              varchar(32) not null,
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -123,6 +127,7 @@ CREATE TABLE IF NOT EXISTS uaa_permission (
     permission_type      varchar(30) not null comment '权限类型',
     description          varchar(200) not null comment '描述',
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -141,6 +146,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_permission (
     user_id              varchar(32) not null,
     permission_id        varchar(32) not null,
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -159,6 +165,7 @@ CREATE TABLE IF NOT EXISTS uaa_role_permission (
     role_id              varchar(32) not null,
     permission_id        varchar(32) not null,
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -179,6 +186,7 @@ CREATE TABLE IF NOT EXISTS uaa_group (
     group_name           varchar(60) not null comment '组名称',
     description          varchar(200) not null comment '描述',
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -197,6 +205,7 @@ CREATE TABLE IF NOT EXISTS uaa_group_user (
     group_id             varchar(32) not null,
     user_id              varchar(32) not null,
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -215,6 +224,7 @@ CREATE TABLE IF NOT EXISTS uaa_group_role (
     group_id             varchar(32) not null,
     role_id              varchar(32) not null,
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -233,6 +243,7 @@ CREATE TABLE IF NOT EXISTS uaa_group_permission (
     group_id             varchar(32) not null,
     permission_id        varchar(32) not null,
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -255,6 +266,7 @@ CREATE TABLE IF NOT EXISTS uaa_office (
     office_name          varchar(60) not null comment '组织名称',
     description          varchar(200) not null comment '描述',
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -278,6 +290,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu (
     menu_name            varchar(60) not null comment '菜单名称',
     description          varchar(200) not null comment '描述',
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -296,6 +309,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu_role (
     menu_id              varchar(32) not null,
     role_id              varchar(32) not null,
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -319,6 +333,7 @@ CREATE TABLE IF NOT EXISTS uaa_page_element (
     menu_name            varchar(60) not null comment '菜单名称',
     description          varchar(200) not null comment '描述',
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -337,6 +352,7 @@ CREATE TABLE IF NOT EXISTS uaa_page_element_role (
     page_element_id      varchar(32) not null,
     role_id              varchar(32) not null,
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -359,6 +375,7 @@ CREATE TABLE IF NOT EXISTS uaa_operate (
     intercept_url_prefix varchar(60) not null comment '拦截前缀',
     description          varchar(200) not null comment '描述',
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
@@ -377,6 +394,7 @@ CREATE TABLE IF NOT EXISTS uaa_operate_permission (
     operate_id           varchar(32) not null,
     permission_id        varchar(32) not null,
 
+    tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) comment '组织机构',
     create_by            varchar(100) comment '创建人',
     create_date          timestamp default current_timestamp comment '创建日期',
