@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaGroupRole;
-import com.learn.auth.service.IUaaGroupRoleService;
+import com.learn.auth.service.UaaGroupRoleService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * </p>
  *
  * @author generate
- * @since 2019-11-21
+ * @since 2019-11-24
  */
 @Api(value = "组-角色信息 接口")
 @RestController
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 public class UaaGroupRoleController {
 
     @Autowired
-    private IUaaGroupRoleService uaaGroupRoleService;
+    private UaaGroupRoleService uaaGroupRoleService;
 
     @GetMapping
     @ApiOperation(value = "组-角色信息 分页查询")

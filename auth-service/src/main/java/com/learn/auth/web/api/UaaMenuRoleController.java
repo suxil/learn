@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaMenuRole;
-import com.learn.auth.service.IUaaMenuRoleService;
+import com.learn.auth.service.UaaMenuRoleService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * </p>
  *
  * @author generate
- * @since 2019-11-21
+ * @since 2019-11-24
  */
 @Api(value = "菜单-角色信息 接口")
 @RestController
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 public class UaaMenuRoleController {
 
     @Autowired
-    private IUaaMenuRoleService uaaMenuRoleService;
+    private UaaMenuRoleService uaaMenuRoleService;
 
     @GetMapping
     @ApiOperation(value = "菜单-角色信息 分页查询")

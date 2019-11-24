@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaPageElementRole;
-import com.learn.auth.service.IUaaPageElementRoleService;
+import com.learn.auth.service.UaaPageElementRoleService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * </p>
  *
  * @author generate
- * @since 2019-11-21
+ * @since 2019-11-24
  */
 @Api(value = "页面元素-角色息 接口")
 @RestController
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
 public class UaaPageElementRoleController {
 
     @Autowired
-    private IUaaPageElementRoleService uaaPageElementRoleService;
+    private UaaPageElementRoleService uaaPageElementRoleService;
 
     @GetMapping
     @ApiOperation(value = "页面元素-角色息 分页查询")

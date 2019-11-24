@@ -2,7 +2,7 @@ package com.learn.auth.service.impl;
 
 import com.learn.auth.domain.UaaUserRole;
 import com.learn.auth.mapper.UaaUserRoleMapper;
-import com.learn.auth.service.IUaaUserRoleService;
+import com.learn.auth.service.UaaUserRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author generate
- * @since 2019-11-17
+ * @since 2019-11-24
  */
 @Service
-public class UaaUserRoleServiceImpl extends ServiceImpl<UaaUserRoleMapper, UaaUserRole> implements IUaaUserRoleService {
+public class UaaUserRoleServiceImpl extends ServiceImpl<UaaUserRoleMapper, UaaUserRole> implements UaaUserRoleService {
 
 }

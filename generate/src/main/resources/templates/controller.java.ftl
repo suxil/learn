@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.${table.entityName};
-import com.learn.auth.service.I${table.entityName}Service;
+import com.learn.auth.service.${table.entityName}Service;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -40,7 +40,7 @@ public class ${table.controllerName} {
 </#if>
 
     @Autowired
-    private I${table.entityName}Service ${table.entityName?uncap_first}Service;
+    private ${table.entityName}Service ${table.entityName?uncap_first}Service;
 
     @GetMapping
     @ApiOperation(value = "${table.comment!} 分页查询")

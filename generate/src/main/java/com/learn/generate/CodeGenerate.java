@@ -8,26 +8,30 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.apache.commons.io.FileUtils;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class CodeGenerate {
 
     private static final String BAST_MODULE_NAME = "generate";
-    private static final String JAVA_PATH = String.format("/%s/src/main/resources", BAST_MODULE_NAME);
-    private static final String MAPPER_PATH = String.format("/%s/src/main/resources/mapper/", BAST_MODULE_NAME);
+    public static final String BAST_PATH = String.format("/%s/src/main/resources/generate/src/main/", BAST_MODULE_NAME);
+    public static final String BAST_TEST_PATH = String.format("/%s/src/main/resources/generate/src/test/", BAST_MODULE_NAME);
+    private static final String JAVA_PATH = BAST_PATH + "java/";
+    private static final String MAPPER_PATH = BAST_PATH + "resources/mapper/";
     private static final String AUTHOR = "generate";
 
-    private static final String URL = "jdbc:mysql://192.168.247.128:32306/auth?verifyServerCertificate=false&useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "123456";
-    private static final String DRIVER_CLASS_NAME = "com.mysql.cj.jdbc.Driver";
+    public static final String DATASOURCE_PATH = "classpath:datasource.properties";
 
     private static final String[] EXCLUDE_SUPER_ENTITY_FIELD = {"id", "office_code", "create_by", "create_date", "update_by", "update_date", "version", "is_deleted"};
-    private static final String PARENT = "com.learn.service";
+    private static final String PARENT = "com.learn.auth";
 
     // cdm, tem, zyj
     private static final boolean CLEAN_DIR = true; // 是否删除之前生成的代码
@@ -35,11 +39,6 @@ public class CodeGenerate {
     private static final boolean IS_SUB_MODAL = false;
     private static final String TABLE_PREFIX_STR = MODAL_NAME + "_";
     private static final String[] TABLE_PREFIX = {String.format("%s[a-zA-Z0-9_]*", TABLE_PREFIX_STR)};
-
-    // 如果模板引擎是 freemarker
-    private static final String TEMPLATE_PATH = "/templates/mapper.xml.ftl";
-
-
 
     public static void main(String[] args) {
         cleanDir();
@@ -56,9 +55,6 @@ public class CodeGenerate {
         // 包配置
         autoGenerator.setPackageInfo(getPackageConfig());
 
-        // 自定义配置
-        autoGenerator.setCfg(getInjectionConfig());
-
         // 配置模板
         autoGenerator.setTemplate(getTemplateConfig());
 
@@ -67,7 +63,12 @@ public class CodeGenerate {
 
         autoGenerator.setTemplateEngine(new FreemarkerTemplateEngine());
 
+        // 自定义配置
+        autoGenerator.setCfg(getInjectionConfig(autoGenerator));
+
         autoGenerator.execute();
+
+//        autoGenerator.getTemplateEngine();
     }
 
     private static void cleanDir() {
@@ -77,8 +78,7 @@ public class CodeGenerate {
 
         String projectPath = System.getProperty("user.dir");
         try {
-            FileUtils.deleteDirectory(new File(projectPath + JAVA_PATH + "/com"));
-            FileUtils.deleteDirectory(new File(projectPath + MAPPER_PATH));
+            FileUtils.deleteDirectory(new File(projectPath + "/generate/src/main/resources/generate"));
         } catch (IOException e) {
             System.err.println("清除老目录异常");
         }
@@ -93,6 +93,9 @@ public class CodeGenerate {
         globalConfig.setOpen(false);
         globalConfig.setSwagger2(true); // 实体属性 Swagger2 注解
         globalConfig.setBaseColumnList(true);
+
+        globalConfig.setServiceName("%sService");
+
         return globalConfig;
     }
 
@@ -100,10 +103,20 @@ public class CodeGenerate {
         // 数据源配置
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         // dsc.setSchemaName("public");
-        dataSourceConfig.setUrl(URL);
-        dataSourceConfig.setUsername(USERNAME);
-        dataSourceConfig.setPassword(PASSWORD);
-        dataSourceConfig.setDriverName(DRIVER_CLASS_NAME);
+
+        ResourceLoader resourceLoader = new DefaultResourceLoader();
+        Resource resource = resourceLoader.getResource(DATASOURCE_PATH);
+        try {
+            Properties datasourceProps = PropertiesLoaderUtils.loadProperties(resource);
+
+            dataSourceConfig.setUrl(datasourceProps.getProperty("datasource.url"));
+            dataSourceConfig.setUsername(datasourceProps.getProperty("datasource.username"));
+            dataSourceConfig.setPassword(datasourceProps.getProperty("datasource.password"));
+            dataSourceConfig.setDriverName(datasourceProps.getProperty("datasource.driver-class-name"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return dataSourceConfig;
     }
 
@@ -127,7 +140,9 @@ public class CodeGenerate {
         return packageConfig;
     }
 
-    private static InjectionConfig getInjectionConfig() {
+    private static InjectionConfig getInjectionConfig(AutoGenerator autoGenerator) {
+        PackageConfig packageConfig = autoGenerator.getPackageInfo();
+
         // 自定义配置
         InjectionConfig injectionConfig = new InjectionConfig() {
             @Override
@@ -146,11 +161,26 @@ public class CodeGenerate {
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
         // 自定义配置会被优先输出
-        focList.add(new FileOutConfig(TEMPLATE_PATH) {
+        focList.add(new FileOutConfig("/templates/mapper.xml.ftl") {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                 return projectPath + MAPPER_PATH + modalPkg + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+            }
+        });
+
+        // ServiceTest.java
+        focList.add(new FileOutConfig("/templates/serviceTest.java.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return projectPath + BAST_TEST_PATH + (PARENT + "." + packageConfig.getService()).replace(".", "/") + "/" + modalPkg + tableInfo.getEntityName() + "ServiceTest" + StringPool.DOT_JAVA;
+            }
+        });
+        // ControllerTest.java
+        focList.add(new FileOutConfig("/templates/controllerTest.java.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return projectPath + BAST_TEST_PATH + (PARENT + "." + packageConfig.getController()).replace(".", "/") + "/" + modalPkg + tableInfo.getEntityName() + "ControllerTest" + StringPool.DOT_JAVA;
             }
         });
 
