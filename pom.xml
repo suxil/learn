@@ -15,6 +15,7 @@
 		<module>rsql-parser</module>
 
 		<module>core</module>
+		<module>mybatis-core</module>
 		<module>hdfs-core</module>
 
 		<module>generate</module>

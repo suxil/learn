@@ -24,6 +24,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.learn.mybatis</groupId>
+			<artifactId>mybatis-core</artifactId>
+			<version>0.1</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-generator</artifactId>
 		</dependency>

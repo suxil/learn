@@ -21,11 +21,12 @@ import java.util.Properties;
 
 public class CodeGenerate {
 
+    public static final String MAPPER_NAME = "repository";
     private static final String BAST_MODULE_NAME = "generate";
     public static final String BAST_PATH = String.format("/%s/src/main/resources/generate/src/main/", BAST_MODULE_NAME);
     public static final String BAST_TEST_PATH = String.format("/%s/src/main/resources/generate/src/test/", BAST_MODULE_NAME);
     private static final String JAVA_PATH = BAST_PATH + "java/";
-    private static final String MAPPER_PATH = BAST_PATH + "resources/mapper/";
+    private static final String MAPPER_PATH = BAST_PATH + "resources/" + MAPPER_NAME + "/";
     private static final String AUTHOR = "generate";
 
     public static final String DATASOURCE_PATH = "classpath:datasource.properties";
@@ -95,6 +96,7 @@ public class CodeGenerate {
         globalConfig.setBaseColumnList(true);
 
         globalConfig.setServiceName("%sService");
+        globalConfig.setMapperName("%sRepository");
 
         return globalConfig;
     }
@@ -133,7 +135,7 @@ public class CodeGenerate {
         packageConfig.setEntity("domain" + modalPkg);
         packageConfig.setService("service" + modalPkg);
         packageConfig.setServiceImpl("service" + modalPkg + ".impl");
-        packageConfig.setMapper("mapper" + modalPkg);
+        packageConfig.setMapper(MAPPER_NAME + modalPkg);
         packageConfig.setXml(modalPkg + "mapper.xml");
         packageConfig.setController("web.api" + modalPkg);
 
@@ -207,13 +209,13 @@ public class CodeGenerate {
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig.setNaming(NamingStrategy.underline_to_camel);
         strategyConfig.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategyConfig.setSuperEntityClass("com.learn.core.common.BaseDomain");
+        strategyConfig.setSuperEntityClass("com.learn.mybatis.domain.BaseDomain");
         strategyConfig.setEntityLombokModel(true);
         strategyConfig.setEntityBuilderModel(true);
         strategyConfig.setRestControllerStyle(true);
 
         // 公共父类
-//        strategyConfig.setSuperControllerClass("com.learn.core.common.BaseController");
+//        strategyConfig.setSuperControllerClass("com.learn.mybatis.web.BaseController");
 
         // 写于父类中的公共字段
         strategyConfig.setSuperEntityColumns(EXCLUDE_SUPER_ENTITY_FIELD);

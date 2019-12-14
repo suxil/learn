@@ -1,4 +1,4 @@
-package com.learn.core.config;
+package com.learn.mybatis.handler;
 
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
 import net.sf.jsqlparser.expression.Expression;

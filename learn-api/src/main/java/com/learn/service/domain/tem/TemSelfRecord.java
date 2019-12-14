@@ -1,6 +1,6 @@
 package com.learn.service.domain.tem;
 
-import com.learn.core.common.BaseDomain;
+import com.learn.mybatis.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.learn.service.domain.tem;
 
 import java.math.BigDecimal;
-import com.learn.core.common.BaseDomain;
+import com.learn.mybatis.domain.BaseDomain;
 import java.time.LocalDateTime;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -1,4 +1,4 @@
-package com.learn.core.common;
+package com.learn.mybatis.web;
 
 public class BaseController {
 }

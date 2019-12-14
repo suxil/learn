@@ -1,7 +1,5 @@
 package com.learn.core.utils;
 
-import com.learn.core.common.BaseDomain;
-
 import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -324,9 +322,6 @@ public class ReflectUtils {
      */
     public static Map<String, Field> getClassFieldCache(Class<?> clazz) {
         Map<String, Field> map = new HashMap<>();
-        if (clazz != BaseDomain.class) {
-            map.putAll(ReflectUtils.getClassFieldCache(BaseDomain.class));
-        }
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             map.put(field.getName(), field);

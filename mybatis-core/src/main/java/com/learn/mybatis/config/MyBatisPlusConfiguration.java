@@ -1,4 +1,4 @@
-package com.learn.core.config;
+package com.learn.mybatis.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
@@ -7,17 +7,16 @@ import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
-import com.learn.core.common.DefaultGlobalMetaObjectHandler;
+import com.learn.mybatis.handler.DefaultGlobalMetaObjectHandler;
+import com.learn.mybatis.handler.DefaultTenantHandler;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Configuration
 public class MyBatisPlusConfiguration {
 
     @Bean
