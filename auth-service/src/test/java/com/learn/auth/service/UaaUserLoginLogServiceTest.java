@@ -1,7 +1,18 @@
 package com.learn.auth.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaUserLoginLog;
-import com.baomidou.mybatisplus.extension.service.IService;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -9,8 +20,61 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author generate
- * @since 2019-11-24
+ * @since 2019-12-15
  */
-public interface UaaUserLoginLogServiceTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Transactional
+@ActiveProfiles({"dev"})
+public class UaaUserLoginLogServiceTest {
+
+    @Autowired
+    private UaaUserLoginLogService uaaUserLoginLogService;
+
+    @Test
+    public void list() {
+        Page<UaaUserLoginLog> page = new Page<>();
+        page.setPages(0);
+        page.setSize(1);
+
+        QueryWrapper<UaaUserLoginLog> queryWrapper = new QueryWrapper<>();
+
+        IPage<UaaUserLoginLog> pageResult = uaaUserLoginLogService.page(page, queryWrapper);
+
+        Assert.assertNotNull(pageResult);
+    }
+
+    @Test
+    @Rollback
+    public void load() {
+        String id = "";
+        UaaUserLoginLog uaaUserLoginLog = uaaUserLoginLogService.getById(id);
+
+        Assert.assertNotNull(uaaUserLoginLog);
+    }
+
+    @Test
+    @Rollback
+    public void create() {
+        UaaUserLoginLog uaaUserLoginLog = new UaaUserLoginLog();
+        uaaUserLoginLogService.saveOrUpdate(uaaUserLoginLog);
+
+    }
+
+    @Test
+    @Rollback
+    public void update() {
+        UaaUserLoginLog uaaUserLoginLog = new UaaUserLoginLog();
+        uaaUserLoginLogService.saveOrUpdate(uaaUserLoginLog);
+
+    }
+
+    @Test
+    @Rollback
+    public void delete() {
+        String id = "";
+        uaaUserLoginLogService.removeById(id);
+
+    }
 
 }

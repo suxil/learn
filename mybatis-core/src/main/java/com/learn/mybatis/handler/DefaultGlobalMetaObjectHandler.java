@@ -17,18 +17,18 @@ public class DefaultGlobalMetaObjectHandler implements MetaObjectHandler {
         LOGGER.debug("insert fill.");
         String id = UUID.randomUUID().toString().replace("-", "");
         this.setFieldValByName("id", id, metaObject);
-        this.setFieldValByName("createBy", "admin", metaObject);
-        this.setFieldValByName("createDate", LocalDateTime.now(), metaObject);
+        this.setFieldValByName("createdBy", "admin", metaObject);
+        this.setFieldValByName("createdAt", LocalDateTime.now(), metaObject);
         this.setFieldValByName("isDeleted", 0, metaObject);
-        this.setFieldValByName("updateBy", "admin", metaObject);
-        this.setFieldValByName("updateDate", LocalDateTime.now(), metaObject);
+        this.setFieldValByName("updatedBy", "admin", metaObject);
+        this.setFieldValByName("updatedAt", LocalDateTime.now(), metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         LOGGER.debug("update fill.");
-        this.setFieldValByName("updateBy", "admin", metaObject);
-        this.setFieldValByName("updateDate", LocalDateTime.now(), metaObject);
+        this.setFieldValByName("updatedBy", "admin", metaObject);
+        this.setFieldValByName("updatedAt", LocalDateTime.now(), metaObject);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.learn.auth.service.impl;
 
 import com.learn.auth.domain.UaaUserLoginLog;
-import com.learn.auth.mapper.UaaUserLoginLogMapper;
+import com.learn.auth.repository.UaaUserLoginLogRepository;
 import com.learn.auth.service.UaaUserLoginLogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author generate
- * @since 2019-11-24
+ * @since 2019-12-15
  */
 @Service
-public class UaaUserLoginLogServiceImpl extends ServiceImpl<UaaUserLoginLogMapper, UaaUserLoginLog> implements UaaUserLoginLogService {
+public class UaaUserLoginLogServiceImpl extends ServiceImpl<UaaUserLoginLogRepository, UaaUserLoginLog> implements UaaUserLoginLogService {
 
 }

@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.learn.mybatis.repository.BaseRepository;
 import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
@@ -26,7 +27,7 @@ public class CodeGenerate {
     public static final String BAST_PATH = String.format("/%s/src/main/resources/generate/src/main/", BAST_MODULE_NAME);
     public static final String BAST_TEST_PATH = String.format("/%s/src/main/resources/generate/src/test/", BAST_MODULE_NAME);
     private static final String JAVA_PATH = BAST_PATH + "java/";
-    private static final String MAPPER_PATH = BAST_PATH + "resources/" + MAPPER_NAME + "/";
+    private static final String MAPPER_PATH = BAST_PATH + "resources/mapper/";
     private static final String AUTHOR = "generate";
 
     public static final String DATASOURCE_PATH = "classpath:datasource.properties";
@@ -216,6 +217,7 @@ public class CodeGenerate {
 
         // 公共父类
 //        strategyConfig.setSuperControllerClass("com.learn.mybatis.web.BaseController");
+        strategyConfig.setSuperMapperClass("com.learn.mybatis.repository.BaseRepository");
 
         // 写于父类中的公共字段
         strategyConfig.setSuperEntityColumns(EXCLUDE_SUPER_ENTITY_FIELD);
