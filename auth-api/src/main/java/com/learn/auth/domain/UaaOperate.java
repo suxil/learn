@@ -29,25 +29,29 @@ public class UaaOperate extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "parent_id", value = "父操作id")
-    @Column(name = "parent_id")
-    private String parentId;
-
     @ApiModelProperty(name = "seq", value = "序号")
     @Column(name = "seq")
     private Integer seq;
 
-    @ApiModelProperty(name = "menu_code", value = "操作代码")
-    @Column(name = "menu_code")
-    private String menuCode;
+    @ApiModelProperty(name = "operate_type", value = "操作类型")
+    @Column(name = "operate_type")
+    private String operateType;
 
-    @ApiModelProperty(name = "menu_name", value = "操作名称")
-    @Column(name = "menu_name")
-    private String menuName;
+    @ApiModelProperty(name = "operate_url", value = "操作url")
+    @Column(name = "operate_url")
+    private String operateUrl;
 
-    @ApiModelProperty(name = "intercept_url_prefix", value = "拦截前缀")
-    @Column(name = "intercept_url_prefix")
-    private String interceptUrlPrefix;
+    @ApiModelProperty(name = "operate_code", value = "操作代码")
+    @Column(name = "operate_code")
+    private String operateCode;
+
+    @ApiModelProperty(name = "operate_name", value = "操作名称")
+    @Column(name = "operate_name")
+    private String operateName;
+
+    @ApiModelProperty(name = "operate_param", value = "参数")
+    @Column(name = "operate_param")
+    private String operateParam;
 
     @ApiModelProperty(name = "description", value = "描述")
     @Column(name = "description")

@@ -17,6 +17,12 @@ public class BaseDomain implements Serializable {
     private String id;
 
     @TableField(fill = FieldFill.INSERT)
+    private String tenantId;
+
+    @TableField(fill = FieldFill.INSERT)
+    private String officeCode;
+
+    @TableField(fill = FieldFill.INSERT)
     private String createdBy;
 
     @TableField(fill = FieldFill.INSERT)

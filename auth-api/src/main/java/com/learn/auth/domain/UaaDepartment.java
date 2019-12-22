@@ -33,6 +33,10 @@ public class UaaDepartment extends BaseDomain {
     @Column(name = "parent_id")
     private String parentId;
 
+    @ApiModelProperty(name = "parent_office_code", value = "父组织代码")
+    @Column(name = "parent_office_code")
+    private String parentOfficeCode;
+
     @ApiModelProperty(name = "seq", value = "序号")
     @Column(name = "seq")
     private Integer seq;
@@ -45,13 +49,13 @@ public class UaaDepartment extends BaseDomain {
     @Column(name = "full_path")
     private String fullPath;
 
-    @ApiModelProperty(name = "org_code", value = "部门代码")
-    @Column(name = "org_code")
-    private String orgCode;
+    @ApiModelProperty(name = "department_code", value = "部门代码")
+    @Column(name = "department_code")
+    private String departmentCode;
 
-    @ApiModelProperty(name = "office_name", value = "部门名称")
-    @Column(name = "office_name")
-    private String officeName;
+    @ApiModelProperty(name = "department_name", value = "部门名称")
+    @Column(name = "department_name")
+    private String departmentName;
 
     @ApiModelProperty(name = "description", value = "描述")
     @Column(name = "description")

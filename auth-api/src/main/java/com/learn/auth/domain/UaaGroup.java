@@ -37,6 +37,18 @@ public class UaaGroup extends BaseDomain {
     @Column(name = "seq")
     private Integer seq;
 
+    @ApiModelProperty(name = "level", value = "组层级")
+    @Column(name = "level")
+    private Integer level;
+
+    @ApiModelProperty(name = "full_path", value = "组全路径")
+    @Column(name = "full_path")
+    private String fullPath;
+
+    @ApiModelProperty(name = "group_code", value = "组代码")
+    @Column(name = "group_code")
+    private String groupCode;
+
     @ApiModelProperty(name = "group_name", value = "组名称")
     @Column(name = "group_name")
     private String groupName;

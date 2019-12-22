@@ -1,5 +1,6 @@
 package com.learn.auth;
 
+import com.learn.auth.listener.PermissionListener;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -37,7 +38,8 @@ public class AuthServiceApplication {
     }
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(AuthServiceApplication.class).run(args);
+        new SpringApplicationBuilder(AuthServiceApplication.class).run(args)
+                .addApplicationListener(new PermissionListener());
     }
 
 }

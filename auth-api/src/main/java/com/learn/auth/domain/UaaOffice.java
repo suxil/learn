@@ -45,10 +45,6 @@ public class UaaOffice extends BaseDomain {
     @Column(name = "full_path")
     private String fullPath;
 
-    @ApiModelProperty(name = "org_code", value = "组织代码")
-    @Column(name = "org_code")
-    private String orgCode;
-
     @ApiModelProperty(name = "office_name", value = "组织名称")
     @Column(name = "office_name")
     private String officeName;

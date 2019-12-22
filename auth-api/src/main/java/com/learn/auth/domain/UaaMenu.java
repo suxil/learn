@@ -41,6 +41,10 @@ public class UaaMenu extends BaseDomain {
     @Column(name = "level")
     private Integer level;
 
+    @ApiModelProperty(name = "full_path", value = "菜单全路径")
+    @Column(name = "full_path")
+    private String fullPath;
+
     @ApiModelProperty(name = "icon", value = "菜单图标")
     @Column(name = "icon")
     private String icon;

@@ -45,13 +45,13 @@ public class UaaPosition extends BaseDomain {
     @Column(name = "full_path")
     private String fullPath;
 
-    @ApiModelProperty(name = "org_code", value = "岗位代码")
-    @Column(name = "org_code")
-    private String orgCode;
+    @ApiModelProperty(name = "position_code", value = "岗位代码")
+    @Column(name = "position_code")
+    private String positionCode;
 
-    @ApiModelProperty(name = "office_name", value = "岗位名称")
-    @Column(name = "office_name")
-    private String officeName;
+    @ApiModelProperty(name = "position_name", value = "岗位名称")
+    @Column(name = "position_name")
+    private String positionName;
 
     @ApiModelProperty(name = "description", value = "描述")
     @Column(name = "description")

@@ -30,9 +30,17 @@ public class UaaUser extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
 
+    @ApiModelProperty(name = "user_code", value = "用户代码")
+    @Column(name = "user_code")
+    private String userCode;
+
     @ApiModelProperty(name = "user_name", value = "姓名")
     @Column(name = "user_name")
     private String userName;
+
+    @ApiModelProperty(name = "jp", value = "简拼")
+    @Column(name = "jp")
+    private String jp;
 
     @ApiModelProperty(name = "login_name", value = "登录名")
     @Column(name = "login_name")

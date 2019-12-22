@@ -45,13 +45,13 @@ public class UaaMenuElement extends BaseDomain {
     @Column(name = "icon")
     private String icon;
 
-    @ApiModelProperty(name = "menu_code", value = "菜单代码")
-    @Column(name = "menu_code")
-    private String menuCode;
+    @ApiModelProperty(name = "menu_element_code", value = "菜单元素代码")
+    @Column(name = "menu_element_code")
+    private String menuElementCode;
 
-    @ApiModelProperty(name = "menu_name", value = "菜单名称")
-    @Column(name = "menu_name")
-    private String menuName;
+    @ApiModelProperty(name = "menu_element_name", value = "菜单元素名称")
+    @Column(name = "menu_element_name")
+    private String menuElementName;
 
     @ApiModelProperty(name = "description", value = "描述")
     @Column(name = "description")

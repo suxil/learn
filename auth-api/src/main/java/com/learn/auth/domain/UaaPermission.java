@@ -37,6 +37,10 @@ public class UaaPermission extends BaseDomain {
     @Column(name = "seq")
     private Integer seq;
 
+    @ApiModelProperty(name = "permission_code", value = "权限代码")
+    @Column(name = "permission_code")
+    private String permissionCode;
+
     @ApiModelProperty(name = "permission_name", value = "权限名称")
     @Column(name = "permission_name")
     private String permissionName;

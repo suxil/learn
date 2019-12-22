@@ -37,6 +37,18 @@ public class UaaRole extends BaseDomain {
     @Column(name = "seq")
     private Integer seq;
 
+    @ApiModelProperty(name = "level", value = "角色层级")
+    @Column(name = "level")
+    private Integer level;
+
+    @ApiModelProperty(name = "full_path", value = "角色全路径")
+    @Column(name = "full_path")
+    private String fullPath;
+
+    @ApiModelProperty(name = "role_code", value = "角色代码")
+    @Column(name = "role_code")
+    private String roleCode;
+
     @ApiModelProperty(name = "role_name", value = "角色名称")
     @Column(name = "role_name")
     private String roleName;
