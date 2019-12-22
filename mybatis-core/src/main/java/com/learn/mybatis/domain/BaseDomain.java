@@ -17,16 +17,16 @@ public class BaseDomain implements Serializable {
     private String id;
 
     @TableField(fill = FieldFill.INSERT)
-    private String createBy;
+    private String createdBy;
 
     @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createDate;
+    private LocalDateTime createdAt;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private String updateBy;
+    private String updatedBy;
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateDate;
+    private LocalDateTime updatedAt;
 
     @TableLogic
     @TableField(fill = FieldFill.INSERT)

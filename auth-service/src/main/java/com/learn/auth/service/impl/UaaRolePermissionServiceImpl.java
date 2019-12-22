@@ -1,7 +1,7 @@
 package com.learn.auth.service.impl;
 
 import com.learn.auth.domain.UaaRolePermission;
-import com.learn.auth.mapper.UaaRolePermissionMapper;
+import com.learn.auth.repository.UaaRolePermissionRepository;
 import com.learn.auth.service.UaaRolePermissionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author generate
- * @since 2019-11-24
+ * @since 2019-12-15
  */
 @Service
-public class UaaRolePermissionServiceImpl extends ServiceImpl<UaaRolePermissionMapper, UaaRolePermission> implements UaaRolePermissionService {
+public class UaaRolePermissionServiceImpl extends ServiceImpl<UaaRolePermissionRepository, UaaRolePermission> implements UaaRolePermissionService {
 
 }

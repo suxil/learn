@@ -1,7 +1,7 @@
 package com.learn.auth.service.impl;
 
 import com.learn.auth.domain.UaaOperate;
-import com.learn.auth.mapper.UaaOperateMapper;
+import com.learn.auth.repository.UaaOperateRepository;
 import com.learn.auth.service.UaaOperateService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author generate
- * @since 2019-11-24
+ * @since 2019-12-15
  */
 @Service
-public class UaaOperateServiceImpl extends ServiceImpl<UaaOperateMapper, UaaOperate> implements UaaOperateService {
+public class UaaOperateServiceImpl extends ServiceImpl<UaaOperateRepository, UaaOperate> implements UaaOperateService {
 
 }
