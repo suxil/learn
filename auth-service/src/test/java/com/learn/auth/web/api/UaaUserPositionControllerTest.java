@@ -3,8 +3,8 @@ package com.learn.auth.web.api;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.learn.auth.domain.UaaPageElementRole;
-import com.learn.auth.service.UaaPageElementRoleService;
+import com.learn.auth.domain.UaaUserPosition;
+import com.learn.auth.service.UaaUserPositionService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,30 +17,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
- * 页面元素-角色息 前端控制器 测试用例
+ * 用户-岗位信息 前端控制器 测试用例
  * </p>
  *
  * @author generate
- * @since 2019-11-24
+ * @since 2019-12-22
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
 @ActiveProfiles({"dev"})
-public class UaaPageElementRoleControllerTest {
+public class UaaUserPositionControllerTest {
 
     @Autowired
-    private UaaPageElementRoleService uaaPageElementRoleService;
+    private UaaUserPositionService uaaUserPositionService;
 
     @Test
     public void list() {
-        Page<UaaPageElementRole> page = new Page<>();
+        Page<UaaUserPosition> page = new Page<>();
         page.setPages(0);
-        page.setSize(1);
+        page.setSize(10);
 
-        QueryWrapper<UaaPageElementRole> queryWrapper = new QueryWrapper<>();
+        QueryWrapper<UaaUserPosition> queryWrapper = new QueryWrapper<>();
 
-        IPage<UaaPageElementRole> pageResult = uaaPageElementRoleService.page(page, queryWrapper);
+        IPage<UaaUserPosition> pageResult = uaaUserPositionService.page(page, queryWrapper);
 
         Assert.assertNotNull(pageResult);
     }
@@ -49,24 +49,24 @@ public class UaaPageElementRoleControllerTest {
     @Rollback
     public void load() {
         String id = "";
-        UaaPageElementRole uaaPageElementRole = uaaPageElementRoleService.getById(id);
+        UaaUserPosition uaaUserPosition = uaaUserPositionService.getById(id);
 
-        Assert.assertNotNull(uaaPageElementRole);
+        Assert.assertNotNull(uaaUserPosition);
     }
 
     @Test
     @Rollback
     public void create() {
-        UaaPageElementRole uaaPageElementRole = new UaaPageElementRole();
-        uaaPageElementRoleService.saveOrUpdate(uaaPageElementRole);
+        UaaUserPosition uaaUserPosition = new UaaUserPosition();
+        uaaUserPositionService.saveOrUpdate(uaaUserPosition);
 
     }
 
     @Test
     @Rollback
     public void update() {
-        UaaPageElementRole uaaPageElementRole = new UaaPageElementRole();
-        uaaPageElementRoleService.saveOrUpdate(uaaPageElementRole);
+        UaaUserPosition uaaUserPosition = new UaaUserPosition();
+        uaaUserPositionService.saveOrUpdate(uaaUserPosition);
 
     }
 
@@ -74,7 +74,7 @@ public class UaaPageElementRoleControllerTest {
     @Rollback
     public void delete() {
         String id = "";
-        uaaPageElementRoleService.removeById(id);
+        uaaUserPositionService.removeById(id);
 
     }
 

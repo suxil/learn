@@ -15,6 +15,10 @@
  * uaa_group_permission 组-权限表
  * uaa_office 组织表
  * uaa_department 部门表
+ * uaa_office_department 组织-部门表
+ * uaa_department_position 部门-岗位表
+ * uaa_position 岗位表
+ * uaa_user_position 用户-岗位表
  * uaa_menu 菜单表
  * uaa_menu_role 菜单-角色表
  * uaa_menu_element 菜单页面元素表
@@ -84,6 +88,8 @@ CREATE TABLE IF NOT EXISTS uaa_role (
     id                   varchar(32) not null,
     parent_id            varchar(32) not null comment '父角色id',
     seq                  int not null comment '序号',
+    level                int not null comment '角色层级',
+    full_path            varchar(300) not null comment '角色全路径',
     role_name            varchar(60) not null comment '角色名称',
     description          varchar(200) not null comment '描述',
 
@@ -184,6 +190,8 @@ CREATE TABLE IF NOT EXISTS uaa_group (
     id                   varchar(32) not null,
     parent_id            varchar(32) not null comment '父组id',
     seq                  int not null comment '序号',
+    level                int not null comment '组层级',
+    full_path            varchar(300) not null comment '组全路径',
     group_name           varchar(60) not null comment '组名称',
     description          varchar(200) not null comment '描述',
 
@@ -263,6 +271,7 @@ CREATE TABLE IF NOT EXISTS uaa_office (
     parent_id            varchar(32) not null comment '父组织id',
     seq                  int not null comment '序号',
     level                int not null comment '组织层级',
+    full_path            varchar(300) not null comment '组织全路径',
     org_code             varchar(30) not null comment '组织代码',
     office_name          varchar(60) not null comment '组织名称',
     description          varchar(200) not null comment '描述',
@@ -279,6 +288,112 @@ CREATE TABLE IF NOT EXISTS uaa_office (
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组织信息';
 
 /*==============================================================*/
+/* Table: uaa_department                                            */
+/*==============================================================*/
+CREATE TABLE IF NOT EXISTS uaa_department (
+    id                   varchar(32) not null,
+    parent_id            varchar(32) not null comment '父部门id',
+    seq                  int not null comment '序号',
+    level                int not null comment '部门层级',
+    full_path            varchar(300) not null comment '部门全路径',
+    org_code             varchar(30) not null comment '部门代码',
+    office_name          varchar(60) not null comment '部门名称',
+    description          varchar(200) not null comment '描述',
+
+    tenant_id            varchar(32) not null comment '租户id',
+    office_code          varchar(100) comment '组织机构',
+    created_by            varchar(100) comment '创建人',
+    created_at          timestamp default current_timestamp comment '创建日期',
+    updated_by            varchar(100) comment '更新人',
+    updated_at          timestamp default current_timestamp comment '更新日期',
+    is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
+    version              int comment '版本号',
+    primary key (id)
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '部门信息';
+
+/*==============================================================*/
+/* Table: uaa_office_department                                  */
+/*==============================================================*/
+CREATE TABLE IF NOT EXISTS uaa_office_department (
+    id                   varchar(32) not null,
+    office_id             varchar(32) not null,
+    department_id        varchar(32) not null,
+
+    tenant_id            varchar(32) not null comment '租户id',
+    office_code          varchar(100) comment '组织机构',
+    created_by            varchar(100) comment '创建人',
+    created_at          timestamp default current_timestamp comment '创建日期',
+    updated_by            varchar(100) comment '更新人',
+    updated_at          timestamp default current_timestamp comment '更新日期',
+    is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
+    version              int comment '版本号',
+    primary key (id)
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组织-部门信息';
+
+/*==============================================================*/
+/* Table: uaa_department_position                                  */
+/*==============================================================*/
+CREATE TABLE IF NOT EXISTS uaa_department_position (
+    id                   varchar(32) not null,
+    user_id             varchar(32) not null,
+    position_id        varchar(32) not null,
+
+    tenant_id            varchar(32) not null comment '租户id',
+    office_code          varchar(100) comment '组织机构',
+    created_by            varchar(100) comment '创建人',
+    created_at          timestamp default current_timestamp comment '创建日期',
+    updated_by            varchar(100) comment '更新人',
+    updated_at          timestamp default current_timestamp comment '更新日期',
+    is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
+    version              int comment '版本号',
+    primary key (id)
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '部门-岗位信息';
+
+/*==============================================================*/
+/* Table: uaa_position                                            */
+/*==============================================================*/
+CREATE TABLE IF NOT EXISTS uaa_position (
+    id                   varchar(32) not null,
+    parent_id            varchar(32) not null comment '父岗位id',
+    seq                  int not null comment '序号',
+    level                int not null comment '岗位层级',
+    full_path            varchar(300) not null comment '岗位全路径',
+    org_code             varchar(30) not null comment '岗位代码',
+    office_name          varchar(60) not null comment '岗位名称',
+    description          varchar(200) not null comment '描述',
+
+    tenant_id            varchar(32) not null comment '租户id',
+    office_code          varchar(100) comment '组织机构',
+    created_by            varchar(100) comment '创建人',
+    created_at          timestamp default current_timestamp comment '创建日期',
+    updated_by            varchar(100) comment '更新人',
+    updated_at          timestamp default current_timestamp comment '更新日期',
+    is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
+    version              int comment '版本号',
+    primary key (id)
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '部门信息';
+
+/*==============================================================*/
+/* Table: uaa_user_position                                  */
+/*==============================================================*/
+CREATE TABLE IF NOT EXISTS uaa_user_position (
+    id                   varchar(32) not null,
+    user_id             varchar(32) not null,
+    position_id        varchar(32) not null,
+    main_position      tinyint(1) comment '是否主岗 1：是 0：否',
+
+    tenant_id            varchar(32) not null comment '租户id',
+    office_code          varchar(100) comment '组织机构',
+    created_by            varchar(100) comment '创建人',
+    created_at          timestamp default current_timestamp comment '创建日期',
+    updated_by            varchar(100) comment '更新人',
+    updated_at          timestamp default current_timestamp comment '更新日期',
+    is_deleted           tinyint(1) comment '是否删除 1：有效 0：无效',
+    version              int comment '版本号',
+    primary key (id)
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '用户-岗位信息';
+
+/*==============================================================*/
 /* Table: uaa_menu                                              */
 /*==============================================================*/
 CREATE TABLE IF NOT EXISTS uaa_menu (
@@ -286,6 +401,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu (
     parent_id            varchar(32) not null comment '父菜单id',
     seq                  int not null comment '序号',
     level                int not null comment '菜单层级',
+    full_path            varchar(300) not null comment '菜单全路径',
     icon                 varchar(30) not null comment '菜单图标',
     menu_code            varchar(30) not null comment '菜单代码',
     menu_name            varchar(60) not null comment '菜单名称',

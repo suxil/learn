@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author generate
- * @since 2019-11-24
+ * @since 2019-12-22
  */
 public interface UaaOperatePermissionService extends IService<UaaOperatePermission> {
 

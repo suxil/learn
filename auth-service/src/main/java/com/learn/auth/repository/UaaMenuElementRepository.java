@@ -1,6 +1,6 @@
 package com.learn.auth.repository;
 
-import com.learn.auth.domain.UaaPageElement;
+import com.learn.auth.domain.UaaMenuElement;
 import com.learn.mybatis.repository.BaseRepository;
 
 /**
@@ -9,8 +9,8 @@ import com.learn.mybatis.repository.BaseRepository;
  * </p>
  *
  * @author generate
- * @since 2019-12-15
+ * @since 2019-12-22
  */
-public interface UaaPageElementRepository extends BaseRepository<UaaPageElement> {
+public interface UaaMenuElementRepository extends BaseRepository<UaaMenuElement> {
 
 }

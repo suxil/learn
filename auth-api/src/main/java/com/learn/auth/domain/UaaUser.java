@@ -1,5 +1,6 @@
 package com.learn.auth.domain;
 
+import java.time.LocalDateTime;
 import com.learn.mybatis.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -10,7 +11,6 @@ import lombok.experimental.Accessors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
  * </p>
  *
  * @author generate
- * @since 2019-11-17
+ * @since 2019-12-22
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

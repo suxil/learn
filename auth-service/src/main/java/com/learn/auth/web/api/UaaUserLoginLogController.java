@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * </p>
  *
  * @author generate
- * @since 2019-11-24
+ * @since 2019-12-22
  */
 @Api(value = "用户登录日志 接口")
 @RestController

@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2019-11-24
+ * @since 2019-12-22
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -36,7 +36,7 @@ public class UaaMenuRoleControllerTest {
     public void list() {
         Page<UaaMenuRole> page = new Page<>();
         page.setPages(0);
-        page.setSize(1);
+        page.setSize(10);
 
         QueryWrapper<UaaMenuRole> queryWrapper = new QueryWrapper<>();
 

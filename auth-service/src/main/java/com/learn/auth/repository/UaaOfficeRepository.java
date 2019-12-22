@@ -9,7 +9,7 @@ import com.learn.mybatis.repository.BaseRepository;
  * </p>
  *
  * @author generate
- * @since 2019-12-15
+ * @since 2019-12-22
  */
 public interface UaaOfficeRepository extends BaseRepository<UaaOffice> {
 

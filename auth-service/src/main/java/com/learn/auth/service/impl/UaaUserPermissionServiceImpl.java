@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author generate
- * @since 2019-12-15
+ * @since 2019-12-22
  */
 @Service
 public class UaaUserPermissionServiceImpl extends ServiceImpl<UaaUserPermissionRepository, UaaUserPermission> implements UaaUserPermissionService {

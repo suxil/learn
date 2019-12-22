@@ -38,7 +38,7 @@ public class ${table.serviceName}Test {
     public void list() {
         Page<${table.entityName}> page = new Page<>();
         page.setPages(0);
-        page.setSize(1);
+        page.setSize(10);
 
         QueryWrapper<${table.entityName}> queryWrapper = new QueryWrapper<>();
 

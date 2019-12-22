@@ -3,7 +3,7 @@ package com.learn.auth.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.learn.auth.domain.UaaPageElementRole;
+import com.learn.auth.domain.UaaDepartment;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,30 +16,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
- * 页面元素-角色息 服务类 测试用例
+ * 部门信息 服务类 测试用例
  * </p>
  *
  * @author generate
- * @since 2019-12-15
+ * @since 2019-12-22
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
 @ActiveProfiles({"dev"})
-public class UaaPageElementRoleServiceTest {
+public class UaaDepartmentServiceTest {
 
     @Autowired
-    private UaaPageElementRoleService uaaPageElementRoleService;
+    private UaaDepartmentService uaaDepartmentService;
 
     @Test
     public void list() {
-        Page<UaaPageElementRole> page = new Page<>();
+        Page<UaaDepartment> page = new Page<>();
         page.setPages(0);
-        page.setSize(1);
+        page.setSize(10);
 
-        QueryWrapper<UaaPageElementRole> queryWrapper = new QueryWrapper<>();
+        QueryWrapper<UaaDepartment> queryWrapper = new QueryWrapper<>();
 
-        IPage<UaaPageElementRole> pageResult = uaaPageElementRoleService.page(page, queryWrapper);
+        IPage<UaaDepartment> pageResult = uaaDepartmentService.page(page, queryWrapper);
 
         Assert.assertNotNull(pageResult);
     }
@@ -48,24 +48,24 @@ public class UaaPageElementRoleServiceTest {
     @Rollback
     public void load() {
         String id = "";
-        UaaPageElementRole uaaPageElementRole = uaaPageElementRoleService.getById(id);
+        UaaDepartment uaaDepartment = uaaDepartmentService.getById(id);
 
-        Assert.assertNotNull(uaaPageElementRole);
+        Assert.assertNotNull(uaaDepartment);
     }
 
     @Test
     @Rollback
     public void create() {
-        UaaPageElementRole uaaPageElementRole = new UaaPageElementRole();
-        uaaPageElementRoleService.saveOrUpdate(uaaPageElementRole);
+        UaaDepartment uaaDepartment = new UaaDepartment();
+        uaaDepartmentService.saveOrUpdate(uaaDepartment);
 
     }
 
     @Test
     @Rollback
     public void update() {
-        UaaPageElementRole uaaPageElementRole = new UaaPageElementRole();
-        uaaPageElementRoleService.saveOrUpdate(uaaPageElementRole);
+        UaaDepartment uaaDepartment = new UaaDepartment();
+        uaaDepartmentService.saveOrUpdate(uaaDepartment);
 
     }
 
@@ -73,7 +73,7 @@ public class UaaPageElementRoleServiceTest {
     @Rollback
     public void delete() {
         String id = "";
-        uaaPageElementRoleService.removeById(id);
+        uaaDepartmentService.removeById(id);
 
     }
 

@@ -26,7 +26,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @RibbonClients
 @EnableTransactionManagement
 //@EnableCircuitBreaker
-@MapperScan("com.learn.auth.**.mapper")
+@MapperScan(value = {"com.learn.auth.**.mapper", "com.learn.auth.**.repository"})
 @EnableSwagger2
 public class AuthServiceApplication {
 

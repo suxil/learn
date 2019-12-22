@@ -3,7 +3,7 @@ package com.learn.auth.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.learn.auth.domain.UaaPageElement;
+import com.learn.auth.domain.UaaDepartmentPosition;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,30 +16,30 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
- * 页面元素信息 服务类 测试用例
+ * 部门-岗位信息 服务类 测试用例
  * </p>
  *
  * @author generate
- * @since 2019-12-15
+ * @since 2019-12-22
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
 @ActiveProfiles({"dev"})
-public class UaaPageElementServiceTest {
+public class UaaDepartmentPositionServiceTest {
 
     @Autowired
-    private UaaPageElementService uaaPageElementService;
+    private UaaDepartmentPositionService uaaDepartmentPositionService;
 
     @Test
     public void list() {
-        Page<UaaPageElement> page = new Page<>();
+        Page<UaaDepartmentPosition> page = new Page<>();
         page.setPages(0);
-        page.setSize(1);
+        page.setSize(10);
 
-        QueryWrapper<UaaPageElement> queryWrapper = new QueryWrapper<>();
+        QueryWrapper<UaaDepartmentPosition> queryWrapper = new QueryWrapper<>();
 
-        IPage<UaaPageElement> pageResult = uaaPageElementService.page(page, queryWrapper);
+        IPage<UaaDepartmentPosition> pageResult = uaaDepartmentPositionService.page(page, queryWrapper);
 
         Assert.assertNotNull(pageResult);
     }
@@ -48,24 +48,24 @@ public class UaaPageElementServiceTest {
     @Rollback
     public void load() {
         String id = "";
-        UaaPageElement uaaPageElement = uaaPageElementService.getById(id);
+        UaaDepartmentPosition uaaDepartmentPosition = uaaDepartmentPositionService.getById(id);
 
-        Assert.assertNotNull(uaaPageElement);
+        Assert.assertNotNull(uaaDepartmentPosition);
     }
 
     @Test
     @Rollback
     public void create() {
-        UaaPageElement uaaPageElement = new UaaPageElement();
-        uaaPageElementService.saveOrUpdate(uaaPageElement);
+        UaaDepartmentPosition uaaDepartmentPosition = new UaaDepartmentPosition();
+        uaaDepartmentPositionService.saveOrUpdate(uaaDepartmentPosition);
 
     }
 
     @Test
     @Rollback
     public void update() {
-        UaaPageElement uaaPageElement = new UaaPageElement();
-        uaaPageElementService.saveOrUpdate(uaaPageElement);
+        UaaDepartmentPosition uaaDepartmentPosition = new UaaDepartmentPosition();
+        uaaDepartmentPositionService.saveOrUpdate(uaaDepartmentPosition);
 
     }
 
@@ -73,7 +73,7 @@ public class UaaPageElementServiceTest {
     @Rollback
     public void delete() {
         String id = "";
-        uaaPageElementService.removeById(id);
+        uaaDepartmentPositionService.removeById(id);
 
     }
 

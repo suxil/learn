@@ -3,8 +3,8 @@ package com.learn.auth.web.api;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.learn.auth.domain.UaaPageElement;
-import com.learn.auth.service.UaaPageElementService;
+import com.learn.auth.domain.UaaMenuElement;
+import com.learn.auth.service.UaaMenuElementService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,50 +18,50 @@ import org.springframework.web.bind.annotation.*;
  * </p>
  *
  * @author generate
- * @since 2019-11-24
+ * @since 2019-12-22
  */
 @Api(value = "页面元素信息 接口")
 @RestController
-@RequestMapping("/api/v1/uaa-page-elements")
-public class UaaPageElementController {
+@RequestMapping("/api/v1/uaa-menu-elements")
+public class UaaMenuElementController {
 
     @Autowired
-    private UaaPageElementService uaaPageElementService;
+    private UaaMenuElementService uaaMenuElementService;
 
     @GetMapping
     @ApiOperation(value = "页面元素信息 分页查询")
     @Validated
-    public ResponseResult list(UaaPageElement uaaPageElement, Page<UaaPageElement> page) {
-        QueryWrapper<UaaPageElement> queryWrapper = new QueryWrapper<>();
+    public ResponseResult list(UaaMenuElement uaaMenuElement, Page<UaaMenuElement> page) {
+        QueryWrapper<UaaMenuElement> queryWrapper = new QueryWrapper<>();
 
-        IPage<UaaPageElement> pageResult = uaaPageElementService.page(page, queryWrapper);
+        IPage<UaaMenuElement> pageResult = uaaMenuElementService.page(page, queryWrapper);
         return ResponseResult.success(pageResult);
     }
 
     @GetMapping("/{id}")
     @ApiOperation(value = "页面元素信息 详情")
     public ResponseResult load(@PathVariable String id) {
-        return ResponseResult.success(uaaPageElementService.getById(id));
+        return ResponseResult.success(uaaMenuElementService.getById(id));
     }
 
     @PostMapping
     @ApiOperation(value = "页面元素信息 创建")
-    public ResponseResult create(@RequestBody UaaPageElement uaaPageElement) {
-        uaaPageElementService.saveOrUpdate(uaaPageElement);
-        return ResponseResult.success(uaaPageElement);
+    public ResponseResult create(@RequestBody UaaMenuElement uaaMenuElement) {
+        uaaMenuElementService.saveOrUpdate(uaaMenuElement);
+        return ResponseResult.success(uaaMenuElement);
     }
 
     @PutMapping
     @ApiOperation(value = "页面元素信息 更新")
-    public ResponseResult update(@RequestBody UaaPageElement uaaPageElement) {
-        uaaPageElementService.saveOrUpdate(uaaPageElement);
-        return ResponseResult.success(uaaPageElement);
+    public ResponseResult update(@RequestBody UaaMenuElement uaaMenuElement) {
+        uaaMenuElementService.saveOrUpdate(uaaMenuElement);
+        return ResponseResult.success(uaaMenuElement);
     }
 
     @DeleteMapping("/{id}")
     @ApiOperation(value = "页面元素信息 删除")
     public ResponseResult delete(@PathVariable String id) {
-        return ResponseResult.success(uaaPageElementService.removeById(id));
+        return ResponseResult.success(uaaMenuElementService.removeById(id));
     }
 
 }

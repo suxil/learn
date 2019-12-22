@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2019-12-15
+ * @since 2019-12-22
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,7 +35,7 @@ public class UaaUserLoginLogServiceTest {
     public void list() {
         Page<UaaUserLoginLog> page = new Page<>();
         page.setPages(0);
-        page.setSize(1);
+        page.setSize(10);
 
         QueryWrapper<UaaUserLoginLog> queryWrapper = new QueryWrapper<>();
 

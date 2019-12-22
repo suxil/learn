@@ -17,21 +17,21 @@ import javax.persistence.Table;
  * </p>
  *
  * @author generate
- * @since 2019-11-17
+ * @since 2019-12-22
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UaaPageElementRole对象", description="页面元素-角色息")
+@ApiModel(value="UaaMenuElementRole对象", description="页面元素-角色息")
 @Entity
-@Table(name = "uaa_page_element_role", catalog = "页面元素-角色息")
-public class UaaPageElementRole extends BaseDomain {
+@Table(name = "uaa_menu_element_role", catalog = "页面元素-角色息")
+public class UaaMenuElementRole extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(name = "page_element_id", value = "")
-    @Column(name = "page_element_id")
-    private String pageElementId;
+    @ApiModelProperty(name = "menu_element_id", value = "")
+    @Column(name = "menu_element_id")
+    private String menuElementId;
 
     @ApiModelProperty(name = "role_id", value = "")
     @Column(name = "role_id")

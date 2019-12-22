@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-import com.learn.mybatis.repository.BaseRepository;
 import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
@@ -24,15 +23,20 @@ public class CodeGenerate {
 
     public static final String MAPPER_NAME = "repository";
     private static final String BAST_MODULE_NAME = "generate";
-    public static final String BAST_PATH = String.format("/%s/src/main/resources/generate/src/main/", BAST_MODULE_NAME);
-    public static final String BAST_TEST_PATH = String.format("/%s/src/main/resources/generate/src/test/", BAST_MODULE_NAME);
+    public static final String BAST_PATH = String.format("/%s/src/main/resources/generatecode/src/main/", BAST_MODULE_NAME);
+    public static final String BAST_TEST_PATH = String.format("/%s/src/main/resources/generatecode/src/test/", BAST_MODULE_NAME);
     private static final String JAVA_PATH = BAST_PATH + "java/";
     private static final String MAPPER_PATH = BAST_PATH + "resources/mapper/";
     private static final String AUTHOR = "generate";
 
     public static final String DATASOURCE_PATH = "classpath:datasource.properties";
 
-    private static final String[] EXCLUDE_SUPER_ENTITY_FIELD = {"id", "tenant_id", "office_code", "create_by", "create_date", "update_by", "update_date", "version", "is_deleted"};
+    private static final String[] EXCLUDE_SUPER_ENTITY_FIELD = {
+            "id", "tenant_id", "office_code",
+            "created_by", "created_at", "updated_by", "updated_at",
+            "create_by", "create_date", "update_by", "update_date",
+            "version", "is_deleted"
+    };
     private static final String PARENT = "com.learn.auth";
 
     // cdm, tem, zyj
@@ -80,7 +84,7 @@ public class CodeGenerate {
 
         String projectPath = System.getProperty("user.dir");
         try {
-            FileUtils.deleteDirectory(new File(projectPath + "/generate/src/main/resources/generate"));
+            FileUtils.deleteDirectory(new File(projectPath + "/generate/src/main/resources/generatecode"));
         } catch (IOException e) {
             System.err.println("清除老目录异常");
         }

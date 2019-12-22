@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * </p>
  *
  * @author generate
- * @since 2019-11-17
+ * @since 2019-12-22
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -40,6 +40,10 @@ public class UaaOffice extends BaseDomain {
     @ApiModelProperty(name = "level", value = "组织层级")
     @Column(name = "level")
     private Integer level;
+
+    @ApiModelProperty(name = "full_path", value = "组织全路径")
+    @Column(name = "full_path")
+    private String fullPath;
 
     @ApiModelProperty(name = "org_code", value = "组织代码")
     @Column(name = "org_code")

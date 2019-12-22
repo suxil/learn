@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * </p>
  *
  * @author generate
- * @since 2019-11-17
+ * @since 2019-12-22
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
