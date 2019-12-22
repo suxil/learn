@@ -14,10 +14,11 @@
  * uaa_group_role 组-角色表
  * uaa_group_permission 组-权限表
  * uaa_office 组织表
+ * uaa_department 部门表
  * uaa_menu 菜单表
  * uaa_menu_role 菜单-角色表
- * uaa_page_element 页面元素表
- * uaa_page_element_role 页面元素-角色表
+ * uaa_menu_element 菜单页面元素表
+ * uaa_menu_element_role 菜单页面元素-角色表
  * uaa_operate 操作表
  * uaa_operate_permission 操作-权限表
  */
@@ -321,9 +322,9 @@ CREATE TABLE IF NOT EXISTS uaa_menu_role (
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '菜单-角色信息';
 
 /*==============================================================*/
-/* Table: uaa_page_element                                      */
+/* Table: uaa_menu_element                                      */
 /*==============================================================*/
-CREATE TABLE IF NOT EXISTS uaa_page_element (
+CREATE TABLE IF NOT EXISTS uaa_menu_element (
     id                   varchar(32) not null,
     parent_id            varchar(32) not null comment '父菜单id',
     seq                  int not null comment '序号',
@@ -345,11 +346,11 @@ CREATE TABLE IF NOT EXISTS uaa_page_element (
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '页面元素信息';
 
 /*==============================================================*/
-/* Table: uaa_page_element_role                                 */
+/* Table: uaa_menu_element_role                                 */
 /*==============================================================*/
-CREATE TABLE IF NOT EXISTS uaa_page_element_role (
+CREATE TABLE IF NOT EXISTS uaa_menu_element_role (
     id                   varchar(32) not null,
-    page_element_id      varchar(32) not null,
+    menu_element_id      varchar(32) not null,
     role_id              varchar(32) not null,
 
     tenant_id            varchar(32) not null comment '租户id',
