@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2019-12-25
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -28,6 +28,13 @@ import javax.persistence.Table;
 public class UaaPermission extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String PARENT_ID = "parent_id";
+    public static final String SEQ = "seq";
+    public static final String PERMISSION_CODE = "permission_code";
+    public static final String PERMISSION_NAME = "permission_name";
+    public static final String PERMISSION_TYPE = "permission_type";
+    public static final String DESCRIPTION = "description";
 
     @ApiModelProperty(name = "parent_id", value = "父权限id")
     @Column(name = "parent_id")

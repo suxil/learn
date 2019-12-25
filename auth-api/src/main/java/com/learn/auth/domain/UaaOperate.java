@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2019-12-25
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -28,6 +28,14 @@ import javax.persistence.Table;
 public class UaaOperate extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String SEQ = "seq";
+    public static final String OPERATE_TYPE = "operate_type";
+    public static final String OPERATE_URL = "operate_url";
+    public static final String OPERATE_CODE = "operate_code";
+    public static final String OPERATE_NAME = "operate_name";
+    public static final String OPERATE_PARAM = "operate_param";
+    public static final String DESCRIPTION = "description";
 
     @ApiModelProperty(name = "seq", value = "序号")
     @Column(name = "seq")

@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2019-12-25
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -28,6 +28,9 @@ import javax.persistence.Table;
 public class UaaGroupUser extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String GROUP_ID = "group_id";
+    public static final String USER_ID = "user_id";
 
     @ApiModelProperty(name = "group_id", value = "")
     @Column(name = "group_id")

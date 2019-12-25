@@ -53,6 +53,13 @@ public class ${entity} implements Serializable {
 <#if entitySerialVersionUID>
     private static final long serialVersionUID = 1L;
 </#if>
+
+<#-- ----------  BEGIN 静态字段循环遍历  ---------->
+<#list table.fields as field>
+    public static final String ${field.name?upper_case} = "${field.name?lower_case}";
+</#list>
+<#------------  END 静态字段循环遍历  ---------->
+
 <#-- ----------  BEGIN 字段循环遍历  ---------->
 <#list table.fields as field>
     <#if field.keyFlag>

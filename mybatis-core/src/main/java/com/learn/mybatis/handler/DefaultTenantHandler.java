@@ -37,7 +37,7 @@ public class DefaultTenantHandler implements TenantHandler {
         if ("user".equals(tableName)) {
             return true;
         }*/
-        return false;
+        return true;
     }
 
 }

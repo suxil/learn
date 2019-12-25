@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2019-12-25
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -28,6 +28,20 @@ import javax.persistence.Table;
 public class UaaUserLoginLog extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String USER_CODE = "user_code";
+    public static final String USER_NAME = "user_name";
+    public static final String JP = "jp";
+    public static final String LOGIN_NAME = "login_name";
+    public static final String COUNTRY = "country";
+    public static final String CITY = "city";
+    public static final String OPERATOR = "operator";
+    public static final String LOGIN_IP = "login_ip";
+    public static final String COMPUTER_NAME = "computer_name";
+    public static final String LANGUAGE = "language";
+    public static final String PLATFORM = "platform";
+    public static final String USER_AGENT = "user_agent";
+    public static final String COOKIES = "cookies";
 
     @ApiModelProperty(name = "user_code", value = "用户代码")
     @Column(name = "user_code")

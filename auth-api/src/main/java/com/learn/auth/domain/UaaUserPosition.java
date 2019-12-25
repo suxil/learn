@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2019-12-25
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -28,6 +28,10 @@ import javax.persistence.Table;
 public class UaaUserPosition extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String USER_ID = "user_id";
+    public static final String POSITION_ID = "position_id";
+    public static final String MAIN_POSITION = "main_position";
 
     @ApiModelProperty(name = "user_id", value = "")
     @Column(name = "user_id")

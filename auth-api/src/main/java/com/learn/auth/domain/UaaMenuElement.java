@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2019-12-25
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -28,6 +28,14 @@ import javax.persistence.Table;
 public class UaaMenuElement extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String PARENT_ID = "parent_id";
+    public static final String SEQ = "seq";
+    public static final String LEVEL = "level";
+    public static final String ICON = "icon";
+    public static final String MENU_ELEMENT_CODE = "menu_element_code";
+    public static final String MENU_ELEMENT_NAME = "menu_element_name";
+    public static final String DESCRIPTION = "description";
 
     @ApiModelProperty(name = "parent_id", value = "父菜单id")
     @Column(name = "parent_id")
