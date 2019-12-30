@@ -6,18 +6,17 @@ import com.learn.auth.domain.UaaPermission;
 import com.learn.auth.service.UaaOperateService;
 import com.learn.auth.service.UaaPermissionService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
@@ -45,11 +44,6 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
         LOGGER.debug("========================== START INIT PERMISSION ==========================");
 
         ApplicationContext applicationContext = applicationStartedEvent.getApplicationContext();
-        BeanFactory beanFactory = applicationStartedEvent.getApplicationContext().getBeanFactory();
-        if (beanFactory instanceof DefaultListableBeanFactory) {
-            DefaultListableBeanFactory listableBeanFactory = (DefaultListableBeanFactory) beanFactory;
-
-        }
 
         UaaPermission permission = getPermission();
         uaaPermissionService.saveOrUpdate(permission);
@@ -66,12 +60,18 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
             HandlerMethod handlerMethod = handlerMethodMap.get(requestMappingInfo);
 
             UaaOperate uaaOperate = convertToOperate(requestMappingInfo, handlerMethod);
+            if (uaaOperate == null) {
+                continue;
+            }
+
             uaaOperateList.add(uaaOperate);
 
             String beanName = handlerMethod.getBean().toString();
             if (!parentPermissionMap.containsKey(beanName)) {
                 UaaPermission uaaPermission = convertToPermission(handlerMethod);
-                parentPermissionMap.put(beanName, uaaPermission);
+                if (uaaPermission != null) {
+                    parentPermissionMap.put(beanName, uaaPermission);
+                }
             }
             if (operateMap.containsKey(beanName)) {
                 operateMap.get(beanName).add(uaaOperate);
@@ -95,20 +95,27 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
             }
         }
 
-        uaaOperateService.saveOrUpdateBatch(uaaOperateList);
-        uaaPermissionService.saveOrUpdateBatch(childPermissionList);
+        if (!CollectionUtils.isEmpty(uaaOperateList)) {
+            uaaOperateService.saveOrUpdateBatch(uaaOperateList);
+        }
+        if (!CollectionUtils.isEmpty(childPermissionList)) {
+            uaaPermissionService.saveOrUpdateBatch(childPermissionList);
+        }
 
         LOGGER.debug("========================== PERMISSION INIT SUCCESS ==========================");
     }
 
     private UaaPermission getPermission() {
         QueryWrapper<UaaPermission> permissionQueryWrapper = new QueryWrapper<>();
-        permissionQueryWrapper.eq(UaaPermission.PERMISSION_CODE, serviceName);
+        permissionQueryWrapper
+                .eq(UaaPermission.SERVICE_NAME, serviceName)
+                .eq(UaaPermission.PERMISSION_CODE, serviceName);
         UaaPermission permission = uaaPermissionService.getOne(permissionQueryWrapper);
         if (permission == null) {
             permission = new UaaPermission();
-            permission.setParentId("");
+            permission.setParentId(serviceName);
             permission.setSeq(1);
+            permission.setServiceName(serviceName);
             permission.setPermissionCode(serviceName);
             permission.setPermissionName(serviceName);
             permission.setPermissionType("api");
@@ -121,28 +128,33 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
         String operateType = Optional.of(requestMappingInfo.getMethodsCondition().toString()).orElse("");
         String apiUrl = requestMappingInfo.getPatternsCondition().toString();
 
-        String operateCode = handlerMethod.getBean().toString() + "_" + apiUrl + "_" + operateType;
+        String operateCode = requestMappingInfo.toString();
 
         QueryWrapper<UaaOperate> operateQueryWrapper = new QueryWrapper<>();
-        operateQueryWrapper.eq(UaaOperate.OPERATE_CODE, operateCode);
+        operateQueryWrapper
+                .eq(UaaOperate.SERVICE_NAME, serviceName)
+                .eq(UaaOperate.OPERATE_CODE, operateCode);
         UaaOperate uaaOperate = uaaOperateService.getOne(operateQueryWrapper);
         if (uaaOperate == null) {
             uaaOperate = new UaaOperate();
             uaaOperate.setSeq(1);
+            uaaOperate.setServiceName(serviceName);
             uaaOperate.setOperateType(operateType);
             uaaOperate.setOperateCode(operateCode);
             uaaOperate.setOperateUrl(apiUrl);
             uaaOperate.setOperateParam(Arrays.toString(handlerMethod.getMethodParameters()));
 
             Method method = handlerMethod.getMethod();
-            ApiModelProperty apiModelProperty = method.getAnnotation(ApiModelProperty.class);
-            if (apiModelProperty != null) {
-                uaaOperate.setOperateName(Optional.of(apiModelProperty.value()).orElse(""));
-                uaaOperate.setDescription(Optional.of(apiModelProperty.value()).orElse(""));
+            ApiOperation apiOperation = method.getAnnotation(ApiOperation.class);
+            if (apiOperation != null) {
+                uaaOperate.setOperateName(Optional.of(apiOperation.value()).orElse(""));
+                uaaOperate.setDescription(Optional.of(apiOperation.value()).orElse(""));
             } else {
                 uaaOperate.setOperateName(operateType);
                 uaaOperate.setDescription(apiUrl);
             }
+        } else {
+            return null;
         }
         return uaaOperate;
     }
@@ -153,11 +165,14 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
         String permissionCode = Arrays.toString(apiRequestMapping.value());
 
         QueryWrapper<UaaPermission> permissionQueryWrapper = new QueryWrapper<>();
-        permissionQueryWrapper.eq(UaaPermission.PERMISSION_CODE, permissionCode);
+        permissionQueryWrapper
+                .eq(UaaPermission.SERVICE_NAME, serviceName)
+                .eq(UaaPermission.PERMISSION_CODE, permissionCode);
         UaaPermission uaaPermission = uaaPermissionService.getOne(permissionQueryWrapper);
         if (uaaPermission == null) {
             uaaPermission = new UaaPermission();
             uaaPermission.setSeq(1);
+            uaaPermission.setServiceName(serviceName);
             uaaPermission.setPermissionCode(permissionCode);
             uaaPermission.setPermissionType("api");
             if (api != null) {
@@ -167,21 +182,28 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
                 uaaPermission.setPermissionName(handlerMethod.getBean().toString());
                 uaaPermission.setDescription(handlerMethod.getBean().toString());
             }
+        } else {
+            return null;
         }
         return uaaPermission;
     }
 
     private UaaPermission convertToPermission(UaaOperate uaaOperate) {
         QueryWrapper<UaaPermission> permissionQueryWrapper = new QueryWrapper<>();
-        permissionQueryWrapper.eq(UaaPermission.PERMISSION_CODE, uaaOperate.getOperateCode());
+        permissionQueryWrapper
+                .eq(UaaPermission.SERVICE_NAME, serviceName)
+                .eq(UaaPermission.PERMISSION_CODE, uaaOperate.getOperateCode());
         UaaPermission childPermission = uaaPermissionService.getOne(permissionQueryWrapper);
         if (childPermission == null) {
             childPermission = new UaaPermission();
             childPermission.setSeq(1);
+            childPermission.setServiceName(serviceName);
             childPermission.setPermissionCode(uaaOperate.getOperateCode());
             childPermission.setPermissionName(uaaOperate.getOperateName());
             childPermission.setPermissionType("api");
             childPermission.setDescription(uaaOperate.getDescription());
+        } else {
+            return null;
         }
         return childPermission;
     }

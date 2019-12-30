@@ -472,6 +472,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu_element_role (
 CREATE TABLE IF NOT EXISTS uaa_operate (
     id                   varchar(32) not null,
     seq                  int not null comment '序号',
+    service_name         varchar(60) not null comment '服务名称',
     operate_type         varchar(30) not null comment '操作类型',
     operate_url          varchar(60) not null comment '操作url',
     operate_code         varchar(200) not null comment '操作代码',

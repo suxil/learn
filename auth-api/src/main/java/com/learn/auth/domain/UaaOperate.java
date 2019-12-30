@@ -30,6 +30,7 @@ public class UaaOperate extends BaseDomain {
     private static final long serialVersionUID = 1L;
 
     public static final String SEQ = "seq";
+    public static final String SERVICE_NAME = "service_name";
     public static final String OPERATE_TYPE = "operate_type";
     public static final String OPERATE_URL = "operate_url";
     public static final String OPERATE_CODE = "operate_code";
@@ -40,6 +41,10 @@ public class UaaOperate extends BaseDomain {
     @ApiModelProperty(name = "seq", value = "序号")
     @Column(name = "seq")
     private Integer seq;
+
+    @ApiModelProperty(name = "service_name", value = "服务名称")
+    @Column(name = "service_name")
+    private String serviceName;
 
     @ApiModelProperty(name = "operate_type", value = "操作类型")
     @Column(name = "operate_type")

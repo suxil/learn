@@ -31,6 +31,7 @@ public class UaaPermission extends BaseDomain {
 
     public static final String PARENT_ID = "parent_id";
     public static final String SEQ = "seq";
+    public static final String SERVICE_NAME = "service_name";
     public static final String PERMISSION_CODE = "permission_code";
     public static final String PERMISSION_NAME = "permission_name";
     public static final String PERMISSION_TYPE = "permission_type";
@@ -43,6 +44,10 @@ public class UaaPermission extends BaseDomain {
     @ApiModelProperty(name = "seq", value = "序号")
     @Column(name = "seq")
     private Integer seq;
+
+    @ApiModelProperty(name = "service_name", value = "服务名称")
+    @Column(name = "service_name")
+    private String serviceName;
 
     @ApiModelProperty(name = "permission_code", value = "权限代码")
     @Column(name = "permission_code")

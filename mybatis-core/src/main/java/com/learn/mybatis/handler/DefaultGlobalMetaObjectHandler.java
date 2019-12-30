@@ -25,7 +25,7 @@ public class DefaultGlobalMetaObjectHandler implements MetaObjectHandler {
         this.setFieldValByName(BaseDomain.IS_DELETED, 0, metaObject);
         this.setFieldValByName(BaseDomain.UPDATED_BY, "admin", metaObject);
         this.setFieldValByName(BaseDomain.UPDATED_AT, LocalDateTime.now(), metaObject);
-        this.setFieldValByName(BaseDomain.VERSION, 0, metaObject);
+        this.setFieldValByName(BaseDomain.VERSION, 0L, metaObject);
     }
 
     @Override
