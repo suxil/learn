@@ -46,7 +46,6 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
         ApplicationContext applicationContext = applicationStartedEvent.getApplicationContext();
 
         UaaPermission permission = getPermission();
-        uaaPermissionService.saveOrUpdate(permission);
 
         List<UaaOperate> uaaOperateList = new ArrayList<>();
         List<UaaPermission> childPermissionList = new ArrayList<>();
@@ -60,18 +59,13 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
             HandlerMethod handlerMethod = handlerMethodMap.get(requestMappingInfo);
 
             UaaOperate uaaOperate = convertToOperate(requestMappingInfo, handlerMethod);
-            if (uaaOperate == null) {
-                continue;
-            }
 
             uaaOperateList.add(uaaOperate);
 
             String beanName = handlerMethod.getBean().toString();
             if (!parentPermissionMap.containsKey(beanName)) {
                 UaaPermission uaaPermission = convertToPermission(handlerMethod);
-                if (uaaPermission != null) {
-                    parentPermissionMap.put(beanName, uaaPermission);
-                }
+                parentPermissionMap.put(beanName, uaaPermission);
             }
             if (operateMap.containsKey(beanName)) {
                 operateMap.get(beanName).add(uaaOperate);
@@ -120,6 +114,8 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
             permission.setPermissionName(serviceName);
             permission.setPermissionType("api");
             permission.setDescription(serviceName);
+
+            uaaPermissionService.saveOrUpdate(permission);
         }
         return permission;
     }
@@ -153,8 +149,6 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
                 uaaOperate.setOperateName(operateType);
                 uaaOperate.setDescription(apiUrl);
             }
-        } else {
-            return null;
         }
         return uaaOperate;
     }
@@ -182,8 +176,6 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
                 uaaPermission.setPermissionName(handlerMethod.getBean().toString());
                 uaaPermission.setDescription(handlerMethod.getBean().toString());
             }
-        } else {
-            return null;
         }
         return uaaPermission;
     }
@@ -202,8 +194,6 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
             childPermission.setPermissionName(uaaOperate.getOperateName());
             childPermission.setPermissionType("api");
             childPermission.setDescription(uaaOperate.getDescription());
-        } else {
-            return null;
         }
         return childPermission;
     }
