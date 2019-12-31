@@ -39,7 +39,7 @@ public class MinioTest {
                 "text");
 
         InputStream inputStream = minioClient.getObject("test", "hello1");
-        System.out.println(new String(inputStream.readAllBytes(), StandardCharsets.UTF_8));
+//        System.out.println(new String(inputStream.readAllBytes(), StandardCharsets.UTF_8));
     }
 
 }
