@@ -28,7 +28,6 @@ public class DefaultMybatisPlusNodeVisitor extends BaseNodeVisitor<Void, Abstrac
     public Void visit(OrNode node, AbstractWrapper wrapper) {
         wrapper.or(childWrapper -> {
             handlerChildren(node.getChildren(), (AbstractWrapper) childWrapper, OR_NODE_CONSUMER);
-            return childWrapper;
         });
         return null;
     }
@@ -37,7 +36,6 @@ public class DefaultMybatisPlusNodeVisitor extends BaseNodeVisitor<Void, Abstrac
     public Void visit(AndNode node, AbstractWrapper wrapper) {
         wrapper.and(childWrapper -> {
             handlerChildren(node.getChildren(), (AbstractWrapper) childWrapper);
-            return childWrapper;
         });
         return null;
     }

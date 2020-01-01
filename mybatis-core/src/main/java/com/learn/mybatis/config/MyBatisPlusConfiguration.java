@@ -5,14 +5,12 @@ import com.baomidou.mybatisplus.core.parser.ISqlParser;
 import com.baomidou.mybatisplus.core.parser.SqlParserHelper;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantSqlParser;
 import com.learn.mybatis.handler.DefaultGlobalMetaObjectHandler;
 import com.learn.mybatis.handler.DefaultTenantHandler;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,17 +60,6 @@ public class MyBatisPlusConfiguration {
     @ConditionalOnMissingBean(value = OptimisticLockerInterceptor.class)
     public OptimisticLockerInterceptor optimisticLockerInterceptor() {
         return new OptimisticLockerInterceptor();
-    }
-
-    /**
-     * SQL执行效率插件
-     * 设置 dev test 环境开启
-     */
-    @Bean
-    @Profile({"dev", "test"})
-    @ConditionalOnMissingBean(value = PerformanceInterceptor.class)
-    public PerformanceInterceptor performanceInterceptor() {
-        return new PerformanceInterceptor();
     }
 
 }
