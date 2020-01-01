@@ -5,7 +5,7 @@ import com.learn.mybatis.repository.BaseRepository;
 
 /**
  * <p>
- * 部门信息 Mapper 接口
+ * 岗位信息 Mapper 接口
  * </p>
  *
  * @author generate

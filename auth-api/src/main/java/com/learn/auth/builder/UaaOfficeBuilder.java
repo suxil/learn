@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 
 import com.learn.auth.domain.UaaOffice;
 import com.learn.auth.dto.UaaOfficeTreeDto;
+import com.learn.core.utils.TreeUtils;
 
 import java.util.List;
 
@@ -16,6 +17,10 @@ import java.util.List;
  * @version V1.0
  */
 public class UaaOfficeBuilder {
+
+    public static List<UaaOfficeTreeDto> convertToTree(List<UaaOffice> uaaOfficeList) {
+        return TreeUtils.convertToTree(convert(uaaOfficeList), UaaOfficeTreeDto::getId, UaaOfficeTreeDto::getParentId, UaaOfficeTreeDto::setChildren);
+    }
 
     public static List<UaaOfficeTreeDto> convert(List<UaaOffice> uaaOfficeList) {
         List<UaaOfficeTreeDto> uaaOfficeTreeDtoList = Lists.newArrayList();

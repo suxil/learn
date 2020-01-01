@@ -24,10 +24,7 @@ public class UaaOfficeServiceImpl extends ServiceImpl<UaaOfficeRepository, UaaOf
 
     @Override
     public List<UaaOfficeTreeDto> selectOfficeTree() {
-        List<UaaOffice> uaaOfficeList = super.list();
-        List<UaaOfficeTreeDto> uaaOfficeTreeDtoList = UaaOfficeBuilder.convert(uaaOfficeList);
-        List<UaaOfficeTreeDto> officeTreeDtoList = TreeUtils.convertToTree(uaaOfficeTreeDtoList, UaaOfficeTreeDto::getId, UaaOfficeTreeDto::getParentId, UaaOfficeTreeDto::setChildren);
-        return officeTreeDtoList;
+        return UaaOfficeBuilder.convertToTree(super.list());
     }
 
 }

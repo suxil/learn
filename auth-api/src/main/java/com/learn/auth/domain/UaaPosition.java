@@ -22,9 +22,9 @@ import javax.persistence.Table;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UaaPosition对象", description="部门信息")
+@ApiModel(value="UaaPosition对象", description="岗位信息")
 @Entity
-@Table(name = "uaa_position", catalog = "部门信息")
+@Table(name = "uaa_position", catalog = "岗位信息")
 public class UaaPosition extends BaseDomain {
 
     private static final long serialVersionUID = 1L;

@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
- * 部门信息 服务类 测试用例
+ * 岗位信息 服务类 测试用例
  * </p>
  *
  * @author generate

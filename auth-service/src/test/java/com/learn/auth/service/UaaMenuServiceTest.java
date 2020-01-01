@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaMenu;
+import com.learn.auth.dto.UaaMenuTreeDto;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * <p>
@@ -30,6 +33,15 @@ public class UaaMenuServiceTest {
 
     @Autowired
     private UaaMenuService uaaMenuService;
+
+    @Test
+    @Rollback
+    public void selectMenuTreeTest() {
+        String officeCode = "9000";
+        List<UaaMenuTreeDto> uaaMenuTreeDtoList = uaaMenuService.selectMenuTree(officeCode);
+
+        Assert.assertNotNull(uaaMenuTreeDtoList);
+    }
 
     @Test
     @Rollback

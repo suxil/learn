@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaPosition;
+import com.learn.auth.dto.UaaPositionTreeDto;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,9 +15,11 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * <p>
- * 部门信息 服务类 测试用例
+ * 岗位信息 服务类 测试用例
  * </p>
  *
  * @author generate
@@ -30,6 +33,15 @@ public class UaaPositionServiceTest {
 
     @Autowired
     private UaaPositionService uaaPositionService;
+
+    @Test
+    @Rollback
+    public void selectPositionTreeTest() {
+        String officeCode = "9000";
+        List<UaaPositionTreeDto> uaaPositionTreeDtoList = uaaPositionService.selectPositionTree(officeCode);
+
+        Assert.assertNotNull(uaaPositionTreeDtoList);
+    }
 
     @Test
     @Rollback

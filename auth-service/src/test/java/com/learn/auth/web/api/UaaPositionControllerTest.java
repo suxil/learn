@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
- * 部门信息 前端控制器 测试用例
+ * 岗位信息 前端控制器 测试用例
  * </p>
  *
  * @author generate

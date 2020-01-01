@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- * 部门信息 前端控制器
+ * 岗位信息 前端控制器
  * </p>
  *
  * @author generate

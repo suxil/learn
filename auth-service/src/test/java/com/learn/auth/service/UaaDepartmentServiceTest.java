@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaDepartment;
+import com.learn.auth.dto.UaaDepartmentTreeDto;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * <p>
@@ -30,6 +33,15 @@ public class UaaDepartmentServiceTest {
 
     @Autowired
     private UaaDepartmentService uaaDepartmentService;
+
+    @Test
+    @Rollback
+    public void selectDepartmentTreeTest() {
+        String officeCode = "9000";
+        List<UaaDepartmentTreeDto> uaaDepartmentTreeDtoList = uaaDepartmentService.selectDepartmentTree(officeCode);
+
+        Assert.assertNotNull(uaaDepartmentTreeDtoList);
+    }
 
     @Test
     @Rollback

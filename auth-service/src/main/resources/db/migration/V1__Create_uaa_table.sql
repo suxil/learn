@@ -357,7 +357,7 @@ CREATE TABLE IF NOT EXISTS uaa_position (
     is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '部门信息';
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '岗位信息';
 
 /*==============================================================*/
 /* Table: uaa_user_position                                     */
@@ -428,10 +428,8 @@ CREATE TABLE IF NOT EXISTS uaa_menu_role (
 /*==============================================================*/
 CREATE TABLE IF NOT EXISTS uaa_menu_element (
     id                   varchar(32) not null,
-    parent_id            varchar(32) not null comment '父菜单id',
+    menu_id              varchar(32) not null comment '菜单id',
     seq                  int not null comment '序号',
-    level                int not null comment '菜单层级',
-    icon                 varchar(30) not null comment '菜单图标',
     menu_element_code    varchar(30) not null comment '菜单元素代码',
     menu_element_name    varchar(60) not null comment '菜单元素名称',
     description          varchar(200) not null comment '描述',
