@@ -15,7 +15,7 @@
 * uaa_office 组织表
 * uaa_menu 菜单表
 * uaa_menu_role 菜单-角色表
-* uaa_page_element 页面元素表
-* uaa_page_element_role 页面元素-角色表
+* uaa_page_element 菜单页面元素表
+* uaa_page_element_role 菜单菜单页面元素-角色表
 * uaa_operate 操作表
 * uaa_operate_permission 操作-权限表

@@ -20,8 +20,8 @@
  * uaa_user_position 用户-岗位表
  * uaa_menu 菜单表
  * uaa_menu_role 菜单-角色表
- * uaa_menu_element 菜单页面元素表
- * uaa_menu_element_role 菜单页面元素-角色表
+ * uaa_menu_element 菜单菜单页面元素表
+ * uaa_menu_element_role 菜单菜单菜单页面元素-角色表
  * uaa_operate 操作表(系统启动自动记录所有后台接口，不需要手工操作)
  * uaa_operate_permission 操作-权限表
  */
@@ -443,7 +443,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu_element (
     is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '页面元素信息';
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '菜单页面元素信息';
 
 /*==============================================================*/
 /* Table: uaa_menu_element_role                                 */
@@ -462,7 +462,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu_element_role (
     is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '页面元素-角色息';
+) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '菜单菜单页面元素-角色息';
 
 /*==============================================================*/
 /* Table: uaa_operate                                           */

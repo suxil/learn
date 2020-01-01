@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
- * 页面元素信息 前端控制器 测试用例
+ * 菜单页面元素信息 前端控制器 测试用例
  * </p>
  *
  * @author generate

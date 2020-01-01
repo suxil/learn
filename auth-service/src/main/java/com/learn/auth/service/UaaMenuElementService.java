@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 页面元素信息 服务类
+ * 菜单页面元素信息 服务类
  * </p>
  *
  * @author generate

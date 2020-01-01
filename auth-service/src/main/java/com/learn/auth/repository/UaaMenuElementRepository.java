@@ -5,7 +5,7 @@ import com.learn.mybatis.repository.BaseRepository;
 
 /**
  * <p>
- * 页面元素信息 Mapper 接口
+ * 菜单页面元素信息 Mapper 接口
  * </p>
  *
  * @author generate

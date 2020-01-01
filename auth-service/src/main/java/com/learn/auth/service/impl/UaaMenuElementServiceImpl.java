@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- * 页面元素信息 服务实现类
+ * 菜单页面元素信息 服务实现类
  * </p>
  *
  * @author generate

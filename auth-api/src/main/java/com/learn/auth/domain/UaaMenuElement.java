@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 /**
  * <p>
- * 页面元素信息
+ * 菜单页面元素信息
  * </p>
  *
  * @author generate
@@ -22,9 +22,9 @@ import javax.persistence.Table;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UaaMenuElement对象", description="页面元素信息")
+@ApiModel(value="UaaMenuElement对象", description="菜单页面元素信息")
 @Entity
-@Table(name = "uaa_menu_element", catalog = "页面元素信息")
+@Table(name = "uaa_menu_element", catalog = "菜单页面元素信息")
 public class UaaMenuElement extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
