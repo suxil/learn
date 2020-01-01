@@ -321,8 +321,8 @@ CREATE TABLE IF NOT EXISTS uaa_department (
 /*==============================================================*/
 CREATE TABLE IF NOT EXISTS uaa_department_position (
     id                   varchar(32) not null,
-    user_id             varchar(32) not null,
-    position_id        varchar(32) not null,
+    department_id        varchar(32) not null,
+    position_id          varchar(32) not null,
 
     tenant_id            varchar(32) not null comment '租户id',
     office_code          varchar(100) not null comment '组织代码',

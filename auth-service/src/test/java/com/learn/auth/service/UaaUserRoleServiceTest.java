@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-01-01
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,7 +32,8 @@ public class UaaUserRoleServiceTest {
     private UaaUserRoleService uaaUserRoleService;
 
     @Test
-    public void list() {
+    @Rollback
+    public void listTest() {
         Page<UaaUserRole> page = new Page<>();
         page.setPages(0);
         page.setSize(10);
@@ -46,7 +47,7 @@ public class UaaUserRoleServiceTest {
 
     @Test
     @Rollback
-    public void load() {
+    public void loadTest() {
         String id = "";
         UaaUserRole uaaUserRole = uaaUserRoleService.getById(id);
 
@@ -55,7 +56,7 @@ public class UaaUserRoleServiceTest {
 
     @Test
     @Rollback
-    public void create() {
+    public void createTest() {
         UaaUserRole uaaUserRole = new UaaUserRole();
         uaaUserRoleService.saveOrUpdate(uaaUserRole);
 
@@ -63,7 +64,7 @@ public class UaaUserRoleServiceTest {
 
     @Test
     @Rollback
-    public void update() {
+    public void updateTest() {
         UaaUserRole uaaUserRole = new UaaUserRole();
         uaaUserRoleService.saveOrUpdate(uaaUserRole);
 
@@ -71,7 +72,7 @@ public class UaaUserRoleServiceTest {
 
     @Test
     @Rollback
-    public void delete() {
+    public void deleteTest() {
         String id = "";
         uaaUserRoleService.removeById(id);
 

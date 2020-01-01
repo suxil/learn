@@ -1,10 +1,15 @@
 package com.learn.auth.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.learn.auth.builder.UaaOfficeBuilder;
 import com.learn.auth.domain.UaaOffice;
+import com.learn.auth.dto.UaaOfficeTreeDto;
 import com.learn.auth.repository.UaaOfficeRepository;
 import com.learn.auth.service.UaaOfficeService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.learn.core.utils.TreeUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +21,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UaaOfficeServiceImpl extends ServiceImpl<UaaOfficeRepository, UaaOffice> implements UaaOfficeService {
+
+    @Override
+    public List<UaaOfficeTreeDto> selectOfficeTree() {
+        List<UaaOffice> uaaOfficeList = super.list();
+        List<UaaOfficeTreeDto> uaaOfficeTreeDtoList = UaaOfficeBuilder.convert(uaaOfficeList);
+        List<UaaOfficeTreeDto> officeTreeDtoList = TreeUtils.convertToTree(uaaOfficeTreeDtoList, UaaOfficeTreeDto::getId, UaaOfficeTreeDto::getParentId, UaaOfficeTreeDto::setChildren);
+        return officeTreeDtoList;
+    }
 
 }

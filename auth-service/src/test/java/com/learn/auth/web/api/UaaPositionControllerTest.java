@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-01-01
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,7 +33,8 @@ public class UaaPositionControllerTest {
     private UaaPositionService uaaPositionService;
 
     @Test
-    public void list() {
+    @Rollback
+    public void listTest() {
         Page<UaaPosition> page = new Page<>();
         page.setPages(0);
         page.setSize(10);
@@ -47,7 +48,7 @@ public class UaaPositionControllerTest {
 
     @Test
     @Rollback
-    public void load() {
+    public void loadTest() {
         String id = "";
         UaaPosition uaaPosition = uaaPositionService.getById(id);
 
@@ -56,7 +57,7 @@ public class UaaPositionControllerTest {
 
     @Test
     @Rollback
-    public void create() {
+    public void createTest() {
         UaaPosition uaaPosition = new UaaPosition();
         uaaPositionService.saveOrUpdate(uaaPosition);
 
@@ -64,7 +65,7 @@ public class UaaPositionControllerTest {
 
     @Test
     @Rollback
-    public void update() {
+    public void updateTest() {
         UaaPosition uaaPosition = new UaaPosition();
         uaaPositionService.saveOrUpdate(uaaPosition);
 
@@ -72,7 +73,7 @@ public class UaaPositionControllerTest {
 
     @Test
     @Rollback
-    public void delete() {
+    public void deleteTest() {
         String id = "";
         uaaPositionService.removeById(id);
 

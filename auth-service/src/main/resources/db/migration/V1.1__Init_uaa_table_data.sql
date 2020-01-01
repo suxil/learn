@@ -28,7 +28,8 @@ insert into uaa_department(id,parent_id,parent_office_code,seq,level,full_path,d
 /*==============================================================*/
 
 /*==============================================================*/
-/* Table: uaa_office                                            */
+/* Table: uaa_user                                            */
 /*==============================================================*/
+insert into uaa_user(id, user_code, user_name, jp, login_name, password, mobile, email, is_admin, last_login_date, login_count, description, tenant_id, office_code, created_by, created_at, updated_by, updated_at, is_deleted, version) values (REPLACE(UUID(), "-", ""), "10001", "管理员", 'gly', 'admin', "admin", "1321111111111", "admin@163.dom", 1, now(), 0, "管理员", "1", "9000", "system", now(), "system", now(), 0, 0);
 
 

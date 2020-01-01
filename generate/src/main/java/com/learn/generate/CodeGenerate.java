@@ -176,6 +176,13 @@ public class CodeGenerate {
             }
         });
 
+        // RepositoryTest.java
+        focList.add(new FileOutConfig("/templates/repositoryTest.java.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return projectPath + BAST_TEST_PATH + (PARENT + "." + packageConfig.getMapper()).replace(".", "/") + "/" + modalPkg + tableInfo.getEntityName() + "RepositoryTest" + StringPool.DOT_JAVA;
+            }
+        });
         // ServiceTest.java
         focList.add(new FileOutConfig("/templates/serviceTest.java.ftl") {
             @Override

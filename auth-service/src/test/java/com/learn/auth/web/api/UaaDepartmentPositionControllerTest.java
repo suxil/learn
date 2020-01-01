@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-01-01
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,7 +33,8 @@ public class UaaDepartmentPositionControllerTest {
     private UaaDepartmentPositionService uaaDepartmentPositionService;
 
     @Test
-    public void list() {
+    @Rollback
+    public void listTest() {
         Page<UaaDepartmentPosition> page = new Page<>();
         page.setPages(0);
         page.setSize(10);
@@ -47,7 +48,7 @@ public class UaaDepartmentPositionControllerTest {
 
     @Test
     @Rollback
-    public void load() {
+    public void loadTest() {
         String id = "";
         UaaDepartmentPosition uaaDepartmentPosition = uaaDepartmentPositionService.getById(id);
 
@@ -56,7 +57,7 @@ public class UaaDepartmentPositionControllerTest {
 
     @Test
     @Rollback
-    public void create() {
+    public void createTest() {
         UaaDepartmentPosition uaaDepartmentPosition = new UaaDepartmentPosition();
         uaaDepartmentPositionService.saveOrUpdate(uaaDepartmentPosition);
 
@@ -64,7 +65,7 @@ public class UaaDepartmentPositionControllerTest {
 
     @Test
     @Rollback
-    public void update() {
+    public void updateTest() {
         UaaDepartmentPosition uaaDepartmentPosition = new UaaDepartmentPosition();
         uaaDepartmentPositionService.saveOrUpdate(uaaDepartmentPosition);
 
@@ -72,7 +73,7 @@ public class UaaDepartmentPositionControllerTest {
 
     @Test
     @Rollback
-    public void delete() {
+    public void deleteTest() {
         String id = "";
         uaaDepartmentPositionService.removeById(id);
 

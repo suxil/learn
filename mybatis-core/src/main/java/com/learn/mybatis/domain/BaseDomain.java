@@ -13,13 +13,13 @@ import java.time.LocalDateTime;
 public class BaseDomain implements Serializable {
 
     public static final String ID = "id";
-    public static final String TENANT_ID = "tenantId";
-    public static final String OFFICE_CODE = "officeCode";
-    public static final String CREATED_BY = "createdBy";
-    public static final String CREATED_AT = "createdAt";
-    public static final String UPDATED_BY = "updatedBy";
-    public static final String UPDATED_AT = "updatedAt";
-    public static final String IS_DELETED = "isDeleted";
+    public static final String TENANT_ID = "tenant_id";
+    public static final String OFFICE_CODE = "office_code";
+    public static final String CREATED_BY = "created_by";
+    public static final String CREATED_AT = "created_at";
+    public static final String UPDATED_BY = "updated_by";
+    public static final String UPDATED_AT = "updated_at";
+    public static final String IS_DELETED = "is_deleted";
     public static final String VERSION = "version";
 
     @TableId(type = IdType.INPUT)

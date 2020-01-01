@@ -14,7 +14,7 @@ import java.util.Set;
  * Copyright: © 2012-2019 CSG. All rights reserved.
  * Company: CSG
  *
- * @author lu_it:1300815418@qq.com
+ * @author lu_it
  * @version V1.0
  * @Package com.learn.core.utils
  */

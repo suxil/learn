@@ -2,6 +2,9 @@ package com.learn.auth.service;
 
 import com.learn.auth.domain.UaaOffice;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.learn.auth.dto.UaaOfficeTreeDto;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +15,15 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-12-22
  */
 public interface UaaOfficeService extends IService<UaaOffice> {
+
+    /***
+     * Description: 通过组织代码查询组织树
+     * date: 2020/1/1 11:33
+     *
+     * @author suxi
+     * @version V1.0
+     * @return java.util.List<com.learn.auth.dto.UaaOfficeTreeDto>
+     */
+    List<UaaOfficeTreeDto> selectOfficeTree();
 
 }

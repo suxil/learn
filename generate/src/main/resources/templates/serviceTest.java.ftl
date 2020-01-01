@@ -35,7 +35,8 @@ public class ${table.serviceName}Test {
     private ${table.entityName}Service ${table.entityName?uncap_first}Service;
 
     @Test
-    public void list() {
+    @Rollback
+    public void listTest() {
         Page<${table.entityName}> page = new Page<>();
         page.setPages(0);
         page.setSize(10);
@@ -49,7 +50,7 @@ public class ${table.serviceName}Test {
 
     @Test
     @Rollback
-    public void load() {
+    public void loadTest() {
         String id = "";
         ${table.entityName} ${table.entityName?uncap_first} = ${table.entityName?uncap_first}Service.getById(id);
 
@@ -58,7 +59,7 @@ public class ${table.serviceName}Test {
 
     @Test
     @Rollback
-    public void create() {
+    public void createTest() {
         ${table.entityName} ${table.entityName?uncap_first} = new ${table.entityName}();
         ${table.entityName?uncap_first}Service.saveOrUpdate(${table.entityName?uncap_first});
 
@@ -66,7 +67,7 @@ public class ${table.serviceName}Test {
 
     @Test
     @Rollback
-    public void update() {
+    public void updateTest() {
         ${table.entityName} ${table.entityName?uncap_first} = new ${table.entityName}();
         ${table.entityName?uncap_first}Service.saveOrUpdate(${table.entityName?uncap_first});
 
@@ -74,7 +75,7 @@ public class ${table.serviceName}Test {
 
     @Test
     @Rollback
-    public void delete() {
+    public void deleteTest() {
         String id = "";
         ${table.entityName?uncap_first}Service.removeById(id);
 

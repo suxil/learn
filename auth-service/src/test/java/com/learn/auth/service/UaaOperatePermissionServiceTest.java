@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-01-01
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,7 +32,8 @@ public class UaaOperatePermissionServiceTest {
     private UaaOperatePermissionService uaaOperatePermissionService;
 
     @Test
-    public void list() {
+    @Rollback
+    public void listTest() {
         Page<UaaOperatePermission> page = new Page<>();
         page.setPages(0);
         page.setSize(10);
@@ -46,7 +47,7 @@ public class UaaOperatePermissionServiceTest {
 
     @Test
     @Rollback
-    public void load() {
+    public void loadTest() {
         String id = "";
         UaaOperatePermission uaaOperatePermission = uaaOperatePermissionService.getById(id);
 
@@ -55,7 +56,7 @@ public class UaaOperatePermissionServiceTest {
 
     @Test
     @Rollback
-    public void create() {
+    public void createTest() {
         UaaOperatePermission uaaOperatePermission = new UaaOperatePermission();
         uaaOperatePermissionService.saveOrUpdate(uaaOperatePermission);
 
@@ -63,7 +64,7 @@ public class UaaOperatePermissionServiceTest {
 
     @Test
     @Rollback
-    public void update() {
+    public void updateTest() {
         UaaOperatePermission uaaOperatePermission = new UaaOperatePermission();
         uaaOperatePermissionService.saveOrUpdate(uaaOperatePermission);
 
@@ -71,7 +72,7 @@ public class UaaOperatePermissionServiceTest {
 
     @Test
     @Rollback
-    public void delete() {
+    public void deleteTest() {
         String id = "";
         uaaOperatePermissionService.removeById(id);
 

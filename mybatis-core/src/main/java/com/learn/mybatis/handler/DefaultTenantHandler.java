@@ -12,7 +12,7 @@ import net.sf.jsqlparser.expression.StringValue;
  * Copyright: © 2012-2019 CSG. All rights reserved.
  * Company: CSG
  *
- * @author lu_it:1300815418@qq.com
+ * @author lu_it
  * @version V1.0
  * @Package com.learn.core.config
  */
@@ -22,7 +22,7 @@ public class DefaultTenantHandler implements TenantHandler {
     public Expression getTenantId() {
         // 该 where 条件 3.2.0 版本开始添加的，用于分区是否为在 where 条件中使用
         // 此判断用于支持返回多个租户 ID 场景，具体使用查看示例工程
-        return new StringValue("0");
+        return new StringValue("1");
     }
 
     @Override
@@ -37,7 +37,7 @@ public class DefaultTenantHandler implements TenantHandler {
         if ("user".equals(tableName)) {
             return true;
         }*/
-        return true;
+        return false;
     }
 
 }

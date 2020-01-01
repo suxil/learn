@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-01-01
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,7 +33,8 @@ public class UaaDepartmentControllerTest {
     private UaaDepartmentService uaaDepartmentService;
 
     @Test
-    public void list() {
+    @Rollback
+    public void listTest() {
         Page<UaaDepartment> page = new Page<>();
         page.setPages(0);
         page.setSize(10);
@@ -47,7 +48,7 @@ public class UaaDepartmentControllerTest {
 
     @Test
     @Rollback
-    public void load() {
+    public void loadTest() {
         String id = "";
         UaaDepartment uaaDepartment = uaaDepartmentService.getById(id);
 
@@ -56,7 +57,7 @@ public class UaaDepartmentControllerTest {
 
     @Test
     @Rollback
-    public void create() {
+    public void createTest() {
         UaaDepartment uaaDepartment = new UaaDepartment();
         uaaDepartmentService.saveOrUpdate(uaaDepartment);
 
@@ -64,7 +65,7 @@ public class UaaDepartmentControllerTest {
 
     @Test
     @Rollback
-    public void update() {
+    public void updateTest() {
         UaaDepartment uaaDepartment = new UaaDepartment();
         uaaDepartmentService.saveOrUpdate(uaaDepartment);
 
@@ -72,7 +73,7 @@ public class UaaDepartmentControllerTest {
 
     @Test
     @Rollback
-    public void delete() {
+    public void deleteTest() {
         String id = "";
         uaaDepartmentService.removeById(id);
 

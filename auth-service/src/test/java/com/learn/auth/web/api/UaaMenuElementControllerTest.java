@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-01-01
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -33,7 +33,8 @@ public class UaaMenuElementControllerTest {
     private UaaMenuElementService uaaMenuElementService;
 
     @Test
-    public void list() {
+    @Rollback
+    public void listTest() {
         Page<UaaMenuElement> page = new Page<>();
         page.setPages(0);
         page.setSize(10);
@@ -47,7 +48,7 @@ public class UaaMenuElementControllerTest {
 
     @Test
     @Rollback
-    public void load() {
+    public void loadTest() {
         String id = "";
         UaaMenuElement uaaMenuElement = uaaMenuElementService.getById(id);
 
@@ -56,7 +57,7 @@ public class UaaMenuElementControllerTest {
 
     @Test
     @Rollback
-    public void create() {
+    public void createTest() {
         UaaMenuElement uaaMenuElement = new UaaMenuElement();
         uaaMenuElementService.saveOrUpdate(uaaMenuElement);
 
@@ -64,7 +65,7 @@ public class UaaMenuElementControllerTest {
 
     @Test
     @Rollback
-    public void update() {
+    public void updateTest() {
         UaaMenuElement uaaMenuElement = new UaaMenuElement();
         uaaMenuElementService.saveOrUpdate(uaaMenuElement);
 
@@ -72,7 +73,7 @@ public class UaaMenuElementControllerTest {
 
     @Test
     @Rollback
-    public void delete() {
+    public void deleteTest() {
         String id = "";
         uaaMenuElementService.removeById(id);
 

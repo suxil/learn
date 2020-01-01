@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-01-01
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -32,7 +32,8 @@ public class UaaUserPositionServiceTest {
     private UaaUserPositionService uaaUserPositionService;
 
     @Test
-    public void list() {
+    @Rollback
+    public void listTest() {
         Page<UaaUserPosition> page = new Page<>();
         page.setPages(0);
         page.setSize(10);
@@ -46,7 +47,7 @@ public class UaaUserPositionServiceTest {
 
     @Test
     @Rollback
-    public void load() {
+    public void loadTest() {
         String id = "";
         UaaUserPosition uaaUserPosition = uaaUserPositionService.getById(id);
 
@@ -55,7 +56,7 @@ public class UaaUserPositionServiceTest {
 
     @Test
     @Rollback
-    public void create() {
+    public void createTest() {
         UaaUserPosition uaaUserPosition = new UaaUserPosition();
         uaaUserPositionService.saveOrUpdate(uaaUserPosition);
 
@@ -63,7 +64,7 @@ public class UaaUserPositionServiceTest {
 
     @Test
     @Rollback
-    public void update() {
+    public void updateTest() {
         UaaUserPosition uaaUserPosition = new UaaUserPosition();
         uaaUserPositionService.saveOrUpdate(uaaUserPosition);
 
@@ -71,7 +72,7 @@ public class UaaUserPositionServiceTest {
 
     @Test
     @Rollback
-    public void delete() {
+    public void deleteTest() {
         String id = "";
         uaaUserPositionService.removeById(id);
 
