@@ -1,5 +1,7 @@
 package com.learn.auth.repository;
 
+import com.learn.auth.domain.UaaPermission;
+import com.learn.auth.domain.UaaRole;
 import com.learn.auth.domain.UaaRolePermission;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,6 +12,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * <p>
@@ -27,5 +31,23 @@ public class UaaRolePermissionRepositoryTest {
 
     @Autowired
     private UaaRolePermissionRepository uaaRolePermissionRepository;
+
+    @Test
+    @Rollback
+    public void selectRoleByPermissionIdTest() {
+        String permissionId = "";
+        List<UaaRole> uaaRoleList = uaaRolePermissionRepository.selectRoleByPermissionId(permissionId);
+
+        Assert.assertNotNull(uaaRoleList);
+    }
+
+    @Test
+    @Rollback
+    public void selectPermissionByRoleIdTest() {
+        String roleId = "";
+        List<UaaPermission> uaaPermissionList = uaaRolePermissionRepository.selectPermissionByRoleId(roleId);
+
+        Assert.assertNotNull(uaaPermissionList);
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.learn.auth.repository;
 
+import com.learn.auth.domain.UaaGroup;
 import com.learn.auth.domain.UaaGroupUser;
 import com.learn.auth.domain.UaaUser;
 import org.junit.Assert;
@@ -32,6 +33,16 @@ public class UaaGroupUserRepositoryTest {
     private UaaGroupUserRepository uaaGroupUserRepository;
 
     @Test
+    @Rollback
+    public void selectGroupByUserIdTest() {
+        String userId = "";
+        List<UaaGroup> uaaGroupList = uaaGroupUserRepository.selectGroupByUserId(userId);
+
+        Assert.assertNotNull(uaaGroupList);
+    }
+
+    @Test
+    @Rollback
     public void selectUserByGroupIdTest() {
         String groupId = "";
         List<UaaUser> uaaUserList = uaaGroupUserRepository.selectUserByGroupId(groupId);

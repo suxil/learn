@@ -1,6 +1,8 @@
 package com.learn.auth.repository;
 
+import com.learn.auth.domain.UaaGroup;
 import com.learn.auth.domain.UaaGroupPermission;
+import com.learn.auth.domain.UaaPermission;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +12,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * <p>
@@ -27,5 +31,23 @@ public class UaaGroupPermissionRepositoryTest {
 
     @Autowired
     private UaaGroupPermissionRepository uaaGroupPermissionRepository;
+
+    @Test
+    @Rollback
+    public void selectGroupByPermissionIdTest() {
+        String permissionId = "";
+        List<UaaGroup> uaaGroupList = uaaGroupPermissionRepository.selectGroupByPermissionId(permissionId);
+
+        Assert.assertNotNull(uaaGroupList);
+    }
+
+    @Test
+    @Rollback
+    public void selectPermissionByGroupIdTest() {
+        String groupId = "";
+        List<UaaPermission> uaaPermissionList = uaaGroupPermissionRepository.selectPermissionByGroupId(groupId);
+
+        Assert.assertNotNull(uaaPermissionList);
+    }
 
 }

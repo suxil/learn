@@ -1,5 +1,6 @@
 package com.learn.auth.repository;
 
+import com.learn.auth.domain.UaaGroup;
 import com.learn.auth.domain.UaaGroupUser;
 import com.learn.auth.domain.UaaUser;
 import com.learn.mybatis.repository.BaseRepository;
@@ -18,7 +19,19 @@ import java.util.List;
 public interface UaaGroupUserRepository extends BaseRepository<UaaGroupUser> {
 
     /**
-     * Description: 查询某个组下的用户
+     * Description: 查询某个用户的组
+     * date: 2020/1/1 21:04
+     *
+     * @author suxi
+     * @version V1.0
+     * @param userId
+     * @return java.util.List<com.learn.auth.domain.UaaGroup>
+     */
+    @Select("select r.* from uaa_group r where r.id in (select gu.group_id from uaa_group_user gu where gu.user_id = #{userId})")
+    List<UaaGroup> selectGroupByUserId(String userId);
+
+    /**
+     * Description: 查询某个组的用户
      * date: 2019/12/31 23:32
      *
      * @author suxi
