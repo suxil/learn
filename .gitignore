@@ -26,6 +26,7 @@ hs_err_pid*
 target/
 dist/
 node_modules/
+cert/
 
 package-lock.json
 

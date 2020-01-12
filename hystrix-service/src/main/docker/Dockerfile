@@ -1,8 +1,9 @@
-FROM java:8
+FROM openjdk:latest
 
 MAINTAINER suxi
 
-ADD learn-service-0.1.jar app.jar
+ARG JAR_FILE
+ADD ${JAR_FILE} /app.jar
 
 EXPOSE 18091
 
