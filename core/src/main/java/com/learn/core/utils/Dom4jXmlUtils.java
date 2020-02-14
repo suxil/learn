@@ -1,7 +1,7 @@
 package com.learn.core.utils;
 
-import com.learn.core.anotation.CDATAType;
-import com.learn.core.anotation.IgnoreElement;
+import com.learn.core.utils.anotation.CDATAType;
+import com.learn.core.utils.anotation.IgnoreElement;
 import org.dom4j.*;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;

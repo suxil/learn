@@ -5,27 +5,28 @@
 	<groupId>com.learn</groupId>
 	<artifactId>dependencies</artifactId>
 	<packaging>pom</packaging>
-	<version>0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>dependencies</name>
 	<description>Base Dependencies</description>
 	<url>http://maven.apache.org</url>
 
 	<properties>
 		<spring.cloud.version>Hoxton.RELEASE</spring.cloud.version>
-		<spring.boot.version>2.2.2.RELEASE</spring.boot.version>
+		<spring.boot.version>2.2.4.RELEASE</spring.boot.version>
 
-		<logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
+		<logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
 
-		<ulisesbocchio.version>2.1.0</ulisesbocchio.version>
+		<ulisesbocchio.version>3.0.2</ulisesbocchio.version>
 
-		<mybatis.plus.version>3.3.0</mybatis.plus.version>
+		<mybatis.plus.version>3.3.1</mybatis.plus.version>
+		<dynamic.datasource.version>3.0.0</dynamic.datasource.version>
 
-		<p6spy.version>3.8.2</p6spy.version>
+		<p6spy.version>3.8.7</p6spy.version>
 
 		<swagger.version>2.9.2</swagger.version>
 
-		<minio.version>6.0.11</minio.version>
-		<flowable.version>6.4.2</flowable.version>
+		<minio.version>6.0.13</minio.version>
+		<flowable.version>6.5.0</flowable.version>
 
 		<commons.collections4.version>4.1</commons.collections4.version>
 		<commons.io.version>2.5</commons.io.version>
@@ -33,25 +34,24 @@
 		<commons.net.version>3.6</commons.net.version>
 		<poi.version>3.17</poi.version>
 		<thumbnailator.version>0.4.8</thumbnailator.version>
-		<gson.version>2.8.5</gson.version>
+		<gson.version>2.8.6</gson.version>
 
-		<cglib.version>3.2.5</cglib.version>
-		<guava.version>23.0</guava.version>
+		<cglib.version>3.3.0</cglib.version>
+		<guava.version>28.2-jre</guava.version>
 		<xstream.version>1.4.11</xstream.version>
 		<dom4j.version>2.1.1</dom4j.version>
-		<netty.version>4.1.43.Final</netty.version>
-        <zxing.version>3.3.0</zxing.version>
+		<netty.version>4.1.45.Final</netty.version>
+        <zxing.version>3.4.0</zxing.version>
 
-        <protobuf.version>3.8.0</protobuf.version>
-        <protoc.version>3.9.0</protoc.version>
-        <grpc.version>1.24.2</grpc.version>
+        <protobuf.version>3.11.3</protobuf.version>
+        <grpc.version>1.27.0</grpc.version>
 
-		<jsoup.version>1.11.3</jsoup.version>
+		<jsoup.version>1.12.2</jsoup.version>
 
 		<junit.version>4.12</junit.version>
 
-		<druid.version>1.1.18</druid.version>
-		<fastjson.version>1.2.58</fastjson.version>
+		<druid.version>1.1.21</druid.version>
+		<fastjson.version>1.2.62</fastjson.version>
 	</properties>
 
 	<repositories>
@@ -156,7 +156,7 @@
 			<dependency>
 				<groupId>com.baomidou</groupId>
 				<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-				<version>${mybatis.plus.version}</version>
+				<version>${dynamic.datasource.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.baomidou</groupId>

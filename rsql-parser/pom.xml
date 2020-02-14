@@ -5,7 +5,7 @@
     <artifactId>rsql-parser</artifactId>
 	<packaging>jar</packaging>
 	<name>rsql-parser</name>
-	<version>0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -50,7 +50,7 @@
 			<dependency>
 				<groupId>com.learn</groupId>
 				<artifactId>dependencies</artifactId>
-				<version>0.1</version>
+				<version>0.0.1-SNAPSHOT</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>

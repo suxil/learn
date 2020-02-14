@@ -1,4 +1,4 @@
-package com.learn.core.anotation;
+package com.learn.core.utils.anotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,10 +6,11 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * CDATA 类型字段
+ * 忽略类或字段的xml节点
  * 
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface CDATAType {
+@Target({ElementType.TYPE, ElementType.FIELD})
+public @interface IgnoreElement {
+
 }

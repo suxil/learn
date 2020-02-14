@@ -5,13 +5,13 @@
     <artifactId>learn-api</artifactId>
 	<packaging>jar</packaging>
 	<name>learn-api</name>
-	<version>0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
 
 	<parent>
 		<groupId>com.learn</groupId>
 		<artifactId>learn</artifactId>
-		<version>0.1</version>
+		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	  
@@ -20,13 +20,13 @@
 		<dependency>
 			<groupId>com.learn.core</groupId>
 			<artifactId>core</artifactId>
-			<version>0.1</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.learn.mybatis</groupId>
 			<artifactId>mybatis-core</artifactId>
-			<version>0.1</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>

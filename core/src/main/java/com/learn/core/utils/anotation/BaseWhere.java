@@ -1,4 +1,4 @@
-package com.learn.core.anotation;
+package com.learn.core.utils.anotation;
 
 import java.lang.annotation.*;
 

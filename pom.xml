@@ -5,9 +5,16 @@
 	<groupId>com.learn</groupId>
 	<artifactId>learn</artifactId>
 	<packaging>pom</packaging>
-	<version>0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>learn</name>
 	<url>http://maven.apache.org</url>
+
+	<scm>
+		<connection>scm:git:git@github.com:suxi-lu/learn.git</connection>
+		<developerConnection>scm:git:git@github.com:suxi-lu/learn.git</developerConnection>
+		<url>https://github.com/suxi-lu/learn</url>
+		<tag>0.0.1-SNAPSHOT</tag>
+	</scm>
 
 	<modules>
 		<module>dependencies</module>
@@ -40,18 +47,20 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<flyway.version>6.0.8</flyway.version>
-		<lombok.version>1.18.0</lombok.version>
-		<lombok.plugin.version>1.16.22.0</lombok.plugin.version>
+		<lombok.version>1.18.12</lombok.version>
+		<lombok.plugin.version>1.18.10.0</lombok.plugin.version>
 
 		<spring-boot-maven-plugin.version>2.2.2.RELEASE</spring-boot-maven-plugin.version>
 		<maven-javadoc-plugin.version>3.1.1</maven-javadoc-plugin.version>
 
-		<openapi-generator-maven-plugin.version>4.0.2</openapi-generator-maven-plugin.version>
+		<openapi-generator-maven-plugin.version>4.2.3</openapi-generator-maven-plugin.version>
 
 		<logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
 
 		<dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
 		<docker-maven-plugin.version>1.2.1</docker-maven-plugin.version>
+
+		<maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
 
 		<docker.repostory>192.168.89.128:5000</docker.repostory>
 		<dockerHost>https://192.168.89.128:2376</dockerHost>
@@ -152,29 +161,6 @@
 
 				<plugin>
 					<groupId>com.spotify</groupId>
-					<artifactId>dockerfile-maven-plugin</artifactId>
-					<version>${dockerfile-maven-plugin.version}</version>
-					<!--<executions>
-						<execution>
-							<id>default</id>
-							<goals>
-								<goal>build</goal>
-								<goal>push</goal>
-							</goals>
-						</execution>
-					</executions>-->
-					<configuration>
-						<dockerfile>${project.basedir}/src/main/docker</dockerfile>
-						<repository>${docker.repostory}/${project.artifactId}</repository>
-						<tag>${project.version}</tag>
-						<buildArgs>
-							<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-						</buildArgs>
-					</configuration>
-				</plugin>
-
-				<plugin>
-					<groupId>com.spotify</groupId>
 					<artifactId>docker-maven-plugin</artifactId>
 					<version>${docker-maven-plugin.version}</version>
 					<configuration>
@@ -200,6 +186,29 @@
 								<include>${project.build.finalName}.jar</include>
 							</resource>
 						</resources>
+					</configuration>
+				</plugin>
+
+				<!--<plugin>
+					<groupId>com.spotify</groupId>
+					<artifactId>dockerfile-maven-plugin</artifactId>
+					<version>${dockerfile-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>default</id>
+							<goals>
+								<goal>build</goal>
+								<goal>push</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<dockerfile>${project.basedir}/src/main/docker</dockerfile>
+						<repository>${docker.repostory}/${project.artifactId}</repository>
+						<tag>${project.version}</tag>
+						<buildArgs>
+							<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+						</buildArgs>
 					</configuration>
 				</plugin>
 
@@ -230,11 +239,20 @@
 					<groupId>org.xolstice.maven.plugins</groupId>
 					<artifactId>protobuf-maven-plugin</artifactId>
 					<version>0.6.1</version>
-				</plugin>
+				</plugin>-->
 			</plugins>
 		</pluginManagement>
 
 		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${maven-release-plugin.version}</version>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+				</configuration>
+			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -268,7 +286,7 @@
 			<dependency>
 				<groupId>com.learn</groupId>
 				<artifactId>dependencies</artifactId>
-				<version>0.1</version>
+				<version>0.0.1-SNAPSHOT</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
