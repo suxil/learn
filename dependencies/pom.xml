@@ -13,6 +13,8 @@
 	<properties>
 		<spring.cloud.version>Hoxton.RELEASE</spring.cloud.version>
 		<spring.boot.version>2.2.4.RELEASE</spring.boot.version>
+		<spring.oauth.version>2.4.0.RELEASE</spring.oauth.version>
+		<spring.oauth.jwt.version>1.1.0.RELEASE</spring.oauth.jwt.version>
 
 		<logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
 
@@ -105,7 +107,19 @@
 				<scope>import</scope>
 			</dependency>
 
-            <dependency>
+			<dependency>
+				<groupId>org.springframework.security.oauth</groupId>
+				<artifactId>spring-security-oauth2</artifactId>
+				<version>${spring.oauth.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-jwt</artifactId>
+				<version>${spring.oauth.jwt.version}</version>
+			</dependency>
+
+			<dependency>
                 <groupId>io.grpc</groupId>
                 <artifactId>grpc-bom</artifactId>
                 <version>${grpc.version}</version>

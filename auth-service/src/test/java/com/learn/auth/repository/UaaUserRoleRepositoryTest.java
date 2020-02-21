@@ -2,7 +2,6 @@ package com.learn.auth.repository;
 
 import com.learn.auth.domain.UaaRole;
 import com.learn.auth.domain.UaaUser;
-import com.learn.auth.domain.UaaUserRole;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

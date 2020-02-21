@@ -1,12 +1,12 @@
 package com.learn.auth.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.learn.auth.builder.UaaDepartmentBuilder;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.learn.auth.converter.UaaDepartmentConverter;
 import com.learn.auth.domain.UaaDepartment;
 import com.learn.auth.dto.UaaDepartmentTreeDto;
 import com.learn.auth.repository.UaaDepartmentRepository;
 import com.learn.auth.service.UaaDepartmentService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class UaaDepartmentServiceImpl extends ServiceImpl<UaaDepartmentRepositor
     public List<UaaDepartmentTreeDto> selectDepartmentTree(String officeCode) {
         QueryWrapper<UaaDepartment> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(UaaDepartment.OFFICE_CODE, officeCode);
-        return UaaDepartmentBuilder.convertToTree(super.list(queryWrapper));
+        return UaaDepartmentConverter.INSTANCE.convertToTree(super.list(queryWrapper));
     }
 
 }

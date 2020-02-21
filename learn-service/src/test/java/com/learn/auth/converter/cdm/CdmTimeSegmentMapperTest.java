@@ -1,4 +1,4 @@
-package com.learn.auth.mapper.cdm;
+package com.learn.auth.converter.cdm;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

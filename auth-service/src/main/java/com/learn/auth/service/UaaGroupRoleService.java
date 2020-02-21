@@ -1,7 +1,7 @@
 package com.learn.auth.service;
 
-import com.learn.auth.domain.UaaGroupRole;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.learn.auth.domain.UaaGroupRole;
 
 /**
  * <p>

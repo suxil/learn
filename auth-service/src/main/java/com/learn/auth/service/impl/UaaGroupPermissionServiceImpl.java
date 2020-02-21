@@ -1,9 +1,9 @@
 package com.learn.auth.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.learn.auth.domain.UaaGroupPermission;
 import com.learn.auth.repository.UaaGroupPermissionRepository;
 import com.learn.auth.service.UaaGroupPermissionService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

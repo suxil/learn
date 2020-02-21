@@ -20,8 +20,8 @@
  * uaa_user_position 用户-岗位表
  * uaa_menu 菜单表
  * uaa_menu_role 菜单-角色表
- * uaa_menu_element 菜单菜单页面元素表
- * uaa_menu_element_role 菜单菜单菜单页面元素-角色表
+ * uaa_menu_element 菜单页面元素表
+ * uaa_menu_element_role 菜单页面元素-角色表
  * uaa_operate 操作表(系统启动自动记录所有后台接口，不需要手工操作)
  * uaa_operate_permission 操作-权限表
  */

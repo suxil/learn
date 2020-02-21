@@ -21,8 +21,8 @@ spring:
 #logging:
 #  level:
 #    com.learn: debug
-logging:
-  config: classpath:logback-logstash.xml
+#logging:
+#  config: classpath:logback-logstash.xml
 
 ---
 spring:

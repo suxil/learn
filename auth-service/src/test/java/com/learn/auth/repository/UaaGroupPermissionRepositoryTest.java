@@ -1,7 +1,6 @@
 package com.learn.auth.repository;
 
 import com.learn.auth.domain.UaaGroup;
-import com.learn.auth.domain.UaaGroupPermission;
 import com.learn.auth.domain.UaaPermission;
 import org.junit.Assert;
 import org.junit.Test;

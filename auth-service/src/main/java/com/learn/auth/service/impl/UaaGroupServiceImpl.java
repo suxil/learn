@@ -2,7 +2,7 @@ package com.learn.auth.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.learn.auth.builder.UaaGroupBuilder;
+import com.learn.auth.converter.UaaGroupConverter;
 import com.learn.auth.domain.UaaDepartment;
 import com.learn.auth.domain.UaaGroup;
 import com.learn.auth.dto.UaaGroupTreeDto;
@@ -27,7 +27,7 @@ public class UaaGroupServiceImpl extends ServiceImpl<UaaGroupRepository, UaaGrou
     public List<UaaGroupTreeDto> selectGroupTree(String officeCode) {
         QueryWrapper<UaaGroup> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq(UaaDepartment.OFFICE_CODE, officeCode);
-        return UaaGroupBuilder.convertToTree(super.list(queryWrapper));
+        return UaaGroupConverter.INSTANCE.convertToTree(super.list(queryWrapper));
     }
 
 }

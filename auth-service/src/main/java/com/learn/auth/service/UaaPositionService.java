@@ -1,7 +1,7 @@
 package com.learn.auth.service;
 
-import com.learn.auth.domain.UaaPosition;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.learn.auth.domain.UaaPosition;
 import com.learn.auth.dto.UaaPositionTreeDto;
 
 import java.util.List;
