@@ -1,82 +1,84 @@
 package com.learn.auth.web.api;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaMenuElement;
-import com.learn.auth.service.UaaMenuElementService;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * <p>
- * 菜单页面元素信息 前端控制器 测试用例
+ * 页面元素信息 前端控制器 测试用例
  * </p>
  *
  * @author generate
- * @since 2020-01-01
+ * @since 2020-02-21
  */
+@WithMockUser
+@AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@Transactional
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @ActiveProfiles({"dev"})
 public class UaaMenuElementControllerTest {
 
     @Autowired
-    private UaaMenuElementService uaaMenuElementService;
+    private MockMvc mockMvc;
 
     @Test
-    @Rollback
-    public void listTest() {
-        Page<UaaMenuElement> page = new Page<>();
-        page.setPages(0);
-        page.setSize(10);
-
-        QueryWrapper<UaaMenuElement> queryWrapper = new QueryWrapper<>();
-
-        IPage<UaaMenuElement> pageResult = uaaMenuElementService.page(page, queryWrapper);
-
-        Assert.assertNotNull(pageResult);
+    public void listTest() throws Exception {
+        mockMvc.perform(get("/api/v1/uaa-menu-elements"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void loadTest() {
+    public void loadTest() throws Exception {
         String id = "";
-        UaaMenuElement uaaMenuElement = uaaMenuElementService.getById(id);
 
-        Assert.assertNotNull(uaaMenuElement);
+        mockMvc.perform(get("/api/v1/uaa-menu-elements/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void createTest() {
+    @Transactional
+    public void createTest() throws Exception {
         UaaMenuElement uaaMenuElement = new UaaMenuElement();
-        uaaMenuElementService.saveOrUpdate(uaaMenuElement);
 
+        mockMvc.perform(post("/api/v1/uaa-menu-elements").content(uaaMenuElement.toString()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void updateTest() {
+    @Transactional
+    public void updateTest() throws Exception {
         UaaMenuElement uaaMenuElement = new UaaMenuElement();
-        uaaMenuElementService.saveOrUpdate(uaaMenuElement);
 
+        mockMvc.perform(put("/api/v1/uaa-menu-elements").content(uaaMenuElement.toString()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void deleteTest() {
+    @Transactional
+    public void deleteTest() throws Exception {
         String id = "";
-        uaaMenuElementService.removeById(id);
 
+        mockMvc.perform(delete("/api/v1/uaa-menu-elements/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
 }

@@ -1,19 +1,21 @@
 package com.learn.auth.web.api;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaGroupRole;
-import com.learn.auth.service.UaaGroupRoleService;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * <p>
@@ -21,62 +23,62 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2020-01-01
+ * @since 2020-02-21
  */
+@WithMockUser
+@AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@Transactional
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @ActiveProfiles({"dev"})
 public class UaaGroupRoleControllerTest {
 
     @Autowired
-    private UaaGroupRoleService uaaGroupRoleService;
+    private MockMvc mockMvc;
 
     @Test
-    @Rollback
-    public void listTest() {
-        Page<UaaGroupRole> page = new Page<>();
-        page.setPages(0);
-        page.setSize(10);
-
-        QueryWrapper<UaaGroupRole> queryWrapper = new QueryWrapper<>();
-
-        IPage<UaaGroupRole> pageResult = uaaGroupRoleService.page(page, queryWrapper);
-
-        Assert.assertNotNull(pageResult);
+    public void listTest() throws Exception {
+        mockMvc.perform(get("/api/v1/uaa-group-roles"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void loadTest() {
+    public void loadTest() throws Exception {
         String id = "";
-        UaaGroupRole uaaGroupRole = uaaGroupRoleService.getById(id);
 
-        Assert.assertNotNull(uaaGroupRole);
+        mockMvc.perform(get("/api/v1/uaa-group-roles/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void createTest() {
+    @Transactional
+    public void createTest() throws Exception {
         UaaGroupRole uaaGroupRole = new UaaGroupRole();
-        uaaGroupRoleService.saveOrUpdate(uaaGroupRole);
 
+        mockMvc.perform(post("/api/v1/uaa-group-roles").content(uaaGroupRole.toString()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void updateTest() {
+    @Transactional
+    public void updateTest() throws Exception {
         UaaGroupRole uaaGroupRole = new UaaGroupRole();
-        uaaGroupRoleService.saveOrUpdate(uaaGroupRole);
 
+        mockMvc.perform(put("/api/v1/uaa-group-roles").content(uaaGroupRole.toString()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void deleteTest() {
+    @Transactional
+    public void deleteTest() throws Exception {
         String id = "";
-        uaaGroupRoleService.removeById(id);
 
+        mockMvc.perform(delete("/api/v1/uaa-group-roles/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
 }

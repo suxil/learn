@@ -1,19 +1,21 @@
 package com.learn.auth.web.api;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaUserLoginLog;
-import com.learn.auth.service.UaaUserLoginLogService;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * <p>
@@ -21,62 +23,62 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2020-01-01
+ * @since 2020-02-21
  */
+@WithMockUser
+@AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@Transactional
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @ActiveProfiles({"dev"})
 public class UaaUserLoginLogControllerTest {
 
     @Autowired
-    private UaaUserLoginLogService uaaUserLoginLogService;
+    private MockMvc mockMvc;
 
     @Test
-    @Rollback
-    public void listTest() {
-        Page<UaaUserLoginLog> page = new Page<>();
-        page.setPages(0);
-        page.setSize(10);
-
-        QueryWrapper<UaaUserLoginLog> queryWrapper = new QueryWrapper<>();
-
-        IPage<UaaUserLoginLog> pageResult = uaaUserLoginLogService.page(page, queryWrapper);
-
-        Assert.assertNotNull(pageResult);
+    public void listTest() throws Exception {
+        mockMvc.perform(get("/api/v1/uaa-user-login-logs"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void loadTest() {
+    public void loadTest() throws Exception {
         String id = "";
-        UaaUserLoginLog uaaUserLoginLog = uaaUserLoginLogService.getById(id);
 
-        Assert.assertNotNull(uaaUserLoginLog);
+        mockMvc.perform(get("/api/v1/uaa-user-login-logs/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void createTest() {
+    @Transactional
+    public void createTest() throws Exception {
         UaaUserLoginLog uaaUserLoginLog = new UaaUserLoginLog();
-        uaaUserLoginLogService.saveOrUpdate(uaaUserLoginLog);
 
+        mockMvc.perform(post("/api/v1/uaa-user-login-logs").content(uaaUserLoginLog.toString()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void updateTest() {
+    @Transactional
+    public void updateTest() throws Exception {
         UaaUserLoginLog uaaUserLoginLog = new UaaUserLoginLog();
-        uaaUserLoginLogService.saveOrUpdate(uaaUserLoginLog);
 
+        mockMvc.perform(put("/api/v1/uaa-user-login-logs").content(uaaUserLoginLog.toString()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void deleteTest() {
+    @Transactional
+    public void deleteTest() throws Exception {
         String id = "";
-        uaaUserLoginLogService.removeById(id);
 
+        mockMvc.perform(delete("/api/v1/uaa-user-login-logs/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
 }

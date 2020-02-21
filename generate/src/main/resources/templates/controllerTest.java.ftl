@@ -1,22 +1,24 @@
 package ${package.Controller};
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.${table.entityName};
-import com.learn.auth.service.${table.entityName}Service;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
 </#if>
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * <p>
@@ -26,9 +28,10 @@ import ${superControllerClassPackage};
  * @author ${author}
  * @since ${date}
  */
+@WithMockUser
+@AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@Transactional
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @ActiveProfiles({"dev"})
 <#if kotlin>
     class ${table.controllerName}<#if superControllerClass??> : ${superControllerClass}()</#if>
@@ -40,53 +43,52 @@ public class ${table.controllerName}Test {
 </#if>
 
     @Autowired
-    private ${table.entityName}Service ${table.entityName?uncap_first}Service;
+    private MockMvc mockMvc;
 
     @Test
-    @Rollback
-    public void listTest() {
-        Page<${table.entityName}> page = new Page<>();
-        page.setPages(0);
-        page.setSize(10);
-
-        QueryWrapper<${table.entityName}> queryWrapper = new QueryWrapper<>();
-
-        IPage<${table.entityName}> pageResult = ${table.entityName?uncap_first}Service.page(page, queryWrapper);
-
-        Assert.assertNotNull(pageResult);
+    public void listTest() throws Exception {
+        mockMvc.perform(get("/api/v1/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}s<#else>${table.entityPath}s</#if>"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void loadTest() {
+    public void loadTest() throws Exception {
         String id = "";
-        ${table.entityName} ${table.entityName?uncap_first} = ${table.entityName?uncap_first}Service.getById(id);
 
-        Assert.assertNotNull(${table.entityName?uncap_first});
+        mockMvc.perform(get("/api/v1/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}s<#else>${table.entityPath}s</#if>/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void createTest() {
+    @Transactional
+    public void createTest() throws Exception {
         ${table.entityName} ${table.entityName?uncap_first} = new ${table.entityName}();
-        ${table.entityName?uncap_first}Service.saveOrUpdate(${table.entityName?uncap_first});
 
+        mockMvc.perform(post("/api/v1/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}s<#else>${table.entityPath}s</#if>").content(${table.entityName?uncap_first}.toString()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void updateTest() {
+    @Transactional
+    public void updateTest() throws Exception {
         ${table.entityName} ${table.entityName?uncap_first} = new ${table.entityName}();
-        ${table.entityName?uncap_first}Service.saveOrUpdate(${table.entityName?uncap_first});
 
+        mockMvc.perform(put("/api/v1/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}s<#else>${table.entityPath}s</#if>").content(${table.entityName?uncap_first}.toString()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void deleteTest() {
+    @Transactional
+    public void deleteTest() throws Exception {
         String id = "";
-        ${table.entityName?uncap_first}Service.removeById(id);
 
+        mockMvc.perform(delete("/api/v1/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}s<#else>${table.entityPath}s</#if>/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
 }

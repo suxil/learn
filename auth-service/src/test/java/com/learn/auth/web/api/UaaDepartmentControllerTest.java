@@ -1,19 +1,21 @@
 package com.learn.auth.web.api;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaDepartment;
-import com.learn.auth.service.UaaDepartmentService;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * <p>
@@ -21,62 +23,62 @@ import org.springframework.transaction.annotation.Transactional;
  * </p>
  *
  * @author generate
- * @since 2020-01-01
+ * @since 2020-02-21
  */
+@WithMockUser
+@AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@Transactional
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @ActiveProfiles({"dev"})
 public class UaaDepartmentControllerTest {
 
     @Autowired
-    private UaaDepartmentService uaaDepartmentService;
+    private MockMvc mockMvc;
 
     @Test
-    @Rollback
-    public void listTest() {
-        Page<UaaDepartment> page = new Page<>();
-        page.setPages(0);
-        page.setSize(10);
-
-        QueryWrapper<UaaDepartment> queryWrapper = new QueryWrapper<>();
-
-        IPage<UaaDepartment> pageResult = uaaDepartmentService.page(page, queryWrapper);
-
-        Assert.assertNotNull(pageResult);
+    public void listTest() throws Exception {
+        mockMvc.perform(get("/api/v1/uaa-departments"))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void loadTest() {
+    public void loadTest() throws Exception {
         String id = "";
-        UaaDepartment uaaDepartment = uaaDepartmentService.getById(id);
 
-        Assert.assertNotNull(uaaDepartment);
+        mockMvc.perform(get("/api/v1/uaa-departments/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void createTest() {
+    @Transactional
+    public void createTest() throws Exception {
         UaaDepartment uaaDepartment = new UaaDepartment();
-        uaaDepartmentService.saveOrUpdate(uaaDepartment);
 
+        mockMvc.perform(post("/api/v1/uaa-departments").content(uaaDepartment.toString()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void updateTest() {
+    @Transactional
+    public void updateTest() throws Exception {
         UaaDepartment uaaDepartment = new UaaDepartment();
-        uaaDepartmentService.saveOrUpdate(uaaDepartment);
 
+        mockMvc.perform(put("/api/v1/uaa-departments").content(uaaDepartment.toString()).contentType(MediaType.APPLICATION_JSON))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
     @Test
-    @Rollback
-    public void deleteTest() {
+    @Transactional
+    public void deleteTest() throws Exception {
         String id = "";
-        uaaDepartmentService.removeById(id);
 
+        mockMvc.perform(delete("/api/v1/uaa-departments/" + id))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE));
     }
 
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.po.LikeTable;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
@@ -44,7 +45,7 @@ public class CodeGenerate {
     private static final String MODAL_NAME = "uaa";
     private static final boolean IS_SUB_MODAL = false;
     private static final String TABLE_PREFIX_STR = MODAL_NAME + "_";
-    private static final String[] TABLE_PREFIX = {String.format("%s[a-zA-Z0-9_]*", TABLE_PREFIX_STR)};
+    private static final String TABLE_PREFIX = TABLE_PREFIX_STR + "%";
 
     public static void main(String[] args) {
         cleanDir();
@@ -233,7 +234,8 @@ public class CodeGenerate {
         // 写于父类中的公共字段
         strategyConfig.setSuperEntityColumns(EXCLUDE_SUPER_ENTITY_FIELD);
         strategyConfig.setControllerMappingHyphenStyle(true);
-        strategyConfig.setInclude(TABLE_PREFIX);
+        LikeTable likeTable = new LikeTable(TABLE_PREFIX);
+        strategyConfig.setLikeTable(likeTable);
 
         return strategyConfig;
     }
