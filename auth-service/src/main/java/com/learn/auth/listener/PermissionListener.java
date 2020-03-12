@@ -27,7 +27,7 @@ import java.util.*;
 //@Component
 public class PermissionListener implements ApplicationListener<ApplicationStartedEvent> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PermissionListener.class);
+    private static final Logger log = LoggerFactory.getLogger(PermissionListener.class);
 
     @Value("${spring.application.name}")
     private String serviceName;
@@ -40,7 +40,7 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void onApplicationEvent(ApplicationStartedEvent applicationStartedEvent) {
-        LOGGER.debug("========================== START INIT PERMISSION ==========================");
+        log.debug("========================== START INIT PERMISSION ==========================");
 
         ApplicationContext applicationContext = applicationStartedEvent.getApplicationContext();
 
@@ -95,7 +95,7 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
             uaaPermissionService.saveOrUpdateBatch(childPermissionList);
         }
 
-        LOGGER.debug("========================== PERMISSION INIT SUCCESS ==========================");
+        log.debug("========================== PERMISSION INIT SUCCESS ==========================");
     }
 
     private UaaPermission getPermission() {

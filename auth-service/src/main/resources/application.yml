@@ -1,7 +1,19 @@
 server:
-  port: 18091
+  port: 18001
+  servlet:
+    context-path: /
   ssl:
     enabled: false
+
+eureka:
+  instance:
+    home-page-url-path: ${server.servlet.context-path}
+    metadata-map:
+      management:
+        context-path: ${server.servlet.context-path}/actuator
+      user:
+        name: user
+        password: password
 
 #logging:
 #  config: classpath:logback-logstash.xml
@@ -10,8 +22,44 @@ logging:
   level:
     root: INFO
     org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: TRACE
 
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          cas-oauth:
+            provider: cas-oauth
+            client-id: clientid
+            client-secret: clientSecret
+            authorization-grant-type: client_credentials
+        provider:
+          cas-oauth:
+            authorization-uri: http://cas.example.org:8080/cas/oauth2.0/authorize
+            token-uri: http://cas.example.org:8080/cas/oauth2.0/token
+            user-info-uri: http://cas.example.org:8080/cas/oauth2.0/profile
+#            user-name-attribute: sub
+#            jwk-set-uri: http://cas.example.org:8080/cas/oauth2.0/keys
+#      resourceserver:
+#        jwt:
+#          #issuer-uri: http://cas.example.org:8080/cas/oauth2.0/profile
+#          jwk-set-uri: http://cas.example.org:8080/cas/oauth2.0/profile
+  #      client:
+#        registration:
+#          cas-oauth:
+#            client-id: clientid
+#            client-secret: clientSecret
+#            #authorization-grant-type: authorization_code
+#            #redirect-uri: "{baseUrl}/authorized/okta"
+#            #redirect-uri: http://cas.example.org:8080/cas/oauth2.0/profile
+#            #scope: read, write
+#        provider:
+#          cas-oauth:
+#            authorization-uri: http://cas.example.org:8080/cas/oauth2.0/authorize
+#            token-uri: http://cas.example.org:8080/cas/oauth2.0/accessToken
+#            user-info-uri: http://cas.example.org:8080/cas/oauth2.0/profile
+
   messages:
     basename: messages,i18n
   datasource:

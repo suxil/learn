@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: BOOT-ADMIN-CONFIG
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ['configprops', 'health', 'info', 'metrics', 'logfile', 'loggers', 'threaddump']
+        exclude: env,beans
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+---
+spring:
+  profiles: dev
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://admin:admin123@localhost:8761/eureka/
+    enabled: false

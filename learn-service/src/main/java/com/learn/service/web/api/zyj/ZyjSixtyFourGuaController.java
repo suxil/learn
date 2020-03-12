@@ -17,4 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/zyj-sixty-four-gua")
 public class ZyjSixtyFourGuaController {
 
+    @RequestMapping
+    public void test() {
+        throw new RuntimeException("test");
+    }
+
 }

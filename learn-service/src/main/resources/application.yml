@@ -1,7 +1,19 @@
 server:
   port: 18091
+  servlet:
+    context-path: /
   ssl:
     enabled: false
+
+eureka:
+  instance:
+    home-page-url-path: ${server.servlet.context-path}
+    metadata-map:
+      management:
+        context-path: ${server.servlet.context-path}/actuator
+      user:
+        name: user
+        password: password
 
 #logging:
 #  config: classpath:logback-logstash.xml
@@ -12,6 +24,13 @@ logging:
     org.springframework.web.servlet.DispatcherServlet: DEBUG
 
 spring:
+  boot:
+    admin:
+      client:
+        url: http://localhost:18444/admin
+        username: user
+        password: password
+
   messages:
     basename: messages,i18n
   datasource:

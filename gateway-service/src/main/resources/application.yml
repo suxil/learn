@@ -12,8 +12,8 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: learn-service
-        uri: lb://learn-service
+      - id: LEARN-SERVICE
+        uri: lb://LEARN-SERVICE
         predicates:
         - Path=/learn/**
         filters:

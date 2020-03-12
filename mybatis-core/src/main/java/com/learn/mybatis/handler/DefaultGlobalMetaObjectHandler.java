@@ -11,11 +11,11 @@ import java.util.UUID;
 
 public class DefaultGlobalMetaObjectHandler implements MetaObjectHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultGlobalMetaObjectHandler.class);
+    private static final Logger log = LoggerFactory.getLogger(DefaultGlobalMetaObjectHandler.class);
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        LOGGER.debug("insert fill.");
+        log.debug("insert fill.");
         String id = UUID.randomUUID().toString().replace("-", "");
         this.setFieldValByName(BaseDomain.ID, id, metaObject);
         this.setFieldValByName(BaseDomain.TENANT_ID, "1", metaObject);
@@ -30,7 +30,7 @@ public class DefaultGlobalMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        LOGGER.debug("update fill.");
+        log.debug("update fill.");
         this.setFieldValByName(BaseDomain.UPDATED_BY, "admin", metaObject);
         this.setFieldValByName(BaseDomain.UPDATED_AT, LocalDateTime.now(), metaObject);
     }

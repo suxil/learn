@@ -2,24 +2,21 @@ spring:
   profiles:
     active: dev
   application:
-    name: learn-service
+    name: LEARN-SERVICE
 
 management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream
+        include: ['configprops', 'health', 'info', 'metrics', 'logfile', 'loggers', 'threaddump']
+        exclude: env,beans
+  endpoint:
+    health:
+      show-details: ALWAYS
 
 ---
 spring:
   profiles: dev
-#  cloud:
-#    config:
-#      discovery:
-#        enabled: true
-#        service-id: config-service
-#      name: ${spring.application.name}
-#      profile: ${spring.profiles.active}
 
 eureka:
   instance:
@@ -27,4 +24,4 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://admin:admin123@localhost:8761/eureka/
-    enabled: false
+#    enabled: false

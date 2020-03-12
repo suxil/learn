@@ -228,10 +228,11 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: ['configprops', 'health', 'info', 'metrics', 'logfile', 'loggers', 'threaddump']
+        exclude: env,beans
   endpoint:
     health:
-      show-details: always
+      show-details: ALWAYS
   # Disabling auto time http requests since it is added in Undertow HttpHandler in Zipkin autoconfigure
   # Prometheus module. In Zipkin we use different naming for the http requests duration
   metrics:

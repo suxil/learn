@@ -2,7 +2,7 @@ package com.learn.auth.converter;
 
 import com.learn.auth.domain.UaaMenu;
 import com.learn.auth.dto.UaaMenuTreeDto;
-import com.learn.core.utils.TreeUtils;
+import com.learn.core.util.TreeUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

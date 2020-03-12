@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaUser;
+import com.learn.auth.exception.BadRequestAlertException;
 import com.learn.auth.service.UaaUserService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
@@ -34,6 +35,9 @@ public class UaaUserController {
     public ResponseResult list(UaaUser uaaUser, Page<UaaUser> page) {
         QueryWrapper<UaaUser> queryWrapper = new QueryWrapper<>();
 
+        if (uaaUser != null) {
+            throw new BadRequestAlertException("defaultMessage", "entityName", "errorKey");
+        }
         IPage<UaaUser> pageResult = uaaUserService.page(page, queryWrapper);
         return ResponseResult.success(pageResult);
     }

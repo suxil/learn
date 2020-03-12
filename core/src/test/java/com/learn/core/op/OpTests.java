@@ -1,6 +1,6 @@
 package com.learn.core.op;
 
-import com.learn.core.utils.StringUtils;
+import com.learn.core.util.StringUtils;
 import lombok.Data;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
