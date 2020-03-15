@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   application:
-    name: GATEWAY-SERVICE
+    name: gateway-service
 
 ---
 spring:

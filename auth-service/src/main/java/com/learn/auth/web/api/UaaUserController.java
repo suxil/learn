@@ -34,10 +34,7 @@ public class UaaUserController {
     @Validated
     public ResponseResult list(UaaUser uaaUser, Page<UaaUser> page) {
         QueryWrapper<UaaUser> queryWrapper = new QueryWrapper<>();
-
-        if (uaaUser != null) {
-            throw new BadRequestAlertException("defaultMessage", "entityName", "errorKey");
-        }
+        
         IPage<UaaUser> pageResult = uaaUserService.page(page, queryWrapper);
         return ResponseResult.success(pageResult);
     }

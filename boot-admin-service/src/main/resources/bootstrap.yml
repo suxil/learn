@@ -1,6 +1,6 @@
 spring:
   application:
-    name: BOOT-ADMIN-CONFIG
+    name: boot-admin-service
   profiles:
     active: dev
 

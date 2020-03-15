@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   application:
-    name: HYSTRIX-SERVICE
+    name: hystrix-service
 
 ---
 spring:
