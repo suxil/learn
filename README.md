@@ -4,7 +4,7 @@ learn spring cloud
 
 主要功能：
 
-* liquibase 数据库脚本版本 (0%)
+* liquibase 数据库脚本版本 (60%)
 * nacos 注册中心 (0%)
 * spring security jwt (0%)
 * swagger 文档 (0%)
