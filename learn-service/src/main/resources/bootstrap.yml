@@ -16,8 +16,6 @@ management:
       show-details: ALWAYS
   health:
 
-#management.health.circuitbreakers.enabled: true
-#management.health.ratelimiters.enabled: true
 ---
 spring:
   profiles: dev
@@ -28,4 +26,4 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://admin:admin123@localhost:8761/eureka/
-#    enabled: false
+    enabled: false

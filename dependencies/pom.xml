@@ -14,7 +14,6 @@
 		<spring.cloud.alibaba.version>2.1.0.RELEASE</spring.cloud.alibaba.version>
 		<spring.cloud.version>Hoxton.RELEASE</spring.cloud.version>
 		<spring.boot.version>2.2.4.RELEASE</spring.boot.version>
-		<spring.boot.admin.version>2.2.2</spring.boot.admin.version>
 		<spring.security.version>5.3.0.RELEASE</spring.security.version>
 		<spring.oauth.version>2.4.0.RELEASE</spring.oauth.version>
 		<spring.oauth.jwt.version>1.1.0.RELEASE</spring.oauth.jwt.version>
@@ -105,35 +104,6 @@
 				<version>${spring.boot.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>de.codecentric</groupId>
-				<artifactId>spring-boot-admin-starter-server</artifactId>
-				<version>${spring.boot.admin.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>de.codecentric</groupId>
-				<artifactId>spring-boot-admin-starter-client</artifactId>
-				<version>${spring.boot.admin.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>io.github.resilience4j</groupId>
-				<artifactId>resilience4j-spring-boot2</artifactId>
-				<version>${resilience4j.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>io.github.resilience4j</groupId>
-				<artifactId>resilience4j-all</artifactId>
-				<version>${resilience4j.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>io.github.resilience4j</groupId>
-				<artifactId>resilience4j-reactor</artifactId>
-				<version>${resilience4j.version}</version>
 			</dependency>
 
 			<dependency>

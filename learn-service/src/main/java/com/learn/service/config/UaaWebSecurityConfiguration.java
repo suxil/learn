@@ -1,4 +1,4 @@
-package com.learn.auth.config;
+package com.learn.service.config;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
