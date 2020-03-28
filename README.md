@@ -6,8 +6,7 @@ learn spring cloud
 
 * liquibase 数据库脚本版本 (0%)
 * nacos 注册中心 (0%)
-* spring boot admin 服务管理 (0%)
-* cas oauth 单点认证 (0%)
+* spring security jwt (0%)
 * swagger 文档 (0%)
 * 数据库相关 
   * 批量插入和更新记录工具 (0%)

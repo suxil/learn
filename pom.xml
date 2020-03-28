@@ -26,13 +26,10 @@
 
 		<module>generate</module>
 
-		<module>boot-admin-service</module>
-
         <module>gateway-service</module>
 
 		<module>auth-api</module>
 		<module>auth-service</module>
-		<module>authentication-service</module>
 
 		<module>flowable-service</module>
 		<module>batch-service</module>
