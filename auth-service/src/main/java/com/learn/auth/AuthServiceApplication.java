@@ -36,9 +36,7 @@ public class AuthServiceApplication {
     }
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(AuthServiceApplication.class).run(args)
-//                .addApplicationListener(new PermissionListener())
-        ;
+        new SpringApplicationBuilder(AuthServiceApplication.class).run(args);
     }
 
 }

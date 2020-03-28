@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaUser;
-import com.learn.auth.exception.BadRequestAlertException;
 import com.learn.auth.service.UaaUserService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
