@@ -1,5 +1,7 @@
 package com.learn.service;
 
+import com.learn.service.constance.LearnServiceConstants;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -10,6 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -35,6 +38,21 @@ public class LearnServiceApplication {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(LearnServiceApplication.class).run(args);
+    }
+
+//    @Bean
+//    public CircuitBreakerConfigCustomizer testCustomizer() {
+//        return CircuitBreakerConfigCustomizer.of("backendA", builder -> builder.slidingWindowSize(100));
+//    }
+
+    @CircuitBreaker(name = LearnServiceConstants.BACKEND)
+//    @RateLimiter(name = BACKEND)
+//    @Bulkhead(name = BACKEND)
+//    @Retry(name = BACKEND)
+//    @TimeLimiter(name = BACKEND)
+    @GetMapping("/sayHello")
+    public String sayHello() {
+        return "hello";
     }
 
 }

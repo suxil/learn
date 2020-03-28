@@ -8,12 +8,16 @@ management:
   endpoints:
     web:
       exposure:
-        include: ['configprops', 'health', 'info', 'metrics', 'logfile', 'loggers', 'threaddump']
-        exclude: env,beans
+#        include: ['configprops', 'trace', 'health', 'beans', 'scheduledtasks', 'env', 'metrics', 'caches', 'httptrace', 'dump', 'threaddump', 'info', 'logfile', 'refresh', 'flyway', 'liquibase', 'heapdump', 'auditevents', 'mappings', 'loggers', 'jolokia']
+        include: '*'
+        exclude: env,beans,heapdump
   endpoint:
     health:
       show-details: ALWAYS
+  health:
 
+#management.health.circuitbreakers.enabled: true
+#management.health.ratelimiters.enabled: true
 ---
 spring:
   profiles: dev

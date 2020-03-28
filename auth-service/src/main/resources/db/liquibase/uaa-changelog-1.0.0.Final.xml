@@ -1,0 +1,1461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+
+    <changeSet author="lu_it_work@163.com" id="uaa-changelog-1.0.0.Final">
+
+        <preConditions onSqlOutput="TEST" onFail="MARK_RAN">
+            <not>
+                <changeSetExecuted id="1.0.0.Final" author="lu_it_work@163.com" changeLogFile="db/liquibase/uaa-changelog-1.0.0.Final.xml"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="UAA_USER_LOGIN_LOG" remarks="用户登录日志">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_CODE" type="VARCHAR(60)" remarks="用户代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_NAME" type="VARCHAR(60)" remarks="姓名">
+                <constraints nullable="false"/>
+            </column>
+            <column name="JP" type="VARCHAR(60)" remarks="简拼">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOGIN_NAME" type="VARCHAR(60)" remarks="登录名">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COUNTRY" type="VARCHAR(60)" remarks="国家">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CITY" type="VARCHAR(60)" remarks="城市">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATOR" type="VARCHAR(30)" remarks="运营商">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOGIN_IP" type="INT(10)" remarks="登录ip">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COMPUTER_NAME" type="VARCHAR(30)" remarks="计算机名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LANGUAGE" type="VARCHAR(10)" remarks="语言">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PLATFORM" type="VARCHAR(10)" remarks="平台">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_AGENT" type="VARCHAR(100)" remarks="浏览器">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COOKIES" type="VARCHAR(200)" remarks="登录cookie">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_USER" remarks="用户表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_CODE" type="VARCHAR(60)" remarks="用户代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_NAME" type="VARCHAR(60)" remarks="姓名">
+                <constraints nullable="false"/>
+            </column>
+            <column name="JP" type="VARCHAR(60)" remarks="简拼">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOGIN_NAME" type="VARCHAR(60)" remarks="登录名">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(200)" remarks="密码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MOBILE" type="VARCHAR(30)" remarks="手机号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(30)" remarks="邮箱">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_ADMIN" type="TINYINT(1)" remarks="是否超级管理员 1：是 0：否">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_LOGIN_DATE" type="TIMESTAMP" remarks="上次登录日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOGIN_COUNT" type="INT" remarks="登录次数">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(200)" remarks="描述">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_ROLE" remarks="角色表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARENT_ID" type="VARCHAR(32)" remarks="父角色id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQ" type="INT" remarks="序号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LEVEL" type="INT" remarks="角色层级">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FULL_PATH" type="VARCHAR(300)" remarks="角色全路径">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_CODE" type="VARCHAR(60)" remarks="角色代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_NAME" type="VARCHAR(60)" remarks="角色名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(200)" remarks="描述">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_USER_ROLE" remarks="用户-角色表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_PERMISSION" remarks="权限表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARENT_ID" type="VARCHAR(32)" remarks="父权限id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQ" type="INT" remarks="序号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PERMISSION_CODE" type="VARCHAR(200)" remarks="权限代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PERMISSION_NAME" type="VARCHAR(60)" remarks="权限名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PERMISSION_TYPE" type="VARCHAR(30)" remarks="权限类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(200)" remarks="描述">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_USER_PERMISSION" remarks="用户-权限表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PERMISSION_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_ROLE_PERMISSION" remarks="角色-权限表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PERMISSION_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_GROUP" remarks="组表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARENT_ID" type="VARCHAR(32)" remarks="父组id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQ" type="INT" remarks="序号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LEVEL" type="INT" remarks="组层级">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FULL_PATH" type="VARCHAR(300)" remarks="组全路径">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GROUP_CODE" type="VARCHAR(30)" remarks="组代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GROUP_NAME" type="VARCHAR(60)" remarks="组名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(200)" remarks="描述">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_GROUP_USER" remarks="组-用户表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GROUP_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_GROUP_ROLE" remarks="组-角色表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GROUP_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_GROUP_PERMISSION" remarks="组-权限表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="GROUP_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PERMISSION_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_OFFICE" remarks="组织表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARENT_ID" type="VARCHAR(32)" remarks="父组织id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQ" type="INT" remarks="序号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LEVEL" type="INT" remarks="组织层级">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FULL_PATH" type="VARCHAR(300)" remarks="组织全路径">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_NAME" type="VARCHAR(60)" remarks="组织名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(200)" remarks="描述">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_DEPARTMENT" remarks="部门表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARENT_ID" type="VARCHAR(32)" remarks="父部门id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQ" type="INT" remarks="序号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LEVEL" type="INT" remarks="部门层级">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FULL_PATH" type="VARCHAR(300)" remarks="部门全路径">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPARTMENT_CODE" type="VARCHAR(30)" remarks="部门代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPARTMENT_NAME" type="VARCHAR(60)" remarks="部门名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(200)" remarks="描述">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_DEPARTMENT_POSITION" remarks="部门-岗位表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DEPARTMENT_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="POSITION_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_POSITION" remarks="岗位表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARENT_ID" type="VARCHAR(32)" remarks="父岗位id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQ" type="INT" remarks="序号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LEVEL" type="INT" remarks="岗位层级">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FULL_PATH" type="VARCHAR(300)" remarks="岗位全路径">
+                <constraints nullable="false"/>
+            </column>
+            <column name="POSITION_CODE" type="VARCHAR(30)" remarks="岗位代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="POSITION_NAME" type="VARCHAR(60)" remarks="岗位名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(200)" remarks="描述">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_USER_POSITION" remarks="用户-岗位表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USER_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="POSITION_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MAIN_POSITION" type="TINYINT" remarks="是否主岗 1：是 0：否">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_MENU" remarks="菜单表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PARENT_ID" type="VARCHAR(32)" remarks="父菜单id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQ" type="INT" remarks="序号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LEVEL" type="INT" remarks="菜单层级">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FULL_PATH" type="VARCHAR(300)" remarks="菜单全路径">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ICON" type="VARCHAR(30)" remarks="菜单图标">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MENU_CODE" type="VARCHAR(30)" remarks="菜单代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MENU_NAME" type="VARCHAR(60)" remarks="菜单名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(200)" remarks="描述">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_MENU_ROLE" remarks="菜单-角色表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MENU_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_MENU_ELEMENT" remarks="菜单页面元素表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MENU_ID" type="VARCHAR(32)" remarks="菜单id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQ" type="INT" remarks="序号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MENU_ELEMENT_CODE" type="VARCHAR(30)" remarks="菜单元素代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MENU_ELEMENT_NAME" type="VARCHAR(60)" remarks="菜单元素名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(200)" remarks="描述">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_MENU_ELEMENT_ROLE" remarks="菜单页面元素-角色表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MENU_ELEMENT_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_OPERATE" remarks="操作表(系统启动自动记录所有后台接口，不需要手工操作)">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SEQ" type="INT" remarks="序号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SERVICE_NAME" type="VARCHAR(60)" remarks="服务名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATE_TYPE" type="VARCHAR(30)" remarks="操作类型">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATE_URL" type="VARCHAR(60)" remarks="操作url">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATE_CODE" type="VARCHAR(200)" remarks="操作代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATE_NAME" type="VARCHAR(60)" remarks="操作名称">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATE_PARAM" type="VARCHAR(500)" remarks="参数">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(200)" remarks="描述">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="UAA_OPERATE_PERMISSION" remarks="操作-权限表">
+            <column name="ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OPERATE_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PERMISSION_ID" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TENANT_ID" type="VARCHAR(32)" remarks="租户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OFFICE_CODE" type="VARCHAR(100)" remarks="组织代码">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(100)" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(100)" remarks="更新人">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_AT" type="TIMESTAMP" remarks="更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IS_DELETED" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+                <constraints nullable="false"/>
+            </column>
+            <column name="VERSION" type="INT" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_USER_LOGIN_LOG" tableName="UAA_USER_LOGIN_LOG"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_USER" tableName="UAA_USER"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_ROLE" tableName="UAA_ROLE"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_USER_ROLE" tableName="UAA_USER_ROLE"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_PERMISSION" tableName="UAA_PERMISSION"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_USER_PERMISSION" tableName="UAA_USER_PERMISSION"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_ROLE_PERMISSION" tableName="UAA_ROLE_PERMISSION"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_GROUP" tableName="UAA_GROUP"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_GROUP_USER" tableName="UAA_GROUP_USER"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_GROUP_ROLE" tableName="UAA_GROUP_ROLE"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_GROUP_PERMISSION" tableName="UAA_GROUP_PERMISSION"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_OFFICE" tableName="UAA_OFFICE"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_DEPARTMENT" tableName="UAA_DEPARTMENT"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_DEPARTMENT_POSITION" tableName="UAA_DEPARTMENT_POSITION"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_POSITION" tableName="UAA_POSITION"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_USER_POSITION" tableName="UAA_USER_POSITION"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_MENU" tableName="UAA_MENU"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_MENU_ROLE" tableName="UAA_MENU_ROLE"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_MENU_ELEMENT" tableName="UAA_MENU_ELEMENT"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_MENU_ELEMENT_ROLE" tableName="UAA_MENU_ELEMENT_ROLE"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_OPERATE" tableName="UAA_OPERATE"/>
+        <addPrimaryKey columnNames="ID" constraintName="PK_UAA_OPERATE_PERMISSION" tableName="UAA_OPERATE_PERMISSION"/>
+
+        <createIndex indexName="IDX_UAA_USER_LOGIN_LOG_TENANT_ID" tableName="UAA_USER_LOGIN_LOG">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_TENANT_ID" tableName="UAA_USER">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_ROLE_TENANT_ID" tableName="UAA_ROLE">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_ROLE_TENANT_ID" tableName="UAA_USER_ROLE">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_PERMISSION_TENANT_ID" tableName="UAA_PERMISSION">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_PERMISSION_TENANT_ID" tableName="UAA_USER_PERMISSION">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_ROLE_PERMISSION_TENANT_ID" tableName="UAA_ROLE_PERMISSION">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_TENANT_ID" tableName="UAA_GROUP">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_USER_TENANT_ID" tableName="UAA_GROUP_USER">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_ROLE_TENANT_ID" tableName="UAA_GROUP_ROLE">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_PERMISSION_TENANT_ID" tableName="UAA_GROUP_PERMISSION">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OFFICE_TENANT_ID" tableName="UAA_OFFICE">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_DEPARTMENT_TENANT_ID" tableName="UAA_DEPARTMENT">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_DEPARTMENT_POSITION_TENANT_ID" tableName="UAA_DEPARTMENT_POSITION">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_POSITION_TENANT_ID" tableName="UAA_POSITION">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_POSITION_TENANT_ID" tableName="UAA_USER_POSITION">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_TENANT_ID" tableName="UAA_MENU">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ROLE_TENANT_ID" tableName="UAA_MENU_ROLE">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ELEMENT_TENANT_ID" tableName="UAA_MENU_ELEMENT">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ELEMENT_ROLE_TENANT_ID" tableName="UAA_MENU_ELEMENT_ROLE">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OPERATE_TENANT_ID" tableName="UAA_OPERATE">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OPERATE_PERMISSION_TENANT_ID" tableName="UAA_OPERATE_PERMISSION">
+            <column name="TENANT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_USER_LOGIN_LOG_OFFICE_CODE" tableName="UAA_USER_LOGIN_LOG">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_OFFICE_CODE" tableName="UAA_USER">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_ROLE_OFFICE_CODE" tableName="UAA_ROLE">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_ROLE_OFFICE_CODE" tableName="UAA_USER_ROLE">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_PERMISSION_OFFICE_CODE" tableName="UAA_PERMISSION">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_PERMISSION_OFFICE_CODE" tableName="UAA_USER_PERMISSION">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_ROLE_PERMISSION_OFFICE_CODE" tableName="UAA_ROLE_PERMISSION">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_OFFICE_CODE" tableName="UAA_GROUP">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_USER_OFFICE_CODE" tableName="UAA_GROUP_USER">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_ROLE_OFFICE_CODE" tableName="UAA_GROUP_ROLE">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_PERMISSION_OFFICE_CODE" tableName="UAA_GROUP_PERMISSION">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OFFICE_OFFICE_CODE" tableName="UAA_OFFICE">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_DEPARTMENT_OFFICE_CODE" tableName="UAA_DEPARTMENT">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_DEPARTMENT_POSITION_OFFICE_CODE" tableName="UAA_DEPARTMENT_POSITION">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_POSITION_OFFICE_CODE" tableName="UAA_POSITION">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_POSITION_OFFICE_CODE" tableName="UAA_USER_POSITION">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_OFFICE_CODE" tableName="UAA_MENU">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ROLE_OFFICE_CODE" tableName="UAA_MENU_ROLE">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ELEMENT_OFFICE_CODE" tableName="UAA_MENU_ELEMENT">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ELEMENT_ROLE_OFFICE_CODE" tableName="UAA_MENU_ELEMENT_ROLE">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OPERATE_OFFICE_CODE" tableName="UAA_OPERATE">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OPERATE_PERMISSION_OFFICE_CODE" tableName="UAA_OPERATE_PERMISSION">
+            <column name="OFFICE_CODE" type="VARCHAR(100)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_USER_LOGIN_LOG_IS_DELETED" tableName="UAA_USER_LOGIN_LOG">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_IS_DELETED" tableName="UAA_USER">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_ROLE_IS_DELETED" tableName="UAA_ROLE">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_ROLE_IS_DELETED" tableName="UAA_USER_ROLE">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_PERMISSION_IS_DELETED" tableName="UAA_PERMISSION">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_PERMISSION_IS_DELETED" tableName="UAA_USER_PERMISSION">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_ROLE_PERMISSION_IS_DELETED" tableName="UAA_ROLE_PERMISSION">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_IS_DELETED" tableName="UAA_GROUP">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_USER_IS_DELETED" tableName="UAA_GROUP_USER">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_ROLE_IS_DELETED" tableName="UAA_GROUP_ROLE">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_PERMISSION_IS_DELETED" tableName="UAA_GROUP_PERMISSION">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OFFICE_IS_DELETED" tableName="UAA_OFFICE">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_DEPARTMENT_IS_DELETED" tableName="UAA_DEPARTMENT">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_DEPARTMENT_POSITION_IS_DELETED" tableName="UAA_DEPARTMENT_POSITION">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_POSITION_IS_DELETED" tableName="UAA_POSITION">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_POSITION_IS_DELETED" tableName="UAA_USER_POSITION">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_IS_DELETED" tableName="UAA_MENU">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ROLE_IS_DELETED" tableName="UAA_MENU_ROLE">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ELEMENT_IS_DELETED" tableName="UAA_MENU_ELEMENT">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ELEMENT_ROLE_IS_DELETED" tableName="UAA_MENU_ELEMENT_ROLE">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OPERATE_IS_DELETED" tableName="UAA_OPERATE">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OPERATE_PERMISSION_IS_DELETED" tableName="UAA_OPERATE_PERMISSION">
+            <column name="IS_DELETED" type="TINYINT"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_USER_LOGIN_LOG_VERSION" tableName="UAA_USER_LOGIN_LOG">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_VERSION" tableName="UAA_USER">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_ROLE_VERSION" tableName="UAA_ROLE">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_ROLE_VERSION" tableName="UAA_USER_ROLE">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_PERMISSION_VERSION" tableName="UAA_PERMISSION">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_PERMISSION_VERSION" tableName="UAA_USER_PERMISSION">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_ROLE_PERMISSION_VERSION" tableName="UAA_ROLE_PERMISSION">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_VERSION" tableName="UAA_GROUP">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_USER_VERSION" tableName="UAA_GROUP_USER">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_ROLE_VERSION" tableName="UAA_GROUP_ROLE">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_PERMISSION_VERSION" tableName="UAA_GROUP_PERMISSION">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OFFICE_VERSION" tableName="UAA_OFFICE">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_DEPARTMENT_VERSION" tableName="UAA_DEPARTMENT">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_DEPARTMENT_POSITION_VERSION" tableName="UAA_DEPARTMENT_POSITION">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_POSITION_VERSION" tableName="UAA_POSITION">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_POSITION_VERSION" tableName="UAA_USER_POSITION">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_VERSION" tableName="UAA_MENU">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ROLE_VERSION" tableName="UAA_MENU_ROLE">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ELEMENT_VERSION" tableName="UAA_MENU_ELEMENT">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ELEMENT_ROLE_VERSION" tableName="UAA_MENU_ELEMENT_ROLE">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OPERATE_VERSION" tableName="UAA_OPERATE">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OPERATE_PERMISSION_VERSION" tableName="UAA_OPERATE_PERMISSION">
+            <column name="VERSION" type="INT"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_USER_LOGIN_LOG_USER_CODE" tableName="UAA_USER_LOGIN_LOG">
+            <column name="USER_CODE" type="VARCHAR(60)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_USER_USER_CODE" tableName="UAA_USER">
+            <column name="USER_CODE" type="VARCHAR(60)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_LOGIN_NAME" tableName="UAA_USER">
+            <column name="LOGIN_NAME" type="VARCHAR(60)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_MOBILE" tableName="UAA_USER">
+            <column name="MOBILE" type="VARCHAR(30)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_EMAIL" tableName="UAA_USER">
+            <column name="EMAIL" type="VARCHAR(30)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_ROLE_PARENT_ID" tableName="UAA_ROLE">
+            <column name="PARENT_ID" type="VARCHAR(300)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_ROLE_FULL_PATH" tableName="UAA_ROLE">
+            <column name="FULL_PATH" type="VARCHAR(300)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_USER_ROLE_USER_ID" tableName="UAA_USER_ROLE">
+            <column name="USER_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_ROLE_ROLE_ID" tableName="UAA_USER_ROLE">
+            <column name="ROLE_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_PERMISSION_PARENT_ID" tableName="UAA_PERMISSION">
+            <column name="PARENT_ID" type="VARCHAR(300)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_USER_PERMISSION_USER_ID" tableName="UAA_USER_PERMISSION">
+            <column name="USER_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_PERMISSION_PERMISSION_ID" tableName="UAA_USER_PERMISSION">
+            <column name="PERMISSION_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_ROLE_PERMISSION_ROLE_ID" tableName="UAA_ROLE_PERMISSION">
+            <column name="ROLE_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_ROLE_PERMISSION_PERMISSION_ID" tableName="UAA_ROLE_PERMISSION">
+            <column name="PERMISSION_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_GROUP_PARENT_ID" tableName="UAA_GROUP">
+            <column name="PARENT_ID" type="VARCHAR(300)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_FULL_PATH" tableName="UAA_GROUP">
+            <column name="FULL_PATH" type="VARCHAR(300)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_GROUP_USER_GROUP_ID" tableName="UAA_GROUP_USER">
+            <column name="GROUP_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_USER_USER_ID" tableName="UAA_GROUP_USER">
+            <column name="USER_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_GROUP_ROLE_GROUP_ID" tableName="UAA_GROUP_ROLE">
+            <column name="GROUP_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_ROLE_ROLE_ID" tableName="UAA_GROUP_ROLE">
+            <column name="ROLE_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_GROUP_PERMISSION_GROUP_ID" tableName="UAA_GROUP_PERMISSION">
+            <column name="GROUP_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_GROUP_PERMISSION_PERMISSION_ID" tableName="UAA_GROUP_PERMISSION">
+            <column name="PERMISSION_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_OFFICE_PARENT_ID" tableName="UAA_OFFICE">
+            <column name="PARENT_ID" type="VARCHAR(300)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OFFICE_FULL_PATH" tableName="UAA_OFFICE">
+            <column name="FULL_PATH" type="VARCHAR(300)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_DEPARTMENT_PARENT_ID" tableName="UAA_DEPARTMENT">
+            <column name="PARENT_ID" type="VARCHAR(300)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_DEPARTMENT_FULL_PATH" tableName="UAA_DEPARTMENT">
+            <column name="FULL_PATH" type="VARCHAR(300)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_DEPARTMENT_POSITION_DEPARTMENT_ID" tableName="UAA_DEPARTMENT_POSITION">
+            <column name="DEPARTMENT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_DEPARTMENT_POSITION_POSITION_ID" tableName="UAA_DEPARTMENT_POSITION">
+            <column name="POSITION_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_POSITION_PARENT_ID" tableName="UAA_POSITION">
+            <column name="PARENT_ID" type="VARCHAR(300)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_POSITION_FULL_PATH" tableName="UAA_POSITION">
+            <column name="FULL_PATH" type="VARCHAR(300)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_USER_POSITION_USER_ID" tableName="UAA_USER_POSITION">
+            <column name="USER_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_USER_POSITION_POSITION_ID" tableName="UAA_USER_POSITION">
+            <column name="POSITION_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_MENU_PARENT_ID" tableName="UAA_MENU">
+            <column name="PARENT_ID" type="VARCHAR(300)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_FULL_PATH" tableName="UAA_MENU">
+            <column name="FULL_PATH" type="VARCHAR(300)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_MENU_ROLE_MENU_ID" tableName="UAA_MENU_ROLE">
+            <column name="MENU_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ROLE_ROLE_ID" tableName="UAA_MENU_ROLE">
+            <column name="ROLE_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_MENU_ELEMENT_MENU_ID" tableName="UAA_MENU_ELEMENT">
+            <column name="MENU_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_MENU_ELEMENT_ROLE_MENU_ELEMENT_ID" tableName="UAA_MENU_ELEMENT_ROLE">
+            <column name="MENU_ELEMENT_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_MENU_ELEMENT_ROLE_ROLE_ID" tableName="UAA_MENU_ELEMENT_ROLE">
+            <column name="ROLE_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_OPERATE_OPERATE_CODE" tableName="UAA_OPERATE">
+            <column name="OPERATE_CODE" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <createIndex indexName="IDX_UAA_OPERATE_PERMISSION_OPERATE_ID" tableName="UAA_OPERATE_PERMISSION">
+            <column name="OPERATE_ID" type="VARCHAR(32)"/>
+        </createIndex>
+        <createIndex indexName="IDX_UAA_OPERATE_PERMISSION_PERMISSION_ID" tableName="UAA_OPERATE_PERMISSION">
+            <column name="PERMISSION_ID" type="VARCHAR(32)"/>
+        </createIndex>
+
+        <addUniqueConstraint columnNames="USER_CODE" constraintName="UK_USER_CODE" tableName="UAA_USER_LOGIN_LOG"/>
+        <addUniqueConstraint columnNames="LOGIN_NAME" constraintName="UK_LOGIN_NAME" tableName="UAA_USER_LOGIN_LOG"/>
+    </changeSet>
+
+</databaseChangeLog>

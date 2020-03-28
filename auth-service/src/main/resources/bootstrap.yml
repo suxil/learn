@@ -8,8 +8,9 @@ management:
   endpoints:
     web:
       exposure:
-        include: ['configprops', 'health', 'info', 'metrics', 'logfile', 'loggers', 'threaddump']
-        exclude: env,beans
+        include: '*'
+        exclude: env,beans,heapdump
+  endpoint:
     health:
       show-details: ALWAYS
 
@@ -23,4 +24,4 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://admin:admin123@localhost:8761/eureka/
-    enabled: false
+#    enabled: false

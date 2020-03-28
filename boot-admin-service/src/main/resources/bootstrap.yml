@@ -8,8 +8,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: ['configprops', 'health', 'info', 'metrics', 'logfile', 'loggers', 'threaddump']
-        exclude: env,beans
+        include: '*'
+        exclude: env,beans,heapdump
   endpoint:
     health:
       show-details: ALWAYS

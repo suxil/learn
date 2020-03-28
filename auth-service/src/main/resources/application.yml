@@ -97,7 +97,7 @@ spring:
   zipkin:
     sender:
       type: web
-    base-url: http://127.0.0.1:9411/
+    base-url: http://139.196.124.8:19411/
 
   sleuth:
     sampler:
