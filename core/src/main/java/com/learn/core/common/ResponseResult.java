@@ -3,6 +3,7 @@ package com.learn.core.common;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.apache.http.HttpStatus;
 
 /**
  * 响应结果
@@ -12,7 +13,7 @@ import lombok.Data;
 public class ResponseResult {
 
     private ResponseResult() {
-        this.status = 200;
+        this.status = HttpStatus.SC_OK;
         this.success = false;
         this.data = "";
         this.message = "";
@@ -64,7 +65,7 @@ public class ResponseResult {
      */
     public static ResponseResult fail(String msg) {
         ResponseResult responseResult = new ResponseResult();
-        responseResult.setStatus(500);
+        responseResult.setStatus(HttpStatus.SC_INTERNAL_SERVER_ERROR);
         responseResult.setSuccess(false);
         responseResult.setMessage(msg);
         return responseResult;
@@ -86,6 +87,30 @@ public class ResponseResult {
         ResponseResult responseResult = new ResponseResult();
         responseResult.setSuccess(true);
         responseResult.setData(data);
+        return responseResult;
+    }
+
+    /**
+     * Description: 没有访问权限
+     * @return
+     */
+    public static ResponseResult authError(String msg) {
+        ResponseResult responseResult = new ResponseResult();
+        responseResult.setStatus(HttpStatus.SC_UNAUTHORIZED);
+        responseResult.setSuccess(false);
+        responseResult.setMessage(msg);
+        return responseResult;
+    }
+
+    /**
+     * Description: 没有操作权限
+     * @return
+     */
+    public static ResponseResult accessAuthError(String msg) {
+        ResponseResult responseResult = new ResponseResult();
+        responseResult.setStatus(HttpStatus.SC_UNAUTHORIZED);
+        responseResult.setSuccess(false);
+        responseResult.setMessage(msg);
         return responseResult;
     }
 

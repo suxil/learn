@@ -1,5 +1,7 @@
 package com.learn.auth.config;
 
+import com.learn.auth.security.UaaAccessDeniedHandler;
+import com.learn.auth.security.UaaAuthenticationEntryPoint;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -21,6 +23,11 @@ public class UaaWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .exceptionHandling()
+                .accessDeniedHandler(new UaaAccessDeniedHandler())
+                .authenticationEntryPoint(new UaaAuthenticationEntryPoint())
+
+                .and()
                 .httpBasic()
                 .and()
                 .csrf()

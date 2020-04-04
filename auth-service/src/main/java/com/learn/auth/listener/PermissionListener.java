@@ -24,7 +24,6 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import java.lang.reflect.Method;
 import java.util.*;
 
-//@Component
 public class PermissionListener implements ApplicationListener<ApplicationStartedEvent> {
 
     private static final Logger log = LoggerFactory.getLogger(PermissionListener.class);
