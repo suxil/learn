@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 @Data
 public class BaseDomain implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String ID = "id";
     public static final String TENANT_ID = "tenant_id";
     public static final String OFFICE_CODE = "office_code";
@@ -19,7 +21,7 @@ public class BaseDomain implements Serializable {
     public static final String CREATED_AT = "created_at";
     public static final String UPDATED_BY = "updated_by";
     public static final String UPDATED_AT = "updated_at";
-    public static final String IS_DELETED = "is_deleted";
+    public static final String DELETED = "deleted";
     public static final String VERSION = "version";
 
     @TableId(type = IdType.INPUT)
@@ -46,7 +48,7 @@ public class BaseDomain implements Serializable {
 
     @TableLogic
     @TableField(fill = FieldFill.INSERT)
-    private Integer isDeleted;
+    private Integer deleted;
 
     @Version
     @TableField(fill = FieldFill.INSERT_UPDATE)

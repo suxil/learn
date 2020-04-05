@@ -1,5 +1,9 @@
 package com.learn.core.util;
 
+import com.learn.core.exception.GlobalCommonException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -18,6 +22,8 @@ import java.util.Set;
  */
 public final class ValidatorUtils {
 
+    private static final Logger log = LoggerFactory.getLogger(ValidatorUtils.class);
+
     private ValidatorUtils() {
     }
 
@@ -27,15 +33,26 @@ public final class ValidatorUtils {
         return VALIDATOR_FACTORY.getValidator();
     }
 
-    public static <T> Set<ConstraintViolation<T>> validate(T object, Class<?>... groups) {
+    public static <T> void validate(T object, Class<?>... groups) {
+        Set<ConstraintViolation<T>> violationSet = validation(object, groups);
+        if (!violationSet.isEmpty()) {
+            violationSet.iterator().forEachRemaining(violation -> {
+                log.debug("validate object {} current field {} validate error, total size {}.", object.getClass(), violation.getPropertyPath(), violationSet.size());
+                String msg = MessageUtils.getMessage("error.validate.field.null", violation.getPropertyPath());
+                throw new GlobalCommonException(violation.getMessageTemplate() + ", " + msg);
+            });
+        }
+    }
+
+    public static <T> Set<ConstraintViolation<T>> validation(T object, Class<?>... groups) {
         return getValidator().validate(object, groups);
     }
 
-    public static <T> Set<ConstraintViolation<T>> validateProperty(T object, String propertyName, Class<?>... groups) {
+    public static <T> Set<ConstraintViolation<T>> validationProperty(T object, String propertyName, Class<?>... groups) {
         return getValidator().validateProperty(object, propertyName, groups);
     }
 
-    public static <T> Set<ConstraintViolation<T>> validateValue(Class<T> beanType, String propertyName, Object value, Class<?>... groups) {
+    public static <T> Set<ConstraintViolation<T>> validationValue(Class<T> beanType, String propertyName, Object value, Class<?>... groups) {
         return getValidator().validateValue(beanType, propertyName, value, groups);
     }
 

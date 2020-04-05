@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_login_log (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '用户登录日志';
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS uaa_user (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '用户信息';
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS uaa_role (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '角色信息';
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_role (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '角色信息';
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS uaa_permission (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '权限信息';
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_permission (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '用户-权限信息';
@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS uaa_role_permission (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '角色-权限信息';
@@ -207,7 +207,7 @@ CREATE TABLE IF NOT EXISTS uaa_group (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组信息';
@@ -226,7 +226,7 @@ CREATE TABLE IF NOT EXISTS uaa_group_user (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组-用户信息';
@@ -245,7 +245,7 @@ CREATE TABLE IF NOT EXISTS uaa_group_role (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组-角色信息';
@@ -264,7 +264,7 @@ CREATE TABLE IF NOT EXISTS uaa_group_permission (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组-权限信息';
@@ -287,7 +287,7 @@ CREATE TABLE IF NOT EXISTS uaa_office (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组织信息';
@@ -311,7 +311,7 @@ CREATE TABLE IF NOT EXISTS uaa_department (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '部门信息';
@@ -330,7 +330,7 @@ CREATE TABLE IF NOT EXISTS uaa_department_position (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '部门-岗位信息';
@@ -354,7 +354,7 @@ CREATE TABLE IF NOT EXISTS uaa_position (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '岗位信息';
@@ -374,7 +374,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_position (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '用户-岗位信息';
@@ -399,7 +399,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '菜单信息';
@@ -418,7 +418,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu_role (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '菜单-角色信息';
@@ -440,7 +440,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu_element (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '菜单页面元素信息';
@@ -459,7 +459,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu_element_role (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '菜单菜单页面元素-角色息';
@@ -484,7 +484,7 @@ CREATE TABLE IF NOT EXISTS uaa_operate (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '操作信息';
@@ -503,7 +503,7 @@ CREATE TABLE IF NOT EXISTS uaa_operate_permission (
     created_at          timestamp not null default current_timestamp comment '创建日期',
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
-    is_deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
+    deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
     version              int not null comment '版本号',
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '操作-权限息';

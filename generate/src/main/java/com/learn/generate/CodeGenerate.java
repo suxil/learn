@@ -143,7 +143,7 @@ public class CodeGenerate {
         packageConfig.setServiceImpl("service" + modalPkg + ".impl");
         packageConfig.setMapper(MAPPER_NAME + modalPkg);
         packageConfig.setXml(modalPkg + "mapper.xml");
-        packageConfig.setController("web.api" + modalPkg);
+        packageConfig.setController("web.api.v1" + modalPkg);
 
         return packageConfig;
     }

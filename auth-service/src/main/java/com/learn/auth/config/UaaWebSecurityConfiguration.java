@@ -2,11 +2,13 @@ package com.learn.auth.config;
 
 import com.learn.auth.security.UaaAccessDeniedHandler;
 import com.learn.auth.security.UaaAuthenticationEntryPoint;
+import com.learn.auth.security.filter.JwtAuthenticationFilter;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 public class UaaWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -26,15 +28,15 @@ public class UaaWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .accessDeniedHandler(new UaaAccessDeniedHandler())
                 .authenticationEntryPoint(new UaaAuthenticationEntryPoint())
-
                 .and()
+                .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .httpBasic()
                 .and()
-                .csrf()
-                .and()
+                .csrf().disable()
                 .cors()
                 .and()
                 .authorizeRequests()
+                .antMatchers("/api/v0/auth/login").permitAll()
                 .antMatchers("/druid/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
                 .anyRequest().authenticated();

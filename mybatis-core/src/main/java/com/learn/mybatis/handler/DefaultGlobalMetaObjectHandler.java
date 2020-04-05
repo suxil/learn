@@ -22,7 +22,7 @@ public class DefaultGlobalMetaObjectHandler implements MetaObjectHandler {
         this.setFieldValByName(BaseDomain.OFFICE_CODE, "1", metaObject);
         this.setFieldValByName(BaseDomain.CREATED_BY, "admin", metaObject);
         this.setFieldValByName(BaseDomain.CREATED_AT, LocalDateTime.now(), metaObject);
-        this.setFieldValByName(BaseDomain.IS_DELETED, 0, metaObject);
+        this.setFieldValByName(BaseDomain.DELETED, 0, metaObject);
         this.setFieldValByName(BaseDomain.UPDATED_BY, "admin", metaObject);
         this.setFieldValByName(BaseDomain.UPDATED_AT, LocalDateTime.now(), metaObject);
         this.setFieldValByName(BaseDomain.VERSION, 0L, metaObject);

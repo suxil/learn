@@ -71,7 +71,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -135,7 +135,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -187,7 +187,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -224,7 +224,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -273,7 +273,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -310,7 +310,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -347,7 +347,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -399,7 +399,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -436,7 +436,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -473,7 +473,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -510,7 +510,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -559,7 +559,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -611,7 +611,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -648,7 +648,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -700,7 +700,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -740,7 +740,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -795,7 +795,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -832,7 +832,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -878,7 +878,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -915,7 +915,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -970,7 +970,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -1007,7 +1007,7 @@
             <column name="updated_at" type="TIMESTAMP" remarks="更新日期">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
+            <column name="deleted" type="TINYINT" remarks="是否删除 1：有效 0：无效">
                 <constraints nullable="false"/>
             </column>
             <column name="version" type="INT" remarks="版本号">
@@ -1172,71 +1172,71 @@
             <column name="office_code" type="VARCHAR(100)"/>
         </createIndex>
 
-        <createIndex indexName="idx_uaa_user_login_log_is_deleted" tableName="uaa_user_login_log">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_user_login_log_deleted" tableName="uaa_user_login_log">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_user_is_deleted" tableName="uaa_user">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_user_deleted" tableName="uaa_user">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_role_is_deleted" tableName="uaa_role">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_role_deleted" tableName="uaa_role">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_user_role_is_deleted" tableName="uaa_user_role">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_user_role_deleted" tableName="uaa_user_role">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_permission_is_deleted" tableName="uaa_permission">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_permission_deleted" tableName="uaa_permission">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_user_permission_is_deleted" tableName="uaa_user_permission">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_user_permission_deleted" tableName="uaa_user_permission">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_role_permission_is_deleted" tableName="uaa_role_permission">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_role_permission_deleted" tableName="uaa_role_permission">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_group_is_deleted" tableName="uaa_group">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_group_deleted" tableName="uaa_group">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_group_user_is_deleted" tableName="uaa_group_user">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_group_user_deleted" tableName="uaa_group_user">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_group_role_is_deleted" tableName="uaa_group_role">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_group_role_deleted" tableName="uaa_group_role">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_group_permission_is_deleted" tableName="uaa_group_permission">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_group_permission_deleted" tableName="uaa_group_permission">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_office_is_deleted" tableName="uaa_office">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_office_deleted" tableName="uaa_office">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_department_is_deleted" tableName="uaa_department">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_department_deleted" tableName="uaa_department">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_department_position_is_deleted" tableName="uaa_department_position">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_department_position_deleted" tableName="uaa_department_position">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_position_is_deleted" tableName="uaa_position">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_position_deleted" tableName="uaa_position">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_user_position_is_deleted" tableName="uaa_user_position">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_user_position_deleted" tableName="uaa_user_position">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_menu_is_deleted" tableName="uaa_menu">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_menu_deleted" tableName="uaa_menu">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_menu_role_is_deleted" tableName="uaa_menu_role">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_menu_role_deleted" tableName="uaa_menu_role">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_menu_element_is_deleted" tableName="uaa_menu_element">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_menu_element_deleted" tableName="uaa_menu_element">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_menu_element_role_is_deleted" tableName="uaa_menu_element_role">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_menu_element_role_deleted" tableName="uaa_menu_element_role">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_operate_is_deleted" tableName="uaa_operate">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_operate_deleted" tableName="uaa_operate">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
-        <createIndex indexName="idx_uaa_operate_permission_is_deleted" tableName="uaa_operate_permission">
-            <column name="is_deleted" type="TINYINT"/>
+        <createIndex indexName="idx_uaa_operate_permission_deleted" tableName="uaa_operate_permission">
+            <column name="deleted" type="TINYINT"/>
         </createIndex>
 
         <createIndex indexName="idx_uaa_user_login_log_user_code" tableName="uaa_user_login_log">
@@ -1405,8 +1405,10 @@
             <column name="permission_id" type="VARCHAR(32)"/>
         </createIndex>
 
-        <addUniqueConstraint columnNames="user_code" constraintName="uk_user_code" tableName="uaa_user_login_log"/>
-        <addUniqueConstraint columnNames="login_name" constraintName="uk_login_name" tableName="uaa_user_login_log"/>
+        <addUniqueConstraint columnNames="user_code" constraintName="uk_uaa_user_user_code" tableName="uaa_user"/>
+        <addUniqueConstraint columnNames="login_name" constraintName="uk_uaa_user_login_name" tableName="uaa_user"/>
+        <addUniqueConstraint columnNames="mobile" constraintName="uk_uaa_user_mobile" tableName="uaa_user"/>
+        <addUniqueConstraint columnNames="email" constraintName="uk_uaa_user_email" tableName="uaa_user"/>
     </changeSet>
 
 </databaseChangeLog>

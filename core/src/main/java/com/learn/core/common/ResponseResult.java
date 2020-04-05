@@ -72,6 +72,17 @@ public class ResponseResult {
     }
 
     /**
+     * Description: 操作失败
+     * @return
+     */
+    public static ResponseResult message(String msg) {
+        ResponseResult responseResult = new ResponseResult();
+        responseResult.setSuccess(false);
+        responseResult.setMessage(msg);
+        return responseResult;
+    }
+
+    /**
      * Description: 成功
      * @return
      */
