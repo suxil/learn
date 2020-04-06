@@ -33,6 +33,7 @@
 		<p6spy.version>3.8.7</p6spy.version>
 
 		<swagger.version>2.9.2</swagger.version>
+		<swagger-models.version>1.5.21</swagger-models.version>
 
 		<minio.version>6.0.13</minio.version>
 		<flowable.version>6.5.0</flowable.version>
@@ -209,6 +210,11 @@
 				<groupId>io.springfox</groupId>
 				<artifactId>springfox-swagger2</artifactId>
 				<version>${swagger.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-models</artifactId>
+				<version>${swagger-models.version}</version>
 			</dependency>
 
             <dependency>

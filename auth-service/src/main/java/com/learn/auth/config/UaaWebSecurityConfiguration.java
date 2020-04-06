@@ -17,8 +17,13 @@ public class UaaWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
                 .antMatchers(HttpMethod.OPTIONS, "/**")
+
+                .antMatchers("/webjars/**")
+                .antMatchers("/swagger-ui.html")
+                .antMatchers("/v2/api-docs")
+                .antMatchers("/swagger-resources/**")
+
                 .antMatchers("/druid/**")
-                .antMatchers("/oauth/**")
                 .antMatchers("/h2-console/**");
     }
 
@@ -37,7 +42,6 @@ public class UaaWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/v0/auth/login").permitAll()
-                .antMatchers("/druid/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
                 .anyRequest().authenticated();
     }
