@@ -36,7 +36,9 @@ public abstract class BaseNodeVisitor<R, P> implements NodeVisitor<R, P> {
             } else if (itemNode instanceof WhereNode) {
                 result.add(visit((WhereNode) itemNode, param));
             }
-            if (consumer != null) consumer.accept(param);
+            if (consumer != null) {
+                consumer.accept(param);
+            }
         }
 
         return result;

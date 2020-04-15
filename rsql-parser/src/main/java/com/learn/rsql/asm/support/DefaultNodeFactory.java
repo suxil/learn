@@ -32,6 +32,7 @@ public class DefaultNodeFactory implements NodeFactory {
         }
     }
 
+    @Override
     public Node createConditionNode(ConditionSymbol conditionSymbol, List<Node> nodeList) {
         switch (conditionSymbol) {
             case OR: return new OrNode(nodeList);
@@ -40,6 +41,7 @@ public class DefaultNodeFactory implements NodeFactory {
         }
     }
 
+    @Override
     public WhereNode createWhereNode(String fieldName, String operate, List<String> value) {
         WhereOperator whereOperator = whereOperatorMap.get(operate);
         if (whereOperator == null) {

@@ -42,8 +42,12 @@ public abstract class ConditionNode implements Node {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ConditionNode)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof ConditionNode)) {
+            return false;
+        }
         ConditionNode that = (ConditionNode) o;
         return Objects.equals(conditionSymbol, that.conditionSymbol) &&
                 Objects.equals(children, that.children);

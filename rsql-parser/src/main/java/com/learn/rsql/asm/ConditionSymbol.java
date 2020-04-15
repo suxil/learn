@@ -21,6 +21,7 @@ public enum  ConditionSymbol {
         this.condition = condition;
     }
 
+    @Override
     public String toString() {
         return condition;
     }

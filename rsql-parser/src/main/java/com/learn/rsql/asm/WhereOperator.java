@@ -66,8 +66,12 @@ public class WhereOperator {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof WhereOperator)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof WhereOperator)) {
+            return false;
+        }
         WhereOperator that = (WhereOperator) o;
         return getSymbolStr().equals(that.getSymbolStr());
     }
