@@ -5,11 +5,11 @@
         <or>
             <and>
                 <dbms type="oracle" />
-                <runningAs username="learn" />
+                <runningAs username="root" />
             </and>
             <and>
                 <dbms type="mysql" />
-                <runningAs username="learn" />
+                <runningAs username="root" />
             </and>
         </or>
     </preConditions>

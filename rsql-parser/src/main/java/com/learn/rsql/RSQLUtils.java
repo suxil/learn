@@ -1,8 +1,6 @@
 package com.learn.rsql;
 
-
 import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.learn.rsql.asm.*;
 import com.learn.rsql.asm.support.DefaultJdbcNodeVisitor;
 import com.learn.rsql.asm.support.DefaultMybatisPlusNodeVisitor;

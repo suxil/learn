@@ -46,11 +46,11 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.zalando</groupId>
 			<artifactId>problem-spring-web</artifactId>
 			<scope>provided</scope>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>com.baomidou</groupId>
