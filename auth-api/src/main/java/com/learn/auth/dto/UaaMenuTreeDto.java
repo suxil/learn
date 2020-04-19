@@ -2,7 +2,6 @@ package com.learn.auth.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.List;
  * @author suxi
  * @version V1.0
  */
-@Data
 @ApiModel(value="菜单树对象")
 public class UaaMenuTreeDto implements Serializable {
 
@@ -39,4 +37,59 @@ public class UaaMenuTreeDto implements Serializable {
     @ApiModelProperty(name = "children", value = "子节点")
     private List<UaaMenuTreeDto> children;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    public Integer getSeq() {
+        return seq;
+    }
+
+    public void setSeq(Integer seq) {
+        this.seq = seq;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public String getMenuCode() {
+        return menuCode;
+    }
+
+    public void setMenuCode(String menuCode) {
+        this.menuCode = menuCode;
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
+
+    public List<UaaMenuTreeDto> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<UaaMenuTreeDto> children) {
+        this.children = children;
+    }
 }

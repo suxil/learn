@@ -2,7 +2,6 @@ package com.learn.auth.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.List;
  * @author suxi
  * @version V1.0
  */
-@Data
 @ApiModel(value="角色树对象")
 public class UaaRoleTreeDto implements Serializable {
 
@@ -39,4 +37,59 @@ public class UaaRoleTreeDto implements Serializable {
     @ApiModelProperty(name = "children", value = "子节点")
     private List<UaaRoleTreeDto> children;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    public Integer getSeq() {
+        return seq;
+    }
+
+    public void setSeq(Integer seq) {
+        this.seq = seq;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public String getRoleCode() {
+        return roleCode;
+    }
+
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public List<UaaRoleTreeDto> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<UaaRoleTreeDto> children) {
+        this.children = children;
+    }
 }

@@ -13,23 +13,23 @@ import javax.persistence.Table;
 
 /**
  * <p>
- * 菜单页面元素信息
+ * 菜单页面元素表
  * </p>
  *
  * @author generate
- * @since 2019-12-25
+ * @since 2020-04-19
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UaaMenuElement对象", description="菜单页面元素信息")
+@ApiModel(value="UaaMenuElement对象", description="菜单页面元素表")
 @Entity
-@Table(name = "uaa_menu_element", catalog = "菜单页面元素信息")
+@Table(name = "uaa_menu_element", catalog = "菜单页面元素表")
 public class UaaMenuElement extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String PARENT_ID = "parent_id";
+    public static final String MENU_ID = "menu_id";
     public static final String SEQ = "seq";
     public static final String MENU_ELEMENT_CODE = "menu_element_code";
     public static final String MENU_ELEMENT_NAME = "menu_element_name";

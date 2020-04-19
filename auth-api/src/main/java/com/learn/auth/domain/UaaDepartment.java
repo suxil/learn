@@ -13,24 +13,23 @@ import javax.persistence.Table;
 
 /**
  * <p>
- * 部门信息
+ * 部门表
  * </p>
  *
  * @author generate
- * @since 2019-12-25
+ * @since 2020-04-19
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UaaDepartment对象", description="部门信息")
+@ApiModel(value="UaaDepartment对象", description="部门表")
 @Entity
-@Table(name = "uaa_department", catalog = "部门信息")
+@Table(name = "uaa_department", catalog = "部门表")
 public class UaaDepartment extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
 
     public static final String PARENT_ID = "parent_id";
-    public static final String PARENT_OFFICE_CODE = "parent_office_code";
     public static final String SEQ = "seq";
     public static final String LEVEL = "level";
     public static final String FULL_PATH = "full_path";
@@ -41,10 +40,6 @@ public class UaaDepartment extends BaseDomain {
     @ApiModelProperty(name = "parent_id", value = "父部门id")
     @Column(name = "parent_id")
     private String parentId;
-
-    @ApiModelProperty(name = "parent_office_code", value = "父组织代码")
-    @Column(name = "parent_office_code")
-    private String parentOfficeCode;
 
     @ApiModelProperty(name = "seq", value = "序号")
     @Column(name = "seq")

@@ -160,5 +160,6 @@ public class ${entity} implements Serializable {
     </#list>
         "}";
     }
+
 </#if>
 }

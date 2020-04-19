@@ -13,18 +13,18 @@ import javax.persistence.Table;
 
 /**
  * <p>
- * 用户-岗位信息
+ * 用户-岗位表
  * </p>
  *
  * @author generate
- * @since 2019-12-25
+ * @since 2020-04-19
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UaaUserPosition对象", description="用户-岗位信息")
+@ApiModel(value="UaaUserPosition对象", description="用户-岗位表")
 @Entity
-@Table(name = "uaa_user_position", catalog = "用户-岗位信息")
+@Table(name = "uaa_user_position", catalog = "用户-岗位表")
 public class UaaUserPosition extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
@@ -43,7 +43,7 @@ public class UaaUserPosition extends BaseDomain {
 
     @ApiModelProperty(name = "main_position", value = "是否主岗 1：是 0：否")
     @Column(name = "main_position")
-    private Boolean mainPosition;
+    private Integer mainPosition;
 
 
 }

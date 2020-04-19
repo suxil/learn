@@ -13,18 +13,18 @@ import javax.persistence.Table;
 
 /**
  * <p>
- * 角色-权限信息
+ * 角色-权限表
  * </p>
  *
  * @author generate
- * @since 2019-12-25
+ * @since 2020-04-19
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UaaRolePermission对象", description="角色-权限信息")
+@ApiModel(value="UaaRolePermission对象", description="角色-权限表")
 @Entity
-@Table(name = "uaa_role_permission", catalog = "角色-权限信息")
+@Table(name = "uaa_role_permission", catalog = "角色-权限表")
 public class UaaRolePermission extends BaseDomain {
 
     private static final long serialVersionUID = 1L;

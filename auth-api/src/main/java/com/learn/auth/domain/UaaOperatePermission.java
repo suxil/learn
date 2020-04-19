@@ -13,18 +13,18 @@ import javax.persistence.Table;
 
 /**
  * <p>
- * 操作-权限息
+ * 操作-权限表
  * </p>
  *
  * @author generate
- * @since 2019-12-25
+ * @since 2020-04-19
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UaaOperatePermission对象", description="操作-权限息")
+@ApiModel(value="UaaOperatePermission对象", description="操作-权限表")
 @Entity
-@Table(name = "uaa_operate_permission", catalog = "操作-权限息")
+@Table(name = "uaa_operate_permission", catalog = "操作-权限表")
 public class UaaOperatePermission extends BaseDomain {
 
     private static final long serialVersionUID = 1L;

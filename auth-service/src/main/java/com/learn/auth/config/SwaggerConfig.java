@@ -18,7 +18,7 @@ public class SwaggerConfig {
     @Bean
     public Docket authServiceRestApi() {
         ApiInfo apiInfo = new ApiInfoBuilder()
-                .title("Spring Boot 使用 Swagger2 构建 REST API")
+                .title("Spring Boot 使用 Swagger2 构建 AUTH REST API")
                 .contact(new Contact("luxq", "url", "email"))
                 .version("1.0")
                 .description("权限 API")

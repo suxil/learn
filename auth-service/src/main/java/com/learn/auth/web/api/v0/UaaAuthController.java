@@ -2,6 +2,7 @@ package com.learn.auth.web.api.v0;
 
 import com.learn.auth.domain.UaaUser;
 import com.learn.auth.dto.UaaUserLoginDto;
+import com.learn.auth.util.UserUtils;
 import com.learn.core.common.ResponseResult;
 import com.learn.core.util.BeanUtils;
 import com.learn.core.util.JwtUtils;
@@ -12,7 +13,6 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -51,7 +51,8 @@ public class UaaAuthController {
     @PostMapping("/profile")
     @ApiOperation(value = "获取用户信息")
     public ResponseResult profile() {
-        return ResponseResult.success();
+        UaaUser uaaUser = UserUtils.getUser();
+        return ResponseResult.success(uaaUser);
     }
 
     @PostMapping("/login")
@@ -70,6 +71,7 @@ public class UaaAuthController {
         }
 
         Map<String, Object> map = BeanUtils.beanToMap(userDetails);
+        map.remove("password");
 
         String token = JwtUtils.create(map);
 

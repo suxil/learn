@@ -56,8 +56,8 @@ public class DomainUserDetails implements UserDetails {
     @ApiModelProperty(name = "email", value = "邮箱")
     private String email;
 
-    @ApiModelProperty(name = "is_admin", value = "是否超级管理员 1：是 0：否")
-    private Boolean isAdmin;
+    @ApiModelProperty(name = "admin", value = "是否超级管理员 1：是 0：否")
+    private Boolean admin;
 
     // ~ Instance fields
     // ================================================================================================

@@ -36,7 +36,7 @@ public class CodeGenerate {
             "id", "tenant_id", "office_code",
             "created_by", "created_at", "updated_by", "updated_at",
             "create_by", "create_date", "update_by", "update_date",
-            "version", "is_deleted"
+            "version", "is_deleted", "deleted"
     };
     private static final String PARENT = "com.learn.auth";
 

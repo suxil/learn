@@ -104,7 +104,7 @@
             <column name="email" type="VARCHAR(30)" remarks="邮箱">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_admin" type="TINYINT(1)" remarks="是否超级管理员 1：是 0：否">
+            <column name="admin" type="TINYINT(1)" remarks="是否超级管理员 1：是 0：否">
                 <constraints nullable="false"/>
             </column>
             <column name="last_login_date" type="TIMESTAMP" remarks="上次登录日期">

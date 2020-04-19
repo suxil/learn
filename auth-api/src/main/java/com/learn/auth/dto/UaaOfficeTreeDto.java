@@ -2,7 +2,6 @@ package com.learn.auth.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.List;
  * @author suxi
  * @version V1.0
  */
-@Data
 @ApiModel(value="组织机构树对象")
 public class UaaOfficeTreeDto implements Serializable {
 
@@ -39,4 +37,59 @@ public class UaaOfficeTreeDto implements Serializable {
     @ApiModelProperty(name = "children", value = "子节点")
     private List<UaaOfficeTreeDto> children;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    public Integer getSeq() {
+        return seq;
+    }
+
+    public void setSeq(Integer seq) {
+        this.seq = seq;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public String getOfficeCode() {
+        return officeCode;
+    }
+
+    public void setOfficeCode(String officeCode) {
+        this.officeCode = officeCode;
+    }
+
+    public String getOfficeName() {
+        return officeName;
+    }
+
+    public void setOfficeName(String officeName) {
+        this.officeName = officeName;
+    }
+
+    public List<UaaOfficeTreeDto> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<UaaOfficeTreeDto> children) {
+        this.children = children;
+    }
 }

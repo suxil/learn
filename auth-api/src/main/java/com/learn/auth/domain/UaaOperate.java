@@ -13,18 +13,18 @@ import javax.persistence.Table;
 
 /**
  * <p>
- * 操作信息
+ * 操作表(系统启动自动记录所有后台接口，不需要手工操作)
  * </p>
  *
  * @author generate
- * @since 2019-12-25
+ * @since 2020-04-19
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UaaOperate对象", description="操作信息")
+@ApiModel(value="UaaOperate对象", description="操作表(系统启动自动记录所有后台接口，不需要手工操作)")
 @Entity
-@Table(name = "uaa_operate", catalog = "操作信息")
+@Table(name = "uaa_operate", catalog = "操作表(系统启动自动记录所有后台接口，不需要手工操作)")
 public class UaaOperate extends BaseDomain {
 
     private static final long serialVersionUID = 1L;

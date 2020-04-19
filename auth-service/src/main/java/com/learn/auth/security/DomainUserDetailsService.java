@@ -69,7 +69,7 @@ public class DomainUserDetailsService implements UserDetailsService {
                 .password(uaaUser.getPassword())
                 .mobile(uaaUser.getMobile())
                 .email(uaaUser.getEmail())
-                .isAdmin(uaaUser.getIsAdmin())
+                .admin(uaaUser.getAdmin())
                 .authorities(Collections.unmodifiableSet(DomainUserDetails.sortAuthorities(authorityList)))
                 .build();
     }

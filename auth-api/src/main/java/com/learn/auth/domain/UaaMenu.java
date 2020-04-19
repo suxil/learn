@@ -13,18 +13,18 @@ import javax.persistence.Table;
 
 /**
  * <p>
- * 菜单信息
+ * 菜单表
  * </p>
  *
  * @author generate
- * @since 2019-12-25
+ * @since 2020-04-19
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UaaMenu对象", description="菜单信息")
+@ApiModel(value="UaaMenu对象", description="菜单表")
 @Entity
-@Table(name = "uaa_menu", catalog = "菜单信息")
+@Table(name = "uaa_menu", catalog = "菜单表")
 public class UaaMenu extends BaseDomain {
 
     private static final long serialVersionUID = 1L;

@@ -14,18 +14,18 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 用户信息
+ * 用户表
  * </p>
  *
  * @author generate
- * @since 2019-12-25
+ * @since 2020-04-19
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="UaaUser对象", description="用户信息")
+@ApiModel(value="UaaUser对象", description="用户表")
 @Entity
-@Table(name = "uaa_user", catalog = "用户信息")
+@Table(name = "uaa_user", catalog = "用户表")
 public class UaaUser extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
@@ -37,7 +37,7 @@ public class UaaUser extends BaseDomain {
     public static final String PASSWORD = "password";
     public static final String MOBILE = "mobile";
     public static final String EMAIL = "email";
-    public static final String IS_ADMIN = "is_admin";
+    public static final String ADMIN = "admin";
     public static final String LAST_LOGIN_DATE = "last_login_date";
     public static final String LOGIN_COUNT = "login_count";
     public static final String DESCRIPTION = "description";
@@ -70,9 +70,9 @@ public class UaaUser extends BaseDomain {
     @Column(name = "email")
     private String email;
 
-    @ApiModelProperty(name = "is_admin", value = "是否超级管理员 1：是 0：否")
-    @Column(name = "is_admin")
-    private Boolean isAdmin;
+    @ApiModelProperty(name = "admin", value = "是否超级管理员 1：是 0：否")
+    @Column(name = "admin")
+    private Boolean admin;
 
     @ApiModelProperty(name = "last_login_date", value = "上次登录日期")
     @Column(name = "last_login_date")

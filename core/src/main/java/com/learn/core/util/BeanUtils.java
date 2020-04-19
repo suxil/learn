@@ -10,14 +10,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by Administrator on 2017/9/16 0016.
  */
-public final class BeanUtils {
+public class BeanUtils {
 
-    private static final ConcurrentHashMap<String, BeanMap> BEAN_MAP = new ConcurrentHashMap<String, BeanMap>();
     public static final List<String> DEFAULT_FILTER_FIELDS = Arrays.asList("id", "createTime", "updateTime", "createName", "updateName", "isDelete", "version");
 
     private BeanUtils() {
@@ -36,12 +34,12 @@ public final class BeanUtils {
      * @param clazz
      * @return
      */
-    public static Object newInstance(Class clazz) {
+    public static <T> T newInstance(Class<T> clazz) {
         try {
             Enhancer enhancer = new Enhancer();
             enhancer.setSuperclass(clazz);
             enhancer.setCallback(new MethodInterceptorImpl());
-            return enhancer.create();
+            return (T) enhancer.create();
         } catch (Throwable e) {
             e.printStackTrace();
             throw new Error(e.getMessage());
@@ -55,15 +53,9 @@ public final class BeanUtils {
      * @return
      */
     public static BeanMap getBeanMap(Object object) {
-        if (BEAN_MAP.contains(object)) {
-            BeanMap map = BEAN_MAP.get(object.getClass().getName());
-            map.setBean(object);
-            return map;
-        } else {
-            BeanMap map = BeanMap.create(object);
-            map.put(object.getClass().getName(), object);
-            return map;
-        }
+        BeanMap map = BeanMap.create(object);
+        map.put(object.getClass().getName(), object);
+        return map;
     }
 
     /**
@@ -73,7 +65,7 @@ public final class BeanUtils {
      * @param fieldName
      * @return
      */
-    public static Object getPropertie(Object bean, String fieldName) {
+    public static Object getProperties(Object bean, String fieldName) {
         try {
             BeanMap map = getBeanMap(bean);
             return map.get(fieldName);
@@ -90,7 +82,7 @@ public final class BeanUtils {
      * @param fieldName
      * @param value
      */
-    public static void setPropertie(Object bean, String fieldName, Object value) {
+    public static void setProperties(Object bean, String fieldName, Object value) {
         try {
             BeanMap map = getBeanMap(bean);
             map.put(fieldName, value);
@@ -105,8 +97,20 @@ public final class BeanUtils {
      * @param source
      * @param clazz
      */
-    public static Object beanCopy(Object source, Class<?> clazz) {
-        Object target = newInstance(clazz);
+    public static <T> T beanCopy(Object source, Class<T> clazz) {
+        T target = newInstance(clazz);
+        beanCopy(source, target);
+        return target;
+    }
+
+    /**
+     * 拷贝对象属性到clazz实例，过滤掉基础字段
+     *
+     * @param source
+     * @param clazz
+     */
+    public static <T> T beanCopy(Map<String, Object> source, Class<T> clazz) {
+        T target = newInstance(clazz);
         beanCopy(source, target);
         return target;
     }
@@ -120,9 +124,24 @@ public final class BeanUtils {
     public static void beanCopy(Object source, Object target) {
         BeanMap map = getBeanMap(source);
         BeanMap mapTarget = getBeanMap(target);
-        for (Object o : map.keySet()) {
-            if (!DEFAULT_FILTER_FIELDS.contains(o)) {
-                mapTarget.put(o, map.get(o));
+        for (Object key : map.keySet()) {
+            if (!DEFAULT_FILTER_FIELDS.contains(key)) {
+                mapTarget.put(key, map.get(key));
+            }
+        }
+    }
+
+    /**
+     * 拷贝两个对象之间的属性，过滤掉基础字段
+     *
+     * @param source
+     * @param target
+     */
+    public static void beanCopy(Map<String, Object> source, Object target) {
+        BeanMap mapTarget = getBeanMap(target);
+        for (String key : source.keySet()) {
+            if (!DEFAULT_FILTER_FIELDS.contains(key)) {
+                mapTarget.put(key, source.get(key));
             }
         }
     }
@@ -142,19 +161,6 @@ public final class BeanUtils {
             }
         }
         return map;
-    }
-
-    /**
-     * 将map转换为bean对象
-     *
-     * @param map
-     * @param bean
-     * @return
-     */
-    public static Object mapToBean(Map<String, Object> map, Object bean) {
-        BeanMap beanMap = getBeanMap(bean);
-        beanMap.putAll(map);
-        return bean;
     }
 
 }

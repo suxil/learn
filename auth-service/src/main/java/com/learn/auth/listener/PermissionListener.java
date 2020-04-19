@@ -100,14 +100,12 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
     private UaaPermission getPermission() {
         QueryWrapper<UaaPermission> permissionQueryWrapper = new QueryWrapper<>();
         permissionQueryWrapper
-                .eq(UaaPermission.SERVICE_NAME, serviceName)
                 .eq(UaaPermission.PERMISSION_CODE, serviceName);
         UaaPermission permission = uaaPermissionService.getOne(permissionQueryWrapper);
         if (permission == null) {
             permission = new UaaPermission();
             permission.setParentId(serviceName);
             permission.setSeq(1);
-            permission.setServiceName(serviceName);
             permission.setPermissionCode(serviceName);
             permission.setPermissionName(serviceName);
             permission.setPermissionType("api");
@@ -158,13 +156,11 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
 
         QueryWrapper<UaaPermission> permissionQueryWrapper = new QueryWrapper<>();
         permissionQueryWrapper
-                .eq(UaaPermission.SERVICE_NAME, serviceName)
                 .eq(UaaPermission.PERMISSION_CODE, permissionCode);
         UaaPermission uaaPermission = uaaPermissionService.getOne(permissionQueryWrapper);
         if (uaaPermission == null) {
             uaaPermission = new UaaPermission();
             uaaPermission.setSeq(1);
-            uaaPermission.setServiceName(serviceName);
             uaaPermission.setPermissionCode(permissionCode);
             uaaPermission.setPermissionType("api");
             if (api != null) {
@@ -181,13 +177,11 @@ public class PermissionListener implements ApplicationListener<ApplicationStarte
     private UaaPermission convertToPermission(UaaOperate uaaOperate) {
         QueryWrapper<UaaPermission> permissionQueryWrapper = new QueryWrapper<>();
         permissionQueryWrapper
-                .eq(UaaPermission.SERVICE_NAME, serviceName)
                 .eq(UaaPermission.PERMISSION_CODE, uaaOperate.getOperateCode());
         UaaPermission childPermission = uaaPermissionService.getOne(permissionQueryWrapper);
         if (childPermission == null) {
             childPermission = new UaaPermission();
             childPermission.setSeq(1);
-            childPermission.setServiceName(serviceName);
             childPermission.setPermissionCode(uaaOperate.getOperateCode());
             childPermission.setPermissionName(uaaOperate.getOperateName());
             childPermission.setPermissionType("api");
