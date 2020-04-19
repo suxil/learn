@@ -7,6 +7,7 @@ import com.learn.core.util.JwtUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -41,7 +42,13 @@ public final class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String accessToken = request.getHeader(Constants.ACCESS_TOKEN);
+        String accessToken = request.getHeader(HttpHeaders.AUTHORIZATION);
+
+        if (StringUtils.isEmpty(accessToken)) {
+            accessToken = request.getHeader(Constants.ACCESS_TOKEN);
+        } else if (accessToken.startsWith(Constants.ACCESS_TOKEN_PREFIX)) {
+            accessToken = accessToken.replace(Constants.ACCESS_TOKEN_PREFIX, "");
+        }
 
         if (StringUtils.isEmpty(accessToken)) {
             filterChain.doFilter(request, response);
