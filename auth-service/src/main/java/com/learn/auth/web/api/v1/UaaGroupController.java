@@ -8,19 +8,21 @@ import com.learn.auth.service.UaaGroupService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- * 组信息 前端控制器
+ * 组表 前端控制器
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-04-20
  */
-@Api(value = "组信息 接口")
+@Slf4j
+@Api(value = "组表 接口")
 @RestController
 @RequestMapping("/api/v1/uaa-groups")
 public class UaaGroupController {
@@ -29,7 +31,7 @@ public class UaaGroupController {
     private UaaGroupService uaaGroupService;
 
     @GetMapping
-    @ApiOperation(value = "组信息 分页查询")
+    @ApiOperation(value = "组表 分页查询")
     @Validated
     public ResponseResult list(UaaGroup uaaGroup, Page<UaaGroup> page) {
         QueryWrapper<UaaGroup> queryWrapper = new QueryWrapper<>();
@@ -39,27 +41,27 @@ public class UaaGroupController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "组信息 详情")
+    @ApiOperation(value = "组表 详情")
     public ResponseResult load(@PathVariable String id) {
         return ResponseResult.success(uaaGroupService.getById(id));
     }
 
     @PostMapping
-    @ApiOperation(value = "组信息 创建")
+    @ApiOperation(value = "组表 创建")
     public ResponseResult create(@RequestBody UaaGroup uaaGroup) {
         uaaGroupService.saveOrUpdate(uaaGroup);
         return ResponseResult.success(uaaGroup);
     }
 
     @PutMapping
-    @ApiOperation(value = "组信息 更新")
+    @ApiOperation(value = "组表 更新")
     public ResponseResult update(@RequestBody UaaGroup uaaGroup) {
         uaaGroupService.saveOrUpdate(uaaGroup);
         return ResponseResult.success(uaaGroup);
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "组信息 删除")
+    @ApiOperation(value = "组表 删除")
     public ResponseResult delete(@PathVariable String id) {
         return ResponseResult.success(uaaGroupService.removeById(id));
     }

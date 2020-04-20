@@ -5,8 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.SpringSecurityCoreVersion;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,12 +27,11 @@ import java.util.*;
  * @Package com.learn.auth.security
  */
 @Data
+@Slf4j
 @Accessors(chain = true)
 @Builder
 @ApiModel(value="UaaUser对象", description="用户信息")
 public class DomainUserDetails implements UserDetails {
-
-    private static final Log log = LogFactory.getLog(DomainUserDetails.class);
 
     @ApiModelProperty(name = "user_code", value = "用户代码")
     private String userCode;

@@ -8,19 +8,21 @@ import com.learn.auth.service.UaaGroupRoleService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- * 组-角色信息 前端控制器
+ * 组-角色表 前端控制器
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-04-20
  */
-@Api(value = "组-角色信息 接口")
+@Slf4j
+@Api(value = "组-角色表 接口")
 @RestController
 @RequestMapping("/api/v1/uaa-group-roles")
 public class UaaGroupRoleController {
@@ -29,7 +31,7 @@ public class UaaGroupRoleController {
     private UaaGroupRoleService uaaGroupRoleService;
 
     @GetMapping
-    @ApiOperation(value = "组-角色信息 分页查询")
+    @ApiOperation(value = "组-角色表 分页查询")
     @Validated
     public ResponseResult list(UaaGroupRole uaaGroupRole, Page<UaaGroupRole> page) {
         QueryWrapper<UaaGroupRole> queryWrapper = new QueryWrapper<>();
@@ -39,27 +41,27 @@ public class UaaGroupRoleController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "组-角色信息 详情")
+    @ApiOperation(value = "组-角色表 详情")
     public ResponseResult load(@PathVariable String id) {
         return ResponseResult.success(uaaGroupRoleService.getById(id));
     }
 
     @PostMapping
-    @ApiOperation(value = "组-角色信息 创建")
+    @ApiOperation(value = "组-角色表 创建")
     public ResponseResult create(@RequestBody UaaGroupRole uaaGroupRole) {
         uaaGroupRoleService.saveOrUpdate(uaaGroupRole);
         return ResponseResult.success(uaaGroupRole);
     }
 
     @PutMapping
-    @ApiOperation(value = "组-角色信息 更新")
+    @ApiOperation(value = "组-角色表 更新")
     public ResponseResult update(@RequestBody UaaGroupRole uaaGroupRole) {
         uaaGroupRoleService.saveOrUpdate(uaaGroupRole);
         return ResponseResult.success(uaaGroupRole);
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "组-角色信息 删除")
+    @ApiOperation(value = "组-角色表 删除")
     public ResponseResult delete(@PathVariable String id) {
         return ResponseResult.success(uaaGroupRoleService.removeById(id));
     }

@@ -4,8 +4,7 @@ import com.learn.core.common.ResponseResult;
 import com.learn.core.constance.Constants;
 import com.learn.core.util.JsonUtils;
 import com.learn.core.util.MessageUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -27,9 +26,8 @@ import java.io.IOException;
  * @version V1.0
  * @Package com.learn.auth.security
  */
+@Slf4j
 public class UaaAuthenticationEntryPoint implements AuthenticationEntryPoint {
-
-    private final Logger log = LoggerFactory.getLogger(UaaAuthenticationEntryPoint.class);
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {

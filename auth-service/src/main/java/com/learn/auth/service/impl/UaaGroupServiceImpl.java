@@ -8,6 +8,7 @@ import com.learn.auth.domain.UaaGroup;
 import com.learn.auth.dto.UaaGroupTreeDto;
 import com.learn.auth.repository.UaaGroupRepository;
 import com.learn.auth.service.UaaGroupService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.List;
  * @since 2019-12-22
  */
 @Service
+@Slf4j
 public class UaaGroupServiceImpl extends ServiceImpl<UaaGroupRepository, UaaGroup> implements UaaGroupService {
 
     @Override

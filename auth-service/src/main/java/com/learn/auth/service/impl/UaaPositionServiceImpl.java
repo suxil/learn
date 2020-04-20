@@ -7,6 +7,7 @@ import com.learn.auth.domain.UaaPosition;
 import com.learn.auth.dto.UaaPositionTreeDto;
 import com.learn.auth.repository.UaaPositionRepository;
 import com.learn.auth.service.UaaPositionService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
  * @since 2019-12-22
  */
 @Service
+@Slf4j
 public class UaaPositionServiceImpl extends ServiceImpl<UaaPositionRepository, UaaPosition> implements UaaPositionService {
 
     @Override

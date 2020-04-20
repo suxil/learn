@@ -7,6 +7,7 @@ import com.learn.auth.domain.UaaDepartment;
 import com.learn.auth.dto.UaaDepartmentTreeDto;
 import com.learn.auth.repository.UaaDepartmentRepository;
 import com.learn.auth.service.UaaDepartmentService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
  * @since 2019-12-22
  */
 @Service
+@Slf4j
 public class UaaDepartmentServiceImpl extends ServiceImpl<UaaDepartmentRepository, UaaDepartment> implements UaaDepartmentService {
 
     @Override

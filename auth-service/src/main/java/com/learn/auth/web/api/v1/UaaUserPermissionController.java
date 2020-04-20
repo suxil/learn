@@ -8,19 +8,21 @@ import com.learn.auth.service.UaaUserPermissionService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- * 用户-权限信息 前端控制器
+ * 用户-权限表 前端控制器
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-04-20
  */
-@Api(value = "用户-权限信息 接口")
+@Slf4j
+@Api(value = "用户-权限表 接口")
 @RestController
 @RequestMapping("/api/v1/uaa-user-permissions")
 public class UaaUserPermissionController {
@@ -29,7 +31,7 @@ public class UaaUserPermissionController {
     private UaaUserPermissionService uaaUserPermissionService;
 
     @GetMapping
-    @ApiOperation(value = "用户-权限信息 分页查询")
+    @ApiOperation(value = "用户-权限表 分页查询")
     @Validated
     public ResponseResult list(UaaUserPermission uaaUserPermission, Page<UaaUserPermission> page) {
         QueryWrapper<UaaUserPermission> queryWrapper = new QueryWrapper<>();
@@ -39,27 +41,27 @@ public class UaaUserPermissionController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "用户-权限信息 详情")
+    @ApiOperation(value = "用户-权限表 详情")
     public ResponseResult load(@PathVariable String id) {
         return ResponseResult.success(uaaUserPermissionService.getById(id));
     }
 
     @PostMapping
-    @ApiOperation(value = "用户-权限信息 创建")
+    @ApiOperation(value = "用户-权限表 创建")
     public ResponseResult create(@RequestBody UaaUserPermission uaaUserPermission) {
         uaaUserPermissionService.saveOrUpdate(uaaUserPermission);
         return ResponseResult.success(uaaUserPermission);
     }
 
     @PutMapping
-    @ApiOperation(value = "用户-权限信息 更新")
+    @ApiOperation(value = "用户-权限表 更新")
     public ResponseResult update(@RequestBody UaaUserPermission uaaUserPermission) {
         uaaUserPermissionService.saveOrUpdate(uaaUserPermission);
         return ResponseResult.success(uaaUserPermission);
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "用户-权限信息 删除")
+    @ApiOperation(value = "用户-权限表 删除")
     public ResponseResult delete(@PathVariable String id) {
         return ResponseResult.success(uaaUserPermissionService.removeById(id));
     }

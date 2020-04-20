@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.learn.auth.domain.UaaOperate;
 import com.learn.auth.repository.UaaOperateRepository;
 import com.learn.auth.service.UaaOperateService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  * @since 2019-12-22
  */
 @Service
+@Slf4j
 public class UaaOperateServiceImpl extends ServiceImpl<UaaOperateRepository, UaaOperate> implements UaaOperateService {
 
 }

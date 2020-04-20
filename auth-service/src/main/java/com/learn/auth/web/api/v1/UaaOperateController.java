@@ -8,19 +8,21 @@ import com.learn.auth.service.UaaOperateService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- * 操作信息 前端控制器
+ * 操作表(系统启动自动记录所有后台接口，不需要手工操作) 前端控制器
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-04-20
  */
-@Api(value = "操作信息 接口")
+@Slf4j
+@Api(value = "操作表(系统启动自动记录所有后台接口，不需要手工操作) 接口")
 @RestController
 @RequestMapping("/api/v1/uaa-operates")
 public class UaaOperateController {
@@ -29,7 +31,7 @@ public class UaaOperateController {
     private UaaOperateService uaaOperateService;
 
     @GetMapping
-    @ApiOperation(value = "操作信息 分页查询")
+    @ApiOperation(value = "操作表(系统启动自动记录所有后台接口，不需要手工操作) 分页查询")
     @Validated
     public ResponseResult list(UaaOperate uaaOperate, Page<UaaOperate> page) {
         QueryWrapper<UaaOperate> queryWrapper = new QueryWrapper<>();
@@ -39,27 +41,27 @@ public class UaaOperateController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "操作信息 详情")
+    @ApiOperation(value = "操作表(系统启动自动记录所有后台接口，不需要手工操作) 详情")
     public ResponseResult load(@PathVariable String id) {
         return ResponseResult.success(uaaOperateService.getById(id));
     }
 
     @PostMapping
-    @ApiOperation(value = "操作信息 创建")
+    @ApiOperation(value = "操作表(系统启动自动记录所有后台接口，不需要手工操作) 创建")
     public ResponseResult create(@RequestBody UaaOperate uaaOperate) {
         uaaOperateService.saveOrUpdate(uaaOperate);
         return ResponseResult.success(uaaOperate);
     }
 
     @PutMapping
-    @ApiOperation(value = "操作信息 更新")
+    @ApiOperation(value = "操作表(系统启动自动记录所有后台接口，不需要手工操作) 更新")
     public ResponseResult update(@RequestBody UaaOperate uaaOperate) {
         uaaOperateService.saveOrUpdate(uaaOperate);
         return ResponseResult.success(uaaOperate);
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "操作信息 删除")
+    @ApiOperation(value = "操作表(系统启动自动记录所有后台接口，不需要手工操作) 删除")
     public ResponseResult delete(@PathVariable String id) {
         return ResponseResult.success(uaaOperateService.removeById(id));
     }

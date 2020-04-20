@@ -1,7 +1,6 @@
 package com.learn.core.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.Nullable;
 import javax.servlet.http.Cookie;
@@ -16,9 +15,8 @@ import java.net.URLEncoder;
  * @Description:
  * @Date: Created in 2018/5/30 0030 22:17
  */
+@Slf4j
 public final class CookieUtils {
-
-    protected static final Logger log = LoggerFactory.getLogger(CookieUtils.class);
 
     private static final String ENCODE = "UTF-8";
     private static final int DEFAULT_MAX_AGE = -1;

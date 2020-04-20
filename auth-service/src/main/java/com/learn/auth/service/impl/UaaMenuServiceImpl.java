@@ -7,6 +7,7 @@ import com.learn.auth.domain.UaaMenu;
 import com.learn.auth.dto.UaaMenuTreeDto;
 import com.learn.auth.repository.UaaMenuRepository;
 import com.learn.auth.service.UaaMenuService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
  * @since 2019-12-22
  */
 @Service
+@Slf4j
 public class UaaMenuServiceImpl extends ServiceImpl<UaaMenuRepository, UaaMenu> implements UaaMenuService {
 
     @Override

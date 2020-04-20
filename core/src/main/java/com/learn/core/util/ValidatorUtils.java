@@ -1,8 +1,7 @@
 package com.learn.core.util;
 
 import com.learn.core.exception.GlobalCommonException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -20,9 +19,8 @@ import java.util.Set;
  * @version V1.0
  * @Package com.learn.core.utils
  */
+@Slf4j
 public final class ValidatorUtils {
-
-    private static final Logger log = LoggerFactory.getLogger(ValidatorUtils.class);
 
     private ValidatorUtils() {
     }

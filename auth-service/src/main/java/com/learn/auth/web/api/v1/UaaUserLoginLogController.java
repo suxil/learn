@@ -8,6 +8,7 @@ import com.learn.auth.service.UaaUserLoginLogService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,9 @@ import org.springframework.web.bind.annotation.*;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-04-20
  */
+@Slf4j
 @Api(value = "用户登录日志 接口")
 @RestController
 @RequestMapping("/api/v1/uaa-user-login-logs")

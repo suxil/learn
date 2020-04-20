@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.learn.auth.domain.UaaMenuElement;
 import com.learn.auth.repository.UaaMenuElementRepository;
 import com.learn.auth.service.UaaMenuElementService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
  * @since 2019-12-22
  */
 @Service
+@Slf4j
 public class UaaMenuElementServiceImpl extends ServiceImpl<UaaMenuElementRepository, UaaMenuElement> implements UaaMenuElementService {
 
 }

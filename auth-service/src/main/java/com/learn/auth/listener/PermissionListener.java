@@ -7,8 +7,7 @@ import com.learn.auth.service.UaaOperateService;
 import com.learn.auth.service.UaaPermissionService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
@@ -24,9 +23,8 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import java.lang.reflect.Method;
 import java.util.*;
 
+@Slf4j
 public class PermissionListener implements ApplicationListener<ApplicationStartedEvent> {
-
-    private static final Logger log = LoggerFactory.getLogger(PermissionListener.class);
 
     @Value("${spring.application.name}")
     private String serviceName;

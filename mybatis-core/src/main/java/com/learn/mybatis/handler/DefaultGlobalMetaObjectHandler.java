@@ -2,16 +2,14 @@ package com.learn.mybatis.handler;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.learn.mybatis.domain.BaseDomain;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Slf4j
 public class DefaultGlobalMetaObjectHandler implements MetaObjectHandler {
-
-    private static final Logger log = LoggerFactory.getLogger(DefaultGlobalMetaObjectHandler.class);
 
     @Override
     public void insertFill(MetaObject metaObject) {

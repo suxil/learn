@@ -7,6 +7,7 @@ import com.learn.auth.domain.UaaPermission;
 import com.learn.auth.dto.UaaPermissionTreeDto;
 import com.learn.auth.repository.UaaPermissionRepository;
 import com.learn.auth.service.UaaPermissionService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
  * @since 2019-12-22
  */
 @Service
+@Slf4j
 public class UaaPermissionServiceImpl extends ServiceImpl<UaaPermissionRepository, UaaPermission> implements UaaPermissionService {
 
     @Override
