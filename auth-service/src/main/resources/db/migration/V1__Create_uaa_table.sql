@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_login_log (
     login_name           varchar(60) not null comment '登录名',
     country              varchar(60) not null comment '国家',
     city                 varchar(60) not null comment '城市',
-    operator             varchar(30) not null comment '运营商',
+    operator             varchar(60) not null comment '运营商',
     login_ip             int(10) not null comment '登录ip',
     computer_name        varchar(30) not null comment '计算机名称',
     language             varchar(10) not null comment '语言',
@@ -52,8 +52,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_login_log (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '用户登录日志';
 
 /*==============================================================*/
@@ -68,7 +67,7 @@ CREATE TABLE IF NOT EXISTS uaa_user (
     password             varchar(200) not null comment '密码',
     mobile               varchar(30) not null comment '手机号',
     email                varchar(30) not null comment '邮箱',
-    is_admin             tinyint(1) not null comment '是否超级管理员 1：是 0：否',
+    admin                tinyint(1) not null comment '是否超级管理员 1：是 0：否',
     last_login_date      timestamp default current_timestamp comment '上次登录日期',
     login_count          int comment '登录次数',
     description          varchar(200) not null comment '描述',
@@ -80,8 +79,7 @@ CREATE TABLE IF NOT EXISTS uaa_user (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '用户信息';
 
 /*==============================================================*/
@@ -104,8 +102,7 @@ CREATE TABLE IF NOT EXISTS uaa_role (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '角色信息';
 
 /*==============================================================*/
@@ -123,8 +120,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_role (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '角色信息';
 
 /*==============================================================*/
@@ -146,8 +142,7 @@ CREATE TABLE IF NOT EXISTS uaa_permission (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '权限信息';
 
 /*==============================================================*/
@@ -165,8 +160,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_permission (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '用户-权限信息';
 
 /*==============================================================*/
@@ -184,8 +178,7 @@ CREATE TABLE IF NOT EXISTS uaa_role_permission (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '角色-权限信息';
 
 /*==============================================================*/
@@ -208,8 +201,7 @@ CREATE TABLE IF NOT EXISTS uaa_group (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组信息';
 
 /*==============================================================*/
@@ -227,8 +219,7 @@ CREATE TABLE IF NOT EXISTS uaa_group_user (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组-用户信息';
 
 /*==============================================================*/
@@ -246,8 +237,7 @@ CREATE TABLE IF NOT EXISTS uaa_group_role (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组-角色信息';
 
 /*==============================================================*/
@@ -265,8 +255,7 @@ CREATE TABLE IF NOT EXISTS uaa_group_permission (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组-权限信息';
 
 /*==============================================================*/
@@ -288,8 +277,7 @@ CREATE TABLE IF NOT EXISTS uaa_office (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '组织信息';
 
 /*==============================================================*/
@@ -312,8 +300,7 @@ CREATE TABLE IF NOT EXISTS uaa_department (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '部门信息';
 
 /*==============================================================*/
@@ -331,8 +318,7 @@ CREATE TABLE IF NOT EXISTS uaa_department_position (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '部门-岗位信息';
 
 /*==============================================================*/
@@ -355,8 +341,7 @@ CREATE TABLE IF NOT EXISTS uaa_position (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '岗位信息';
 
 /*==============================================================*/
@@ -375,8 +360,7 @@ CREATE TABLE IF NOT EXISTS uaa_user_position (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '用户-岗位信息';
 
 /*==============================================================*/
@@ -400,8 +384,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '菜单信息';
 
 /*==============================================================*/
@@ -419,8 +402,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu_role (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '菜单-角色信息';
 
 /*==============================================================*/
@@ -441,8 +423,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu_element (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '菜单页面元素信息';
 
 /*==============================================================*/
@@ -460,8 +441,7 @@ CREATE TABLE IF NOT EXISTS uaa_menu_element_role (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '菜单菜单页面元素-角色息';
 
 /*==============================================================*/
@@ -485,8 +465,7 @@ CREATE TABLE IF NOT EXISTS uaa_operate (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '操作信息';
 
 /*==============================================================*/
@@ -504,6 +483,177 @@ CREATE TABLE IF NOT EXISTS uaa_operate_permission (
     updated_by            varchar(100) not null comment '更新人',
     updated_at          timestamp not null default current_timestamp comment '更新日期',
     deleted           tinyint(1) not null comment '是否删除 1：有效 0：无效',
-    version              int not null comment '版本号',
-    primary key (id)
+    version              int not null comment '版本号'
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8 comment '操作-权限息';
+
+/* primary key index */
+ALTER TABLE auth.uaa_user_login_log ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_user ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_role ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_user_role ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_permission ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_user_permission ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_role_permission ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_group ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_group_user ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_group_role ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_group_permission ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_office ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_department ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_department_position ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_position ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_user_position ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_menu ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_menu_role ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_menu_element ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_menu_element_role ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_operate ADD PRIMARY KEY (id);
+ALTER TABLE auth.uaa_operate_permission ADD PRIMARY KEY (id);
+
+/* tenant_id index */
+CREATE INDEX idx_uaa_user_login_log_tenant_id ON auth.uaa_user_login_log(tenant_id);
+CREATE INDEX idx_uaa_user_tenant_id ON auth.uaa_user(tenant_id);
+CREATE INDEX idx_uaa_role_tenant_id ON auth.uaa_role(tenant_id);
+CREATE INDEX idx_uaa_user_role_tenant_id ON auth.uaa_user_role(tenant_id);
+CREATE INDEX idx_uaa_permission_tenant_id ON auth.uaa_permission(tenant_id);
+CREATE INDEX idx_uaa_user_permission_tenant_id ON auth.uaa_user_permission(tenant_id);
+CREATE INDEX idx_uaa_role_permission_tenant_id ON auth.uaa_role_permission(tenant_id);
+CREATE INDEX idx_uaa_group_tenant_id ON auth.uaa_group(tenant_id);
+CREATE INDEX idx_uaa_group_user_tenant_id ON auth.uaa_group_user(tenant_id);
+CREATE INDEX idx_uaa_group_role_tenant_id ON auth.uaa_group_role(tenant_id);
+CREATE INDEX idx_uaa_group_permission_tenant_id ON auth.uaa_group_permission(tenant_id);
+CREATE INDEX idx_uaa_office_tenant_id ON auth.uaa_office(tenant_id);
+CREATE INDEX idx_uaa_department_tenant_id ON auth.uaa_department(tenant_id);
+CREATE INDEX idx_uaa_department_position_tenant_id ON auth.uaa_department_position(tenant_id);
+CREATE INDEX idx_uaa_position_tenant_id ON auth.uaa_position(tenant_id);
+CREATE INDEX idx_uaa_user_position_tenant_id ON auth.uaa_user_position(tenant_id);
+CREATE INDEX idx_uaa_menu_tenant_id ON auth.uaa_menu(tenant_id);
+CREATE INDEX idx_uaa_menu_role_tenant_id ON auth.uaa_menu_role(tenant_id);
+CREATE INDEX idx_uaa_menu_element_tenant_id ON auth.uaa_menu_element(tenant_id);
+CREATE INDEX idx_uaa_menu_element_role_tenant_id ON auth.uaa_menu_element_role(tenant_id);
+CREATE INDEX idx_uaa_operate_tenant_id ON auth.uaa_operate(tenant_id);
+CREATE INDEX idx_uaa_operate_permission_tenant_id ON auth.uaa_operate_permission(tenant_id);
+
+/* office_code index */
+CREATE INDEX idx_uaa_user_login_log_office_code ON auth.uaa_user_login_log(office_code);
+CREATE INDEX idx_uaa_user_office_code ON auth.uaa_user(office_code);
+CREATE INDEX idx_uaa_role_office_code ON auth.uaa_role(office_code);
+CREATE INDEX idx_uaa_user_role_office_code ON auth.uaa_user_role(office_code);
+CREATE INDEX idx_uaa_permission_office_code ON auth.uaa_permission(office_code);
+CREATE INDEX idx_uaa_user_permission_office_code ON auth.uaa_user_permission(office_code);
+CREATE INDEX idx_uaa_role_permission_office_code ON auth.uaa_role_permission(office_code);
+CREATE INDEX idx_uaa_group_office_code ON auth.uaa_group(office_code);
+CREATE INDEX idx_uaa_group_user_office_code ON auth.uaa_group_user(office_code);
+CREATE INDEX idx_uaa_group_role_office_code ON auth.uaa_group_role(office_code);
+CREATE INDEX idx_uaa_group_permission_office_code ON auth.uaa_group_permission(office_code);
+CREATE INDEX idx_uaa_office_office_code ON auth.uaa_office(office_code);
+CREATE INDEX idx_uaa_department_office_code ON auth.uaa_department(office_code);
+CREATE INDEX idx_uaa_department_position_office_code ON auth.uaa_department_position(office_code);
+CREATE INDEX idx_uaa_position_office_code ON auth.uaa_position(office_code);
+CREATE INDEX idx_uaa_user_position_office_code ON auth.uaa_user_position(office_code);
+CREATE INDEX idx_uaa_menu_office_code ON auth.uaa_menu(office_code);
+CREATE INDEX idx_uaa_menu_role_office_code ON auth.uaa_menu_role(office_code);
+CREATE INDEX idx_uaa_menu_element_office_code ON auth.uaa_menu_element(office_code);
+CREATE INDEX idx_uaa_menu_element_role_office_code ON auth.uaa_menu_element_role(office_code);
+CREATE INDEX idx_uaa_operate_office_code ON auth.uaa_operate(office_code);
+CREATE INDEX idx_uaa_operate_permission_office_code ON auth.uaa_operate_permission(office_code);
+
+/* deleted index */
+CREATE INDEX idx_uaa_user_login_log_deleted ON auth.uaa_user_login_log(deleted);
+CREATE INDEX idx_uaa_user_deleted ON auth.uaa_user(deleted);
+CREATE INDEX idx_uaa_role_deleted ON auth.uaa_role(deleted);
+CREATE INDEX idx_uaa_user_role_deleted ON auth.uaa_user_role(deleted);
+CREATE INDEX idx_uaa_permission_deleted ON auth.uaa_permission(deleted);
+CREATE INDEX idx_uaa_user_permission_deleted ON auth.uaa_user_permission(deleted);
+CREATE INDEX idx_uaa_role_permission_deleted ON auth.uaa_role_permission(deleted);
+CREATE INDEX idx_uaa_group_deleted ON auth.uaa_group(deleted);
+CREATE INDEX idx_uaa_group_user_deleted ON auth.uaa_group_user(deleted);
+CREATE INDEX idx_uaa_group_role_deleted ON auth.uaa_group_role(deleted);
+CREATE INDEX idx_uaa_group_permission_deleted ON auth.uaa_group_permission(deleted);
+CREATE INDEX idx_uaa_office_deleted ON auth.uaa_office(deleted);
+CREATE INDEX idx_uaa_department_deleted ON auth.uaa_department(deleted);
+CREATE INDEX idx_uaa_department_position_deleted ON auth.uaa_department_position(deleted);
+CREATE INDEX idx_uaa_position_deleted ON auth.uaa_position(deleted);
+CREATE INDEX idx_uaa_user_position_deleted ON auth.uaa_user_position(deleted);
+CREATE INDEX idx_uaa_menu_deleted ON auth.uaa_menu(deleted);
+CREATE INDEX idx_uaa_menu_role_deleted ON auth.uaa_menu_role(deleted);
+CREATE INDEX idx_uaa_menu_element_deleted ON auth.uaa_menu_element(deleted);
+CREATE INDEX idx_uaa_menu_element_role_deleted ON auth.uaa_menu_element_role(deleted);
+CREATE INDEX idx_uaa_operate_deleted ON auth.uaa_operate(deleted);
+CREATE INDEX idx_uaa_operate_permission_deleted ON auth.uaa_operate_permission(deleted);
+
+/* other index */
+CREATE INDEX idx_uaa_user_login_log_user_code ON auth.uaa_user_login_log(user_code);
+
+CREATE INDEX idx_uaa_user_user_code ON auth.uaa_user(user_code);
+CREATE INDEX idx_uaa_user_login_name ON auth.uaa_user(login_name);
+CREATE INDEX idx_uaa_user_mobile ON auth.uaa_user(mobile);
+CREATE INDEX idx_uaa_user_email ON auth.uaa_user(email);
+
+CREATE INDEX idx_uaa_role_role_code ON auth.uaa_role(role_code);
+CREATE INDEX idx_uaa_role_parent_id ON auth.uaa_role(parent_id);
+CREATE INDEX idx_uaa_role_full_path ON auth.uaa_role(full_path);
+
+CREATE INDEX idx_uaa_user_role_user_id ON auth.uaa_user_role(user_id);
+CREATE INDEX idx_uaa_user_role_role_id ON auth.uaa_user_role(role_id);
+
+CREATE INDEX idx_uaa_permission_permission_code ON auth.uaa_permission(permission_code);
+CREATE INDEX idx_uaa_permission_parent_id ON auth.uaa_permission(parent_id);
+
+CREATE INDEX idx_uaa_user_permission_user_id ON auth.uaa_user_permission(user_id);
+CREATE INDEX idx_uaa_user_permission_permission_id ON auth.uaa_user_permission(permission_id);
+
+CREATE INDEX idx_uaa_role_permission_role_id ON auth.uaa_role_permission(role_id);
+CREATE INDEX idx_uaa_role_permission_permission_id ON auth.uaa_role_permission(permission_id);
+
+CREATE INDEX idx_uaa_group_group_code ON auth.uaa_group(group_code);
+CREATE INDEX idx_uaa_group_parent_id ON auth.uaa_group(parent_id);
+CREATE INDEX idx_uaa_group_full_path ON auth.uaa_group(full_path);
+
+CREATE INDEX idx_uaa_group_user_group_id ON auth.uaa_group_user(group_id);
+CREATE INDEX idx_uaa_group_user_user_id ON auth.uaa_group_user(user_id);
+
+CREATE INDEX idx_uaa_group_role_group_id ON auth.uaa_group_role(group_id);
+CREATE INDEX idx_uaa_group_role_role_id ON auth.uaa_group_role(role_id);
+
+CREATE INDEX idx_uaa_group_permission_group_id ON auth.uaa_group_permission(group_id);
+CREATE INDEX idx_uaa_group_permission_permission_id ON auth.uaa_group_permission(permission_id);
+
+CREATE INDEX idx_uaa_office_parent_id ON auth.uaa_office(parent_id);
+CREATE INDEX idx_uaa_office_full_path ON auth.uaa_office(full_path);
+
+CREATE INDEX idx_uaa_department_department_code ON auth.uaa_department(department_code);
+CREATE INDEX idx_uaa_department_parent_id ON auth.uaa_department(parent_id);
+CREATE INDEX idx_uaa_department_full_path ON auth.uaa_department(full_path);
+
+CREATE INDEX idx_uaa_department_position_department_id ON auth.uaa_department_position(department_id);
+CREATE INDEX idx_uaa_department_position_position_id ON auth.uaa_department_position(position_id);
+
+CREATE INDEX idx_uaa_position_position_code ON auth.uaa_position(position_code);
+CREATE INDEX idx_uaa_position_parent_id ON auth.uaa_position(parent_id);
+CREATE INDEX idx_uaa_position_full_path ON auth.uaa_position(full_path);
+
+CREATE INDEX idx_uaa_user_position_user_id ON auth.uaa_user_position(user_id);
+CREATE INDEX idx_uaa_user_position_position_id ON auth.uaa_user_position(position_id);
+
+CREATE INDEX idx_uaa_menu_menu_code ON auth.uaa_menu(menu_code);
+CREATE INDEX idx_uaa_menu_parent_id ON auth.uaa_menu(parent_id);
+CREATE INDEX idx_uaa_menu_full_path ON auth.uaa_menu(full_path);
+
+CREATE INDEX idx_uaa_menu_role_menu_id ON auth.uaa_menu_role(menu_id);
+CREATE INDEX idx_uaa_menu_role_role_id ON auth.uaa_menu_role(role_id);
+
+CREATE INDEX idx_uaa_menu_element_menu_id ON auth.uaa_menu_element(menu_id);
+
+CREATE INDEX idx_uaa_menu_element_role_menu_element_id ON auth.uaa_menu_element_role(menu_element_id);
+CREATE INDEX idx_uaa_menu_element_role_role_id ON auth.uaa_menu_element_role(role_id);
+
+CREATE INDEX idx_uaa_operate_operate_code ON auth.uaa_operate(operate_code);
+CREATE INDEX idx_uaa_operate_permission_operate_id ON auth.uaa_operate_permission(operate_id);
+CREATE INDEX idx_uaa_operate_permission_permission_id ON auth.uaa_operate_permission(permission_id);
+
+/* unique index */
+ALTER TABLE auth.uaa_user ADD CONSTRAINT uk_uaa_user_user_code UNIQUE (user_code);
+ALTER TABLE auth.uaa_user ADD CONSTRAINT uk_uaa_user_login_name UNIQUE (login_name);
+ALTER TABLE auth.uaa_user ADD CONSTRAINT uk_uaa_user_mobile UNIQUE (mobile);
+ALTER TABLE auth.uaa_user ADD CONSTRAINT uk_uaa_user_email UNIQUE (email);
