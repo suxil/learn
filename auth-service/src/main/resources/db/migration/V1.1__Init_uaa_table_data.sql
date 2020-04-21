@@ -30,6 +30,6 @@ insert into uaa_department(id,parent_id,seq,level,full_path,department_code,depa
 /*==============================================================*/
 /* Table: uaa_user                                            */
 /*==============================================================*/
-insert into uaa_user(id, user_code, user_name, jp, login_name, password, mobile, email, is_admin, last_login_date, login_count, description, tenant_id, office_code, created_by, created_at, updated_by, updated_at, deleted, version) values (REPLACE(UUID(), "-", ""), "10001", "管理员", 'gly', 'admin', "$2a$10$kdx4NpGKUnMrVQVU37f08OHbMPfRuHfa.Csbf1iiF2oBzX9DBMUpa", "1321111111111", "admin@163.dom", 1, now(), 0, "管理员", "1", "9000", "system", now(), "system", now(), 0, 0);
+insert into uaa_user(id, user_code, user_name, jp, login_name, password, mobile, email, admin, last_login_date, login_count, description, tenant_id, office_code, created_by, created_at, updated_by, updated_at, deleted, version) values (REPLACE(UUID(), "-", ""), "10001", "管理员", 'gly', 'admin', "$2a$10$kdx4NpGKUnMrVQVU37f08OHbMPfRuHfa.Csbf1iiF2oBzX9DBMUpa", "1321111111111", "admin@163.dom", 1, now(), 0, "管理员", "1", "9000", "system", now(), "system", now(), 0, 0);
 
 

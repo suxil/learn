@@ -169,17 +169,6 @@
 						</resources>
 					</configuration>
 				</plugin>
-
-				<plugin>
-					<groupId>org.liquibase</groupId>
-					<artifactId>liquibase-maven-plugin</artifactId>
-					<version>3.8.8</version>
-					<configuration>
-						<propertyFile>${project.basedir}/src/main/resources/liquibase.properties</propertyFile>
-						<databaseChangeLogTableName>databasechangelog</databaseChangeLogTableName>
-						<databaseChangeLogLockTableName>databasechangeloglock</databaseChangeLogLockTableName>
-					</configuration>
-				</plugin>
 			</plugins>
 		</pluginManagement>
 

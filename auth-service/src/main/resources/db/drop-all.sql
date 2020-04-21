@@ -1,6 +1,8 @@
 drop table databasechangelog;
 drop table databasechangeloglock;
 
+drop table flyway_schema_history;
+
 drop table uaa_user_login_log;
 drop table uaa_user;
 drop table uaa_role;
