@@ -17,7 +17,6 @@ import java.util.Set;
  *
  * @author lu_it
  * @version V1.0
- * @Package com.learn.core.utils
  */
 @Slf4j
 public final class ValidatorUtils {
