@@ -1,8 +1,8 @@
 package com.learn.auth.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.learn.auth.domain.UaaRole;
 import com.learn.auth.dto.UaaRoleTreeDto;
+import com.learn.mybatis.service.BaseService;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import java.util.List;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-04-25
  */
-public interface UaaRoleService extends IService<UaaRole> {
+public interface UaaRoleService extends BaseService<UaaRole> {
 
     /**
      * Description: 通过组织代码查询角色树

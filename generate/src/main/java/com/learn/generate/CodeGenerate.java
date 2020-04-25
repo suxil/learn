@@ -230,6 +230,7 @@ public class CodeGenerate {
         // 公共父类
 //        strategyConfig.setSuperControllerClass("com.learn.mybatis.web.BaseController");
         strategyConfig.setSuperMapperClass("com.learn.mybatis.repository.BaseRepository");
+        strategyConfig.setSuperServiceClass("com.learn.mybatis.service.BaseService");
 
         // 写于父类中的公共字段
         strategyConfig.setSuperEntityColumns(EXCLUDE_SUPER_ENTITY_FIELD);

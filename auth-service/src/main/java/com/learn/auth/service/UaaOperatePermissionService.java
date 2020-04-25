@@ -1,7 +1,7 @@
 package com.learn.auth.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.learn.auth.domain.UaaOperatePermission;
+import com.learn.mybatis.service.BaseService;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.learn.auth.domain.UaaOperatePermission;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-04-25
  */
-public interface UaaOperatePermissionService extends IService<UaaOperatePermission> {
+public interface UaaOperatePermissionService extends BaseService<UaaOperatePermission> {
 
 }

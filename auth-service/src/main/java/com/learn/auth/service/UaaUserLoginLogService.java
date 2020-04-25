@@ -1,7 +1,7 @@
 package com.learn.auth.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.learn.auth.domain.UaaUserLoginLog;
+import com.learn.mybatis.service.BaseService;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.learn.auth.domain.UaaUserLoginLog;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-04-25
  */
-public interface UaaUserLoginLogService extends IService<UaaUserLoginLog> {
+public interface UaaUserLoginLogService extends BaseService<UaaUserLoginLog> {
 
 }

@@ -1,8 +1,8 @@
 package com.learn.auth.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.learn.auth.domain.UaaGroup;
 import com.learn.auth.dto.UaaGroupTreeDto;
+import com.learn.mybatis.service.BaseService;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import java.util.List;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-04-25
  */
-public interface UaaGroupService extends IService<UaaGroup> {
+public interface UaaGroupService extends BaseService<UaaGroup> {
 
     /**
      * Description: 通过组织代码查询组树
