@@ -163,16 +163,6 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
-				<configuration>
-					<repository>192.168.159.137:31003/learn/${project.groupId}/${project.artifactId}</repository>
-					<tag>${project.version}</tag>
-					<buildArgs>
-						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-					</buildArgs>
-					<dockerfile>${project.basedir}/src/main/docker/Dockerfile</dockerfile>
-					<username>learn</username>
-					<password>Harbor12345</password>
-				</configuration>
 			</plugin>
 
 			<plugin>
