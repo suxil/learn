@@ -161,11 +161,16 @@
 			</plugin>
 
 			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 
-			<plugin>
+			<!--<plugin>
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 				<configuration>
@@ -176,7 +181,7 @@
 						<location>classpath:db/migration</location>
 					</locations>
 				</configuration>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 
