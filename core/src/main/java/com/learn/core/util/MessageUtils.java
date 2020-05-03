@@ -14,7 +14,6 @@ import org.springframework.context.i18n.LocaleContextHolder;
  *
  * @author lu_it
  * @version V1.0
- * @Package com.learn.core.util
  */
 public final class MessageUtils {
 

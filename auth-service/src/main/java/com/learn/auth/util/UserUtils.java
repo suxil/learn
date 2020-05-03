@@ -22,31 +22,39 @@ import java.util.Map;
 public class UserUtils {
 
     /**
-     * 获取当前登录用户
+     * 获取当前用户信息Map
      * @return
      */
-    public static UaaUser getUser() {
+    public static Map<String, Object> getUserMap() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object details = authentication.getDetails();
         if (details instanceof Map) {
-            Map<String, Object> userMap = (Map<String, Object>) details;
-
-            UaaUser uaaUser = new UaaUser();
-            uaaUser.setUserCode((String) userMap.get("userCode"));
-            uaaUser.setUserName((String) userMap.get("userName"));
-            uaaUser.setJp((String) userMap.get("jp"));
-            uaaUser.setLoginName((String) userMap.get("loginName"));
-            uaaUser.setPassword((String) userMap.get("password"));
-            uaaUser.setMobile((String) userMap.get("mobile"));
-            uaaUser.setEmail((String) userMap.get("email"));
-            uaaUser.setAdmin((Boolean) userMap.get("admin"));
-
-            return uaaUser;
+            return (Map<String, Object>) details;
         } else if (details == null) {
             throw new GlobalCommonException("error.login.expire");
         } else {
             throw new GlobalCommonException("error.user.resolve");
         }
+    }
+
+    /**
+     * 获取当前登录用户
+     * @return
+     */
+    public static UaaUser getUser() {
+        Map<String, Object> userMap = getUserMap();
+
+        UaaUser uaaUser = new UaaUser();
+        uaaUser.setUserCode((String) userMap.get("userCode"));
+        uaaUser.setUserName((String) userMap.get("userName"));
+        uaaUser.setJp((String) userMap.get("jp"));
+        uaaUser.setLoginName((String) userMap.get("loginName"));
+        uaaUser.setPassword((String) userMap.get("password"));
+        uaaUser.setMobile((String) userMap.get("mobile"));
+        uaaUser.setEmail((String) userMap.get("email"));
+        uaaUser.setAdmin((Boolean) userMap.get("admin"));
+
+        return uaaUser;
     }
 
 }

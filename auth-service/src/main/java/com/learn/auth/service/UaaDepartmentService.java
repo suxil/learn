@@ -1,8 +1,8 @@
 package com.learn.auth.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.learn.auth.domain.UaaDepartment;
 import com.learn.auth.vo.UaaDepartmentTreeVo;
+import com.learn.mybatis.service.BaseService;
 
 import java.util.List;
 
@@ -12,9 +12,9 @@ import java.util.List;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-04-25
  */
-public interface UaaDepartmentService extends IService<UaaDepartment> {
+public interface UaaDepartmentService extends BaseService<UaaDepartment> {
 
     /**
      * Description: 通过组织代码查询岗位树

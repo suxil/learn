@@ -1,7 +1,7 @@
 package com.learn.auth.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.learn.auth.domain.UaaGroupRole;
+import com.learn.mybatis.service.BaseService;
 
 /**
  * <p>
@@ -9,8 +9,8 @@ import com.learn.auth.domain.UaaGroupRole;
  * </p>
  *
  * @author generate
- * @since 2019-12-22
+ * @since 2020-04-25
  */
-public interface UaaGroupRoleService extends IService<UaaGroupRole> {
+public interface UaaGroupRoleService extends BaseService<UaaGroupRole> {
 
 }

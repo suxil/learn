@@ -4,10 +4,7 @@ import com.learn.auth.domain.UaaUser;
 import com.learn.auth.util.UserUtils;
 import com.learn.auth.vo.UaaUserLoginVo;
 import com.learn.core.common.ResponseResult;
-import com.learn.core.util.BeanUtils;
-import com.learn.core.util.JwtUtils;
-import com.learn.core.util.MessageUtils;
-import com.learn.core.util.ValidatorUtils;
+import com.learn.core.util.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -16,11 +13,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -49,8 +44,8 @@ public class UaaAuthController {
     @PostMapping("/profile")
     @ApiOperation(value = "获取用户信息")
     public ResponseResult profile() {
-        UaaUser uaaUser = UserUtils.getUser();
-        return ResponseResult.success(uaaUser);
+        Map<String, Object> userMap = UserUtils.getUserMap();
+        return ResponseResult.success(userMap);
     }
 
     @PostMapping("/login")
@@ -73,7 +68,31 @@ public class UaaAuthController {
 
         String token = JwtUtils.create(map);
 
-        return ResponseResult.success(token);
+        map.put("token", token);
+
+        return ResponseResult.success(map);
+    }
+
+    @GetMapping("/captcha")
+    @ApiOperation(value = "获取验证码")
+    public ResponseResult captcha(@RequestParam("code") String code, @RequestParam("width") int width, @RequestParam("height") int height) {
+        if (StringUtils.isEmpty(code)) {
+            code = CaptchaUtils.randomCode();
+        }
+        if (width <= 0) {
+            width = 75;
+        }
+        if (height <= 0) {
+            height = 34;
+        }
+
+        String img = CaptchaUtils.generateDataImg(code, width, height);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("code", code);
+        map.put("img", img);
+
+        return ResponseResult.success(map);
     }
 
 }

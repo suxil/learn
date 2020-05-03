@@ -1,6 +1,5 @@
 package com.learn.core.consumer;
 
-import lombok.Data;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
@@ -9,9 +8,8 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-@Data
 @Component
-public class SpringContextHolder implements ApplicationContextAware {
+public final class SpringContextHolder implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext = null;
 
