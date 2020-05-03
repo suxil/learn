@@ -36,9 +36,6 @@ public class DomainUserDetails implements UserDetails {
     @ApiModelProperty(name = "user_code", value = "用户代码")
     private String userCode;
 
-    @ApiModelProperty(name = "user_name", value = "姓名")
-    private String userName;
-
     @ApiModelProperty(name = "jp", value = "简拼")
     private String jp;
 

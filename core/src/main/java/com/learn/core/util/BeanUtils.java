@@ -18,7 +18,7 @@ import java.util.Map;
 @Slf4j
 public class BeanUtils {
 
-    public static final List<String> DEFAULT_FILTER_FIELDS = Arrays.asList("id", "createTime", "updateTime", "createName", "updateName", "isDelete", "version");
+    private static final List<String> DEFAULT_FILTER_FIELDS = Arrays.asList("id", "createTime", "updateTime", "createName", "updateName", "isDelete", "version");
 
     private BeanUtils() {
     }

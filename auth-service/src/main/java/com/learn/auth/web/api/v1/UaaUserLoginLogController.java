@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaUserLoginLog;
+import com.learn.auth.dto.UaaUserLoginLogDto;
 import com.learn.auth.service.UaaUserLoginLogService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * </p>
  *
  * @author generate
- * @since 2020-04-20
+ * @since 2020-05-03
  */
 @Slf4j
 @Api(value = "用户登录日志 接口")
@@ -33,7 +34,7 @@ public class UaaUserLoginLogController {
     @GetMapping
     @ApiOperation(value = "用户登录日志 分页查询")
     @Validated
-    public ResponseResult list(UaaUserLoginLog uaaUserLoginLog, Page<UaaUserLoginLog> page) {
+    public ResponseResult list(UaaUserLoginLogDto uaaUserLoginLogDto, Page<UaaUserLoginLog> page) {
         QueryWrapper<UaaUserLoginLog> queryWrapper = new QueryWrapper<>();
 
         IPage<UaaUserLoginLog> pageResult = uaaUserLoginLogService.page(page, queryWrapper);
@@ -48,16 +49,14 @@ public class UaaUserLoginLogController {
 
     @PostMapping
     @ApiOperation(value = "用户登录日志 创建")
-    public ResponseResult create(@RequestBody UaaUserLoginLog uaaUserLoginLog) {
-        uaaUserLoginLogService.saveOrUpdate(uaaUserLoginLog);
-        return ResponseResult.success(uaaUserLoginLog);
+    public ResponseResult create(@RequestBody UaaUserLoginLogDto uaaUserLoginLogDto) {
+        return ResponseResult.success(uaaUserLoginLogService.save(uaaUserLoginLogDto));
     }
 
     @PutMapping
     @ApiOperation(value = "用户登录日志 更新")
-    public ResponseResult update(@RequestBody UaaUserLoginLog uaaUserLoginLog) {
-        uaaUserLoginLogService.saveOrUpdate(uaaUserLoginLog);
-        return ResponseResult.success(uaaUserLoginLog);
+    public ResponseResult update(@RequestBody UaaUserLoginLogDto uaaUserLoginLogDto) {
+        return ResponseResult.success(uaaUserLoginLogService.update(uaaUserLoginLogDto));
     }
 
     @DeleteMapping("/{id}")

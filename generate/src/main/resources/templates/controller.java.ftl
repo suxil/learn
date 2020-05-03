@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.${table.entityName};
+import ${package.Entity?replace("domain","dto")}.${entity}Dto;
 import com.learn.auth.service.${table.entityName}Service;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
@@ -47,7 +48,7 @@ public class ${table.controllerName} {
     @GetMapping
     @ApiOperation(value = "${table.comment!} 分页查询")
     @Validated
-    public ResponseResult list(${table.entityName} ${table.entityName?uncap_first}, Page<${table.entityName}> page) {
+    public ResponseResult list(${table.entityName}Dto ${table.entityName?uncap_first}Dto, Page<${table.entityName}> page) {
         QueryWrapper<${table.entityName}> queryWrapper = new QueryWrapper<>();
 
         IPage<${table.entityName}> pageResult = ${table.entityName?uncap_first}Service.page(page, queryWrapper);
@@ -62,16 +63,14 @@ public class ${table.controllerName} {
 
     @PostMapping
     @ApiOperation(value = "${table.comment!} 创建")
-    public ResponseResult create(@RequestBody ${table.entityName} ${table.entityName?uncap_first}) {
-        ${table.entityName?uncap_first}Service.saveOrUpdate(${table.entityName?uncap_first});
-        return ResponseResult.success(${table.entityName?uncap_first});
+    public ResponseResult create(@RequestBody ${table.entityName}Dto ${table.entityName?uncap_first}Dto) {
+        return ResponseResult.success(${table.entityName?uncap_first}Service.save(${table.entityName?uncap_first}Dto));
     }
 
     @PutMapping
     @ApiOperation(value = "${table.comment!} 更新")
-    public ResponseResult update(@RequestBody ${table.entityName} ${table.entityName?uncap_first}) {
-        ${table.entityName?uncap_first}Service.saveOrUpdate(${table.entityName?uncap_first});
-        return ResponseResult.success(${table.entityName?uncap_first});
+    public ResponseResult update(@RequestBody ${table.entityName}Dto ${table.entityName?uncap_first}Dto) {
+        return ResponseResult.success(${table.entityName?uncap_first}Service.update(${table.entityName?uncap_first}Dto));
     }
 
     @DeleteMapping("/{id}")

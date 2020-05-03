@@ -61,7 +61,7 @@ public class DomainUserDetailsService implements UserDetailsService {
 
         return DomainUserDetails.builder()
                 .userCode(uaaUser.getUserCode())
-                .userName(uaaUser.getUserName())
+                .username(uaaUser.getUserName())
                 .jp(uaaUser.getJp())
                 .loginName(uaaUser.getLoginName())
                 .password(uaaUser.getPassword())

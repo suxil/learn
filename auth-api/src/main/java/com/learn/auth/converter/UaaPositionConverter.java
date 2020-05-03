@@ -1,6 +1,7 @@
 package com.learn.auth.converter;
 
 import com.learn.auth.domain.UaaPosition;
+import com.learn.auth.dto.UaaPositionDto;
 import com.learn.auth.vo.UaaPositionTreeVo;
 import com.learn.core.util.TreeUtils;
 import org.mapstruct.Mapper;
@@ -13,12 +14,20 @@ public interface UaaPositionConverter {
 
     UaaPositionConverter INSTANCE = Mappers.getMapper(UaaPositionConverter.class);
 
-    UaaPositionTreeVo convert(UaaPosition item);
+    UaaPosition convert(UaaPositionDto item);
 
-    List<UaaPositionTreeVo> convert(List<UaaPosition> list);
+    UaaPositionDto convertDto(UaaPosition item);
+
+    List<UaaPosition> convert(List<UaaPositionDto> list);
+
+    List<UaaPositionDto> convertDto(List<UaaPosition> list);
+
+    UaaPositionTreeVo convertTreeVo(UaaPosition item);
+
+    List<UaaPositionTreeVo> convertTreeVo(List<UaaPosition> list);
 
     default List<UaaPositionTreeVo> convertToTree(List<UaaPosition> uaaPositionList) {
-        return TreeUtils.convertToTree(convert(uaaPositionList), UaaPositionTreeVo::getId, UaaPositionTreeVo::getParentId, UaaPositionTreeVo::setChildren);
+        return TreeUtils.convertToTree(convertTreeVo(uaaPositionList), UaaPositionTreeVo::getId, UaaPositionTreeVo::getParentId, UaaPositionTreeVo::setChildren);
     }
 
 }

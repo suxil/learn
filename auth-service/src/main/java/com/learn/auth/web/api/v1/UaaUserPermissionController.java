@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaUserPermission;
+import com.learn.auth.dto.UaaUserPermissionDto;
 import com.learn.auth.service.UaaUserPermissionService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
@@ -15,14 +16,14 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- * 用户-权限表 前端控制器
+ * 用户-权限信息 前端控制器
  * </p>
  *
  * @author generate
- * @since 2020-04-20
+ * @since 2020-05-03
  */
 @Slf4j
-@Api(value = "用户-权限表 接口")
+@Api(value = "用户-权限信息 接口")
 @RestController
 @RequestMapping("/api/v1/uaa-user-permissions")
 public class UaaUserPermissionController {
@@ -31,9 +32,9 @@ public class UaaUserPermissionController {
     private UaaUserPermissionService uaaUserPermissionService;
 
     @GetMapping
-    @ApiOperation(value = "用户-权限表 分页查询")
+    @ApiOperation(value = "用户-权限信息 分页查询")
     @Validated
-    public ResponseResult list(UaaUserPermission uaaUserPermission, Page<UaaUserPermission> page) {
+    public ResponseResult list(UaaUserPermissionDto uaaUserPermissionDto, Page<UaaUserPermission> page) {
         QueryWrapper<UaaUserPermission> queryWrapper = new QueryWrapper<>();
 
         IPage<UaaUserPermission> pageResult = uaaUserPermissionService.page(page, queryWrapper);
@@ -41,27 +42,25 @@ public class UaaUserPermissionController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "用户-权限表 详情")
+    @ApiOperation(value = "用户-权限信息 详情")
     public ResponseResult load(@PathVariable String id) {
         return ResponseResult.success(uaaUserPermissionService.getById(id));
     }
 
     @PostMapping
-    @ApiOperation(value = "用户-权限表 创建")
-    public ResponseResult create(@RequestBody UaaUserPermission uaaUserPermission) {
-        uaaUserPermissionService.saveOrUpdate(uaaUserPermission);
-        return ResponseResult.success(uaaUserPermission);
+    @ApiOperation(value = "用户-权限信息 创建")
+    public ResponseResult create(@RequestBody UaaUserPermissionDto uaaUserPermissionDto) {
+        return ResponseResult.success(uaaUserPermissionService.save(uaaUserPermissionDto));
     }
 
     @PutMapping
-    @ApiOperation(value = "用户-权限表 更新")
-    public ResponseResult update(@RequestBody UaaUserPermission uaaUserPermission) {
-        uaaUserPermissionService.saveOrUpdate(uaaUserPermission);
-        return ResponseResult.success(uaaUserPermission);
+    @ApiOperation(value = "用户-权限信息 更新")
+    public ResponseResult update(@RequestBody UaaUserPermissionDto uaaUserPermissionDto) {
+        return ResponseResult.success(uaaUserPermissionService.update(uaaUserPermissionDto));
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "用户-权限表 删除")
+    @ApiOperation(value = "用户-权限信息 删除")
     public ResponseResult delete(@PathVariable String id) {
         return ResponseResult.success(uaaUserPermissionService.removeById(id));
     }

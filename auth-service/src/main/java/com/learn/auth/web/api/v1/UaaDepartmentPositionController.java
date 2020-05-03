@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaDepartmentPosition;
+import com.learn.auth.dto.UaaDepartmentPositionDto;
 import com.learn.auth.service.UaaDepartmentPositionService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
@@ -15,14 +16,14 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- * 部门-岗位表 前端控制器
+ * 部门-岗位信息 前端控制器
  * </p>
  *
  * @author generate
- * @since 2020-04-20
+ * @since 2020-05-03
  */
 @Slf4j
-@Api(value = "部门-岗位表 接口")
+@Api(value = "部门-岗位信息 接口")
 @RestController
 @RequestMapping("/api/v1/uaa-department-positions")
 public class UaaDepartmentPositionController {
@@ -31,9 +32,9 @@ public class UaaDepartmentPositionController {
     private UaaDepartmentPositionService uaaDepartmentPositionService;
 
     @GetMapping
-    @ApiOperation(value = "部门-岗位表 分页查询")
+    @ApiOperation(value = "部门-岗位信息 分页查询")
     @Validated
-    public ResponseResult list(UaaDepartmentPosition uaaDepartmentPosition, Page<UaaDepartmentPosition> page) {
+    public ResponseResult list(UaaDepartmentPositionDto uaaDepartmentPositionDto, Page<UaaDepartmentPosition> page) {
         QueryWrapper<UaaDepartmentPosition> queryWrapper = new QueryWrapper<>();
 
         IPage<UaaDepartmentPosition> pageResult = uaaDepartmentPositionService.page(page, queryWrapper);
@@ -41,27 +42,25 @@ public class UaaDepartmentPositionController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "部门-岗位表 详情")
+    @ApiOperation(value = "部门-岗位信息 详情")
     public ResponseResult load(@PathVariable String id) {
         return ResponseResult.success(uaaDepartmentPositionService.getById(id));
     }
 
     @PostMapping
-    @ApiOperation(value = "部门-岗位表 创建")
-    public ResponseResult create(@RequestBody UaaDepartmentPosition uaaDepartmentPosition) {
-        uaaDepartmentPositionService.saveOrUpdate(uaaDepartmentPosition);
-        return ResponseResult.success(uaaDepartmentPosition);
+    @ApiOperation(value = "部门-岗位信息 创建")
+    public ResponseResult create(@RequestBody UaaDepartmentPositionDto uaaDepartmentPositionDto) {
+        return ResponseResult.success(uaaDepartmentPositionService.save(uaaDepartmentPositionDto));
     }
 
     @PutMapping
-    @ApiOperation(value = "部门-岗位表 更新")
-    public ResponseResult update(@RequestBody UaaDepartmentPosition uaaDepartmentPosition) {
-        uaaDepartmentPositionService.saveOrUpdate(uaaDepartmentPosition);
-        return ResponseResult.success(uaaDepartmentPosition);
+    @ApiOperation(value = "部门-岗位信息 更新")
+    public ResponseResult update(@RequestBody UaaDepartmentPositionDto uaaDepartmentPositionDto) {
+        return ResponseResult.success(uaaDepartmentPositionService.update(uaaDepartmentPositionDto));
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "部门-岗位表 删除")
+    @ApiOperation(value = "部门-岗位信息 删除")
     public ResponseResult delete(@PathVariable String id) {
         return ResponseResult.success(uaaDepartmentPositionService.removeById(id));
     }

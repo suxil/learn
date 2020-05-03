@@ -1,6 +1,7 @@
 package com.learn.auth.service;
 
 import com.learn.auth.domain.UaaGroup;
+import com.learn.auth.dto.UaaGroupDto;
 import com.learn.auth.vo.UaaGroupTreeVo;
 import com.learn.mybatis.service.BaseService;
 
@@ -12,9 +13,19 @@ import java.util.List;
  * </p>
  *
  * @author generate
- * @since 2020-04-25
+ * @since 2020-05-03
  */
 public interface UaaGroupService extends BaseService<UaaGroup> {
+
+    /**
+     * 保存 组信息
+     */
+    UaaGroupDto save(UaaGroupDto uaaGroupDto);
+
+    /**
+     * 更新 组信息
+     */
+    UaaGroupDto update(UaaGroupDto uaaGroupDto);
 
     /**
      * Description: 通过组织代码查询组树

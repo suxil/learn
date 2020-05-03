@@ -50,8 +50,8 @@ public final class FileIOUtils {
     public static void write(String fileName, String content) {
         try {
             FileUtils.writeStringToFile(getFile(fileName), content, ENCODE);
-        } catch (IOException e1) {
-            e1.printStackTrace();
+        } catch (IOException e) {
+            log.error("write: " + e.getMessage());
         }
     }
 

@@ -1,6 +1,7 @@
 package com.learn.auth.converter;
 
 import com.learn.auth.domain.UaaOffice;
+import com.learn.auth.dto.UaaOfficeDto;
 import com.learn.auth.vo.UaaOfficeTreeVo;
 import com.learn.core.util.TreeUtils;
 import org.mapstruct.Mapper;
@@ -13,12 +14,20 @@ public interface UaaOfficeConverter {
 
     UaaOfficeConverter INSTANCE = Mappers.getMapper(UaaOfficeConverter.class);
 
-    UaaOfficeTreeVo convert(UaaOffice item);
+    UaaOffice convert(UaaOfficeDto item);
 
-    List<UaaOfficeTreeVo> convert(List<UaaOffice> list);
+    UaaOfficeDto convertDto(UaaOffice item);
+
+    List<UaaOffice> convert(List<UaaOfficeDto> list);
+
+    List<UaaOfficeDto> convertDto(List<UaaOffice> list);
+
+    UaaOfficeTreeVo convertTreeVo(UaaOffice item);
+
+    List<UaaOfficeTreeVo> convertTreeVo(List<UaaOffice> list);
 
     default List<UaaOfficeTreeVo> convertToTree(List<UaaOffice> uaaOfficeList) {
-        return TreeUtils.convertToTree(convert(uaaOfficeList), UaaOfficeTreeVo::getId, UaaOfficeTreeVo::getParentId, UaaOfficeTreeVo::setChildren);
+        return TreeUtils.convertToTree(convertTreeVo(uaaOfficeList), UaaOfficeTreeVo::getId, UaaOfficeTreeVo::getParentId, UaaOfficeTreeVo::setChildren);
     }
 
 }

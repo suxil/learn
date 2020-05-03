@@ -94,8 +94,9 @@ public class OpTests {
 
                 File newFile = new File(newFileName);
 
-//                System.out.println("-- " + newFileName);
-                f.renameTo(newFile);
+                if (!f.renameTo(newFile)) {
+                    log.warn("renameFile");
+                }
             }
         }
 

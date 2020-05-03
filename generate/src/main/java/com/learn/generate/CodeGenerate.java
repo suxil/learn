@@ -169,8 +169,28 @@ public class CodeGenerate {
         }
 
         // 自定义输出配置
-        List<FileOutConfig> focList = new ArrayList<>();
         // 自定义配置会被优先输出
+        List<FileOutConfig> focList = new ArrayList<>();
+
+        // entitydconverter.java
+        focList.add(new FileOutConfig("/templates/entityconverter.java.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                return projectPath + JAVA_PATH + (PARENT + "." + packageConfig.getEntity()).replace(".", "/").replace("domain", "converter") + "/" + modalPkg + tableInfo.getEntityName() + "Converter" + StringPool.DOT_JAVA;
+            }
+        });
+
+        // entityvo.java
+        focList.add(new FileOutConfig("/templates/entitydto.java.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                return projectPath + JAVA_PATH + (PARENT + "." + packageConfig.getEntity()).replace(".", "/").replace("domain", "dto") + "/" + modalPkg + tableInfo.getEntityName() + "Dto" + StringPool.DOT_JAVA;
+            }
+        });
+
+        // mapper.xml
         focList.add(new FileOutConfig("/templates/mapper.xml.ftl") {
             @Override
             public String outputFile(TableInfo tableInfo) {

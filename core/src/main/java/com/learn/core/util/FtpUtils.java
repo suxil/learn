@@ -311,7 +311,9 @@ public final class FtpUtils {
 			status = ftpClient.storeFile(fileName, inputStream);
 
 			input.close();
-			imagePath.delete();
+			if (!imagePath.delete()) {
+				log.warn("image path delete false.");
+			}
 
 			return status;
 		});

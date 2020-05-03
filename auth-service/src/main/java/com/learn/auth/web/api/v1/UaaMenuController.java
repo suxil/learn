@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaMenu;
+import com.learn.auth.dto.UaaMenuDto;
 import com.learn.auth.service.UaaMenuService;
 import com.learn.core.common.ResponseResult;
 import io.swagger.annotations.Api;
@@ -15,14 +16,14 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- * 菜单表 前端控制器
+ * 菜单信息 前端控制器
  * </p>
  *
  * @author generate
- * @since 2020-04-20
+ * @since 2020-05-03
  */
 @Slf4j
-@Api(value = "菜单表 接口")
+@Api(value = "菜单信息 接口")
 @RestController
 @RequestMapping("/api/v1/uaa-menus")
 public class UaaMenuController {
@@ -31,9 +32,9 @@ public class UaaMenuController {
     private UaaMenuService uaaMenuService;
 
     @GetMapping
-    @ApiOperation(value = "菜单表 分页查询")
+    @ApiOperation(value = "菜单信息 分页查询")
     @Validated
-    public ResponseResult list(UaaMenu uaaMenu, Page<UaaMenu> page) {
+    public ResponseResult list(UaaMenuDto uaaMenuDto, Page<UaaMenu> page) {
         QueryWrapper<UaaMenu> queryWrapper = new QueryWrapper<>();
 
         IPage<UaaMenu> pageResult = uaaMenuService.page(page, queryWrapper);
@@ -41,27 +42,25 @@ public class UaaMenuController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "菜单表 详情")
+    @ApiOperation(value = "菜单信息 详情")
     public ResponseResult load(@PathVariable String id) {
         return ResponseResult.success(uaaMenuService.getById(id));
     }
 
     @PostMapping
-    @ApiOperation(value = "菜单表 创建")
-    public ResponseResult create(@RequestBody UaaMenu uaaMenu) {
-        uaaMenuService.saveOrUpdate(uaaMenu);
-        return ResponseResult.success(uaaMenu);
+    @ApiOperation(value = "菜单信息 创建")
+    public ResponseResult create(@RequestBody UaaMenuDto uaaMenuDto) {
+        return ResponseResult.success(uaaMenuService.save(uaaMenuDto));
     }
 
     @PutMapping
-    @ApiOperation(value = "菜单表 更新")
-    public ResponseResult update(@RequestBody UaaMenu uaaMenu) {
-        uaaMenuService.saveOrUpdate(uaaMenu);
-        return ResponseResult.success(uaaMenu);
+    @ApiOperation(value = "菜单信息 更新")
+    public ResponseResult update(@RequestBody UaaMenuDto uaaMenuDto) {
+        return ResponseResult.success(uaaMenuService.update(uaaMenuDto));
     }
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "菜单表 删除")
+    @ApiOperation(value = "菜单信息 删除")
     public ResponseResult delete(@PathVariable String id) {
         return ResponseResult.success(uaaMenuService.removeById(id));
     }

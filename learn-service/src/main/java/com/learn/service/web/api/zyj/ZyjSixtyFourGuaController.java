@@ -1,6 +1,7 @@
 package com.learn.service.web.api.zyj;
 
 import io.swagger.annotations.Api;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/zyj-sixty-four-gua")
 public class ZyjSixtyFourGuaController {
 
-    @RequestMapping
+    @GetMapping
     public void test() {
         throw new RuntimeException("test");
     }

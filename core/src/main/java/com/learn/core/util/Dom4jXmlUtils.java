@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.dom4j.*;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
+import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -255,8 +256,7 @@ public final class Dom4jXmlUtils {
             if (isRecursion(valObj)) {
                 addElement(element, valObj, filter);
             } else {
-                // TODO 对于对象类型且不为空的处理
-                //System.out.println(field.getName());
+                // 对于对象类型且不为空的处理
                 getFieldAttr(element, field, valObj);
             }
         }
@@ -356,12 +356,14 @@ public final class Dom4jXmlUtils {
      * @return
      */
     public static Document read(String path) {
-        SAXReader reader = new SAXReader();
         try {
-            Document document = reader.read(new File(path));
-            return document;
+            SAXReader reader = new SAXReader();
+            reader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            return reader.read(new File(path));
         } catch (DocumentException e) {
-            log.error("read: " + e.getMessage());
+            log.error("read DocumentException: " + e.getMessage());
+        } catch (SAXException e) {
+            log.error("read SAXException: " + e.getMessage());
         }
         return null;
     }

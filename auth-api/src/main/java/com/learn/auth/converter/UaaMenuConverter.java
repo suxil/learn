@@ -1,6 +1,7 @@
 package com.learn.auth.converter;
 
 import com.learn.auth.domain.UaaMenu;
+import com.learn.auth.dto.UaaMenuDto;
 import com.learn.auth.vo.UaaMenuTreeVo;
 import com.learn.core.util.TreeUtils;
 import org.mapstruct.Mapper;
@@ -13,12 +14,20 @@ public interface UaaMenuConverter {
 
     UaaMenuConverter INSTANCE = Mappers.getMapper(UaaMenuConverter.class);
 
-    UaaMenuTreeVo convert(UaaMenu item);
+    UaaMenu convert(UaaMenuDto item);
 
-    List<UaaMenuTreeVo> convert(List<UaaMenu> list);
+    UaaMenuDto convertDto(UaaMenu item);
+
+    List<UaaMenu> convert(List<UaaMenuDto> list);
+
+    List<UaaMenuDto> convertDto(List<UaaMenu> list);
+
+    UaaMenuTreeVo convertTreeVo(UaaMenu item);
+
+    List<UaaMenuTreeVo> convertTreeVo(List<UaaMenu> list);
 
     default List<UaaMenuTreeVo> convertToTree(List<UaaMenu> uaaMenuList) {
-        return TreeUtils.convertToTree(convert(uaaMenuList), UaaMenuTreeVo::getId, UaaMenuTreeVo::getParentId, UaaMenuTreeVo::setChildren);
+        return TreeUtils.convertToTree(convertTreeVo(uaaMenuList), UaaMenuTreeVo::getId, UaaMenuTreeVo::getParentId, UaaMenuTreeVo::setChildren);
     }
 
 }

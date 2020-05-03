@@ -1,6 +1,7 @@
 package com.learn.auth.converter;
 
 import com.learn.auth.domain.UaaDepartment;
+import com.learn.auth.dto.UaaDepartmentDto;
 import com.learn.auth.vo.UaaDepartmentTreeVo;
 import com.learn.core.util.TreeUtils;
 import org.mapstruct.Mapper;
@@ -13,12 +14,20 @@ public interface UaaDepartmentConverter {
 
     UaaDepartmentConverter INSTANCE = Mappers.getMapper(UaaDepartmentConverter.class);
 
-    UaaDepartmentTreeVo convert(UaaDepartment item);
+    UaaDepartment convert(UaaDepartmentDto item);
 
-    List<UaaDepartmentTreeVo> convert(List<UaaDepartment> list);
+    UaaDepartmentDto convertDto(UaaDepartment item);
+
+    List<UaaDepartment> convert(List<UaaDepartmentDto> list);
+
+    List<UaaDepartmentDto> convertDto(List<UaaDepartment> list);
+
+    UaaDepartmentTreeVo convertTreeVo(UaaDepartment item);
+
+    List<UaaDepartmentTreeVo> convertTreeVo(List<UaaDepartment> list);
 
     default List<UaaDepartmentTreeVo> convertToTree(List<UaaDepartment> uaaDepartmentList) {
-        return TreeUtils.convertToTree(convert(uaaDepartmentList), UaaDepartmentTreeVo::getId, UaaDepartmentTreeVo::getParentId, UaaDepartmentTreeVo::setChildren);
+        return TreeUtils.convertToTree(convertTreeVo(uaaDepartmentList), UaaDepartmentTreeVo::getId, UaaDepartmentTreeVo::getParentId, UaaDepartmentTreeVo::setChildren);
     }
 
 }
