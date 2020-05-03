@@ -3,7 +3,8 @@ def git_auth = "89132536-495f-460f-abf2-5295782dc137"
 
 podTemplate(cloud: 'kubernetes',
     containers: [
-        containerTemplate(name: 'jnlp', image: '192.168.159.137:31003/learn/jenkins/jnlp-slave:4.3-4', ttyEnabled: true, command: 'cat'),
+        // jnlp 使用 jenkins 中配置的 jnlp 镜像
+        // containerTemplate(name: 'jnlp', image: '192.168.159.137:31003/learn/jenkins/jnlp-slave:4.3-4', ttyEnabled: true, command: 'cat'),
         containerTemplate(name: 'maven', image: '192.168.159.137:31003/learn/maven:3.6.3-jdk-8-openj9', ttyEnabled: true, command: 'cat'),
         containerTemplate(name: 'docker', image: '192.168.159.137:31003/learn/docker:19.03.8', ttyEnabled: true, command: 'cat'),
     ],
