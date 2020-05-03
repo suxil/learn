@@ -78,7 +78,7 @@ public final class FtpUtils {
 				open();
 				status = action.doInFtp(status);
 			} catch (IOException e) {
-				log.error("executor: " + e.getMessage());
+				log.error("executor path action: " + e.getMessage());
 			} finally {
 				close();
 			}
@@ -116,7 +116,7 @@ public final class FtpUtils {
 				action.doInFtp();
 				status = true;
 			} catch (IOException e) {
-				log.error("executor: " + e.getMessage());
+				log.error("executor action: " + e.getMessage());
 			} finally {
 				close();
 			}
@@ -137,7 +137,7 @@ public final class FtpUtils {
 				open();
 				input = action.doInFtp();
 			} catch (IOException e) {
-				log.error("executor: " + e.getMessage());
+				log.error("executor path operation: " + e.getMessage());
 			} finally {
 				close();
 			}

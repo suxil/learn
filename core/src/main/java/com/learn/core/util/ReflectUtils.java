@@ -292,27 +292,7 @@ public final class ReflectUtils {
             }
 
             if (List.class == field.getType()) {
-                Class<?> fieldClazz = getFieldGeneric(field);
-                if (clazz == fieldClazz) {
-                    if (value != null) {
-                        List<Object> list = (List<Object>) value;
-                        if (list != null && list.size() > 0) {
-                            Object listItem = list.get(0);
-                            if (listItem != null && clazz == listItem.getClass()) {
-                                setValueByField(object, field, value);
-                            }
-                        }
-                    } else {
-                        setValueByField(object, field, value);
-                    }
-                } else {
-                    List<Object> objs = (List<Object>) getValueByField(object, field);
-                    if (objs != null) {
-                        for (Object obj : objs) {
-                            setFieldValueByClass(obj, value, clazz, parentClazz);
-                        }
-                    }
-                }
+                setListValueByField(field, object, value, clazz, parentClazz);
             } else if (clazz == field.getType()) {
                 setValueByField(object, field, value);
             } else {
@@ -321,6 +301,49 @@ public final class ReflectUtils {
                     setFieldValueByClass(obj, value, clazz, parentClazz);
                 }
             }
+        }
+    }
+
+    /**
+     * 设置字段处理list类型
+     * @param field
+     * @param object
+     * @param value
+     * @param clazz
+     * @param parentClazz
+     */
+    private static void setListValueByField(Field field, Object object, Object value, Class<?> clazz, Class<?> parentClazz) {
+        Class<?> fieldClazz = getFieldGeneric(field);
+        if (clazz == fieldClazz) {
+            setFieldValue(field, object, value, clazz);
+        } else {
+            List<Object> objs = (List<Object>) getValueByField(object, field);
+            if (objs != null) {
+                for (Object obj : objs) {
+                    setFieldValueByClass(obj, value, clazz, parentClazz);
+                }
+            }
+        }
+    }
+
+    /**
+     * 设置字段值
+     * @param field
+     * @param object
+     * @param value
+     * @param clazz
+     */
+    private static void setFieldValue(Field field, Object object, Object value, Class<?> clazz) {
+        if (value != null) {
+            List<Object> list = (List<Object>) value;
+            if (list.size() > 0) {
+                Object listItem = list.get(0);
+                if (listItem != null && clazz == listItem.getClass()) {
+                    setValueByField(object, field, value);
+                }
+            }
+        } else {
+            setValueByField(object, field, value);
         }
     }
 

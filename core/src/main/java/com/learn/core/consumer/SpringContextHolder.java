@@ -15,14 +15,14 @@ public final class SpringContextHolder implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
+        SpringContextHolder.applicationContext = applicationContext;
     }
 
     public static Object getBean(String name) throws BeansException {
         return applicationContext.getBean(name);
     }
 
-    public static <T> T getBean(String name, @Nullable Class<T> requiredType) throws BeansException {
+    public static <T> T getBean(String name, Class<T> requiredType) throws BeansException {
         return applicationContext.getBean(name, requiredType);
     }
 
@@ -54,13 +54,18 @@ public final class SpringContextHolder implements ApplicationContextAware {
         return applicationContext.isTypeMatch(name, typeToMatch);
     }
 
-    public static boolean isTypeMatch(String name, @Nullable Class<?> typeToMatch) throws NoSuchBeanDefinitionException {
+    public static boolean isTypeMatch(String name, Class<?> typeToMatch) throws NoSuchBeanDefinitionException {
         return applicationContext.isTypeMatch(name, typeToMatch);
     }
 
     @Nullable
     public static Class<?> getType(String name) throws NoSuchBeanDefinitionException {
         return applicationContext.getType(name);
+    }
+
+    @Nullable
+    public static Class<?> getType(String name, boolean allowFactoryBeanInit) {
+        return applicationContext.getType(name, allowFactoryBeanInit);
     }
 
     public static String[] getAliases(String name) {

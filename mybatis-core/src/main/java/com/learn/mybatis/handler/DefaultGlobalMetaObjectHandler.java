@@ -15,22 +15,35 @@ public class DefaultGlobalMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         log.debug("insert fill.");
         String id = UUID.randomUUID().toString().replace("-", "");
+
+
+        String userName = "admin";
+        String officeCode = "1";
+        String tenantId = "1";
+
         this.setFieldValByName(BaseDomainConstants.ID, id, metaObject);
-        this.setFieldValByName(BaseDomainConstants.TENANT_ID, "1", metaObject);
-        this.setFieldValByName(BaseDomainConstants.OFFICE_CODE, "1", metaObject);
-        this.setFieldValByName(BaseDomainConstants.CREATED_BY, "admin", metaObject);
+        this.setFieldValByName(BaseDomainConstants.TENANT_ID, tenantId, metaObject);
+        this.setFieldValByName(BaseDomainConstants.OFFICE_CODE, officeCode, metaObject);
+        this.setFieldValByName(BaseDomainConstants.CREATED_BY, userName, metaObject);
         this.setFieldValByName(BaseDomainConstants.CREATED_AT, LocalDateTime.now(), metaObject);
         this.setFieldValByName(BaseDomainConstants.DELETED, 0, metaObject);
-        this.setFieldValByName(BaseDomainConstants.UPDATED_BY, "admin", metaObject);
+        this.setFieldValByName(BaseDomainConstants.UPDATED_BY, userName, metaObject);
         this.setFieldValByName(BaseDomainConstants.UPDATED_AT, LocalDateTime.now(), metaObject);
         this.setFieldValByName(BaseDomainConstants.VERSION, 0L, metaObject);
+
+        log.debug("insert fill success.");
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         log.debug("update fill.");
-        this.setFieldValByName(BaseDomainConstants.UPDATED_BY, "admin", metaObject);
+
+        String userName = "admin";
+
+        this.setFieldValByName(BaseDomainConstants.UPDATED_BY, userName, metaObject);
         this.setFieldValByName(BaseDomainConstants.UPDATED_AT, LocalDateTime.now(), metaObject);
+
+        log.debug("update fill success.");
     }
 
 }

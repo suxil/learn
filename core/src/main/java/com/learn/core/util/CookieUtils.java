@@ -73,12 +73,12 @@ public final class CookieUtils {
         }
         String retValue = null;
         try {
-            for (int i = 0; i < cookieList.length; i++) {
-                if (cookieList[i].getName().equals(cookieName)) {
+            for (Cookie cookie : cookieList) {
+                if (cookie.getName().equals(cookieName)) {
                     if (isDecoder) {
-                        retValue = URLDecoder.decode(cookieList[i].getValue(), ENCODE);
+                        retValue = URLDecoder.decode(cookie.getValue(), ENCODE);
                     } else {
-                        retValue = cookieList[i].getValue();
+                        retValue = cookie.getValue();
                     }
                     break;
                 }
@@ -194,7 +194,7 @@ public final class CookieUtils {
         String domainName = null;
 
         String serverName = request.getRequestURL().toString();
-        if (serverName == null || serverName.equals("")) {
+        if (serverName.equals("")) {
             domainName = "";
         } else {
             serverName = serverName.toLowerCase();
@@ -203,8 +203,8 @@ public final class CookieUtils {
             domainName = serverName.substring(0, end);
         }
 
-        if (domainName != null && domainName.indexOf(":") > 0) {
-            String[] ary = domainName.split("\\:");
+        if (domainName.contains(":")) {
+            String[] ary = domainName.split(":");
             domainName = ary[0];
         }
         return domainName;

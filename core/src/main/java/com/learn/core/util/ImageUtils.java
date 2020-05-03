@@ -81,7 +81,7 @@ public final class ImageUtils {
         try {
             return ImageIO.read(inputStream); // 读入文件
         } catch (IOException e) {
-            log.error("getBufferedImage: " + e.getMessage());
+            log.error("getBufferedImage inputStream: " + e.getMessage());
         }
         return null;
     }
@@ -96,7 +96,7 @@ public final class ImageUtils {
         try {
             return ImageIO.read(ImageIO.createImageInputStream(imageReader.getInput()));
         } catch (IOException e) {
-            log.error("getBufferedImage: " + e.getMessage());
+            log.error("getBufferedImage imageReader: " + e.getMessage());
         }
         return null;
     }
@@ -111,7 +111,7 @@ public final class ImageUtils {
         try {
             return ImageIO.read(file);
         } catch (IOException e) {
-            log.error("getBufferedImage: " + e.getMessage());
+            log.error("getBufferedImage file: " + e.getMessage());
         }
         return null;
     }
