@@ -157,6 +157,11 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
+				<configuration>
+					<buildArgs>
+						<JAR_FILE>learn-service/target/${project.build.finalName}.jar</JAR_FILE>
+					</buildArgs>
+				</configuration>
 			</plugin>
 
 			<plugin>
