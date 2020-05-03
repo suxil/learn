@@ -2,7 +2,7 @@ package com.learn.auth.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.learn.auth.domain.UaaDepartment;
-import com.learn.auth.dto.UaaDepartmentTreeDto;
+import com.learn.auth.vo.UaaDepartmentTreeVo;
 
 import java.util.List;
 
@@ -23,8 +23,8 @@ public interface UaaDepartmentService extends IService<UaaDepartment> {
      * @author suxi
      * @version V1.0
      * @param officeCode
-     * @return java.util.List<com.learn.auth.dto.UaaDepartmentTreeDto>
+     * @return java.util.List<com.learn.auth.vo.UaaDepartmentTreeDto>
      */
-    List<UaaDepartmentTreeDto> selectDepartmentTree(String officeCode);
+    List<UaaDepartmentTreeVo> selectDepartmentTree(String officeCode);
 
 }

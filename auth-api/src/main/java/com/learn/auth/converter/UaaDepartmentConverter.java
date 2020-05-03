@@ -1,7 +1,7 @@
 package com.learn.auth.converter;
 
 import com.learn.auth.domain.UaaDepartment;
-import com.learn.auth.dto.UaaDepartmentTreeDto;
+import com.learn.auth.vo.UaaDepartmentTreeVo;
 import com.learn.core.util.TreeUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -13,12 +13,12 @@ public interface UaaDepartmentConverter {
 
     UaaDepartmentConverter INSTANCE = Mappers.getMapper(UaaDepartmentConverter.class);
 
-    UaaDepartmentTreeDto convert(UaaDepartment item);
+    UaaDepartmentTreeVo convert(UaaDepartment item);
 
-    List<UaaDepartmentTreeDto> convert(List<UaaDepartment> list);
+    List<UaaDepartmentTreeVo> convert(List<UaaDepartment> list);
 
-    default List<UaaDepartmentTreeDto> convertToTree(List<UaaDepartment> uaaDepartmentList) {
-        return TreeUtils.convertToTree(convert(uaaDepartmentList), UaaDepartmentTreeDto::getId, UaaDepartmentTreeDto::getParentId, UaaDepartmentTreeDto::setChildren);
+    default List<UaaDepartmentTreeVo> convertToTree(List<UaaDepartment> uaaDepartmentList) {
+        return TreeUtils.convertToTree(convert(uaaDepartmentList), UaaDepartmentTreeVo::getId, UaaDepartmentTreeVo::getParentId, UaaDepartmentTreeVo::setChildren);
     }
 
 }

@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.generator.config.po.LikeTable;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+@Slf4j
 public class CodeGenerate {
 
     public static final String MAPPER_NAME = "repository";
@@ -122,7 +124,7 @@ public class CodeGenerate {
             dataSourceConfig.setPassword(datasourceProps.getProperty("datasource.password"));
             dataSourceConfig.setDriverName(datasourceProps.getProperty("datasource.driver-class-name"));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("getDataSourceConfig: " + e.getMessage());
         }
 
         return dataSourceConfig;

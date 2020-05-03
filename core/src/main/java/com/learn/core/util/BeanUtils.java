@@ -1,5 +1,6 @@
 package com.learn.core.util;
 
+import lombok.extern.slf4j.Slf4j;
 import net.sf.cglib.beans.BeanMap;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
@@ -14,6 +15,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/9/16 0016.
  */
+@Slf4j
 public class BeanUtils {
 
     public static final List<String> DEFAULT_FILTER_FIELDS = Arrays.asList("id", "createTime", "updateTime", "createName", "updateName", "isDelete", "version");
@@ -41,7 +43,7 @@ public class BeanUtils {
             enhancer.setCallback(new MethodInterceptorImpl());
             return (T) enhancer.create();
         } catch (Throwable e) {
-            e.printStackTrace();
+            log.error("newInstance: " + e.getMessage());
             throw new Error(e.getMessage());
         }
     }
@@ -70,7 +72,7 @@ public class BeanUtils {
             BeanMap map = getBeanMap(bean);
             return map.get(fieldName);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("getProperties: " + e.getMessage());
         }
         return null;
     }
@@ -87,7 +89,7 @@ public class BeanUtils {
             BeanMap map = getBeanMap(bean);
             map.put(fieldName, value);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("setProperties: " + e.getMessage());
         }
     }
 

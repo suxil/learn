@@ -2,6 +2,7 @@ package com.learn.core.op;
 
 import com.learn.core.util.StringUtils;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -23,6 +24,7 @@ import java.util.regex.Pattern;
  * @Description:
  * @Date: Created in 2018/10/2 0002 7:57
  */
+@Slf4j
 public class OpTests {
 
     private String basePath = "F:\\娱乐视频";
@@ -65,7 +67,7 @@ public class OpTests {
                 System.out.println();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("writePath: " + e.getMessage());
         }
     }
 
@@ -124,7 +126,7 @@ public class OpTests {
         try {
             content = new String(Files.readAllBytes(Paths.get(dirPath)));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("getAllInfo: " + e.getMessage());
         }
         Document document = Jsoup.parse(content);
         Elements ulElements = document.select("ul");

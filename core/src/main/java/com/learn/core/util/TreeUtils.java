@@ -2,7 +2,7 @@ package com.learn.core.util;
 
 import org.springframework.util.CollectionUtils;
 
-import javax.annotation.Nullable;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +35,7 @@ public final class TreeUtils {
      * @param consumer
      * @return void
      */
-    public static <T> void filterTree(List<T> treeList, @Nullable Function<T, List<T>> getChildFunction, @Nullable Consumer<T> consumer) {
+    public static <T> void filterTree(List<T> treeList, @NotNull Function<T, List<T>> getChildFunction, @NotNull Consumer<T> consumer) {
         if (CollectionUtils.isEmpty(treeList)) {
             return;
         }
@@ -61,7 +61,7 @@ public final class TreeUtils {
      * @param setChildConsumer
      * @return java.util.List<T>
      */
-    public static <T, R> List<T> convertToTree(List<T> dataList, @Nullable Function<T, R> keyFunction, @Nullable Function<T, R> parentKeyFunction, @Nullable BiConsumer<T, List<T>> setChildConsumer) {
+    public static <T, R> List<T> convertToTree(List<T> dataList, @NotNull Function<T, R> keyFunction, @NotNull Function<T, R> parentKeyFunction, @NotNull BiConsumer<T, List<T>> setChildConsumer) {
         if (CollectionUtils.isEmpty(dataList)) {
             return new ArrayList<>();
         }
@@ -137,6 +137,9 @@ public final class TreeUtils {
      */
     private static <T, R> void init(List<T> dataList, Function<T, R> keyFunction, Function<T, R> parentKeyFunction, Map<R, R> keyMap, Map<R, List<T>> parentMap) {
         if (CollectionUtils.isEmpty(dataList)) {
+            return;
+        }
+        if (keyFunction == null || parentKeyFunction == null) {
             return;
         }
 

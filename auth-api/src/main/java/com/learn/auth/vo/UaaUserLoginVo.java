@@ -1,7 +1,9 @@
-package com.learn.auth.dto;
+package com.learn.auth.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotBlank;
 
@@ -17,8 +19,10 @@ import javax.validation.constraints.NotBlank;
  * @version V1.0
  * @Package com.learn.auth.dto
  */
+@Data
+@Accessors(chain = true)
 @ApiModel(value="用户对象")
-public class UaaUserLoginDto {
+public class UaaUserLoginVo {
 
     @ApiModelProperty(name = "user_code", value = "用户代码")
     @NotBlank(message="用户名不能为空")
@@ -28,19 +32,4 @@ public class UaaUserLoginDto {
     @NotBlank(message="密码不能为空")
     private String password;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

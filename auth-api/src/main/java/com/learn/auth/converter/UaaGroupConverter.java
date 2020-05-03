@@ -1,7 +1,7 @@
 package com.learn.auth.converter;
 
 import com.learn.auth.domain.UaaGroup;
-import com.learn.auth.dto.UaaGroupTreeDto;
+import com.learn.auth.vo.UaaGroupTreeVo;
 import com.learn.core.util.TreeUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -13,12 +13,12 @@ public interface UaaGroupConverter {
 
     UaaGroupConverter INSTANCE = Mappers.getMapper(UaaGroupConverter.class);
 
-    UaaGroupTreeDto convert(UaaGroup item);
+    UaaGroupTreeVo convert(UaaGroup item);
 
-    List<UaaGroupTreeDto> convert(List<UaaGroup> list);
+    List<UaaGroupTreeVo> convert(List<UaaGroup> list);
 
-    default List<UaaGroupTreeDto> convertToTree(List<UaaGroup> uaaGroupList) {
-        return TreeUtils.convertToTree(convert(uaaGroupList), UaaGroupTreeDto::getId, UaaGroupTreeDto::getParentId, UaaGroupTreeDto::setChildren);
+    default List<UaaGroupTreeVo> convertToTree(List<UaaGroup> uaaGroupList) {
+        return TreeUtils.convertToTree(convert(uaaGroupList), UaaGroupTreeVo::getId, UaaGroupTreeVo::getParentId, UaaGroupTreeVo::setChildren);
     }
 
 }

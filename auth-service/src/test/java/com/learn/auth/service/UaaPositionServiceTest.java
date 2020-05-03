@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaPosition;
-import com.learn.auth.dto.UaaPositionTreeDto;
+import com.learn.auth.vo.UaaPositionTreeVo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,9 +38,9 @@ public class UaaPositionServiceTest {
     @Rollback
     public void selectPositionTreeTest() {
         String officeCode = "9000";
-        List<UaaPositionTreeDto> uaaPositionTreeDtoList = uaaPositionService.selectPositionTree(officeCode);
+        List<UaaPositionTreeVo> uaaPositionTreeVoList = uaaPositionService.selectPositionTree(officeCode);
 
-        Assert.assertNotNull(uaaPositionTreeDtoList);
+        Assert.assertNotNull(uaaPositionTreeVoList);
     }
 
     @Test

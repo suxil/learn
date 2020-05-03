@@ -33,14 +33,17 @@ public class BatchConfiguration {
     // tag::readerwriterprocessor[]
     @Bean
     public FlatFileItemReader<Person> reader() {
+        String[] names = new String[2];
+        names[0] = "firstName";
+        names[1] = "lastName";
+        BeanWrapperFieldSetMapper<Person> wrapperFieldSetMapper = new BeanWrapperFieldSetMapper<Person>();
+        wrapperFieldSetMapper.setTargetType(Person.class);
         return new FlatFileItemReaderBuilder<Person>()
                 .name("personItemReader")
                 .resource(new ClassPathResource("sample-data.csv"))
                 .delimited()
-                .names(new String[]{"firstName", "lastName"})
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<Person>() {{
-                    setTargetType(Person.class);
-                }})
+                .names(names)
+                .fieldSetMapper(wrapperFieldSetMapper)
                 .build();
     }
 

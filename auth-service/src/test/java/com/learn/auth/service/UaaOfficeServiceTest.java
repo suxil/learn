@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaOffice;
-import com.learn.auth.dto.UaaOfficeTreeDto;
+import com.learn.auth.vo.UaaOfficeTreeVo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +37,7 @@ public class UaaOfficeServiceTest {
     @Test
     @Rollback
     public void selectOfficeTreeTest() {
-        List<UaaOfficeTreeDto> officeTreeDtoList = uaaOfficeService.selectOfficeTree();
+        List<UaaOfficeTreeVo> officeTreeDtoList = uaaOfficeService.selectOfficeTree();
 
         Assert.assertNotNull(officeTreeDtoList);
         Assert.assertFalse(officeTreeDtoList.isEmpty());

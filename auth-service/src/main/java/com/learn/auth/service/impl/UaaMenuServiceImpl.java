@@ -4,9 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.learn.auth.converter.UaaMenuConverter;
 import com.learn.auth.domain.UaaMenu;
-import com.learn.auth.dto.UaaMenuTreeDto;
 import com.learn.auth.repository.UaaMenuRepository;
 import com.learn.auth.service.UaaMenuService;
+import com.learn.auth.vo.UaaMenuTreeVo;
+import com.learn.core.constance.BaseDomainConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,9 @@ import java.util.List;
 public class UaaMenuServiceImpl extends ServiceImpl<UaaMenuRepository, UaaMenu> implements UaaMenuService {
 
     @Override
-    public List<UaaMenuTreeDto> selectMenuTree(String officeCode) {
+    public List<UaaMenuTreeVo> selectMenuTree(String officeCode) {
         QueryWrapper<UaaMenu> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(UaaMenu.OFFICE_CODE, officeCode);
+        queryWrapper.eq(BaseDomainConstants.OFFICE_CODE, officeCode);
         return UaaMenuConverter.INSTANCE.convertToTree(super.list(queryWrapper));
     }
 

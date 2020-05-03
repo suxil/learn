@@ -2,7 +2,7 @@ package com.learn.auth.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.learn.auth.domain.UaaPermission;
-import com.learn.auth.dto.UaaPermissionTreeDto;
+import com.learn.auth.vo.UaaPermissionTreeVo;
 
 import java.util.List;
 
@@ -23,8 +23,8 @@ public interface UaaPermissionService extends IService<UaaPermission> {
      * @author suxi
      * @version V1.0
      * @param officeCode
-     * @return java.util.List<com.learn.auth.dto.UaaPermissionTreeDto>
+     * @return java.util.List<com.learn.auth.vo.UaaPermissionTreeDto>
      */
-    List<UaaPermissionTreeDto> selectPermissionTree(String officeCode);
+    List<UaaPermissionTreeVo> selectPermissionTree(String officeCode);
 
 }

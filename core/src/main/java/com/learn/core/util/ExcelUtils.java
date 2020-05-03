@@ -1,5 +1,6 @@
 package com.learn.core.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 
@@ -11,6 +12,7 @@ import java.io.IOException;
  * @Description:
  * @Date: Created in 2018/5/3 0003 11:24
  */
+@Slf4j
 public final class ExcelUtils {
 
     private ExcelUtils() {
@@ -25,7 +27,7 @@ public final class ExcelUtils {
         try (FileInputStream fis = new FileInputStream(filePath)) {
             return new HSSFWorkbook(fis);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("readFile: " + e.getMessage());
         }
         return null;
     }

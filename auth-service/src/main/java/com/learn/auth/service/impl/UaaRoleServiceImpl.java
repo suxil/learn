@@ -4,9 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.learn.auth.converter.UaaRoleConverter;
 import com.learn.auth.domain.UaaRole;
-import com.learn.auth.dto.UaaRoleTreeDto;
 import com.learn.auth.repository.UaaRoleRepository;
 import com.learn.auth.service.UaaRoleService;
+import com.learn.auth.vo.UaaRoleTreeVo;
+import com.learn.core.constance.BaseDomainConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,9 @@ import java.util.List;
 public class UaaRoleServiceImpl extends ServiceImpl<UaaRoleRepository, UaaRole> implements UaaRoleService {
 
     @Override
-    public List<UaaRoleTreeDto> selectRoleTree(String officeCode) {
+    public List<UaaRoleTreeVo> selectRoleTree(String officeCode) {
         QueryWrapper<UaaRole> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(UaaRole.OFFICE_CODE, officeCode);
+        queryWrapper.eq(BaseDomainConstants.OFFICE_CODE, officeCode);
         return UaaRoleConverter.INSTANCE.convertToTree(super.list(queryWrapper));
     }
 

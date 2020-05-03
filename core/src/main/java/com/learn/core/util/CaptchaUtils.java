@@ -1,11 +1,15 @@
 package com.learn.core.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.Random;
 
@@ -14,7 +18,18 @@ import java.util.Random;
  * @Description:
  * @Date: Created in 2018/4/29 0029 23:33
  */
+@Slf4j
 public final class CaptchaUtils {
+
+    private static Random random = null;
+
+    {
+        try {
+            random = SecureRandom.getInstanceStrong();
+        } catch (NoSuchAlgorithmException e) {
+            log.error("init: " + e.getMessage());
+        }
+    }
 
     private static final String CODES = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final int LEN = 4;
@@ -69,7 +84,6 @@ public final class CaptchaUtils {
      * @return
      */
     public static String randomCode(int len) {
-        Random random = new Random();
         StringBuilder sBuilder = new StringBuilder();
         for (int i = 0; i < len; i ++) {
             sBuilder.append(CODES.charAt(random.nextInt(CODES.length())));
@@ -125,7 +139,6 @@ public final class CaptchaUtils {
         graphics2d.setColor(Color.GRAY);
         graphics2d.setFont(new Font("黑体", Font.BOLD, size));
 
-        Random random = new Random();
         for (int i = 0; i < random.nextInt(7) + 7; i++) {
             graphics2d.drawLine(random.nextInt(width), random.nextInt(height), random.nextInt(width), random.nextInt(height));
         }
@@ -162,14 +175,12 @@ public final class CaptchaUtils {
         try {
             ImageIO.write(bImage, format, baos);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("imageBufToByte: " + e.getMessage());
         } finally {
-            if (baos != null) {
-                try {
-                    baos.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            try {
+                baos.close();
+            } catch (IOException e) {
+                log.error("imageBufToByte baos close: " + e.getMessage());
             }
         }
         return baos.toByteArray();

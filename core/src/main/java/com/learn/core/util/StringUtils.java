@@ -1,5 +1,7 @@
 package com.learn.core.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -8,6 +10,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/9/16 0016.
  */
+@Slf4j
 public final class StringUtils {
 
     private StringUtils() {
@@ -300,7 +303,7 @@ public final class StringUtils {
                     break;
             }
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            log.error("encode file name: " + e.getMessage());
         }
         return fileName;
     }

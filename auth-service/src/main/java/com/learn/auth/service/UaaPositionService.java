@@ -2,7 +2,7 @@ package com.learn.auth.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.learn.auth.domain.UaaPosition;
-import com.learn.auth.dto.UaaPositionTreeDto;
+import com.learn.auth.vo.UaaPositionTreeVo;
 
 import java.util.List;
 
@@ -23,8 +23,8 @@ public interface UaaPositionService extends IService<UaaPosition> {
      * @author suxi
      * @version V1.0
      * @param officeCode
-     * @return java.util.List<com.learn.auth.dto.UaaPositionTreeDto>
+     * @return java.util.List<com.learn.auth.vo.UaaPositionTreeDto>
      */
-    List<UaaPositionTreeDto> selectPositionTree(String officeCode);
+    List<UaaPositionTreeVo> selectPositionTree(String officeCode);
 
 }

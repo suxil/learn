@@ -2,6 +2,7 @@ package com.learn.core.util;
 
 import com.learn.core.util.anotation.CDATAType;
 import com.learn.core.util.anotation.IgnoreElement;
+import lombok.extern.slf4j.Slf4j;
 import org.dom4j.*;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
@@ -11,6 +12,7 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.List;
 
+@Slf4j
 public final class Dom4jXmlUtils {
 
     private static final String ELM_PRIFIX = "";// 命名空间别名
@@ -323,7 +325,7 @@ public final class Dom4jXmlUtils {
         try {
             return DocumentHelper.parseText(content);
         } catch (DocumentException e) {
-            e.printStackTrace();
+            log.error("stringToDocument: " + e.getMessage());
         }
         return null;
     }
@@ -359,7 +361,7 @@ public final class Dom4jXmlUtils {
             Document document = reader.read(new File(path));
             return document;
         } catch (DocumentException e) {
-            e.printStackTrace();
+            log.error("read: " + e.getMessage());
         }
         return null;
     }

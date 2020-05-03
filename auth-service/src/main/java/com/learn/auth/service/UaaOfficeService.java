@@ -2,7 +2,7 @@ package com.learn.auth.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.learn.auth.domain.UaaOffice;
-import com.learn.auth.dto.UaaOfficeTreeDto;
+import com.learn.auth.vo.UaaOfficeTreeVo;
 
 import java.util.List;
 
@@ -22,8 +22,8 @@ public interface UaaOfficeService extends IService<UaaOffice> {
      *
      * @author suxi
      * @version V1.0
-     * @return java.util.List<com.learn.auth.dto.UaaOfficeTreeDto>
+     * @return java.util.List<com.learn.auth.vo.UaaOfficeTreeDto>
      */
-    List<UaaOfficeTreeDto> selectOfficeTree();
+    List<UaaOfficeTreeVo> selectOfficeTree();
 
 }

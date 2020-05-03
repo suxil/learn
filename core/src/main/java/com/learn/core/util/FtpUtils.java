@@ -1,5 +1,6 @@
 package com.learn.core.util;
 
+import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.net.ftp.FTPClient;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.SocketException;
 
+@Slf4j
 public final class FtpUtils {
 
 	private static FtpUtils instance = null;
@@ -44,21 +46,14 @@ public final class FtpUtils {
 	 * ftp文件操作回调接口
 	 */
 	public interface FtpCallback {
-		boolean doInFtp(boolean status, FtpCloseCallback ftpCloseCallback) throws IOException;
-	}
-
-	/**
-	 * ftp关闭操作回调接口
-	 */
-	public interface FtpCloseCallback {
-		void doInFtpClose() throws IOException;
+		boolean doInFtp(boolean status) throws IOException;
 	}
 
 	/**
 	 * ftp文件操作回调接口
 	 */
 	public interface FtpOperationCallback {
-		InputStream doInFtp(FtpCloseCallback ftpCloseCallback) throws IOException;
+		InputStream doInFtp() throws IOException;
 	}
 
 	/**
@@ -66,8 +61,8 @@ public final class FtpUtils {
 	 * @param action
 	 * @return
 	 */
-	public boolean executer(FtpCallback action) {
-		return executer("", action);
+	public boolean executor(FtpCallback action) {
+		return executor("", action);
 	}
 
 	/**
@@ -75,24 +70,16 @@ public final class FtpUtils {
 	 * @param action
 	 * @return
 	 */
-	public boolean executer(String path, FtpCallback action) {
+	public boolean executor(String path, FtpCallback action) {
 		boolean status = false;
 		if (action != null) {
-			FtpCloseCallback ftpCloseCallback = null;
 			try {
 				cd(path);
 				open();
-				status = action.doInFtp(status, ftpCloseCallback);
+				status = action.doInFtp(status);
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error("executor: " + e.getMessage());
 			} finally {
-				if (ftpCloseCallback != null) {
-					try {
-						ftpCloseCallback.doInFtpClose();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
 				close();
 			}
 		}
@@ -104,13 +91,13 @@ public final class FtpUtils {
 	 * @param action
 	 * @return
 	 */
-	public boolean executerNotOpen(FtpCallback action) {
+	public boolean executorNotOpen(FtpCallback action) {
 		boolean status = false;
 		if (action != null) {
 			try {
-				status = action.doInFtp(status, null);
+				status = action.doInFtp(status);
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error("executorNotOpen: " + e.getMessage());
 			}
 		}
 		return status;
@@ -121,24 +108,16 @@ public final class FtpUtils {
 	 * @param action
 	 * @return
 	 */
-	public boolean executer(FtpOperationCallback action) {
+	public boolean executor(FtpOperationCallback action) {
 		boolean status = false;
 		if (action != null) {
-			FtpCloseCallback ftpCloseCallback = null;
 			try {
 				open();
-				action.doInFtp(ftpCloseCallback);
+				action.doInFtp();
 				status = true;
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error("executor: " + e.getMessage());
 			} finally {
-				if (ftpCloseCallback != null) {
-					try {
-						ftpCloseCallback.doInFtpClose();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
 				close();
 			}
 		}
@@ -150,24 +129,16 @@ public final class FtpUtils {
 	 * @param action
 	 * @return
 	 */
-	public InputStream executer(String path, FtpOperationCallback action) {
+	public InputStream executor(String path, FtpOperationCallback action) {
 		InputStream input = null;
 		if (action != null) {
-			FtpCloseCallback ftpCloseCallback = null;
 			try {
 				cd(path);
 				open();
-				input = action.doInFtp(ftpCloseCallback);
+				input = action.doInFtp();
 			} catch (IOException e) {
-				e.printStackTrace();
+				log.error("executor: " + e.getMessage());
 			} finally {
-				if (ftpCloseCallback != null) {
-					try {
-						ftpCloseCallback.doInFtpClose();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
 				close();
 			}
 		}
@@ -187,11 +158,9 @@ public final class FtpUtils {
 			ftpClient.connect(server, port);
 			status = true;
 		} catch (SocketException e) {
-			status = false;
-			e.printStackTrace();
+			log.error("connect SocketException: " + e.getMessage());
 		} catch (IOException e) {
-			status = false;
-			e.printStackTrace();
+			log.error("connect IOException: " + e.getMessage());
 		}
 		return status;
 	}
@@ -286,7 +255,7 @@ public final class FtpUtils {
 			FileInputStream input = new FileInputStream(file);
 			status = upload(path, fileName, input);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("upload: " + e.getMessage());
 		}
 		return status;
 	}
@@ -300,16 +269,13 @@ public final class FtpUtils {
 	 * @return
 	 */
 	public boolean upload(String path, String fileName, InputStream input) {
-		return executer(path, (status, ftpCloseCallback) -> {
+		return executor(path, (status) -> {
 			ftpClient.setBufferSize(BUFF_SIZE);
 			ftpClient.setControlEncoding(ENCODE);
 			ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
 
 			status = ftpClient.storeFile(fileName, input);
 
-			ftpCloseCallback = () -> {
-				input.close();// 关闭输入流
-			};
 			return status;
 		});
 	}
@@ -325,9 +291,8 @@ public final class FtpUtils {
 	 * @param maxHeight
 	 * @return
 	 */
-	public boolean uploadImage(String path, String fileName, InputStream input, float quality, int maxWidth,
-							   int maxHeight) {
-		return executer(path, (status, ftpCloseCallback) -> {
+	public boolean uploadImage(String path, String fileName, InputStream input, float quality, int maxWidth, int maxHeight) {
+		return executor(path, (status) -> {
 			String suffex = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 			System.out.println(suffex);
 			File imagePath = new File(cacheDir + fileName);
@@ -345,10 +310,9 @@ public final class FtpUtils {
 			FileInputStream inputStream = new FileInputStream(imagePath);
 			status = ftpClient.storeFile(fileName, inputStream);
 
-			ftpCloseCallback = () -> {
-				input.close();// 关闭输入流
-				imagePath.delete();
-			};
+			input.close();
+			imagePath.delete();
+
 			return status;
 		});
 	}
@@ -398,7 +362,7 @@ public final class FtpUtils {
 			InputStream input = downToInputStream(path, fileName);
 			FileUtils.copyToFile(input, file);
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("downToFile: " + e.getMessage());
 		}
 		return file;
 	}
@@ -411,9 +375,7 @@ public final class FtpUtils {
 	 * @return
 	 */
 	public InputStream downToInputStream(String path, String fileName) {
-		return executer(path, (ftpCloseCallback) -> {
-			return ftpClient.retrieveFileStream(fileName);
-		});
+		return executor(path, () -> ftpClient.retrieveFileStream(fileName));
 	}
 
 	/**
@@ -423,7 +385,7 @@ public final class FtpUtils {
 	 * @return
 	 */
 	public boolean cd(String dir) {
-		return executerNotOpen((status, ftpCloseCallback) -> {
+		return executorNotOpen((status) -> {
 			String[] dirs = dir.split("/");
 			if (dirs.length == 0) {
 				return status;
@@ -444,7 +406,7 @@ public final class FtpUtils {
 	 * @return
 	 */
 	public boolean mkdir(String dir) {
-		return executer((status, ftpCloseCallback) -> {
+		return executor((status) -> {
 			ftpClient.changeToParentDirectory();
 			ftpClient.makeDirectory(dir);
 			status = true;
@@ -459,7 +421,7 @@ public final class FtpUtils {
 	 * @return
 	 */
 	public boolean mkdirs(String dir) {
-		return executer((status, ftpCloseCallback) -> {
+		return executor((status) -> {
 			String[] dirs = dir.split("/");
 			if (dirs.length == 0) {
 				return status;
@@ -481,9 +443,7 @@ public final class FtpUtils {
 	 * @return
 	 */
 	public boolean rmdir(String pathname) {
-		return executer((status, ftpCloseCallback) -> {
-			return ftpClient.removeDirectory(pathname);
-		});
+		return executor((status) -> ftpClient.removeDirectory(pathname));
 	}
 
 	/**
@@ -493,9 +453,7 @@ public final class FtpUtils {
 	 * @return
 	 */
 	public boolean remove(String pathname) {
-		return executer((status, ftpCloseCallback) -> {
-			return ftpClient.deleteFile(pathname);
-		});
+		return executor((status) -> ftpClient.deleteFile(pathname));
 	}
 
 	/**
@@ -506,9 +464,7 @@ public final class FtpUtils {
 	 * @return
 	 */
 	public boolean rename(String pathname1, String pathname2) {
-		return executer((status, ftpCloseCallback) -> {
-			return ftpClient.rename(pathname1, pathname2);
-		});
+		return executor((status) -> ftpClient.rename(pathname1, pathname2));
 	}
 
 }

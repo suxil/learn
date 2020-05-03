@@ -1,11 +1,14 @@
 package com.learn.core.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 public final class ReflectUtils {
 
     private ReflectUtils() {
@@ -79,7 +82,7 @@ public final class ReflectUtils {
             try {
                 return obj.getClass().getMethod(methodName, parameterTypes);
             } catch (NoSuchMethodException e) {
-                e.printStackTrace();
+                log.error("getMethod: " + e.getMessage());
             }
         }
         return null;
@@ -147,9 +150,9 @@ public final class ReflectUtils {
             try {
                 return method.invoke(obj, values);
             } catch (IllegalAccessException e) {
-                e.printStackTrace();
+                log.error("invokeMethod IllegalAccessException: " + e.getMessage());
             } catch (InvocationTargetException e) {
-                e.printStackTrace();
+                log.error("invokeMethod InvocationTargetException: " + e.getMessage());
             }
         }
         return null;
@@ -235,7 +238,10 @@ public final class ReflectUtils {
      * @param clazz
      */
     public static void initAllListType(List<Class<?>> clazzList, Class<?> clazz) {
-        if (clazzList != null && clazzList.size() == 0) {
+        if (clazzList == null) {
+            return;
+        }
+        if (clazzList.size() == 0) {
             clazzList.add(clazz);
         }
         Field[] fields = clazz.getDeclaredFields();

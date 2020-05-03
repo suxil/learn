@@ -1,5 +1,7 @@
 package com.learn.core.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -11,6 +13,7 @@ import java.net.URLEncoder;
  * @Description:
  * @Date: Created in 2018/4/29 0029 23:59
  */
+@Slf4j
 public final class UrlUtils {
 
     private static final String CHARSET = "UTF-8";
@@ -43,7 +46,7 @@ public final class UrlUtils {
             try {
                 url = URLDecoder.decode("http%3A%2F%2Flocalhost%3A8080%2F", CHARSET);
             } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
+                log.error("checkEncode: " + e.getMessage());
             }
         }
         return url;
@@ -69,7 +72,7 @@ public final class UrlUtils {
             URL url = new URL(backUrl);
             //url.getProtocol()
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            log.error("utlToDomain: " + e.getMessage());
         }
         return null;
     }
@@ -85,8 +88,7 @@ public final class UrlUtils {
                 return URLEncoder.encode(url, CHARSET);
             }
         } catch (UnsupportedEncodingException e) {
-            System.out.println("格式转换出错");
-            e.printStackTrace();
+            log.error("encode: " + e.getMessage());
         }
         return "";
     }
@@ -102,8 +104,7 @@ public final class UrlUtils {
                 return URLDecoder.decode(url, CHARSET);
             }
         } catch (UnsupportedEncodingException e) {
-            System.out.println("格式转换出错");
-            e.printStackTrace();
+            log.error("decode: " + e.getMessage());
         }
         return "";
     }

@@ -2,7 +2,7 @@ package com.learn.auth.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.learn.auth.domain.UaaGroup;
-import com.learn.auth.dto.UaaGroupTreeDto;
+import com.learn.auth.vo.UaaGroupTreeVo;
 
 import java.util.List;
 
@@ -23,8 +23,8 @@ public interface UaaGroupService extends IService<UaaGroup> {
      * @author suxi
      * @version V1.0
      * @param officeCode
-     * @return java.util.List<com.learn.auth.dto.UaaGroupTreeDto>
+     * @return java.util.List<com.learn.auth.vo.UaaGroupTreeDto>
      */
-    List<UaaGroupTreeDto> selectGroupTree(String officeCode);
+    List<UaaGroupTreeVo> selectGroupTree(String officeCode);
 
 }

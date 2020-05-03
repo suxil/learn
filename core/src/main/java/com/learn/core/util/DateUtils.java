@@ -1,11 +1,14 @@
 package com.learn.core.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.text.ParseException;
 import java.util.Date;
 
 /**
  * Created by Administrator on 2017/9/16 0016.
  */
+@Slf4j
 public final class DateUtils {
 
     private DateUtils() {
@@ -27,7 +30,7 @@ public final class DateUtils {
         try {
             return org.apache.commons.lang3.time.DateUtils.parseDate(value, parsePatterns);
         } catch (ParseException e) {
-            e.printStackTrace();
+            log.error("parseDate: " + e.getMessage());
         }
         return null;
     }

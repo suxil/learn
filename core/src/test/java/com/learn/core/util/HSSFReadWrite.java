@@ -17,6 +17,7 @@
 
 package com.learn.core.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -34,6 +35,7 @@ import java.util.Locale;
  * It does contain sample API usage that may be educational to regular API
  * users.
  */
+@Slf4j
 public final class HSSFReadWrite {
 
 	/**
@@ -248,7 +250,7 @@ public final class HSSFReadWrite {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("main: " + e.getMessage());
 		}
 	}
 }

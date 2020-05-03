@@ -4,9 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.learn.auth.converter.UaaDepartmentConverter;
 import com.learn.auth.domain.UaaDepartment;
-import com.learn.auth.dto.UaaDepartmentTreeDto;
 import com.learn.auth.repository.UaaDepartmentRepository;
 import com.learn.auth.service.UaaDepartmentService;
+import com.learn.auth.vo.UaaDepartmentTreeVo;
+import com.learn.core.constance.BaseDomainConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,9 @@ import java.util.List;
 public class UaaDepartmentServiceImpl extends ServiceImpl<UaaDepartmentRepository, UaaDepartment> implements UaaDepartmentService {
 
     @Override
-    public List<UaaDepartmentTreeDto> selectDepartmentTree(String officeCode) {
+    public List<UaaDepartmentTreeVo> selectDepartmentTree(String officeCode) {
         QueryWrapper<UaaDepartment> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(UaaDepartment.OFFICE_CODE, officeCode);
+        queryWrapper.eq(BaseDomainConstants.OFFICE_CODE, officeCode);
         return UaaDepartmentConverter.INSTANCE.convertToTree(super.list(queryWrapper));
     }
 

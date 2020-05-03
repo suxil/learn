@@ -1,8 +1,8 @@
 package com.learn.auth.web.api.v0;
 
 import com.learn.auth.domain.UaaUser;
-import com.learn.auth.dto.UaaUserLoginDto;
 import com.learn.auth.util.UserUtils;
+import com.learn.auth.vo.UaaUserLoginVo;
 import com.learn.core.common.ResponseResult;
 import com.learn.core.util.BeanUtils;
 import com.learn.core.util.JwtUtils;
@@ -55,7 +55,7 @@ public class UaaAuthController {
 
     @PostMapping("/login")
     @ApiOperation(value = "登录")
-    public ResponseResult login(@RequestBody UaaUserLoginDto uaaUser) {
+    public ResponseResult login(@RequestBody UaaUserLoginVo uaaUser) {
         ValidatorUtils.validate(uaaUser);
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(uaaUser.getUsername());

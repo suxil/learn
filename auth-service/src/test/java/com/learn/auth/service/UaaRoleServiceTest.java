@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaRole;
-import com.learn.auth.dto.UaaRoleTreeDto;
+import com.learn.auth.vo.UaaRoleTreeVo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,9 +38,9 @@ public class UaaRoleServiceTest {
     @Rollback
     public void selectRoleTreeTest() {
         String officeCode = "9000";
-        List<UaaRoleTreeDto> uaaRoleTreeDtoList = uaaRoleService.selectRoleTree(officeCode);
+        List<UaaRoleTreeVo> uaaRoleTreeVoList = uaaRoleService.selectRoleTree(officeCode);
 
-        Assert.assertNotNull(uaaRoleTreeDtoList);
+        Assert.assertNotNull(uaaRoleTreeVoList);
     }
 
     @Test

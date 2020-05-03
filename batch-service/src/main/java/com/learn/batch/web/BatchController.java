@@ -1,5 +1,6 @@
 package com.learn.batch.web;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersInvalidException;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 public class BatchController {
 
@@ -31,13 +33,13 @@ public class BatchController {
         try {
             jobLauncher.run(importUserJob, jobParameters);
         } catch (JobExecutionAlreadyRunningException e) {
-            e.printStackTrace();
+            log.error("start JobExecutionAlreadyRunningException" + e.getMessage());
         } catch (JobRestartException e) {
-            e.printStackTrace();
+            log.error("start JobRestartException" + e.getMessage());
         } catch (JobInstanceAlreadyCompleteException e) {
-            e.printStackTrace();
+            log.error("start JobInstanceAlreadyCompleteException" + e.getMessage());
         } catch (JobParametersInvalidException e) {
-            e.printStackTrace();
+            log.error("start JobParametersInvalidException" + e.getMessage());
         }
     }
 

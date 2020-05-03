@@ -3,11 +3,11 @@ package com.learn.auth.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.learn.auth.converter.UaaGroupConverter;
-import com.learn.auth.domain.UaaDepartment;
 import com.learn.auth.domain.UaaGroup;
-import com.learn.auth.dto.UaaGroupTreeDto;
 import com.learn.auth.repository.UaaGroupRepository;
 import com.learn.auth.service.UaaGroupService;
+import com.learn.auth.vo.UaaGroupTreeVo;
+import com.learn.core.constance.BaseDomainConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -26,9 +26,9 @@ import java.util.List;
 public class UaaGroupServiceImpl extends ServiceImpl<UaaGroupRepository, UaaGroup> implements UaaGroupService {
 
     @Override
-    public List<UaaGroupTreeDto> selectGroupTree(String officeCode) {
+    public List<UaaGroupTreeVo> selectGroupTree(String officeCode) {
         QueryWrapper<UaaGroup> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq(UaaDepartment.OFFICE_CODE, officeCode);
+        queryWrapper.eq(BaseDomainConstants.OFFICE_CODE, officeCode);
         return UaaGroupConverter.INSTANCE.convertToTree(super.list(queryWrapper));
     }
 

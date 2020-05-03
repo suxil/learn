@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.learn.auth.domain.UaaPermission;
-import com.learn.auth.dto.UaaPermissionTreeDto;
+import com.learn.auth.vo.UaaPermissionTreeVo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,9 +38,9 @@ public class UaaPermissionServiceTest {
     @Rollback
     public void selectPermissionTreeTest() {
         String officeCode = "9000";
-        List<UaaPermissionTreeDto> uaaPermissionTreeDtoList = uaaPermissionService.selectPermissionTree(officeCode);
+        List<UaaPermissionTreeVo> uaaPermissionTreeVoList = uaaPermissionService.selectPermissionTree(officeCode);
 
-        Assert.assertNotNull(uaaPermissionTreeDtoList);
+        Assert.assertNotNull(uaaPermissionTreeVoList);
     }
 
     @Test

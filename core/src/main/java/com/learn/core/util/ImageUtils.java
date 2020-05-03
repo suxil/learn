@@ -1,5 +1,7 @@
 package com.learn.core.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
@@ -19,6 +21,7 @@ import java.util.Iterator;
  * @author luxq
  * @version 1.0
  */
+@Slf4j
 public final class ImageUtils {
 
     private static final String FORMAT = "jpg";
@@ -37,7 +40,7 @@ public final class ImageUtils {
         try {
             imageInputStream = ImageIO.createImageInputStream(new ByteArrayInputStream(imageToByte(bufferedImage)));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("getImageReader: " + e.getMessage());
         }
         return imageInputStream;
     }
@@ -53,7 +56,7 @@ public final class ImageUtils {
         try {
             imageInputStream = ImageIO.createImageInputStream(file);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("getImageInputStream: " + e.getMessage());
         }
         return imageInputStream;
     }
@@ -78,7 +81,7 @@ public final class ImageUtils {
         try {
             return ImageIO.read(inputStream); // 读入文件
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("getBufferedImage: " + e.getMessage());
         }
         return null;
     }
@@ -93,7 +96,7 @@ public final class ImageUtils {
         try {
             return ImageIO.read(ImageIO.createImageInputStream(imageReader.getInput()));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("getBufferedImage: " + e.getMessage());
         }
         return null;
     }
@@ -108,7 +111,7 @@ public final class ImageUtils {
         try {
             return ImageIO.read(file);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("getBufferedImage: " + e.getMessage());
         }
         return null;
     }
@@ -350,11 +353,19 @@ public final class ImageUtils {
      * @param alpha         透明度：alpha 必须是范围 [0.0, 1.0] 之内（包含边界值）的一个浮点数字
      */
     public static BufferedImage pressImage(BufferedImage bufferedImage, File pressImg, int x, int y, float alpha) {
+        if (bufferedImage == null) {
+            return null;
+        }
+
         int width = bufferedImage.getWidth(); // 得到源图宽
         int height = bufferedImage.getHeight(); // 得到源图长
 
         // 水印文件
         BufferedImage srcBiao = getBufferedImage(pressImg);
+        if (srcBiao == null) {
+            return null;
+        }
+
         int widethBiao = srcBiao.getWidth();
         int heightBiao = srcBiao.getHeight();
 
@@ -454,11 +465,14 @@ public final class ImageUtils {
      * @return
      */
     public static BufferedImage cut(BufferedImage bufferedImage, int x, int y, int width, int height) {
+        if (bufferedImage == null) {
+            return null;
+        }
         try {
             ImageReader reader = getImageReader(bufferedImage, FORMAT);
             ImageReadParam param = reader.getDefaultReadParam();
             // 定义一个矩形
-            Rectangle rect = new Rectangle(x > 0 ? x : 0, y > 0 ? y : 0, width, height);
+            Rectangle rect = new Rectangle(Math.max(x, 0), Math.max(y, 0), width, height);
             // 提供一个 BufferedImage，将其用作解码像素数据的目标。
             param.setSourceRegion(rect);
             return reader.read(0, param);
@@ -496,13 +510,16 @@ public final class ImageUtils {
      * @return
      */
     public static BufferedImage scale(BufferedImage bufferedImage, double scale) {
+        if (bufferedImage == null) {
+            return null;
+        }
         int width = bufferedImage.getWidth(); // 得到源图宽
         int height = bufferedImage.getHeight(); // 得到源图长
         // 转换宽高比例
-        double w = Double.valueOf(String.valueOf(width)) * scale;
-        double h = Double.valueOf(String.valueOf(height)) * scale;
-        width = Double.valueOf(w).intValue();
-        height = Double.valueOf(h).intValue();
+        double w = Double.parseDouble(String.valueOf(width)) * scale;
+        double h = Double.parseDouble(String.valueOf(height)) * scale;
+        width = (int) w;
+        height = (int) h;
         // 缩放图像
         return scale(bufferedImage, width, height);
     }
@@ -555,6 +572,9 @@ public final class ImageUtils {
 	 * @return
 	 */
 	public static BufferedImage scale(BufferedImage bufferedImage, int width, int height, boolean isRepair) {
+        if (bufferedImage == null) {
+            return null;
+        }
         double ratio = 0.0; // 缩放比例
         int srcWidth = bufferedImage.getWidth();   // 源图宽度
         int srcHeight = bufferedImage.getHeight();   // 源图高度
@@ -594,10 +614,13 @@ public final class ImageUtils {
      * @return
      */
     public static BufferedImage rotate(BufferedImage bufferedImage, int rotate) {
+        if (bufferedImage == null) {
+            return null;
+        }
         int width = bufferedImage.getWidth();
         int height = bufferedImage.getHeight();
         // 创建矩形
-        Rectangle rectDes = calcRotatedSize(new Rectangle(new Dimension(width, height)), rotate > 0 ? rotate : 0);
+        Rectangle rectDes = calcRotatedSize(new Rectangle(new Dimension(width, height)), Math.max(rotate, 0));
         // 创建图像缓冲
         BufferedImage resultImage = new BufferedImage(rectDes.width, rectDes.height, BufferedImage.TYPE_INT_RGB);
         Graphics2D graphics = resultImage.createGraphics();
@@ -618,6 +641,9 @@ public final class ImageUtils {
      * @return
      */
     public static Rectangle calcRotatedSize(Rectangle rectangle, int angel) {
+        if (rectangle == null) {
+            return null;
+        }
         // 如果天使大于90度，我们需要做一些转换。
         if (angel >= 90) {
             if (angel / 90 % 2 == 1) {
@@ -714,7 +740,7 @@ public final class ImageUtils {
 	        // 转为 byte 数组
 	        return outputStream.toByteArray();
 		} catch (Exception e) {
-			e.printStackTrace();
+            log.error("imageToByte: " + e.getMessage());
 		}
 		return new byte[0];
 	}
@@ -728,7 +754,7 @@ public final class ImageUtils {
         try (ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);) {
             return getBufferedImage(inputStream);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("byteToImage: " + e.getMessage());
         }
         return null;
     }
@@ -792,7 +818,7 @@ public final class ImageUtils {
             ImageIO.write(bufferedImage, format, new File(targetPath));
             return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("write: " + e.getMessage());
             return false;
         }
     }

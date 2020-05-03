@@ -1,5 +1,6 @@
 package com.learn.core.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.dom4j.Document;
 import org.dom4j.io.OutputFormat;
@@ -9,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+@Slf4j
 public final class FileIOUtils {
 
     public static final String ENCODE = "UTF-8";
@@ -35,7 +37,7 @@ public final class FileIOUtils {
         try {
             return FileUtils.readFileToString(new File(path), ENCODE);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("read: " + e.getMessage());
         }
         return null;
     }
@@ -108,7 +110,7 @@ public final class FileIOUtils {
             writer.write(document);
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("write: " + e.getMessage());
         }
     }
 

@@ -64,6 +64,9 @@ public final class CookieUtils {
      * @return
      */
     public static String getCookie(@Nullable HttpServletRequest request, String cookieName, boolean isDecoder, String encodeString) {
+        if (request == null) {
+            return null;
+        }
         Cookie[] cookieList = request.getCookies();
         if (cookieList == null || cookieName == null) {
             return null;
@@ -154,7 +157,10 @@ public final class CookieUtils {
      *
      * @param cookieMaxage cookie生效的最大秒数
      */
-    private static final void setCookie(HttpServletRequest request, @Nullable HttpServletResponse response, String cookieName, String cookieValue, int cookieMaxage, boolean isEncode, String encodeString) {
+    private static void setCookie(HttpServletRequest request, @Nullable HttpServletResponse response, String cookieName, String cookieValue, int cookieMaxage, boolean isEncode, String encodeString) {
+        if (response == null) {
+            return;
+        }
         try {
             if (cookieValue == null) {
                 cookieValue = "";
@@ -184,7 +190,7 @@ public final class CookieUtils {
     /**
      * 得到cookie的域名
      */
-    private static final String getDomainName(HttpServletRequest request) {
+    private static String getDomainName(HttpServletRequest request) {
         String domainName = null;
 
         String serverName = request.getRequestURL().toString();
