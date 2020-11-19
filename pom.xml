@@ -32,7 +32,6 @@
 		<module>auth-service</module>
 
 		<module>flowable-service</module>
-		<module>batch-service</module>
 
 		<module>learn-api</module>
 		<module>learn-service</module>
