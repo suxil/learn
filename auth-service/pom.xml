@@ -24,9 +24,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.learn.rsql</groupId>
-			<artifactId>rsql-parser</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>io.github.suxil</groupId>
+			<artifactId>rsql</artifactId>
 		</dependency>
 
 		<dependency>

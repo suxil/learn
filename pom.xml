@@ -19,8 +19,6 @@
 	<modules>
 		<module>dependencies</module>
 
-		<module>rsql-parser</module>
-
 		<module>core</module>
 		<module>mybatis-core</module>
 
@@ -173,9 +171,9 @@
 						<!-- copy the service's jar file from target into the root directory of the image -->
 						<resources>
 							<!-- 指定资源文件 -->
-							<resource>                      
+							<resource>
 								<!-- 指定要复制的目录路径，这里是当前目录 -->
-								<targetPath>/</targetPath>            
+								<targetPath>/</targetPath>
 								<!-- 指定要复制的根目录，这里是target目录 -->
 								<directory>${project.build.directory}</directory>
 								<!-- 指定需要拷贝的文件，这里指最后生成的jar包 -->
