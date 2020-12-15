@@ -1,6 +1,6 @@
 package ${package.Controller};
 
-import com.learn.auth.domain.${table.entityName};
+import io.github.suxil.auth.domain.${table.entityName};
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

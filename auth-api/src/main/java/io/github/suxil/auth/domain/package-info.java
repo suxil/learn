@@ -1,0 +1,1 @@
+package io.github.suxil.auth.domain;

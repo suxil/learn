@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.learn</groupId>
+	<groupId>io.github.suxil</groupId>
 	<artifactId>learn</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.1-SNAPSHOT</version>
@@ -28,8 +28,6 @@
 
 		<module>auth-api</module>
 		<module>auth-service</module>
-
-		<module>flowable-service</module>
 
 		<module>learn-api</module>
 		<module>learn-service</module>
@@ -247,7 +245,7 @@
 		<dependencies>
 
 			<dependency>
-				<groupId>com.learn</groupId>
+				<groupId>io.github.suxil</groupId>
 				<artifactId>dependencies</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 				<type>pom</type>

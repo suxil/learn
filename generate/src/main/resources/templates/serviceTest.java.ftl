@@ -3,7 +3,7 @@ package ${package.Service};
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.learn.auth.domain.${table.entityName};
+import io.github.suxil.auth.domain.${table.entityName};
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

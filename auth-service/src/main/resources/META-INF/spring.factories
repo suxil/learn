@@ -1,7 +1,7 @@
 # Application listeners
 #org.springframework.context.ApplicationListener=\
-#com.learn.auth.listener.PermissionListener
+#io.github.suxil.auth.listener.PermissionListener
 
 # Autoconfiguration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.learn.mybatis.config.MyBatisPlusConfiguration
+io.github.suxil.mybatis.config.MyBatisPlusConfiguration
