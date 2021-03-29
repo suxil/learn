@@ -1,9 +1,8 @@
 package io.github.suxil.auth;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import static org.junit.Assert.assertTrue;
 
 public class PasswordEncoderTest {
 
@@ -15,7 +14,7 @@ public class PasswordEncoderTest {
         System.out.println("password encode result: " + result);
 
         boolean checkResult = encoder.matches("password", result);
-        assertTrue(encoder.matches("password", result));
+        Assertions.assertTrue(encoder.matches("password", result));
     }
 
 }

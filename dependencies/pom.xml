@@ -12,11 +12,10 @@
 
 	<properties>
 		<spring.cloud.alibaba.version>2.1.0.RELEASE</spring.cloud.alibaba.version>
-		<spring.cloud.version>Hoxton.RELEASE</spring.cloud.version>
-		<spring.boot.version>2.2.4.RELEASE</spring.boot.version>
-		<spring.security.version>5.3.0.RELEASE</spring.security.version>
-		<spring.oauth.version>2.4.0.RELEASE</spring.oauth.version>
-		<spring.oauth.jwt.version>1.1.0.RELEASE</spring.oauth.jwt.version>
+		<spring.cloud.version>2020.0.2</spring.cloud.version>
+		<spring.boot.version>2.4.4</spring.boot.version>
+		<spring.security.version>5.4.5</spring.security.version>
+		<spring.oauth.version>2.5.0.RELEASE</spring.oauth.version>
 
 		<resilience4j.version>1.3.1</resilience4j.version>
 		<micrometer.registry.prometheus.version>1.3.5</micrometer.registry.prometheus.version>
@@ -27,16 +26,17 @@
 
 		<ulisesbocchio.version>3.0.2</ulisesbocchio.version>
 
-		<mybatis.plus.version>3.3.1</mybatis.plus.version>
-		<dynamic.datasource.version>3.0.0</dynamic.datasource.version>
+		<mybatis.plus.version>3.4.2</mybatis.plus.version>
+		<mybatis.plus.generator.version>3.4.1</mybatis.plus.generator.version>
+		<dynamic.datasource.version>3.3.2</dynamic.datasource.version>
 
-		<p6spy.version>3.8.7</p6spy.version>
+		<p6spy.version>3.9.1</p6spy.version>
 
 		<swagger.version>2.9.2</swagger.version>
 		<swagger-models.version>1.5.21</swagger-models.version>
 
-		<minio.version>6.0.13</minio.version>
-		<flowable.version>6.5.0</flowable.version>
+		<minio.version>7.0.2</minio.version>
+		<flowable.version>6.6.0</flowable.version>
 
 		<commons.collections4.version>4.1</commons.collections4.version>
 		<commons.httpclient.version>3.1</commons.httpclient.version>
@@ -48,17 +48,18 @@
 		<cglib.version>3.3.0</cglib.version>
 		<xstream.version>1.4.11</xstream.version>
 		<dom4j.version>2.1.1</dom4j.version>
-		<netty.version>4.1.45.Final</netty.version>
-        <zxing.version>3.4.0</zxing.version>
+		<netty.version>4.1.60.Final</netty.version>
+        <zxing.version>3.4.1</zxing.version>
 
-		<java-jwt.version>3.10.2</java-jwt.version>
+		<java-jwt.version>3.14.0</java-jwt.version>
+		<hutool.version>5.6.2</hutool.version>
 
-        <protobuf.version>3.11.3</protobuf.version>
-        <grpc.version>1.27.0</grpc.version>
+        <protobuf.version>3.15.6</protobuf.version>
+        <grpc.version>1.36.1</grpc.version>
 
 		<jsoup.version>1.12.2</jsoup.version>
 
-		<rsql.version>1.0.2</rsql.version>
+		<rsql.version>1.0.10</rsql.version>
 
 		<junit.version>4.12</junit.version>
 
@@ -160,6 +161,12 @@
 			</dependency>
 
 			<dependency>
+				<groupId>cn.hutool</groupId>
+				<artifactId>hutool-all</artifactId>
+				<version>${hutool.version}</version>
+			</dependency>
+
+			<dependency>
 				<groupId>org.flowable</groupId>
 				<artifactId>flowable-spring-boot-starter-rest</artifactId>
 				<version>${flowable.version}</version>
@@ -195,7 +202,7 @@
 			<dependency>
 				<groupId>com.baomidou</groupId>
 				<artifactId>mybatis-plus-generator</artifactId>
-				<version>${mybatis.plus.version}</version>
+				<version>${mybatis.plus.generator.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>p6spy</groupId>
