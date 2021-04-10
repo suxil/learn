@@ -38,7 +38,7 @@ import javax.persistence.Table;
 @TableName("${table.name}")
 </#if>
 <#if swagger2>
-@ApiModel(value="${entity}对象", description="${table.comment!}")
+@ApiModel(value="${entity}", description="${table.comment!}")
 </#if>
 <#if superEntityClass??>
 @Entity

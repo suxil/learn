@@ -27,7 +27,7 @@ public final class CaptchaUtils {
         try {
             random = SecureRandom.getInstanceStrong();
         } catch (NoSuchAlgorithmException e) {
-            log.error("init: " + e.getMessage());
+//            log.error("init: " + e.getMessage());
         }
     }
 
@@ -74,7 +74,9 @@ public final class CaptchaUtils {
     public static boolean validCode() {
         String reqVerifyCode = WebUtils.getRequestParam(SESSION_CAPTCHA_CODE);
         String sesVerifyCode = (String) WebUtils.getSessionAttribute(SESSION_CAPTCHA_CODE);
-        if (StringUtils.isEmpty(reqVerifyCode) || StringUtils.isEmpty(sesVerifyCode)) return false;
+        if (StringUtils.isEmpty(reqVerifyCode) || StringUtils.isEmpty(sesVerifyCode)) {
+            return false;
+        }
         return sesVerifyCode.toLowerCase().equals(reqVerifyCode.toLowerCase());
     }
 

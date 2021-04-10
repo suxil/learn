@@ -3,15 +3,20 @@ package ${package.Service};
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.github.suxil.auth.domain.${table.entityName};
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import ${package.Entity}.${entity};
+import ${package.Entity?replace("domain","dto")}.${entity}Dto;
+import ${package.Entity?replace("domain","converter")}.${entity}Converter;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -22,8 +27,9 @@ import org.springframework.transaction.annotation.Transactional;
  * @author ${author}
  * @since ${date}
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
+@ExtendWith(SpringExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Transactional
 @ActiveProfiles({"dev"})
 <#if kotlin>
@@ -45,7 +51,7 @@ public class ${table.serviceName}Test {
 
         IPage<${table.entityName}> pageResult = ${table.entityName?uncap_first}Service.page(page, queryWrapper);
 
-        Assert.assertNotNull(pageResult);
+        Assertions.assertNotNull(pageResult);
     }
 
     @Test
@@ -54,7 +60,7 @@ public class ${table.serviceName}Test {
         String id = "";
         ${table.entityName} ${table.entityName?uncap_first} = ${table.entityName?uncap_first}Service.getById(id);
 
-        Assert.assertNotNull(${table.entityName?uncap_first});
+        Assertions.assertNotNull(${table.entityName?uncap_first});
     }
 
     @Test

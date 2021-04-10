@@ -1,17 +1,15 @@
 package ${package.Controller};
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.github.suxil.auth.domain.${table.entityName};
+import ${package.Entity}.${table.entityName};
 import ${package.Entity?replace("domain","dto")}.${entity}Dto;
-import io.github.suxil.auth.service.${table.entityName}Service;
+import ${package.Service}.${table.entityName}Service;
 import io.github.suxil.core.common.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
@@ -47,11 +45,8 @@ public class ${table.controllerName} {
 
     @GetMapping
     @ApiOperation(value = "${table.comment!} 分页查询")
-    @Validated
     public ResponseResult list(${table.entityName}Dto ${table.entityName?uncap_first}Dto, Page<${table.entityName}> page) {
-        QueryWrapper<${table.entityName}> queryWrapper = new QueryWrapper<>();
-
-        IPage<${table.entityName}> pageResult = ${table.entityName?uncap_first}Service.page(page, queryWrapper);
+        IPage<${table.entityName}> pageResult = ${table.entityName?uncap_first}Service.page(${table.entityName?uncap_first}Dto, page);
         return ResponseResult.success(pageResult);
     }
 

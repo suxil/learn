@@ -30,6 +30,7 @@ public class CodeGenerate {
     public static final String BAST_TEST_PATH = String.format("/%s/src/main/resources/generatecode/src/test/", BAST_MODULE_NAME);
     private static final String JAVA_PATH = BAST_PATH + "java/";
     private static final String MAPPER_PATH = BAST_PATH + "resources/mapper/";
+    private static final String DB_PATH = BAST_PATH + "resources/db/";
     private static final String AUTHOR = "generate";
 
     public static final String DATASOURCE_PATH = "classpath:datasource.properties";
@@ -196,6 +197,15 @@ public class CodeGenerate {
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
                 return projectPath + MAPPER_PATH + modalPkg + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
+            }
+        });
+
+        // schema.sql
+        focList.add(new FileOutConfig("/templates/schema.mysql.sql.ftl") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
+                return projectPath + DB_PATH + modalPkg + tableInfo.getName() + ".sql";
             }
         });
 

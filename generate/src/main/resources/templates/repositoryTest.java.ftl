@@ -1,6 +1,6 @@
 package ${package.Mapper};
 
-import io.github.suxil.auth.domain.${table.entityName};
+import ${package.Entity}.${entity};
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

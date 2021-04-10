@@ -62,8 +62,15 @@ public class UaaUserServiceTest {
     @Rollback
     public void createTest() {
         UaaUser uaaUser = new UaaUser();
+        uaaUser.setUserCode("admin");
+        uaaUser.setUserName("admin");
         uaaUserService.saveOrUpdate(uaaUser);
 
+        uaaUser.setDescription("test");
+
+        uaaUserService.updateById(uaaUser);
+
+        System.out.println();
     }
 
     @Test

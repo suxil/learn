@@ -26,23 +26,32 @@ open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperNam
 <#else>
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
 
-     @Override
-     public ${entity}Dto save(${entity}Dto ${entity?uncap_first}Dto) {
-         ${entity} ${entity?uncap_first} = ${entity}Converter.INSTANCE.convert(${entity?uncap_first}Dto);
+    @Override
+    public IPage<${table.entityName}> page(${entity}Dto ${entity?uncap_first}Dto, Page<${table.entityName}> page) {
+        QueryWrapper<${table.entityName}> queryWrapper = new QueryWrapper<>();
 
-         save(${entity?uncap_first});
+        IPage<${table.entityName}> pageResult = page(page, queryWrapper);
 
-         return ${entity}Converter.INSTANCE.convertDto(${entity?uncap_first});
-     }
+        return pageResult;
+    }
 
-     @Override
-     public ${entity}Dto update(${entity}Dto ${entity?uncap_first}Dto) {
-         ${entity} ${entity?uncap_first} = ${entity}Converter.INSTANCE.convert(${entity?uncap_first}Dto);
+    @Override
+    public ${entity}Dto save(${entity}Dto ${entity?uncap_first}Dto) {
+        ${entity} ${entity?uncap_first} = ${entity}Converter.INSTANCE.convert(${entity?uncap_first}Dto);
 
-         updateById(${entity?uncap_first});
+        save(${entity?uncap_first});
 
-         return ${entity}Converter.INSTANCE.convertDto(${entity?uncap_first});
-     }
+        return ${entity}Converter.INSTANCE.convertDto(${entity?uncap_first});
+    }
 
- }
+    @Override
+    public ${entity}Dto update(${entity}Dto ${entity?uncap_first}Dto) {
+        ${entity} ${entity?uncap_first} = ${entity}Converter.INSTANCE.convert(${entity?uncap_first}Dto);
+
+        updateById(${entity?uncap_first});
+
+        return ${entity}Converter.INSTANCE.convertDto(${entity?uncap_first});
+    }
+
+}
 </#if>
