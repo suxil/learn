@@ -1,4 +1,4 @@
-package io.github.suxil.core.dict;
+package io.github.suxil.dict;
 
 import java.io.Serializable;
 
@@ -10,14 +10,14 @@ public interface Dict extends Serializable {
     String getKey();
 
     /**
-     * 字典类别
-     */
-    String getCategory();
-
-    /**
      * 序号
      */
     Integer getSeq();
+
+    /**
+     * 字典类别
+     */
+    String getCategory();
 
     /**
      * 编码
@@ -30,8 +30,8 @@ public interface Dict extends Serializable {
     String getName();
 
     /**
-     * 是否已缓存
+     * 备注
      */
-    boolean isExist();
+    String getRemark();
 
 }

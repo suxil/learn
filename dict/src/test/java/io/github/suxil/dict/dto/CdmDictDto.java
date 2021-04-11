@@ -1,7 +1,7 @@
-package io.github.suxil.service.dto.cdm;
+package io.github.suxil.dict.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.suxil.core.common.PageParam;
+import io.github.suxil.dict.annotation.DictField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -9,12 +9,10 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * <p>
- * 数据字典类型
+ * 数据字典
  * </p>
  *
  * @author generate
@@ -23,32 +21,37 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="CdmDictCategoryDto对象", description="数据字典类型")
-public class CdmDictCategoryDto extends PageParam implements Serializable {
+@ApiModel(value="CdmDictDto对象", description="数据字典")
+public class CdmDictDto extends PageParam implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private String id;
 
-    @ApiModelProperty(name = "parentId", value = "父节点id")
-    private String parentId;
-
     @ApiModelProperty(name = "seq", value = "序号")
     private Integer seq;
 
-    @ApiModelProperty(name = "categoryCode", value = "类型代码")
-    private String categoryCode;
+    @DictField(key = "DICT_CATEGORY_ID", category = "DICT_CATEGORY_ID", targetFieldName = "categoryName")
+    @ApiModelProperty(name = "categoryId", value = "类型id")
+    private String categoryId;
 
     @ApiModelProperty(name = "categoryName", value = "类型名称")
     private String categoryName;
+
+    @DictField(category = "SYSTEM", targetFieldName = "dictTestName")
+    @ApiModelProperty(name = "dictCode", value = "代码")
+    private String dictCode;
+
+    @ApiModelProperty(name = "dictName", value = "名称")
+    private String dictName;
+
+    private String dictTestName;
 
     @ApiModelProperty(name = "remark", value = "备注")
     private String remark;
 
     private Integer deleted;
     private Long version;
-
-    private List<CdmDictCategoryDto> children;
 
 
 }

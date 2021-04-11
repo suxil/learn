@@ -24,6 +24,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>io.github.suxil.dict</groupId>
+			<artifactId>dict</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
 			<groupId>io.github.suxil.mybatis</groupId>
 			<artifactId>mybatis-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>

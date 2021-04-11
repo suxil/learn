@@ -1,6 +1,7 @@
 package io.github.suxil.service.dto.cdm;
 
 import io.github.suxil.core.common.PageParam;
+import io.github.suxil.dict.annotation.DictField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -8,7 +9,6 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * <p>
@@ -29,10 +29,14 @@ public class CdmDictDto extends PageParam implements Serializable {
     private String id;
 
     @ApiModelProperty(name = "seq", value = "序号")
-    private BigDecimal seq;
+    private Integer seq;
 
+    @DictField(category = "DICT_CATEGORY_ID", targetFieldName = "categoryName")
     @ApiModelProperty(name = "categoryId", value = "类型id")
     private String categoryId;
+
+    @ApiModelProperty(name = "categoryName", value = "类型名称")
+    private String categoryName;
 
     @ApiModelProperty(name = "dictCode", value = "代码")
     private String dictCode;

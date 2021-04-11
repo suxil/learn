@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS `cdm_dict`;
 CREATE TABLE `cdm_dict`  (
   `id` varchar(32) not null,
-  `seq` decimal(11,0) COMMENT '序号',
+  `seq` int(11,0) COMMENT '序号',
   `category_id` varchar(32) COMMENT '类型id',
   `dict_code` varchar(10) COMMENT '代码',
   `dict_name` varchar(60) COMMENT '名称',

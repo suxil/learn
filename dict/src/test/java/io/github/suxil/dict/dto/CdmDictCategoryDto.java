@@ -1,6 +1,5 @@
-package io.github.suxil.service.dto.cdm;
+package io.github.suxil.dict.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.suxil.core.common.PageParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,7 +8,6 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**

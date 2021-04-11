@@ -42,7 +42,7 @@ public class CdmDictCategory extends BaseDomain {
 
     @ApiModelProperty(name = "seq", value = "序号")
     @Column(name = "seq")
-    private BigDecimal seq;
+    private Integer seq;
 
     @ApiModelProperty(name = "categoryCode", value = "类型代码")
     @Column(name = "category_code")
