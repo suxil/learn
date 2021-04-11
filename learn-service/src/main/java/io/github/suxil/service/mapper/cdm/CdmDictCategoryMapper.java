@@ -1,16 +1,16 @@
 package io.github.suxil.service.mapper.cdm;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import io.github.suxil.service.domain.cdm.CdmTimeSegment;
+import io.github.suxil.service.domain.cdm.CdmDictCategory;
 
 /**
  * <p>
- * 时间片段 Mapper 接口
+ * 数据字典类型 Mapper 接口
  * </p>
  *
  * @author generate
  * @since 2021-04-10
  */
-public interface CdmTimeSegmentMapper extends BaseMapper<CdmTimeSegment> {
+public interface CdmDictCategoryMapper extends BaseMapper<CdmDictCategory> {
 
 }

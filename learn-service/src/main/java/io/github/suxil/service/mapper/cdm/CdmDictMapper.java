@@ -1,7 +1,7 @@
 package io.github.suxil.service.mapper.cdm;
 
-import io.github.suxil.service.domain.cdm.CdmDict;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import io.github.suxil.service.domain.cdm.CdmDict;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author generate
- * @since 2019-11-17
+ * @since 2021-04-10
  */
 public interface CdmDictMapper extends BaseMapper<CdmDict> {
 

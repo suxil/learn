@@ -17,17 +17,22 @@ import javax.persistence.Table;
  * </p>
  *
  * @author generate
- * @since 2019-11-17
+ * @since 2021-04-10
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@ApiModel(value="CdmTimeSegment对象", description="时间片段")
+@ApiModel(value="CdmTimeSegment", description="时间片段")
 @Entity
 @Table(name = "cdm_time_segment", catalog = "时间片段")
 public class CdmTimeSegment extends BaseDomain {
 
     private static final long serialVersionUID = 1L;
+
+    public static final String HOUR = "hour";
+    public static final String ZODIAC = "zodiac";
+    public static final String SEGMENT = "segment";
+    public static final String DESCRIPTION = "description";
 
     @ApiModelProperty(name = "hour", value = "时辰")
     @Column(name = "hour")

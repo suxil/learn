@@ -1,12 +1,12 @@
 package io.github.suxil.mybatis.handler;
 
+import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import io.github.suxil.core.constance.BaseDomainConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.reflection.MetaObject;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Slf4j
 public class DefaultGlobalMetaObjectHandler implements MetaObjectHandler {
@@ -14,12 +14,12 @@ public class DefaultGlobalMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         log.debug("insert fill.");
-        String id = UUID.randomUUID().toString().replace("-", "");
-
 
         String userName = "admin";
         String officeCode = "1";
         String tenantId = "1";
+
+        String id = IdUtil.simpleUUID();
 
         this.setFieldValByName(BaseDomainConstants.ID, id, metaObject);
         this.setFieldValByName(BaseDomainConstants.TENANT_ID, tenantId, metaObject);

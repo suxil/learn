@@ -1,6 +1,8 @@
 package io.github.suxil.service;
 
+import io.github.suxil.mybatis.config.MyBatisPlusConfiguration;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -24,6 +26,9 @@ import org.springframework.web.client.RestTemplate;
 @RibbonClients
 @EnableTransactionManagement
 @MapperScan("io.github.suxil.service.**.mapper")
+@ImportAutoConfiguration({
+        MyBatisPlusConfiguration.class
+})
 public class LearnServiceApplication {
 
     @Bean

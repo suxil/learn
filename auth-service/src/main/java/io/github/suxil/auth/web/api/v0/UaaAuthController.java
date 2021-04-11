@@ -65,9 +65,9 @@ public class UaaAuthController {
         Map<String, Object> map = BeanUtils.beanToMap(userDetails);
         map.remove("password");
 
-        String token = JwtUtils.create(map);
-
-        map.put("token", token);
+//        String token = JwtUtils.create(map);
+//
+//        map.put("token", token);
 
         return ResponseResult.success(map);
     }

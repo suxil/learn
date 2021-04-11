@@ -24,7 +24,7 @@ import java.util.Properties;
 @Slf4j
 public class CodeGenerate {
 
-    public static final String MAPPER_NAME = "repository";
+    public static final String MAPPER_NAME = "mapper";
     private static final String BAST_MODULE_NAME = "generate";
     public static final String BAST_PATH = String.format("/%s/src/main/resources/generatecode/src/main/", BAST_MODULE_NAME);
     public static final String BAST_TEST_PATH = String.format("/%s/src/main/resources/generatecode/src/test/", BAST_MODULE_NAME);
@@ -45,7 +45,7 @@ public class CodeGenerate {
 
     // cdm, tem, zyj
     private static final boolean CLEAN_DIR = true; // 是否删除之前生成的代码
-    private static final String MODAL_NAME = "uaa";
+    private static final String MODAL_NAME = "cdm";
     private static final boolean IS_SUB_MODAL = false;
     private static final String TABLE_PREFIX_STR = MODAL_NAME + "_";
     private static final String TABLE_PREFIX = TABLE_PREFIX_STR + "%";
@@ -105,7 +105,7 @@ public class CodeGenerate {
         globalConfig.setBaseColumnList(true);
 
         globalConfig.setServiceName("%sService");
-        globalConfig.setMapperName("%sRepository");
+//        globalConfig.setMapperName("%sRepository");
 
         return globalConfig;
     }
@@ -261,7 +261,7 @@ public class CodeGenerate {
 
         // 公共父类
 //        strategyConfig.setSuperControllerClass("io.github.suxil.mybatis.web.BaseController");
-        strategyConfig.setSuperMapperClass("io.github.suxil.mybatis.repository.BaseRepository");
+//        strategyConfig.setSuperMapperClass("io.github.suxil.mybatis.repository.BaseRepository");
         strategyConfig.setSuperServiceClass("io.github.suxil.mybatis.service.BaseService");
 
         // 写于父类中的公共字段

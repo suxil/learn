@@ -31,18 +31,18 @@ public class MyBatisPlusConfiguration {
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
 
-        interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(new TenantLineHandler() {
-            @Override
-            public Expression getTenantId() {
-                return new LongValue(1);
-            }
-
-            // 这是 default 方法,默认返回 false 表示所有表都需要拼多租户条件
-            @Override
-            public boolean ignoreTable(String tableName) {
-                return !"user".equalsIgnoreCase(tableName);
-            }
-        }));
+//        interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(new TenantLineHandler() {
+//            @Override
+//            public Expression getTenantId() {
+//                return new LongValue(1);
+//            }
+//
+//            // 这是 default 方法,默认返回 false 表示所有表都需要拼多租户条件
+//            @Override
+//            public boolean ignoreTable(String tableName) {
+//                return !"user".equalsIgnoreCase(tableName);
+//            }
+//        }));
 
         // 乐观锁插件
         interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
@@ -51,7 +51,7 @@ public class MyBatisPlusConfiguration {
         // 用了分页插件必须设置 MybatisConfiguration#useDeprecatedExecutor = false
 
         // 分页插件
-        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+//        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
         return interceptor;
     }
 

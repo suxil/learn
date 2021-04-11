@@ -1,5 +1,6 @@
 package ${package.Entity};
 
+import io.github.suxil.core.common.PageParam;
 <#if swagger2>
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -28,10 +29,12 @@ import java.io.Serializable;
 <#if swagger2>
 @ApiModel(value="${entity}Dto对象", description="${table.comment!}")
 </#if>
-public class ${entity}Dto implements Serializable {
+public class ${entity}Dto extends PageParam implements Serializable {
 
 <#if entitySerialVersionUID>
     private static final long serialVersionUID = 1L;
+
+    private String id;
 </#if>
 <#-- ----------  BEGIN 字段循环遍历  ---------->
 <#list table.fields as field>
@@ -40,7 +43,7 @@ public class ${entity}Dto implements Serializable {
     </#if>
 
     <#if swagger2>
-    @ApiModelProperty(name = "${field.name}", value = "${field.comment}")
+    @ApiModelProperty(name = "${field.propertyName}", value = "${field.comment}")
     <#else>
     /**
      * ${field.comment}

@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,13 +42,11 @@ public class ${table.serviceName}Test {
     @Test
     @Rollback
     public void listTest() {
-        Page<${table.entityName}> page = new Page<>();
-        page.setPages(0);
-        page.setSize(10);
+        ${table.entityName}Dto ${table.entityName?uncap_first}Dto = new ${table.entityName}Dto();
+        ${table.entityName?uncap_first}Dto.setPage(0L);
+        ${table.entityName?uncap_first}Dto.setSize(10L);
 
-        QueryWrapper<${table.entityName}> queryWrapper = new QueryWrapper<>();
-
-        IPage<${table.entityName}> pageResult = ${table.entityName?uncap_first}Service.page(page, queryWrapper);
+        PageResult<${table.entityName}Dto> pageResult = ${table.entityName?uncap_first}Service.page(cdmDictDto);
 
         Assertions.assertNotNull(pageResult);
     }
@@ -58,24 +55,24 @@ public class ${table.serviceName}Test {
     @Rollback
     public void loadTest() {
         String id = "";
-        ${table.entityName} ${table.entityName?uncap_first} = ${table.entityName?uncap_first}Service.getById(id);
+        ${table.entityName}Dto ${table.entityName?uncap_first}Dto = ${table.entityName?uncap_first}Service.get${table.entityName}ById(id);
 
-        Assertions.assertNotNull(${table.entityName?uncap_first});
+        Assertions.assertNotNull(${table.entityName?uncap_first}Dto);
     }
 
     @Test
     @Rollback
     public void createTest() {
-        ${table.entityName} ${table.entityName?uncap_first} = new ${table.entityName}();
-        ${table.entityName?uncap_first}Service.saveOrUpdate(${table.entityName?uncap_first});
+        ${table.entityName}Dto ${table.entityName?uncap_first}Dto = new ${table.entityName}Dto();
+        ${table.entityName?uncap_first}Service.save(${table.entityName?uncap_first});
 
     }
 
     @Test
     @Rollback
     public void updateTest() {
-        ${table.entityName} ${table.entityName?uncap_first} = new ${table.entityName}();
-        ${table.entityName?uncap_first}Service.saveOrUpdate(${table.entityName?uncap_first});
+        ${table.entityName}Dto ${table.entityName?uncap_first}Dto = new ${table.entityName}Dto();
+        ${table.entityName?uncap_first}Service.update(${table.entityName?uncap_first});
 
     }
 

@@ -6,6 +6,10 @@ import ${package.Entity?replace("domain","converter")}.${entity}Converter;
 import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import io.github.suxil.core.common.PageResult;
+import io.github.suxil.core.util.PageUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +31,23 @@ open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperNam
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
 
     @Override
-    public IPage<${table.entityName}> page(${entity}Dto ${entity?uncap_first}Dto, Page<${table.entityName}> page) {
+    public PageResult<${table.entityName}Dto> page(${entity}Dto ${entity?uncap_first}Dto) {
         QueryWrapper<${table.entityName}> queryWrapper = new QueryWrapper<>();
 
-        IPage<${table.entityName}> pageResult = page(page, queryWrapper);
+        PageInfo<${table.entityName}> pageInfo = PageHelper.startPage(${entity?uncap_first}Dto.getPage().intValue(), ${entity?uncap_first}Dto.getSize().intValue())
+            .doSelectPageInfo(() -> list(queryWrapper));
+
+        PageResult<${table.entityName}Dto> pageResult = PageUtils.pageInfoToPageResult(pageInfo);
+        pageResult.setList(${entity}Converter.INSTANCE.convertDto(pageInfo.getList()));
 
         return pageResult;
+    }
+
+    @Override
+    public ${entity}Dto get${table.entityName}ById(String id) {
+        ${entity} ${entity?uncap_first} = getById(id);
+
+        return ${entity}Converter.INSTANCE.convertDto(${entity?uncap_first});
     }
 
     @Override

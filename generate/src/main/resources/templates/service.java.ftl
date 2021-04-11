@@ -2,6 +2,7 @@ package ${package.Service};
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.github.suxil.core.common.PageResult;
 import ${package.Entity}.${entity};
 import ${package.Entity?replace("domain","dto")}.${entity}Dto;
 import ${superServiceClassPackage};
@@ -20,9 +21,14 @@ interface ${table.serviceName} : ${superServiceClass}<${entity}>
 public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
 
     /**
-    * 分页查询 ${table.comment!}
-    */
-    IPage<${table.entityName}> page(${entity}Dto ${entity?uncap_first}Dto, Page<${table.entityName}> page);
+     * 分页查询 ${table.comment!}
+     */
+    PageResult<${table.entityName}Dto> page(${entity}Dto ${entity?uncap_first}Dto);
+
+    /**
+     * 加载 ${table.comment!}
+     */
+    ${entity}Dto get${table.entityName}ById(String id);
 
     /**
      * 保存 ${table.comment!}

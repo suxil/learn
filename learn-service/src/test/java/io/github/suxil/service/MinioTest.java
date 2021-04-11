@@ -1,4 +1,4 @@
-package io.github.suxil.auth;
+package io.github.suxil.service;
 
 import io.minio.MinioClient;
 import org.junit.jupiter.api.Test;

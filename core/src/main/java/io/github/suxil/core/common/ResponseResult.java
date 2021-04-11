@@ -10,7 +10,7 @@ import org.apache.http.HttpStatus;
  */
 @Data
 @ApiModel(value="ResponseDomain对象", description="响应结果")
-public class ResponseResult {
+public class ResponseResult<T> {
 
     private ResponseResult() {
         this.status = HttpStatus.SC_OK;
@@ -94,8 +94,8 @@ public class ResponseResult {
      * Description: 成功
      * @return
      */
-    public static ResponseResult success(Object data) {
-        ResponseResult responseResult = new ResponseResult();
+    public static <T> ResponseResult<T> success(Object data) {
+        ResponseResult<T> responseResult = new ResponseResult();
         responseResult.setSuccess(true);
         responseResult.setData(data);
         return responseResult;
