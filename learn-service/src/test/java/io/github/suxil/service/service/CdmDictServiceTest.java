@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.github.suxil.core.common.PageResult;
+import io.github.suxil.dict.core.util.DictServerUtil;
 import io.github.suxil.service.domain.cdm.CdmDict;
 import io.github.suxil.service.dto.cdm.CdmDictDto;
 import io.github.suxil.service.service.cdm.CdmDictService;
@@ -45,6 +46,8 @@ public class CdmDictServiceTest {
         cdmDictDto.setSize(10L);
 
         PageResult<CdmDictDto> pageResult = cdmDictService.page(cdmDictDto);
+
+        DictServerUtil.convert(pageResult.getList());
 
         Assertions.assertNotNull(pageResult);
     }

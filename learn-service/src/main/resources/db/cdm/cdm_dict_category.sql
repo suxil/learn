@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS `cdm_dict_category`;
 CREATE TABLE `cdm_dict_category`  (
   `id` varchar(32) not null,
   `parent_id` varchar(32) COMMENT '父节点id',
-  `seq` int(11,0) COMMENT '序号',
+  `seq` int(11) COMMENT '序号',
   `category_code` varchar(10) COMMENT '类型代码',
   `category_name` varchar(60) COMMENT '类型名称',
   `remark` varchar(100) COMMENT '备注',

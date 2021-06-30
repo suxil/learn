@@ -20,7 +20,6 @@
 		<module>dependencies</module>
 
 		<module>core</module>
-		<module>dict</module>
 		<module>mybatis-core</module>
 
 		<module>generate</module>

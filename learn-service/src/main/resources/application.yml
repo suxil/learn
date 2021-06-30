@@ -97,7 +97,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
-#  redis:
-#    host: 139.196.124.8
-##    password: learn-r
-#    port: 16379
+  redis:
+    host: 192.168.159.140
+#    password: learn-r
+    port: 16379

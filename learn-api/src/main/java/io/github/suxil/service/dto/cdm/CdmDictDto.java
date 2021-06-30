@@ -1,7 +1,8 @@
 package io.github.suxil.service.dto.cdm;
 
 import io.github.suxil.core.common.PageParam;
-import io.github.suxil.dict.annotation.DictField;
+import io.github.suxil.dict.api.annotation.DictField;
+import io.github.suxil.dict.api.constant.DictConstant;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -31,7 +32,7 @@ public class CdmDictDto extends PageParam implements Serializable {
     @ApiModelProperty(name = "seq", value = "序号")
     private Integer seq;
 
-    @DictField(category = "DICT_CATEGORY_ID", targetFieldName = "categoryName")
+    @DictField(key = DictConstant.DICT_OTHER_KEY, category = DictConstant.DICT_OTHER_KEY, targetFieldName = "categoryName")
     @ApiModelProperty(name = "categoryId", value = "类型id")
     private String categoryId;
 
