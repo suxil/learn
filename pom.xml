@@ -24,8 +24,6 @@
 
 		<module>generate</module>
 
-        <module>gateway-service</module>
-
 		<module>auth-api</module>
 		<module>auth-service</module>
 

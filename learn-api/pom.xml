@@ -26,7 +26,7 @@
 		<dependency>
 			<groupId>io.github.suxil</groupId>
 			<artifactId>spring-boot-starter-dict-server</artifactId>
-			<version>0.0.8</version>
+			<version>1.0.1</version>
 		</dependency>
 
 		<dependency>
